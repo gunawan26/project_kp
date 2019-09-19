@@ -12,12 +12,15 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+
+            body{
+                background-color:#ffffff;
             }
 
             .full-height {
@@ -65,7 +68,7 @@
     </head>
     <body>
         <div>
-           <div id="app">adsadsas</div>
+           <div id="app"></div>
         </div>
     <script  type="text/javascript" src="{{asset('js/app.js')}}"></script>
     </body>
