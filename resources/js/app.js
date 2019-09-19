@@ -6,13 +6,17 @@
 import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import VueAxios from 'vue-axios';
+
 
 
 import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
+import Axios from 'axios';
 
 Vue.use(Vuetify);
+Vue.use(VueAxios,Axios);
 
 const app = new Vue({
     el: '#app',

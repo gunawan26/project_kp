@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 
 
+
 mix.webpackConfig({
     resolve: {
         extensions: ['.js', '.vue'],
@@ -9,6 +10,8 @@ mix.webpackConfig({
         }
     }
 })
+
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
