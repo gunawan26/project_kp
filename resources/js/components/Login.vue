@@ -1,21 +1,17 @@
 <template>
     <!-- <div class='msg'>{{myMessage}}</div> -->
     <div class="login">
-        <div id="container" class="container">
-            <nav id="nav-up" class="navbar">
+        <nav id="nav-up1" class="navbar">
             <a class="navbar-brand mb-0 h1" href="#">Offer Apps</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            </nav>
+        </nav>
+        <div id="container" class="container">
             <div class="row">
                 <div id="left-image-con" class="col-sm-8">
                     <img id="left-image" src="@/images/undraw_steps_ngvm.svg">
-                    <!-- <div id="left-content">
-                        <img id="first-text" src="@/images/Let's Create.png" alt="">
-                        <img id="second-text" src="@/images/Easy and Fast.png" alt="">
-                        <img id="back-text" src="@/images/tiny-checkers.png" alt="">
-                    </div> -->
+                    <img id="first-text" src="@/images/Group 12.png" alt="">
                 </div>
 
                 <div  class="col-sm-4">
@@ -138,16 +134,9 @@ export default {
    }
 
    #first-text{
-       max-width: 50%;
+       max-width: 70%;
        float: left;
-   }
-    
-    #second-text{
-       max-width: 50%;
-       float: left;
+       margin-top: 10%;
    }
 
-   #back-text{
-       max-width: 20%;
-   }
 </style>
