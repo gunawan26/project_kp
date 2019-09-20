@@ -21,7 +21,7 @@ use App\Http\Controllers\api\AuthController;
 
 Route::group([
 
-    // 'middleware' => 'api',
+    'middleware' => 'auth',
     'namespace' => 'api',
     'prefix' => 'auth'
 
@@ -37,6 +37,11 @@ Route::group([
     Route::get('kop-surat', 'HeaderController@index');
 
     Route::post('update-insert-data', 'HeaderController@update_or_store');
+
+    Route::post('add-new-document', 'FormController@new_document');
+
+    Route::put('update-form-data/{id}', 'FormController@update_form_data');
+
     Route::get('foo', function () {
         return ("foo");
     });

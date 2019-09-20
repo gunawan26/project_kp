@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSubjectToOffers extends Migration
+class DeleteColumnToOffersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,9 @@ class AddSubjectToOffers extends Migration
     {
         Schema::table('offers', function (Blueprint $table) {
             //
-            $table->string('subject')->nullable();
+            // $table->dropColumn('offername');
+            $table->dropColumn('pricename');
+            $table->dropColumn('total');
         });
     }
 
