@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\api\AuthController;
+// use Symfony\Component\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group([
+
+    // 'middleware' => 'api',
+    'namespace' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+    Route::post('register', 'AuthController@register');
+    // Route::get('test', 'AuthController@test');
+    Route::get('kop-surat', 'HeaderController@index');
+
+    Route::post('update-insert-data', 'HeaderController@update_or_store');
+    Route::get('foo', function () {
+        return ("foo");
+    });
 });
