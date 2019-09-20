@@ -22,7 +22,7 @@
   @import url("https://fonts.googleapis.com/css?family=Work+Sans:400,600");
   #nav-up{
     background-color: #ffffff; 
-    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
  
   }
 

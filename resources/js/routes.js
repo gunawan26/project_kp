@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
 import History from '@/js/components/History';
+import CreateOffer from '@/js/components/CreateOffer';
 
 Vue.use(Router)
 
@@ -22,6 +23,10 @@ export default new Router({
             path: '/history',
             name: 'history',
             component: History
+        },{
+            path: '/create-offer',
+            name: 'create-offer',
+            component: CreateOffer
         }
         // {
         //     path: '/about',
