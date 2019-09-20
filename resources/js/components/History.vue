@@ -1,5 +1,5 @@
 <template>
-    <div id="home"> 
+    <div id="history"> 
         <div class='navi'><Navi/></div>
         <div id="top-box">
             <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
@@ -32,7 +32,7 @@
 import Navi from '@/js/components/Navi.vue';
 
 export default {
-    name: 'home',
+    name: 'history',
     components:{
         Navi,
     }

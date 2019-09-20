@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
+import History from '@/js/components/History';
 
 Vue.use(Router)
 
@@ -17,6 +18,10 @@ export default new Router({
             path: '/home',
             name: 'home',
             component: Home
+        },{
+            path: '/history',
+            name: 'history',
+            component: History
         }
         // {
         //     path: '/about',

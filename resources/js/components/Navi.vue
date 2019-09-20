@@ -4,9 +4,7 @@
       <ul id="ul-class" class="nav justify-content-end">
         <li><a href="#">Verification</a></li>
         <li><a href="#">Home</a></li>
-      </ul>
-      <ul id="ul-profile">
-        <li></li>
+        <li><a href="#">Profile</a></li>
       </ul>
     </nav>
 </template>
@@ -33,6 +31,10 @@
     margin-right: 10%;
     color: #000;
   }
+
+  #ul-class{
+    margin-right: 10%;
+  }
   
   nav ul {
     margin: 0;
@@ -42,7 +44,7 @@
 
   nav li {
     display: inline-block;
-    background-color: red;
+    // background-color: red;
     text-align: center;
     margin-left: 50px;
     padding-top: 10px;
