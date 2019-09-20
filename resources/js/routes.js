@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
 import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
+import History from '@/js/components/History';
+import CreateOffer from '@/js/components/CreateOffer';
+import Tesvuex from '@/js/components/Tesvuex';
 
 Vue.use(Router)
+
 
 export default new Router({
     mode: 'history',
@@ -17,6 +22,18 @@ export default new Router({
             path: '/home',
             name: 'home',
             component: Home
+        },{
+            path: '/history',
+            name: 'history',
+            component: History
+        },{
+            path: '/create-offer',
+            name: 'create-offer',
+            component: CreateOffer
+        },{
+            path: '/tesvuex',
+            name: 'tesvuex',
+            component: Tesvuex
         }
         // {
         //     path: '/about',
