@@ -6,7 +6,7 @@ import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
 import History from '@/js/components/History';
 import CreateOffer from '@/js/components/CreateOffer';
-import Tesvuex from '@/js/components/Tesvuex';
+import App1 from '@/js/views/App1';
 
 Vue.use(Router)
 
@@ -31,9 +31,9 @@ export default new Router({
             name: 'create-offer',
             component: CreateOffer
         },{
-            path: '/tesvuex',
-            name: 'tesvuex',
-            component: Tesvuex
+            path: '/app1',
+            name: 'app1',
+            component: App1
         }
         // {
         //     path: '/about',

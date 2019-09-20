@@ -22,7 +22,7 @@
 </template>
 <script>
     export default {
-        name: 'AgendaInput',
+        name: 'Input',
         data() {
             return {
                 agenda: {
