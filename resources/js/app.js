@@ -7,6 +7,7 @@ import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueAxios from 'vue-axios';
+import store from './store'
 
 
 
@@ -21,6 +22,7 @@ Vue.use(VueAxios,Axios);
 const app = new Vue({
     el: '#app',
     router: Routes,
+    store,
     render: h => h(App),
 })
 
