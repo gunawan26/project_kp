@@ -50,9 +50,7 @@ export default {
     data() { 
         return { 
             email:'',
-            password:'',
-            // checkedNames: [],
-            
+            password:'',            
         };
     },
     methods:{

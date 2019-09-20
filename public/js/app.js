@@ -2033,8 +2033,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       email: '',
-      password: '' // checkedNames: [],
-
+      password: ''
     };
   },
   methods: {
@@ -2079,6 +2078,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tesvuex.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tesvuex.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'AgendaInput',
+  data: function data() {
+    return {
+      agenda: {
+        hari: '',
+        kegiatan: ''
+      }
+    };
+  },
+  methods: {
+    simpan: function simpan() {
+      this.$store.dispatch('simpanAgenda', this.agenda);
+      this.agenda = {
+        hari: '',
+        kegiatan: ''
+      };
+    },
+    simpanAgenda: function simpanAgenda(_ref, agenda) {
+      var commit = _ref.commit,
+          state = _ref.state;
+      state.isLoading = true;
+      setTimeout(function () {
+        commit('KONFIRMASI_AGENDA', agenda);
+        state.isLoading = false;
+      }, 1500);
+    }
   }
 });
 
@@ -38822,6 +38884,113 @@ var staticRenderFns = [
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Profile")])])
         ]
       )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-6" }, [
+    _c("div", { staticClass: "card" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Hari")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.agenda.hari,
+                expression: "agenda.hari"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", required: "" },
+            domProps: { value: _vm.agenda.hari },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.agenda, "hari", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Kegiatan")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.agenda.kegiatan,
+                expression: "agenda.kegiatan"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", required: "" },
+            domProps: { value: _vm.agenda.kegiatan },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.agenda, "kegiatan", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger btn-sm",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.simpan($event)
+                }
+              }
+            },
+            [_vm._v("Tambahkan")]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("List Agenda")])
     ])
   }
 ]
@@ -90922,6 +91091,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Tesvuex.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Tesvuex.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tesvuex.vue?vue&type=template&id=0cf5e639& */ "./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639&");
+/* harmony import */ var _Tesvuex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tesvuex.vue?vue&type=script&lang=js& */ "./resources/js/components/Tesvuex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Tesvuex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Tesvuex.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Tesvuex.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Tesvuex.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tesvuex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Tesvuex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tesvuex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tesvuex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Tesvuex.vue?vue&type=template&id=0cf5e639& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tesvuex.vue?vue&type=template&id=0cf5e639&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tesvuex_vue_vue_type_template_id_0cf5e639___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -90938,6 +91176,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/components/Home */ "./resources/js/components/Home.vue");
 /* harmony import */ var _js_components_History__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/History */ "./resources/js/components/History.vue");
 /* harmony import */ var _js_components_CreateOffer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/CreateOffer */ "./resources/js/components/CreateOffer.vue");
+/* harmony import */ var _js_components_Tesvuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/components/Tesvuex */ "./resources/js/components/Tesvuex.vue");
+
 
 
 
@@ -90964,6 +91204,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: '/create-offer',
     name: 'create-offer',
     component: _js_components_CreateOffer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
+    path: '/tesvuex',
+    name: 'tesvuex',
+    component: _js_components_Tesvuex__WEBPACK_IMPORTED_MODULE_6__["default"]
   } // {
   //     path: '/about',
   //     name: 'about',
