@@ -1909,6 +1909,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'history',
@@ -6584,7 +6588,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#top-box {\n  background-color: #f1f0ee;\n  padding: 15px;\n  height: 130px;\n}\n#top-img {\n  width: 10%;\n  margin-left: 10%;\n  float: left;\n}\n#top-text {\n  margin-top: 40px;\n  margin-left: 10%;\n  float: left;\n}\n#create-button {\n  color: #fff !important;\n  text-decoration: none;\n  background: #1b4f72;\n  padding: 5px 30px;\n  border-radius: 50px;\n  display: inline-block;\n  border: none;\n  transition: all 0.4s ease 0s;\n  float: right;\n  margin-top: 30px;\n  margin-right: 20%;\n}\n#create-button:hover {\n  text-shadow: 0px 0px 6px white;\n  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  transition: all 0.4s ease 0s;\n}\n#draf-box {\n  margin-bottom: 50px;\n  padding: 15px;\n  max-height: 100px;\n}", ""]);
+exports.push([module.i, "#top-img {\n  width: 10%;\n  margin-left: 10%;\n  float: left;\n}\n#top-text {\n  margin-top: 40px;\n  margin-left: 10%;\n  float: left;\n}\n#create-button {\n  color: #fff !important;\n  text-decoration: none;\n  background: #1b4f72;\n  padding: 5px 30px;\n  border-radius: 50px;\n  display: inline-block;\n  border: none;\n  transition: all 0.4s ease 0s;\n  float: right;\n  margin-top: 30px;\n  margin-right: 20%;\n}\n#create-button:hover {\n  text-shadow: 0px 0px 6px white;\n  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  transition: all 0.4s ease 0s;\n}\n#draf-box {\n  margin-bottom: 50px;\n  padding: 15px;\n  max-height: 100px;\n}\n#aprove-text {\n  margin-top: 20px;\n}", ""]);
 
 // exports
 
@@ -38418,9 +38422,7 @@ var render = function() {
   return _c("div", { attrs: { id: "history" } }, [
     _c("div", { staticClass: "navi" }, [_c("Navi")], 1),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
@@ -38428,34 +38430,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "top-box" } }, [
-      _c("img", {
-        attrs: {
-          id: "top-img",
-          src: __webpack_require__(/*! @/images/undraw_complete_task_u2c3.svg */ "./resources/images/undraw_complete_task_u2c3.svg"),
-          alt: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "top-text" } }, [
-        _vm._v("Let's Start Create Something ...")
-      ]),
-      _vm._v(" "),
-      _c("button", { attrs: { id: "create-button", type: "button" } }, [
-        _vm._v("Create")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
+      _c(
+        "h4",
+        { staticStyle: { "margin-top": "30px", "margin-left": "-20px" } },
+        [_vm._v("History")]
+      ),
+      _vm._v(" "),
       _c(
         "h6",
         {
           staticStyle: {
-            "margin-top": "50px",
+            "margin-top": "25px",
             "margin-bottom": "20px",
             "margin-left": "-20px"
           }
@@ -38465,7 +38451,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "alert alert-primary", attrs: { id: "draf-box" } },
+        { staticClass: "alert alert-danger", attrs: { id: "draf-box" } },
         [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-9" }, [
@@ -38475,31 +38461,11 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-3" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary",
-                  attrs: { type: "button" }
-                },
-                [
-                  _vm._v(
-                    "\n                        Delete\n                    "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary",
-                  attrs: { type: "button" }
-                },
-                [
-                  _vm._v(
-                    "\n                        Continue\n                    "
-                  )
-                ]
-              )
+              _c("div", { attrs: { id: "aprove-text" } }, [
+                _c("p", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Waiting Aproved")
+                ])
+              ])
             ])
           ])
         ]

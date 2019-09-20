@@ -1,26 +1,30 @@
 <template>
     <div id="history"> 
         <div class='navi'><Navi/></div>
-        <div id="top-box">
+        <!-- <div id="top-box">
             <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
             <div id="top-text">Let's Start Create Something ...</div>
             <button id="create-button" type="button">Create</button>
-        </div>
+        </div> -->
         <div class="container">
-            <h6 style="margin-top:50px; margin-bottom: 20px; margin-left: -20px;">Recent</h6>
-            <div id="draf-box" class="alert alert-primary">
+            <h4 style="margin-top:30px; margin-left: -20px;">History</h4>
+            <h6 style="margin-top:25px; margin-bottom: 20px; margin-left: -20px;">Recent</h6>
+            <div id="draf-box" class="alert alert-danger">
                 <div class="row">
                     <div class="col-sm-9">
                         <h5 class="row-sm-2">Project Name</h5>
                         <p class="row-sm-2">Category</p>
                     </div>
                     <div class="col-sm-3">
-                        <button type="button" class="btn btn-outline-primary">
+                        <div id="aprove-text">
+                            <p class="font-weight-bold">Waiting Aproved</p>
+                        </div>
+                        <!-- <button type="button" class="btn btn-outline-primary">
                             Delete
                         </button>
                         <button type="button" class="btn btn-outline-primary">
                             Continue
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </div>
@@ -41,11 +45,11 @@ export default {
 
 <style lang="scss">
 
-    #top-box{
-        background-color:#f1f0ee;
-        padding: 15px; 
-        height: 130px;
-    }
+    // #top-box{
+    //     background-color:#f1f0ee;
+    //     padding: 15px; 
+    //     height: 130px;
+    // }
 
     #top-img{
         width: 10%;
@@ -86,5 +90,8 @@ export default {
         padding: 15px;
         max-height: 100px;
     }
-
+    
+    #aprove-text{
+        margin-top: 20px;
+    }
 </style>
