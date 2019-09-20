@@ -1859,6 +1859,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'create-offer',
@@ -6569,7 +6644,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#top-box[data-v-072e61a5] {\n  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);\n}", ""]);
+exports.push([module.i, "#top-box1[data-v-072e61a5] {\n  height: 150px;\n}\n#top-form[data-v-072e61a5] {\n  margin-left: 20%;\n  margin-top: 4%;\n}\n#left-box[data-v-072e61a5] {\n  background-color: #f1f0ee;\n  padding: 15px;\n  height: 150px;\n}\n#right-box[data-v-072e61a5] {\n  background-color: darkgray;\n  padding: 15px;\n  height: 150px;\n}\n#right-bottom[data-v-072e61a5] {\n  margin-top: 12%;\n}\n#container1[data-v-072e61a5] {\n  margin-top: 3%;\n  background-color: #f1f0ee;\n  margin-left: 5%;\n  margin-right: 5%;\n  padding-left: 5%;\n  padding-right: 5%;\n}\n#logo-icon[data-v-072e61a5] {\n  background-color: aquamarine;\n}", ""]);
 
 // exports
 
@@ -38312,92 +38387,229 @@ var render = function() {
   return _c("div", { attrs: { id: "create-offer" } }, [
     _c("div", { staticClass: "navi" }, [_c("Navi")], 1),
     _vm._v(" "),
-    _c("div", { attrs: { id: "top-box" } }, [
-      _c("form", { on: { submit: _vm.formSubmit } }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Email/Username")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.email,
-                expression: "email"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "email",
-              id: "InputEmail",
-              "aria-describedby": "emailHelp",
-              placeholder: "Enter email"
-            },
-            domProps: { value: _vm.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.email = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row", attrs: { id: "top-box1" } }, [
+      _c("div", { staticClass: "col-sm-10", attrs: { id: "left-box" } }, [
+        _c("form", { attrs: { id: "top-form", action: "" } }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-3" }, [
+              _c("input", {
+                staticClass: "form-group",
+                attrs: { type: "text", placeholder: "Nama File" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-2" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-outline-secondary btn-sm btn-block" },
+                [_vm._v("Tambah Kolom")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-2" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-outline-secondary btn-sm btn-block" },
+                [_vm._v("Delete")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-2" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-outline-secondary btn-sm btn-block" },
+                [_vm._v("Save KOP")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-2", attrs: { id: "right-box" } }, [
+        _c("div", [
           _c(
-            "small",
-            { staticClass: "form-text text-muted", attrs: { id: "emailHelp" } },
-            [_vm._v("We'll never share your email with anyone else.")]
+            "button",
+            {
+              staticClass: "btn btn-outline-light btn-sm btn-block",
+              staticStyle: { "margin-top": "12%" }
+            },
+            [_vm._v("Preview")]
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-            _vm._v("Password")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.password,
-                expression: "password"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "password",
-              id: "exampleInputPassword1",
-              placeholder: "Password"
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-light btn-sm btn-block",
+              staticStyle: { "margin-top": "10%" }
             },
-            domProps: { value: _vm.password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.password = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary btn-lg btn-block",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Login")]
-        )
+            [_vm._v("Save")]
+          )
+        ])
       ])
     ])
-  ])
-}
-var staticRenderFns = []
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "container1" } }, [
+      _c("div", { attrs: { id: "middle-box" } }, [
+        _c("div", { staticClass: "row", attrs: { id: "cop" } }, [
+          _c(
+            "div",
+            { staticClass: "col-sm-10", attrs: { id: "company-cop" } },
+            [
+              _c(
+                "form",
+                {
+                  staticClass: "form-group",
+                  attrs: { id: "cop-form", action: "" }
+                },
+                [
+                  _c("div", [
+                    _c("input", {
+                      staticClass: "form-control input-sm",
+                      attrs: { type: "text" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("input", {
+                      staticClass: "form-control input-sm",
+                      attrs: { type: "text" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("input", {
+                        staticClass: "form-control input-sm",
+                        attrs: { type: "text" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c("input", {
+                        staticClass: "form-control input-sm",
+                        attrs: { type: "text" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-4" }, [
+                      _c("input", {
+                        staticClass: "form-control inpus-sm",
+                        attrs: { type: "text" }
+                      })
+                    ])
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2", attrs: { id: "logo-icon" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { id: "form-offer" } }, [
+          _c(
+            "form",
+            {
+              staticClass: "form-group",
+              attrs: { id: "offer-cop", action: "" }
+            },
+            [
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-1 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Nomor")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("input", {
+                    staticClass: "form-control input-sm",
+                    attrs: { type: "text" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-1 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Lampiran")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("input", {
+                    staticClass: "form-control input-sm",
+                    attrs: { type: "text" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-1 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Yth")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("input", {
+                    staticClass: "form-control input-sm",
+                    attrs: { type: "text" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-1 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Perihal")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("input", {
+                    staticClass: "form-control input-sm",
+                    attrs: { type: "text" }
+                  })
+                ])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "bottom-box" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
