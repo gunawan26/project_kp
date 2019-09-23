@@ -32,7 +32,51 @@
                 </form>
             </div>
             <div class="card-body">
-
+                <form @submit.prevent="authenticate">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span for="exampleInputEmail1">Nomor</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Masukan no surat" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span for="exampleInputEmail1">Lampiran</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Jumlah lampiran" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span for="exampleInputEmail1">Yth.</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Nama tujuan surat" required>
+                            </div>
+                        </div>
+                    </div>
+                    <p>di -</p>
+                    <p>Tempat</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span for="exampleInputEmail1">Perihal</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Masukan perihal" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">Login</button>
+                </form>
             </div>
         </div> 
     </div>

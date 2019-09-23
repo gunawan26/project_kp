@@ -9,7 +9,7 @@
         </nav>
         <div id="container" class="container">
             <div class="row">
-                <div id="left-image-con" class="col-sm-8">
+                <div id="left-image-con" class="col-sm-8 d-none d-lg-block">
                     <img id="left-image" src="@/images/undraw_steps_ngvm.svg">
                     <img id="first-text" src="@/images/Group 12.png" alt="">
                 </div>
@@ -18,17 +18,17 @@
                     <div class="card">
                         <img id="login-image" class="card-img-top" src="@/images/undraw_explore_7ofa.svg">
                         <div class="card-body">
-                            <form @submit="formSubmit">
+                            <form @submit.prevent="authenticate">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email/Username</label>
-                                    <input v-model="email" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <input v-model="form.email" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input v-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <input v-model="form.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">Login</button>
                             </form>
                         </div>
                     </div>
@@ -43,33 +43,40 @@
 
 
 <script>
+import { login } from "@/js/helpers/auth";
 export default {
-    mounted(){
-        console.log('Component mounted.')
-    },
-    data() { 
-        return { 
-            email:'',
-            password:'',            
-        };
-    },
-    methods:{
-        formSubmit(e){
-            e.preventDefault();
-            let currentObj = this;
-            // this.axios.post('http://localhost:8000/yourPostApi', {
-            //     email: this.email,
-            //     password: this.password
-            // })
-            // .then(function (response) {
-            //     currentObj.output = response.data;
-            // })
-            // .catch(function (error) {
-            //     currentObj.output = error;
-            // });
-        }
-    }
-}
+  name: "login",
+  data() {
+    return {
+      form: {
+        email: "",
+        password: ""
+      },
+      error: null
+    };
+  },
+  methods: {
+    authenticate() {
+      this.$store.dispatch("login");
+      login(this.$data.form)
+        .then(res => {
+          this.$store.commit("loginSuccess", res);
+          this.$router.push({ path: "/home" });
+        })
+        .catch(error => {
+          this.$store.commit("loginFailed", { error });
+        });
+    }, 
+
+    simpanAgenda({ commit, state }, agenda) {
+        state.isLoading = true
+        setTimeout(() => {
+            commit('KONFIRMASI_AGENDA', agenda)
+            state.isLoading = false
+        }, 1500)
+    } 
+  }
+};
 </script>
 
 
@@ -106,6 +113,7 @@ export default {
 
    #left-image-con{
        margin-top: 3%;
+       
    }
 
    #left-image{
