@@ -7,9 +7,9 @@
             <button id="create-button" type="button">Create</button>
         </div>
         <div class="container">
-            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
+            <h6 style="margin-top:50px; margin-bottom: 20px; margin-left: -20px;">Recent</h6>
             <div id="draf-box" class="alert alert-primary">
-                <div class="row form-inline">
+                <div class="row">
                     <div class="col-sm-9">
                         <h5 class="row-sm-2">Project Name</h5>
                         <p class="row-sm-2">Category</p>
@@ -47,18 +47,18 @@ export default {
         height: 130px;
     }
 
-    // #top-img{
-    //     width: 10%;
-    //     margin-left: 10%;
-    //     float: left;
-    // }
+    #top-img{
+        width: 10%;
+        margin-left: 10%;
+        float: left;
+    }
 
-    // #top-text{
-    //     // height: 100px;
-    //     margin-top: 40px;
-    //     margin-left: 10%;
-    //     float: left;
-    // }
+    #top-text{
+        // height: 100px;
+        margin-top: 40px;
+        margin-left: 10%;
+        float: left;
+    }
 
     #create-button{
         color: #fff !important;
