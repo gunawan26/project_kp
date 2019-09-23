@@ -7,7 +7,7 @@ import Home from '@/js/components/Home';
 import History from '@/js/components/History';
 import CreateOffer from '@/js/components/CreateOffer';
 import App1 from '@/js/views/App1';
-
+import Logindev from '@/js/components/dev/Login';
 Vue.use(Router)
 
 
@@ -18,23 +18,26 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: Login
-        },{
+        }, {
             path: '/home',
             name: 'home',
             component: Home
-        },{
+        }, {
             path: '/history',
             name: 'history',
             component: History
-        },{
+        }, {
             path: '/create-offer',
             name: 'create-offer',
             component: CreateOffer
-        },{
+        }, {
             path: '/app1',
             name: 'app1',
             component: App1
-        }
+        }, {
+            path: '/dev/login',
+            component: Logindev
+        },
         // {
         //     path: '/about',
         //     name: 'about',
