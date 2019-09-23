@@ -15,6 +15,9 @@ import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
 import Axios from 'axios';
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
 
 Vue.use(Vuetify);
 Vue.use(VueAxios,Axios);
