@@ -42,8 +42,39 @@
 </script>
 
 <style lang="scss" scoped>
-    #top-box{
-        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+    #top-box1{
+        // padding: 15px;
+        height: 150px;
+    }
+
+    #top-form{
+        margin-left: 20%;
+        margin-top: 4%;
+    }
+
+    #left-box{
+        background-color: #f1f0ee;
+        padding: 15px;
+        height: 150px;
+    }    
+
+    #right-box{
+        background-color: darkgray;
+        padding: 15px;
+        height: 150px;
+    }
+
+    #right-bottom{
+        margin-top: 12%;
+    }
+
+    #container1{
+        margin-top: 3%;
+        background-color: #f1f0ee;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
 
