@@ -1,15 +1,15 @@
 <template>
     <div id="home"> 
-        <div class='navi'><Navi/></div>
+        <div><Navi/></div>
         <div id="top-box">
             <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
             <div id="top-text">Let's Start Create Something ...</div>
             <button id="create-button" type="button">Create</button>
         </div>
         <div class="container">
-            <h6 style="margin-top:50px; margin-bottom: 20px; margin-left: -20px;">Recent</h6>
+            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
             <div id="draf-box" class="alert alert-primary">
-                <div class="row">
+                <div class="row form-inline">
                     <div class="col-sm-9">
                         <h5 class="row-sm-2">Project Name</h5>
                         <p class="row-sm-2">Category</p>
