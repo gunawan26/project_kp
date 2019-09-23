@@ -66,10 +66,4 @@
         -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
     }
-
-    #logo-icon{
-        background-color: aquamarine;
-    }
-
-
 </style>
