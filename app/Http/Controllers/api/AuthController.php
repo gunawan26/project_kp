@@ -86,6 +86,8 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
+            'username' => JWTAuth::user()->fullname,
+
             'token_type' => 'bearer',
             'role' => JWTAuth::user()->role
             // 'expires_in' => $this->guard()->factory()->getTTL() * 60
@@ -116,7 +118,7 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'gender' => ['required', Rule::in([1, 0]),],
             'phonenumber' => ['required', 'string', 'max:20'],
-            'signature' => ['string'],
+            'signature' => [''],
         ]);
 
         if ($validator->fails()) {

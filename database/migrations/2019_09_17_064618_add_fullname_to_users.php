@@ -15,11 +15,10 @@ class AddFullnameToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('fullname');
-            $table->enum('gender', array(1, 0)); // 1 for male and 0 for female
-            $table->string('phonenumber',20);
-            $table->string('signature');
-
+            $table->string('fullname')->nullable();
+            $table->enum('gender', array(1, 0))->nullable(); // 1 for male and 0 for female
+            $table->string('phonenumber', 20)->nullable();
+            $table->string('signature')->nullable();
         });
     }
 

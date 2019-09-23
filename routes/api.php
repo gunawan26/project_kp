@@ -21,7 +21,7 @@ use App\Http\Controllers\api\AuthController;
 
 Route::group([
 
-
+    // 'middleware' => 'auth',
     'namespace' => 'api',
     'prefix' => 'auth'
 
