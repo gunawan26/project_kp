@@ -8,7 +8,8 @@
             
             <div id="top-text">Let's Start Create Something ...</div>
             <!-- <div id="top-text"></div> -->
-            <button id="create-button" type="button">Create</button>
+            <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link>
+            <!-- <button id="create-button" type="button">Create</button> -->
         </div>
         <div class="container">
             <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
@@ -19,6 +20,7 @@
                         <p class="row-sm-2">Category</p>
                     </div>
                     <div class="col-xs-2 col-sm-1 col-md-2 col-lg-4">
+                        
                         <button type="button" class="btn btn-outline-primary">
                             Delete
                         </button>

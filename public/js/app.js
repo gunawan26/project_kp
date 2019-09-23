@@ -1982,6 +1982,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -2219,6 +2221,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -38945,7 +38949,26 @@ var render = function() {
   return _c("div", { attrs: { id: "home" } }, [
     _c("div", [_c("Navi")], 1),
     _vm._v(" "),
-    _vm._m(0),
+    _c(
+      "div",
+      { attrs: { id: "top-box" } },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { attrs: { id: "top-text" } }, [
+          _vm._v("Let's Start Create Something ...")
+        ]),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            attrs: { id: "create-button", to: "/create-offer", tag: "button" }
+          },
+          [_vm._v("Create")]
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _vm._m(1)
   ])
@@ -38955,24 +38978,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "top-box" } }, [
-      _c("div", { staticClass: "d-none d-lg-block" }, [
-        _c("img", {
-          attrs: {
-            id: "top-img",
-            src: __webpack_require__(/*! @/images/undraw_complete_task_u2c3.svg */ "./resources/images/undraw_complete_task_u2c3.svg"),
-            alt: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "top-text" } }, [
-        _vm._v("Let's Start Create Something ...")
-      ]),
-      _vm._v(" "),
-      _c("button", { attrs: { id: "create-button", type: "button" } }, [
-        _vm._v("Create")
-      ])
+    return _c("div", { staticClass: "d-none d-lg-block" }, [
+      _c("img", {
+        attrs: {
+          id: "top-img",
+          src: __webpack_require__(/*! @/images/undraw_complete_task_u2c3.svg */ "./resources/images/undraw_complete_task_u2c3.svg"),
+          alt: ""
+        }
+      })
     ])
   },
   function() {
@@ -39786,7 +39799,7 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-control",
             attrs: {
-              type: "email",
+              type: "text",
               id: "InputEmail",
               "aria-describedby": "emailHelp",
               placeholder: "Masukan perihal",
@@ -39794,6 +39807,24 @@ var staticRenderFns = [
             }
           })
         ])
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("Sehubung dengan diskusi pada "),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(", yang bertempat di "),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(",  ")
       ])
     ])
   }

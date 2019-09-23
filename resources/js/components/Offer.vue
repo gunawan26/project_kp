@@ -71,9 +71,11 @@
                                 <span for="exampleInputEmail1">Perihal</span>
                             </div>
                             <div class="col-sm-4">
-                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Masukan perihal" required>
+                                <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Masukan perihal" required>
                             </div>
                         </div>
+                        <br>
+                        <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span>, yang bertempat di <span><input type="text" id="InputEmail" required></span>,  </p>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">Login</button>
                 </form>
