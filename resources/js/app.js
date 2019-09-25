@@ -7,8 +7,8 @@ import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueAxios from 'vue-axios';
-import store from './store'
-
+import store from './store';
+import 'vuetify/dist/vuetify.min.css';
 
 
 import Routes from '@/js/routes.js';
@@ -18,11 +18,12 @@ import Axios from 'axios';
 
 Vue.use(Vuetify);
 Vue.use(VueAxios,Axios);
-
+const vuetifyOptions = {}
 const app = new Vue({
     el: '#app',
     router: Routes,
     store,
+    vuetify: new Vuetify(vuetifyOptions),
     render: h => h(App),
 })
 

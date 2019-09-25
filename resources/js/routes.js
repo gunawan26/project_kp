@@ -8,6 +8,7 @@ import History from '@/js/components/History';
 import CreateOffer from '@/js/components/CreateOffer';
 import App1 from '@/js/views/App1';
 import Logindev from '@/js/components/dev/Login';
+import Vuebot from '@/js/components/dev/Vuebot';
 Vue.use(Router)
 
 
@@ -37,6 +38,9 @@ export default new Router({
         }, {
             path: '/dev/login',
             component: Logindev
+        },{
+            path: '/dev/vuebot',
+            component: Vuebot
         },
         // {
         //     path: '/about',

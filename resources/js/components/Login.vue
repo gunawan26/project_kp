@@ -20,15 +20,45 @@
                         <div class="card-body">
                             <form @submit.prevent="authenticate">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email/Username</label>
-                                    <input v-model="form.email" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                     <v-text-field
+                                        v-model="form.email"
+                                        label="Email/Username"
+                                        type="email"
+                                        required
+                                    ></v-text-field>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input v-model="form.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                                    <v-text-field
+                                        v-model="form.password"
+                                        label="Password"
+                                        type="password"
+                                        required
+                                    ></v-text-field>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">Login</button>
+                                <v-alert
+                                    dense
+                                    outlined
+                                    type="error"
+                                    transition="scale-transition"
+                                    value="alert"
+                                    v-model="alert"
+                                    >
+                                    Wrong email or password!
+                                    </v-alert>
+                                <v-row
+                                    justify="center"
+                                >
+                                    <v-btn
+                                    large 
+                                    rounded
+                                    block
+                                    color="primary"
+                                    class="mt-12"
+                                    type="submit"
+                                    :loading="loading"
+                                    >Login
+                                    </v-btn>  
+                                </v-row>                             
                             </form>
                         </div>
                     </div>
@@ -52,29 +82,27 @@ export default {
         email: "",
         password: ""
       },
+      loading : false,
+      alert:false,
       error: null
     };
   },
   methods: {
     authenticate() {
-      this.$store.dispatch("login");
-      login(this.$data.form)
-        .then(res => {
-          this.$store.commit("loginSuccess", res);
-          this.$router.push({ path: "/home" });
+        this.loading =true
+        this.$store.dispatch("login");
+        login(this.$data.form)
+            .then(res => {
+            this.$store.commit("loginSuccess", res);
+            this.$router.push({ path: "/home" });
         })
         .catch(error => {
-          this.$store.commit("loginFailed", { error });
+        this.$store.commit("loginFailed", { error });
+        console.log(error);
+        this.alert = true;
+        this.loading = false;
         });
     }, 
-
-    simpanAgenda({ commit, state }, agenda) {
-        state.isLoading = true
-        setTimeout(() => {
-            commit('KONFIRMASI_AGENDA', agenda)
-            state.isLoading = false
-        }, 1500)
-    } 
   }
 };
 </script>
