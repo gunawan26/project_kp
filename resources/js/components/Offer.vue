@@ -75,10 +75,53 @@
                             </div>
                         </div>
                         <br>
-                        <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span>, yang bertempat di <span><input type="text" id="InputEmail" required></span>,  </p>
+                        <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span> yang bertempat di <span><input type="text" id="InputEmail" required></span>
+                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem / Aplikasi Survei Sebersar Rp. <span><input type="text" id="InputEmail" required></span>
+                        ,- (<span><input type="text" id="InputEmail" required></span>). </p>
+                        <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan tersebut di atas.</p>
+                        <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama <span><input type="text" id="InputEmail" required></span> (<span><input type="text" id="InputEmail" required></span>) hari kerja.</p>
+                        <p>Penawaran ini berlaku selama <span><input type="text" id="InputEmail" required></span> (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal surat penawaran ini.
+                        surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input type="text" id="InputEmail" required></span> (<span><input type="text" id="InputEmail" required></span>) rangkap dokumen.</p>
+                        <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan pekerjaan ini.</p>
+                        <br>
+                        <p style="margin-left:80%">Hormat kami</p>
+                        <img id="signature" src="@/images/tiny-checkers.png" alt="">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">Login</button>
                 </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div> 
     </div>
@@ -94,5 +137,11 @@ export default {
     #logo{
         width: 150px;
         height: 150px;
+    }
+
+    #signature{
+        margin-left: 77%;
+        width: 150px;
+        height: 100px;
     }
 </style>
