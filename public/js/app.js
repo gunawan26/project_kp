@@ -2307,6 +2307,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -7044,7 +7087,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#logo[data-v-463e0501] {\n  width: 150px;\n  height: 150px;\n}", ""]);
+exports.push([module.i, "#logo[data-v-463e0501] {\n  width: 150px;\n  height: 150px;\n}\n#signature[data-v-463e0501] {\n  margin-left: 77%;\n  width: 150px;\n  height: 100px;\n}", ""]);
 
 // exports
 
@@ -39673,19 +39716,12 @@ var render = function() {
             _vm._v(" "),
             _c("p", [_vm._v("Tempat")]),
             _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-lg btn-block",
-                attrs: { type: "submit", value: "Login" }
-              },
-              [_vm._v("Login")]
-            )
+            _vm._m(4)
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(5)
     ])
   ])
 }
@@ -39818,13 +39854,155 @@ var staticRenderFns = [
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
-        _vm._v(", yang bertempat di "),
+        _vm._v(" yang bertempat di "),
         _c("span", [
           _c("input", {
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
-        _vm._v(",  ")
+        _vm._v(
+          "\n                    dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem / Aplikasi Survei Sebersar Rp. "
+        ),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v("\n                    ,- ("),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v("). ")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan tersebut di atas."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama "
+        ),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(" ("),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(") hari kerja.")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("Penawaran ini berlaku selama "),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(" ("),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(
+          ") hari kalender sejak tanggal surat penawaran ini.\n                    surat penawaran beserta lampirannya kami sampaikan sebanyak "
+        ),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(" ("),
+        _c("span", [
+          _c("input", {
+            attrs: { type: "text", id: "InputEmail", required: "" }
+          })
+        ]),
+        _vm._v(") rangkap dokumen.")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan pekerjaan ini."
+        )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "margin-left": "80%" } }, [
+        _vm._v("Hormat kami")
+      ]),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          id: "signature",
+          src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
+          alt: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-bordered table-hover" }, [
+          _c("thead", { staticClass: "thead-light" }, [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ])
+        ])
       ])
     ])
   }
