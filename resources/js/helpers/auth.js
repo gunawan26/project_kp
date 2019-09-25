@@ -6,9 +6,11 @@ export function login(credentials) {
         axios.post('/api/auth/login', credentials)
             .then((response) => {
                 res(response.data);
+                console.log(response.data)
             })
             .catch((err) => {
                 rej("wrong email or password");
+                console.log(err)
             })
     })
 }
