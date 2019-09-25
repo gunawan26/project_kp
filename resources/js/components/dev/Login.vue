@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { login } from "../../helpers/auth";
+import { login } from "@/js/helpers/auth";
 export default {
   name: "login",
   data() {

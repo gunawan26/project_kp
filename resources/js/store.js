@@ -12,18 +12,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isLoading: false,
-        listAgenda: [{
-                hari: 'senin',
-                kegiatan: 'Belajar Vuejs'
-            },
-            {
-                hari: 'selasa',
-                kegiatan: 'Belajar Laravel'
-            },
-            {
-                hari: 'rabu',
-                kegiatan: 'Belajar Mysql'
-            }
+        listAgenda: [
         ],
         /**
          * 

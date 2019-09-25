@@ -28,40 +28,63 @@
 </template>
 
 <script>
-    import Navi from '@/js/components/Navi.vue';
-    import Offer from '@/js/components/Offer.vue';
+import Navi from "@/js/components/Navi.vue";
+import Offer from "@/js/components/Offer.vue";
+import { openFileApi } from "@/js/helpers/fileOffer";
 
-    export default {
-        name: 'create-offer',
-        components:{
-            Navi,
-            Offer,
-        }
-    }
+export default {
+  name: "create-offer",
+  components: {
+    Navi,
+    Offer
+  },
+
+  data() {
+    return {
+      doc_id: 0,
+      data_dokumen: ""
+    };
+  },
+
+  created() {
+    console.log(this.$route.params);
+    this.$data.doc_id = this.$route.params.id_dokumen;
+
+    openFileApi(this.$data.doc_id)
+      .then(result => {
+        console.log("masuk");
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>
-    #top-box{
-        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
-    }
+#top-box {
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+}
 
-    #create-button1{
-        color: #fff !important;
-        width: 150px;
-        text-decoration: none;
-        background: #1b4f72;
-        padding: 5px 30px;
-        border-radius: 50px;
-        display: inline-block;
-        border: none;
-        transition: all 0.4s ease 0s;
-        margin-top: 5%;
-    }
+#create-button1 {
+  color: #fff !important;
+  width: 150px;
+  text-decoration: none;
+  background: #1b4f72;
+  padding: 5px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  margin-top: 5%;
+}
 
-    #create-button1:hover {
-        text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        transition: all 0.4s ease 0s;
-    }
+#create-button1:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
 </style>

@@ -2,21 +2,26 @@
     <div id="home"> 
         <div><Navi/></div>
         <div id="top-box">
-            <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
+            <div class="d-none d-lg-block" >
+                <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
+            </div>
+            
             <div id="top-text">Let's Start Create Something ...</div>
-            <button id="create-button" type="button">create</button>
-            {{curentUser}}
-            <CreateFile/>
+            <!-- <div id="top-text"></div> -->
+            <!-- <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link> -->
+            <create-file/>
+            <!-- <button id="create-button" type="button">Create</button> -->
         </div>
         <div class="container">
             <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
             <div id="draf-box" class="alert alert-primary">
-                <div class="row form-inline">
-                    <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-xs-2 col-sm-1 col-md-2 col-lg-8">
                         <h5 class="row-sm-2">Project Name</h5>
                         <p class="row-sm-2">Category vdczxxzcxz</p>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-xs-2 col-sm-1 col-md-2 col-lg-4">
+                        
                         <button type="button" class="btn btn-outline-primary">
                             Delete
                         </button>
@@ -24,6 +29,9 @@
                             Continue
                         </button>
                     </div>
+                
+                        
+        
                 </div>
             </div>
         </div>
@@ -32,7 +40,7 @@
 
 <script>
 import Navi from "@/js/components/Navi.vue";
-import CreateFile from "@/js/components/dev/CreateFile.vue";
+import CreateFile from "@/js/components/dialog/CreateFile.vue";
 import store from "@/js/store";
 export default {
   name: "home",
