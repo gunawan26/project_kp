@@ -46,7 +46,7 @@ export default {
     redirectToFile($id) {
       console.log("id doc", this.$data.id_dokumen);
       this.$router.push({
-        path: `/dev/file/${$id}`
+        path: `/offer-document/${$id}`
       });
     },
     createFile() {

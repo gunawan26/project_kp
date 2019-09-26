@@ -9,7 +9,7 @@
                     </form>
                 </div>
                 <div class="col-sm-1">
-                    <button type="submit" class="btn btn-primary">Tambah Kolom</button>
+                    <button @click="triggerPrintHelloWorld()" class="btn btn-primary">Tambah Kolom</button>
                 </div>
                  <div class="col-sm-1">
                     <button type="submit" class="btn btn-primary">Delete</button>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div><Offer/></div>
+        <div><Offer ref="OfferComponent"/></div>
     </div>
 </template>
 
@@ -59,7 +59,11 @@ export default {
         console.log(err);
       });
   },
-  methods: {}
+  methods: {
+    triggerPrintHelloWorld() {
+      this.$refs.OfferComponent.printHelloWorld();
+    }
+  }
 };
 </script>
 

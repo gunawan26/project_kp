@@ -44,7 +44,6 @@ export default {
       createFileApi(this.$data.form)
         .then(res => {
           this.$data.id_dokumen = res.id_dokumen;
-
           this.redirectToFile(this.$data.id_dokumen);
         })
         .catch(err => {

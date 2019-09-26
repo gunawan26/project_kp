@@ -16,7 +16,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{currentUser.token}}
+            <!-- {{currentUser.userName}} -->
           </a>
         </li>
       </ul>
@@ -28,29 +28,26 @@
 </template>
 
 <script>
-import store from '@/js/store';
-    export default {
-
-      name :"navi",
-      mounted() {
-          console.log('Component mounted.')
-      },
-      computed:{
-        currentUser(){
-          return store.state.currentUser;
-        }
-      }
+import store from "@/js/store";
+export default {
+  name: "navi",
+  mounted() {
+    console.log("Component mounted.");
+  },
+  computed: {
+    currentUser() {
+      return store.state.currentUser;
     }
+  }
+};
 </script>
 
 
 <style lang="scss">
-  #navbarSupportedContent{
-    margin-right: 10%;
-  }
-    .navbar-brand{
-    margin-left: 10%;
-    }
-
-
+#navbarSupportedContent {
+  margin-right: 10%;
+}
+.navbar-brand {
+  margin-left: 10%;
+}
 </style>

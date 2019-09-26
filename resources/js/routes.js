@@ -8,7 +8,9 @@ import History from '@/js/components/History';
 import App1 from '@/js/views/App1';
 import Logindev from '@/js/components/dev/Login';
 import CreateFile from '@/js/components/dev/CreateFile';
-import DokumenFile from '@/js/components/dev/DokumenFile';
+import DokumenFile from '@/js/components/DokumenFile';
+import PageNotFound from '@/js/components/PageNotFound';
+
 
 import store from './store';
 import Vuebot from '@/js/components/dev/Vuebot';
@@ -24,7 +26,7 @@ const router = new Router({
             name: 'login',
             component: Login
         }, {
-            path: '/home',
+            path: '/',
             name: 'home',
             component: Home,
             meta: {
@@ -54,10 +56,10 @@ const router = new Router({
             path: '/dev/vuebot',
             component: Vuebot
         },
-        {
-            path: "*",
-            component: PageNotFound
-        },
+        // {
+        //     path: "*",
+        //     component: PageNotFound
+        // },
         // {
         //     path: '/about',
         //     name: 'about',
@@ -71,7 +73,10 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     // console.log(to, from, next)
+
+
     if (to.matched.some(record => record.meta.requiresAuth)) {
+
         if (store.getters.isLoggedIn) {
             next();
             return

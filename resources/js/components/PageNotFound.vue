@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <img src="/img/404-01.png" alt />
+        <img src="@/images/404-01.png" alt />
       </div>
     </div>
     <div class="row">
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 body {
   display: block;
   overflow: hidden;
