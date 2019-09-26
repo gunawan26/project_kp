@@ -52,19 +52,18 @@
 </template>
 
 <script>
-import store from '@/js/store';
-    export default {
-
-      name :"navi",
-      mounted() {
-          console.log('Component mounted.')
-      },
-      computed:{
-        currentUser(){
-          return store.state.currentUser;
-        }
-      }
+import store from "@/js/store";
+export default {
+  name: "navi",
+  mounted() {
+    console.log("Component mounted.");
+  },
+  computed: {
+    currentUser() {
+      return store.state.currentUser;
     }
+  }
+};
 </script>
 
 
@@ -80,8 +79,6 @@ import store from '@/js/store';
   #li-item{
     margin-right: 20%;
   }
-
-  #li-profile{}
 
 
 </style>

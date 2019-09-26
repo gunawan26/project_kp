@@ -41,7 +41,7 @@ Route::group([
     Route::post('add-new-document', 'FormController@new_document');
 
     Route::put('update-form-data/{id}', 'FormController@update_form_data');
-
+    Route::get('get-dokumen/{id}', 'FormController@index');
     Route::get('foo', function () {
         return ("foo");
     });

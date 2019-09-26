@@ -165,73 +165,95 @@
                 <v-icon>mdi-mouse</v-icon>
             </v-row>
             </v-card>            
+            <!-- <div id="top-text"></div> -->
+            <!-- <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link> -->
+            <create-file/>
+            <!-- <button id="create-button" type="button">Create</button> -->
+        </div>
+        <div class="container">
+            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
+            <div id="draf-box" class="alert alert-primary">
+                <div class="row">
+                    <div class="col-xs-2 col-sm-1 col-md-2 col-lg-8">
+                        <h5 class="row-sm-2">Project Name</h5>
+                        <p class="row-sm-2">Category vdczxxzcxz</p>
+                    </div>
+                    <div class="col-xs-2 col-sm-1 col-md-2 col-lg-4">
+                        
+                        <button type="button" class="btn btn-outline-primary">
+                            Delete
+                        </button>
+                        <button type="button" class="btn btn-outline-primary">
+                            Continue
+                        </button>
+                    </div>
+                
+                        
+        
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import Navi from '@/js/components/Navi.vue';
-
+import Navi from "@/js/components/Navi.vue";
+import CreateFile from "@/js/components/dialog/CreateFile.vue";
+import store from "@/js/store";
 export default {
-    name: 'home',
+  name: "home",
 
-    mounted(){
-    },
-    
-    components:{
-        Navi,
-    },
-    created: function(){
-        this.items = JSON.parse(localStorage.getItem('user'))
+  components: {
+    Navi,
+    CreateFile
+  },
+  computed: {
+    curentUser() {
+      //   return store.getters.currentUser;
+      return store.state.currentUser;
     }
-}
+  }
+};
 </script>
 
 <style lang="scss">
+#top-box {
+  background-color: #f1f0ee;
+  padding: 15px;
+  height: 130px;
+}
 
-    #top-box{
-        background-color:#f1f0ee;
-        padding: 15px; 
-        height: 130px;
-    }
 
-    #top-img{
-        width: 50%;
-        margin-left: 10%;
-        // float: left;
-    }
+#top-img{
+    width: 50%;
+    margin-left: 10%;
+    // float: left;
+}
 
-    #top-text{
-        // height: 100px;
-        margin-top: 40px;
-        // float: left;
-    }
+#top-text{
+    // height: 100px;
+    margin-top: 40px;
+    // float: left;
+}
 
-    #create-button{
-        color: #fff !important;
-        text-decoration: none;
-        background: #1b4f72;
-        padding: 5px 30px;
-        border-radius: 50px;
-        display: inline-block;
-        border: none;
-        transition: all 0.4s ease 0s;
-        // float: right;
-        margin-top: 30px;
-        margin-right: 20%;
-    }
+#create-button{
+    color: #fff !important;
+    text-decoration: none;
+    background: #1b4f72;
+    padding: 5px 30px;
+    border-radius: 50px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    // float: right;
+    margin-top: 30px;
+    margin-right: 20%;
+}
 
-    #create-button:hover {
-        text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        transition: all 0.4s ease 0s;
-    }
 
-    #draf-box{
-        margin-bottom: 50px;
-        padding: 15px;
-        max-height: 100px;
-    }
-
+#draf-box {
+  margin-bottom: 50px;
+  padding: 15px;
+  max-height: 100px;
+}
 </style>

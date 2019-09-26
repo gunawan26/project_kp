@@ -27,13 +27,15 @@ class FormController extends Controller
         return response()->json($selected_document, 200);
     }
 
-    public function new_document()
+    public function new_document(Request $request)
     {
         $document = new offer;
-        $document->offername = "pengajuan kontrak"; // judul dari proposal
+        $document->offername = $request->offername; // judul dari proposal
         // $document->date = 
         $document->save();
-        return response()->json("sukses", 200);
+        return response()->json([
+            "id_dokumen" => $document->id
+        ], 200);
     }
 
     public function update_form_data(Request $request, $id)

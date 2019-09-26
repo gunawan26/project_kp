@@ -70,7 +70,5 @@ import store from '@/js/store';
     margin-right: 20%;
   }
 
-  #li-profile{}
-
 
 </style>

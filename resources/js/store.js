@@ -34,6 +34,7 @@ export default new Vuex.Store({
             return state.isLoggedIn;
         },
         currentUser(state) {
+
             return state.currentUser;
         },
         auth_error(state) {

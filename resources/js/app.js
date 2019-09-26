@@ -6,18 +6,19 @@
 import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+// import Vuetify from 'vuetify';
 import VueAxios from 'vue-axios';
-import store from './store';
+import store from './store'
 import 'vuetify/dist/vuetify.min.css';
-
 
 import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
 import Axios from 'axios';
+window.Vuetify = require('vuetify');
 
 Vue.use(Vuetify);
-Vue.use(VueAxios,Axios);
+Vue.use(VueAxios, Axios);
 const vuetifyOptions = {}
 const app = new Vue({
     el: '#app',

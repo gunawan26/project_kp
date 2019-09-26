@@ -8,20 +8,20 @@
                         <div class="col-sm-10">
                         
                             <div class="form-group">
-                                <input v-model="text1" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="....">
+                                <input v-model="namaPerusahaan" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Nama Perusahaan">
                             </div>
                             <div class="form-group">
-                                <input v-model="text2" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="....">
+                                <input v-model="alamatPerusahaan" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Alamat Perusahaan">
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <input v-model="text3" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="....">
+                                    <input v-model="noTelepon" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="No Telepon">
                                 </div>
                                 <div class="col-sm-3">
-                                    <input v-model="text4" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="....">
+                                    <input v-model="alamatWebsite" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Alamat Website">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input v-model="text5" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="....">
+                                    <input v-model="kontakEmail" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Kontak Email">
                                 </div>
                             </div>
                         </div>
@@ -129,19 +129,23 @@
 
 <script>
 export default {
-    
-}
+  methods: {
+    printHelloWorld() {
+      console.log("hello world");
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    #logo{
-        width: 150px;
-        height: 150px;
-    }
+#logo {
+  width: 150px;
+  height: 150px;
+}
 
-    #signature{
-        margin-left: 77%;
-        width: 150px;
-        height: 100px;
-    }
+#signature {
+  margin-left: 77%;
+  width: 150px;
+  height: 100px;
+}
 </style>
