@@ -1,27 +1,51 @@
 <template>
   <div id="navi">
-    <nav id="nav-up" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Offer Apps</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <v-toolbar>
+      <v-toolbar-title class="ml-10">OfferApps</v-toolbar-title>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{currentUser.token}}
-          </a>
-        </li>
-      </ul>
-    </div>
-    </nav>
+      <div class="flex-grow-1"></div>
+
+      <v-toolbar-items>
+        <v-btn text to="/create-offer">Verification</v-btn>
+        <v-btn text to="/Home">Home</v-btn>
+        <v-btn text disabled="">
+          <v-avatar
+            color="teal"
+            :tile="false"
+            :size="30"
+          >
+            <img
+              src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
+              alt="avatar"
+            >
+          </v-avatar>
+        </v-btn>
+        <v-menu
+          v-model="value"
+          open-on-hover="true"
+          :close-on-click="closeOnClick"
+          :close-on-content-click="closeOnContentClick"
+          offset-y="true"
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn
+              text
+              v-on="on"
+            >
+              Praba
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item >
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar-items>
+    </v-toolbar>
   </div>
 
     
@@ -48,9 +72,16 @@ import store from '@/js/store';
   #navbarSupportedContent{
     margin-right: 10%;
   }
-    .navbar-brand{
-    margin-left: 10%;
-    }
+
+  .navbar-brand{
+  margin-left: 10%;
+  }
+
+  #li-item{
+    margin-right: 20%;
+  }
+
+  #li-profile{}
 
 
 </style>

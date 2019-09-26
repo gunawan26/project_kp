@@ -101,6 +101,7 @@ export default {
         console.log(error);
         this.alert = true;
         this.loading = false;
+        this.form.password = '';
         });
     }, 
   }

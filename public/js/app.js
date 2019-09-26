@@ -1984,6 +1984,138 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -2179,6 +2311,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
         _this.alert = true;
         _this.loading = false;
+        _this.form.password = '';
       });
     }
   }
@@ -2196,6 +2329,30 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/store */ "./resources/js/store.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7060,7 +7217,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#top-box {\n  background-color: #f1f0ee;\n  padding: 15px;\n  height: 130px;\n}\n#top-img {\n  width: 10%;\n  margin-left: 10%;\n  float: left;\n}\n#top-text {\n  margin-top: 40px;\n  margin-left: 10%;\n  float: left;\n}\n#create-button {\n  color: #fff !important;\n  text-decoration: none;\n  background: #1b4f72;\n  padding: 5px 30px;\n  border-radius: 50px;\n  display: inline-block;\n  border: none;\n  transition: all 0.4s ease 0s;\n  float: right;\n  margin-top: 30px;\n  margin-right: 20%;\n}\n#create-button:hover {\n  text-shadow: 0px 0px 6px white;\n  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  transition: all 0.4s ease 0s;\n}\n#draf-box {\n  margin-bottom: 50px;\n  padding: 15px;\n  max-height: 100px;\n}", ""]);
+exports.push([module.i, "#top-box {\n  background-color: #f1f0ee;\n  padding: 15px;\n  height: 130px;\n}\n#top-img {\n  width: 50%;\n  margin-left: 10%;\n}\n#top-text {\n  margin-top: 40px;\n}\n#create-button {\n  color: #fff !important;\n  text-decoration: none;\n  background: #1b4f72;\n  padding: 5px 30px;\n  border-radius: 50px;\n  display: inline-block;\n  border: none;\n  transition: all 0.4s ease 0s;\n  margin-top: 30px;\n  margin-right: 20%;\n}\n#create-button:hover {\n  text-shadow: 0px 0px 6px white;\n  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);\n  transition: all 0.4s ease 0s;\n}\n#draf-box {\n  margin-bottom: 50px;\n  padding: 15px;\n  max-height: 100px;\n}", ""]);
 
 // exports
 
@@ -7098,7 +7255,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#navbarSupportedContent {\n  margin-right: 10%;\n}\n.navbar-brand {\n  margin-left: 10%;\n}", ""]);
+exports.push([module.i, "#navbarSupportedContent {\n  margin-right: 10%;\n}\n.navbar-brand {\n  margin-left: 10%;\n}\n#li-item {\n  margin-right: 20%;\n}", ""]);
 
 // exports
 
@@ -39039,7 +39196,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "home" } }, [
-    _c("div", [_c("Navi")], 1),
+    _c("div", { attrs: { fixed: "", app: "" } }, [_c("Navi")], 1),
     _vm._v(" "),
     _c(
       "div",
@@ -39062,7 +39219,385 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm._m(1)
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _c(
+          "h6",
+          { staticStyle: { "margin-top": "50px", "margin-bottom": "20px" } },
+          [_vm._v("Recent")]
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          {
+            staticClass: "mx-auto",
+            attrs: {
+              flat: _vm.flat,
+              outlined: _vm.outlined,
+              elevation: _vm.elevation,
+              raised: _vm.raised,
+              color: "blue lighten-4",
+              "d-block": "",
+              height: "120"
+            }
+          },
+          [
+            _c(
+              "v-row",
+              { attrs: { align: "center" } },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "9" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "font-weight-bold", attrs: { small: "" } },
+                      [_vm._v("I'm title")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-text", [_vm._v("I'm Category")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Delete")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                      _vm._v("Continue")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-icon", [_vm._v("mdi-anchor")])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-card",
+          [
+            _c(
+              "v-row",
+              { attrs: { justify: "space-around" } },
+              [
+                _c("v-icon", { attrs: { dark: "" } }, [_vm._v("mdi-anchor")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-xbox-controller")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-watch")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-tilde")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-tennis")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-mouse")])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -39078,60 +39613,6 @@ var staticRenderFns = [
           alt: ""
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c(
-        "h6",
-        { staticStyle: { "margin-top": "50px", "margin-bottom": "20px" } },
-        [_vm._v("Recent")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "alert alert-primary", attrs: { id: "draf-box" } },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xs-2 col-sm-1 col-md-2 col-lg-8" }, [
-              _c("h5", { staticClass: "row-sm-2" }, [_vm._v("Project Name")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "row-sm-2" }, [_vm._v("Category")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xs-2 col-sm-1 col-md-2 col-lg-4" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary",
-                  attrs: { type: "button" }
-                },
-                [
-                  _vm._v(
-                    "\n                        Delete\n                    "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary",
-                  attrs: { type: "button" }
-                },
-                [
-                  _vm._v(
-                    "\n                        Continue\n                    "
-                  )
-                ]
-              )
-            ])
-          ])
-        ]
-      )
     ])
   }
 ]
@@ -39472,105 +39953,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "navi" } }, [
-    _c(
-      "nav",
-      {
-        staticClass: "navbar navbar-expand-lg navbar-light bg-light",
-        attrs: { id: "nav-up" }
-      },
-      [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Offer Apps")
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarSupportedContent" }
-          },
-          [
-            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-              _vm._m(1),
+  return _c(
+    "div",
+    { attrs: { id: "navi" } },
+    [
+      _c(
+        "v-toolbar",
+        [
+          _c("v-toolbar-title", { staticClass: "ml-10" }, [
+            _vm._v("OfferApps")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex-grow-1" }),
+          _vm._v(" "),
+          _c(
+            "v-toolbar-items",
+            [
+              _c("v-btn", { attrs: { text: "", to: "/create-offer" } }, [
+                _vm._v("Verification")
+              ]),
               _vm._v(" "),
-              _vm._m(2),
+              _c("v-btn", { attrs: { text: "", to: "/Home" } }, [
+                _vm._v("Home")
+              ]),
               _vm._v(" "),
-              _c("li", { staticClass: "nav-item dropdown" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "nav-link dropdown-toggle",
-                    attrs: {
-                      href: "#",
-                      id: "navbarDropdown",
-                      role: "button",
-                      "data-toggle": "dropdown",
-                      "aria-haspopup": "true",
-                      "aria-expanded": "false"
-                    }
+              _c(
+                "v-btn",
+                { attrs: { text: "", disabled: "" } },
+                [
+                  _c(
+                    "v-avatar",
+                    { attrs: { color: "teal", tile: false, size: 30 } },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://vuetifyjs.com/apple-touch-icon-180x180.png",
+                          alt: "avatar"
+                        }
+                      })
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    "open-on-hover": "true",
+                    "close-on-click": _vm.closeOnClick,
+                    "close-on-content-click": _vm.closeOnContentClick,
+                    "offset-y": "true"
                   },
-                  [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(_vm.currentUser.token) +
-                        "\n        "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        return [
+                          _c("v-btn", _vm._g({ attrs: { text: "" } }, on), [
+                            _vm._v("\n            Praba\n          ")
+                          ])
+                        ]
+                      }
+                    }
+                  ]),
+                  model: {
+                    value: _vm.value,
+                    callback: function($$v) {
+                      _vm.value = $$v
+                    },
+                    expression: "value"
+                  }
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    [
+                      _c(
+                        "v-list-item",
+                        [_c("v-list-item-title", [_vm._v("Profile")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        [_c("v-list-item-title", [_vm._v("Profile")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navbarSupportedContent",
-          "aria-controls": "navbarSupportedContent",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation"
-        }
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item active" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _vm._v("Home "),
-        _c("span", { staticClass: "sr-only" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _vm._v("Link")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
