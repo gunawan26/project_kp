@@ -1,6 +1,9 @@
 <template>
-  <div id="navi">
-    <v-toolbar>
+
+    <v-app-bar
+        fixed
+        scroll-target="#playground-example"
+    >
       <v-toolbar-title class="ml-10">OfferApps</v-toolbar-title>
 
       <div class="flex-grow-1"></div>
@@ -45,16 +48,21 @@
           </v-list>
         </v-menu>
       </v-toolbar-items>
-    </v-toolbar>
-  </div>
+    </v-app-bar>
+
+
 
     
 </template>
 
 <script>
 import store from "@/js/store";
+import Home from "@/js/components/Home";
 export default {
   name: "navi",
+  components:{
+    Home
+  },
   mounted() {
     console.log("Component mounted.");
   },

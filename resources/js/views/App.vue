@@ -6,11 +6,18 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style>
 #nav-up {
   padding: 20px;
   background: #ffffff;
 }
+ /* body{
+   overflow: hidden;
+ }
+
+::-webkit-scrollbar { 
+    display: none; 
+} */
 </style>
 
 <script>

@@ -1,175 +1,116 @@
 <template>
     <div id="home"> 
-        <div     fixed app><Navi/></div>
+        <Navi/>
         <div id="top-box">
             <div class="d-none d-lg-block" >
-                <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
+                <img style="margin-right:10%; margin-left:20%;" id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
             </div>
+            <v-row justify="center" style="margin-top:2%;">
+                <v-col><div id="top-text1">Let's Start Create Something ...</div></v-col>
+                <v-icon>mdi-heart</v-icon>
             
-            <div id="top-text">Let's Start Create Something ...</div>
-
-            <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link>
-        </div>
-        <div class="container">
-            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card
-                class="mx-auto"
-                :flat="flat"
-                :outlined="outlined"
-                :elevation="elevation"
-                :raised="raised"
-                color="blue lighten-4"
-                d-block
-                height="120"
-                >
-                <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
-                    </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined>Continue</v-btn>
-                        <v-icon>mdi-anchor</v-icon>
-                    </v-col>
-                    
-                </v-row>
-            </v-card>
-            <v-card>
-                <v-row justify="space-around">
-                <v-icon dark>mdi-anchor</v-icon>
-
-                <v-icon>mdi-xbox-controller</v-icon>
-
-                <v-icon>mdi-watch</v-icon>
-
-                <v-icon>mdi-tilde</v-icon>
-
-                <v-icon>mdi-tennis</v-icon>
-
-                <v-icon>mdi-mouse</v-icon>
+                <v-col><v-btn my-auto rounded outlined to="/create-offer">Create</v-btn></v-col>              
             </v-row>
-            </v-card>            
+            <!-- <v-layout row>
+                <v-flex justify-center>
+                    <v-btn primary>
+                    Signup
+                    </v-btn>
+                </v-flex>
+            </v-layout> -->
+        </div>
+
+        <!-- <v-layout row wrap background-color="grey darken-4" >
+            <v-flex justify-center>
+                    <v-btn primary>
+                    Signup
+                    </v-btn>
+                </v-flex>
+        </v-layout> -->
+        
+        <v-container >
+            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>           
+            <v-card
+                class="mx-auto"
+                color="blue lighten-4"
+                height="120"
+                >
+                <v-row align="center">
+                    <v-col md="9">
+                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
+                        <v-card-text>I'm Category</v-card-text>
+                    </v-col>
+                    <v-col md="3"> 
+                        <v-btn rounded outlined>Delete</v-btn>
+                        <v-btn rounded outlined>Continue</v-btn>
+                        <v-icon>mdi-anchor</v-icon>
+                    </v-col>
+                    
+                </v-row>
+                
+            </v-card>
+            <v-card
+                class="mx-auto"
+                color="blue lighten-4"
+                height="120"
+                >
+                <v-row align="center">
+                    <v-col md="9">
+                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
+                        <v-card-text>I'm Category</v-card-text>
+                    </v-col>
+                    <v-col md="3"> 
+                        <v-btn rounded outlined>Delete</v-btn>
+                        <v-btn rounded outlined>Continue</v-btn>
+                        <v-icon>mdi-anchor</v-icon>
+                    </v-col>
+                    
+                </v-row>
+                
+            </v-card>
+            <v-card
+                class="mx-auto"
+                color="blue lighten-4"
+                height="120"
+                >
+                <v-row align="center">
+                    <v-col md="9">
+                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
+                        <v-card-text>I'm Category</v-card-text>
+                    </v-col>
+                    <v-col md="3"> 
+                        <v-btn rounded outlined>Delete</v-btn>
+                        <v-btn rounded outlined>Continue</v-btn>
+                        <v-icon>mdi-anchor</v-icon>
+                    </v-col>
+                    
+                </v-row>
+                
+            </v-card>
+            <v-card
+                class="mx-auto"
+                color="blue lighten-4"
+                height="120"
+                >
+                <v-row align="center">
+                    <v-col md="9">
+                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
+                        <v-card-text>I'm Category</v-card-text>
+                    </v-col>
+                    <v-col md="3"> 
+                        <v-btn rounded outlined>Delete</v-btn>
+                        <v-btn rounded outlined>Continue</v-btn>
+                        <v-icon>mdi-anchor</v-icon>
+                    </v-col>
+                    
+                </v-row>
+                
+            </v-card>
             <!-- <div id="top-text"></div> -->
             <!-- <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link> -->
             <create-file/>
             <!-- <button id="create-button" type="button">Create</button> -->
-        </div>
+        </v-container>
         <div class="container">
             <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
             <div id="draf-box" class="alert alert-primary">
@@ -221,19 +162,7 @@ export default {
   background-color: #f1f0ee;
   padding: 15px;
   height: 130px;
-}
-
-
-#top-img{
-    width: 50%;
-    margin-left: 10%;
-    // float: left;
-}
-
-#top-text{
-    // height: 100px;
-    margin-top: 40px;
-    // float: left;
+  margin-top: 5%;
 }
 
 #create-button{
@@ -249,6 +178,7 @@ export default {
     margin-top: 30px;
     margin-right: 20%;
 }
+
 
 
 #draf-box {

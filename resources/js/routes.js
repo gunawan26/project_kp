@@ -10,6 +10,8 @@ import Logindev from '@/js/components/dev/Login';
 import CreateFile from '@/js/components/dev/CreateFile';
 import DokumenFile from '@/js/components/DokumenFile';
 import PageNotFound from '@/js/components/PageNotFound';
+import Navi from '@/js/components/Navi';
+
 
 
 import store from './store';
@@ -55,6 +57,10 @@ const router = new Router({
         {
             path: '/dev/vuebot',
             component: Vuebot
+        },
+        {
+            path: '/navi',
+            component: Navi
         },
         // {
         //     path: "*",
