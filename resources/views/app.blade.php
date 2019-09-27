@@ -9,6 +9,7 @@
     <link rel="stylesheet" href={{asset("css/app.css")}}>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <style>

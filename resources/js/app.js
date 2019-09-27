@@ -6,7 +6,6 @@
 import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
-// import Vuetify from 'vuetify';
 import VueAxios from 'vue-axios';
 import store from './store'
 import 'vuetify/dist/vuetify.min.css';
@@ -15,14 +14,14 @@ import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
 import Axios from 'axios';
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
 window.Vuetify = require('vuetify');
+
 
 Vue.use(Vuetify);
 Vue.use(VueAxios, Axios);
 const vuetifyOptions = {
-    icons: {
-        iconfont: 'mdi',
+    icons:{
+        iconfont:'mdi',
     },
 }
 const app = new Vue({

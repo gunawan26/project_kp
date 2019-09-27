@@ -9,12 +9,12 @@
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn text to="/create-offer">Verification</v-btn>
-        <v-btn text to="/Home">Home</v-btn>
+        <v-btn text to="/create-offer"><v-icon>mdi-check-box-multiple-outline</v-icon>Verification</v-btn>
+        <v-btn text to="/Home"><v-icon>mdi-home</v-icon>Home</v-btn>
         <v-btn text disabled="">
           <v-avatar
             color="teal"
-            :tile="false"
+            tile="false"
             :size="30"
           >
             <img
@@ -26,15 +26,13 @@
         <v-menu
           v-model="value"
           open-on-hover="true"
-          :close-on-click="closeOnClick"
-          :close-on-content-click="closeOnContentClick"
           offset-y="true"
         >
           <template v-slot:activator="{ on }">
             <v-btn
               text
               v-on="on"
-            >
+            ><v-icon>mdi-account</v-icon>
               Praba
             </v-btn>
           </template>
