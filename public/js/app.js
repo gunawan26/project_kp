@@ -2342,6 +2342,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
 //
 //
 //
@@ -2471,10 +2472,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CreateLogo: _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      company: {
+        name: "",
+        address: "",
+        number: "",
+        website: "",
+        email: ""
+      },
+      imageData: "/storage/images/logo.png"
+    };
+  },
   methods: {
     printHelloWorld: function printHelloWorld() {
       console.log("hello world");
+    },
+    previewImage: function previewImage(event) {
+      var _this = this;
+
+      // Reference to the DOM input element
+      var input = event.target; // Ensure that you have a file before attempting to read it
+
+      if (input.files && input.files[0]) {
+        // create a new FileReader to read this image and convert to base64 format
+        var reader = new FileReader(); // Define a callback function to run, when FileReader finishes its job
+
+        reader.onload = function (e) {
+          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+          // Read image as base64 and set to imageData
+          _this.imageData = e.target.result;
+        }; // Start the reader job - read file as a data url (base64 format)
+
+
+        reader.readAsDataURL(input.files[0]);
+      }
     }
   }
 });
@@ -2758,6 +2820,141 @@ __webpack_require__.r(__webpack_exports__);
     dialogClose: function dialogClose() {
       this.dialog = false;
       this.form.offername = "";
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// import { createFileApi } from "../../helpers/fileOffer";
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dialog: false,
+      company: {
+        name: "",
+        address: "",
+        number: "",
+        website: "",
+        email: ""
+      },
+      rules: {
+        required: function required(value) {
+          return !!value || 'Required.';
+        },
+        min: function min(v) {
+          return v.length >= 10 || 'Min 10 characters';
+        }
+      },
+      id_dokumen: 0,
+      imageData: "/storage/images/logo.png"
+    };
+  },
+  methods: {
+    previewImage: function previewImage(event) {
+      var _this = this;
+
+      // Reference to the DOM input element
+      var input = event.target; // Ensure that you have a file before attempting to read it
+
+      if (input.files && input.files[0]) {
+        // create a new FileReader to read this image and convert to base64 format
+        var reader = new FileReader(); // Define a callback function to run, when FileReader finishes its job
+
+        reader.onload = function (e) {
+          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+          // Read image as base64 and set to imageData
+          _this.imageData = e.target.result;
+        }; // Start the reader job - read file as a data url (base64 format)
+
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
+    dialogClose: function dialogClose() {
+      this.dialog = false;
+      this.company.name = "";
+      this.company.address = "";
+      this.company.number = "";
+      this.company.website = "";
+      this.company.email = "";
     }
   }
 });
@@ -7367,7 +7564,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#logo[data-v-463e0501] {\n  width: 150px;\n  height: 150px;\n}\n#signature[data-v-463e0501] {\n  margin-left: 77%;\n  width: 150px;\n  height: 100px;\n}", ""]);
+exports.push([module.i, "#logo[data-v-463e0501] {\n  width: 150px;\n  height: 150px;\n}\n#signature[data-v-463e0501] {\n  margin-left: 77%;\n  width: 150px;\n  height: 100px;\n}\ninput[data-v-463e0501] {\n  border-bottom: 1px solid #7e7a7a;\n}", ""]);
 
 // exports
 
@@ -7425,6 +7622,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\nbody[data-v-3d2ec509] {\r\n  display: block;\r\n  overflow: hidden;\n}\nimg[data-v-3d2ec509] {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\n}\nh4[data-v-3d2ec509] {\r\n  text-align: center;\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\n}\na[data-v-3d2ec509] {\r\n  margin-top: 2%;\r\n  margin-bottom: 4%;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.file-upload-form, .image-preview {\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\n    padding: 20px;\n}\nimg.preview {\n width: 200px;\n  height: 200px;\n  background-color: white;\n  border: 1px solid #000;\n  padding: 5px;\n}\n\n", ""]);
 
 // exports
 
@@ -38506,6 +38722,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateLogo.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=style&index=0&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=style&index=0&lang=css& ***!
@@ -39225,7 +39471,7 @@ var render = function() {
               _c(
                 "v-menu",
                 {
-                  attrs: { "offset-y": "" },
+                  attrs: { "offset-y": "", "open-on-hover": "" },
                   scopedSlots: _vm._u([
                     {
                       key: "activator",
@@ -39274,7 +39520,7 @@ var render = function() {
               _c(
                 "v-menu",
                 {
-                  attrs: { "offset-y": "" },
+                  attrs: { "offset-y": "", "open-on-hover": "" },
                   scopedSlots: _vm._u([
                     {
                       key: "activator",
@@ -39993,7 +40239,7 @@ var render = function() {
           _c(
             "v-menu",
             {
-              attrs: { "open-on-hover:true": "", "offset-y:true": "" },
+              attrs: { "open-on-hover": "", "offset-y": "" },
               scopedSlots: _vm._u([
                 {
                   key: "activator",
@@ -40079,162 +40325,155 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "offer-field" } }, [
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "5%" } }, [
-      _c("div", { staticClass: "card-header" }, [
-        _c("form", { attrs: { action: "" } }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-10" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.namaPerusahaan,
-                      expression: "namaPerusahaan"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "InputEmail",
-                    "aria-describedby": "emailHelp",
-                    placeholder: "Nama Perusahaan"
-                  },
-                  domProps: { value: _vm.namaPerusahaan },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.namaPerusahaan = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.alamatPerusahaan,
-                      expression: "alamatPerusahaan"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "InputEmail",
-                    "aria-describedby": "emailHelp",
-                    placeholder: "Alamat Perusahaan"
-                  },
-                  domProps: { value: _vm.alamatPerusahaan },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.alamatPerusahaan = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-3" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.noTelepon,
-                        expression: "noTelepon"
-                      }
+      _c(
+        "div",
+        { staticClass: "card-header" },
+        [
+          _c(
+            "v-container",
+            [
+              _c(
+                "v-form",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6", md: "9" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { outlined: "", label: "Company Name*" },
+                            model: {
+                              value: _vm.company.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.company, "name", $$v)
+                              },
+                              expression: "company.name"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: { outlined: "", label: "Company Address*" },
+                            model: {
+                              value: _vm.company.address,
+                              callback: function($$v) {
+                                _vm.$set(_vm.company, "address", $$v)
+                              },
+                              expression: "company.address"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6", md: "4" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Company Number*"
+                                    },
+                                    model: {
+                                      value: _vm.company.number,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.company, "number", $$v)
+                                      },
+                                      expression: "company.number"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6", md: "4" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Company Website*"
+                                    },
+                                    model: {
+                                      value: _vm.company.website,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.company, "website", $$v)
+                                      },
+                                      expression: "company.website"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6", md: "4" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Company Email*"
+                                    },
+                                    model: {
+                                      value: _vm.company.email,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.company, "email", $$v)
+                                      },
+                                      expression: "company.email"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-col", { attrs: { cols: "12", sm: "6", md: "3" } }, [
+                        _c("div", [
+                          _vm.imageData.length > 0
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "image-preview",
+                                  attrs: { oulined: "" }
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "preview",
+                                    attrs: { src: _vm.imageData }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "file-upload-form" }, [
+                            _c("input", {
+                              attrs: { type: "file", accept: "image/*" },
+                              on: { change: _vm.previewImage }
+                            })
+                          ])
+                        ])
+                      ])
                     ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "InputEmail",
-                      "aria-describedby": "emailHelp",
-                      placeholder: "No Telepon"
-                    },
-                    domProps: { value: _vm.noTelepon },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.noTelepon = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-3" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.alamatWebsite,
-                        expression: "alamatWebsite"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "InputEmail",
-                      "aria-describedby": "emailHelp",
-                      placeholder: "Alamat Website"
-                    },
-                    domProps: { value: _vm.alamatWebsite },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.alamatWebsite = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.kontakEmail,
-                        expression: "kontakEmail"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "InputEmail",
-                      "aria-describedby": "emailHelp",
-                      placeholder: "Kontak Email"
-                    },
-                    domProps: { value: _vm.kontakEmail },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.kontakEmail = $event.target.value
-                      }
-                    }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
-        ])
-      ]),
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c(
@@ -40248,40 +40487,26 @@ var render = function() {
             }
           },
           [
+            _vm._m(0),
+            _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
             _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
             _vm._v(" "),
             _c("p", [_vm._v("di -")]),
             _vm._v(" "),
             _c("p", [_vm._v("Tempat")]),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ]
         )
       ]),
       _vm._v(" "),
-      _vm._m(5)
+      _vm._m(4)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-2" }, [
-      _c("img", {
-        attrs: {
-          id: "logo",
-          src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
-          alt: ""
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40396,21 +40621,21 @@ var staticRenderFns = [
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
-        _vm._v(" yang bertempat di "),
+        _vm._v(" yang\n                        bertempat di "),
         _c("span", [
           _c("input", {
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
         _vm._v(
-          "\n                    dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem / Aplikasi Survei Sebersar Rp. "
+          "\n                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                        Aplikasi Survei Sebersar Rp. "
         ),
         _c("span", [
           _c("input", {
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
-        _vm._v("\n                    ,- ("),
+        _vm._v("\n                        ,- ("),
         _c("span", [
           _c("input", {
             attrs: { type: "text", id: "InputEmail", required: "" }
@@ -40421,13 +40646,13 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan tersebut di atas."
+          "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan\n                        tersebut di atas."
         )
       ]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama "
+          "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                        "
         ),
         _c("span", [
           _c("input", {
@@ -40450,14 +40675,14 @@ var staticRenderFns = [
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
-        _vm._v(" ("),
+        _vm._v("\n                        ("),
         _c("span", [
           _c("input", {
             attrs: { type: "text", id: "InputEmail", required: "" }
           })
         ]),
         _vm._v(
-          ") hari kalender sejak tanggal surat penawaran ini.\n                    surat penawaran beserta lampirannya kami sampaikan sebanyak "
+          ") hari kalender sejak tanggal\n                        surat penawaran ini.\n                        surat penawaran beserta lampirannya kami sampaikan sebanyak "
         ),
         _c("span", [
           _c("input", {
@@ -40475,7 +40700,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan pekerjaan ini."
+          "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan\n                        pekerjaan ini."
         )
       ]),
       _vm._v(" "),
@@ -41214,6 +41439,338 @@ var render = function() {
                             disabled: !_vm.valid
                           },
                           on: { click: _vm.createFile }
+                        },
+                        [_vm._v("Submit")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.createLogo($event)
+        }
+      }
+    },
+    [
+      _c(
+        "v-row",
+        { attrs: { justify: "center" } },
+        [
+          _c(
+            "v-dialog",
+            {
+              attrs: { persistent: "", "max-width": "1200" },
+              scopedSlots: _vm._u([
+                {
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._g(
+                          {
+                            attrs: { "my-auto": "", rounded: "", outlined: "" }
+                          },
+                          on
+                        ),
+                        [
+                          _c("v-icon", [_vm._v("mdi-plus-circle-outline")]),
+                          _vm._v("Edit Header\n                ")
+                        ],
+                        1
+                      )
+                    ]
+                  }
+                }
+              ]),
+              model: {
+                value: _vm.dialog,
+                callback: function($$v) {
+                  _vm.dialog = $$v
+                },
+                expression: "dialog"
+              }
+            },
+            [
+              _vm._v(" "),
+              _c(
+                "v-card",
+                { staticClass: "mx-auto", attrs: { "max-width": "1200" } },
+                [
+                  _c("v-card-title", [
+                    _c("span", { staticClass: "headline" }, [
+                      _vm._v("Edit Letter Header")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-container",
+                        [
+                          _c(
+                            "v-form",
+                            [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6", md: "9" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          outlined: "",
+                                          label: "Company Name*"
+                                        },
+                                        model: {
+                                          value: _vm.company.name,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.company, "name", $$v)
+                                          },
+                                          expression: "company.name"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          outlined: "",
+                                          label: "Company Address*"
+                                        },
+                                        model: {
+                                          value: _vm.company.address,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.company,
+                                              "address",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "company.address"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                sm: "6",
+                                                md: "4"
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  outlined: "",
+                                                  label: "Company Number*"
+                                                },
+                                                model: {
+                                                  value: _vm.company.number,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "number",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "company.number"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                sm: "6",
+                                                md: "4"
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  outlined: "",
+                                                  label: "Company Website*"
+                                                },
+                                                model: {
+                                                  value: _vm.company.website,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "website",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "company.website"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                sm: "6",
+                                                md: "4"
+                                              }
+                                            },
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  outlined: "",
+                                                  label: "Company Email*"
+                                                },
+                                                model: {
+                                                  value: _vm.company.email,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.company,
+                                                      "email",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "company.email"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6", md: "3" } },
+                                    [
+                                      _c("div", [
+                                        _vm.imageData.length > 0
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass: "image-preview",
+                                                attrs: { oulined: "" }
+                                              },
+                                              [
+                                                _c("img", {
+                                                  staticClass: "preview",
+                                                  attrs: { src: _vm.imageData }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "file-upload-form" },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "file",
+                                                accept: "image/*"
+                                              },
+                                              on: { change: _vm.previewImage }
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("small", [_vm._v("*indicates required field")])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("div", { staticClass: "flex-grow-1" }),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "blue darken-1",
+                            outlined: "",
+                            text: ""
+                          },
+                          on: { click: _vm.dialogClose }
+                        },
+                        [_vm._v("Close")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "blue darken-1",
+                            outlined: "",
+                            text: ""
+                          }
                         },
                         [_vm._v("Submit")]
                       )
@@ -95021,6 +95578,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateFile_vue_vue_type_template_id_48ebb5a4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateFile_vue_vue_type_template_id_48ebb5a4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/dialog/CreateLogo.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/dialog/CreateLogo.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateLogo.vue?vue&type=template&id=24c6535a& */ "./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a&");
+/* harmony import */ var _CreateLogo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateLogo.vue?vue&type=script&lang=js& */ "./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateLogo.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CreateLogo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dialog/CreateLogo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateLogo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateLogo.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateLogo.vue?vue&type=template&id=24c6535a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dialog/CreateLogo.vue?vue&type=template&id=24c6535a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateLogo_vue_vue_type_template_id_24c6535a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

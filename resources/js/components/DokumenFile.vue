@@ -19,7 +19,7 @@
             <v-btn text small class="d-none d-sm-flex">
                 <v-icon>mdi-delete</v-icon>Delete
             </v-btn>
-            <v-menu offset-y>
+            <v-menu offset-y open-on-hover>
                 <template v-slot:activator="{ on }">
                     <v-btn small="" text v-on="on" outlined class="d-flex d-sm-none">
                        <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>
@@ -31,7 +31,7 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
-            <v-menu offset-y>
+            <v-menu offset-y open-on-hover>
                 <template v-slot:activator="{ on }">
                     <v-btn small="" text v-on="on" class="d-none d-sm-flex">
                         <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>Add Cell
