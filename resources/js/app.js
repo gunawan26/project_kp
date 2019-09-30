@@ -15,7 +15,7 @@ import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
 import Axios from 'axios';
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
 window.Vuetify = require('vuetify');
 
 Vue.use(Vuetify);

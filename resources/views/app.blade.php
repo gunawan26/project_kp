@@ -7,6 +7,7 @@
 
     <title>Laravel</title>
     <link rel="stylesheet" href={{asset("css/app.css")}}>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 

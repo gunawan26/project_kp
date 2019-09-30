@@ -8,8 +8,8 @@
             <v-row justify="center" style="margin-top:2%;">
                 <v-col><div id="top-text1">Let's Start Create Something ...</div></v-col>
                 <v-icon>mdi-heart</v-icon>
-            
-                <v-col><v-btn my-auto rounded outlined to="/create-offer">Create</v-btn></v-col>              
+                 
+                <v-col><create-file/></v-col>
             </v-row>
             <!-- <v-layout row>
                 <v-flex justify-center>
@@ -108,7 +108,7 @@
             </v-card>
             <!-- <div id="top-text"></div> -->
             <!-- <router-link  id="create-button" to="/create-offer" tag="button">Create</router-link> -->
-            <create-file/>
+
             <!-- <button id="create-button" type="button">Create</button> -->
         </v-container>
         <div class="container">
@@ -165,21 +165,19 @@ export default {
   margin-top: 5%;
 }
 
-#create-button{
-    color: #fff !important;
-    text-decoration: none;
-    background: #1b4f72;
-    padding: 5px 30px;
-    border-radius: 50px;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-    // float: right;
-    margin-top: 30px;
-    margin-right: 20%;
+#create-button {
+  color: #fff !important;
+  text-decoration: none;
+  background: #1b4f72;
+  padding: 5px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  // float: right;
+  margin-top: 30px;
+  margin-right: 20%;
 }
-
-
 
 #draf-box {
   margin-bottom: 50px;

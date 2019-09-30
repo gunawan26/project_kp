@@ -6,11 +6,13 @@ import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
 import History from '@/js/components/History';
 import App1 from '@/js/views/App1';
-import Logindev from '@/js/components/dev/Login';
-import CreateFile from '@/js/components/dev/CreateFile';
 import DokumenFile from '@/js/components/DokumenFile';
 import PageNotFound from '@/js/components/PageNotFound';
 import Navi from '@/js/components/Navi';
+
+import Logindev from '@/js/components/dev/Login';
+import CreateFile from '@/js/components/dev/CreateFile';
+import HeaderFile from '@/js/components/dev/HeaderFile';
 
 
 
@@ -62,6 +64,10 @@ const router = new Router({
             path: '/navi',
             component: Navi
         },
+        {
+            path: '/dev/create-header',
+            component: HeaderFile
+        }
         // {
         //     path: "*",
         //     component: PageNotFound

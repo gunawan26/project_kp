@@ -17,7 +17,7 @@ export function createFileApi(payload) {
 export function openFileApi(id_dokumen) {
 
     return new Promise((res, rej) => {
-        axios.get('/api/auth/get-dokumen/' + id_dokumen).then((result) => {
+        axios.get('/api/auth/get-document/' + id_dokumen).then((result) => {
             res(result)
         }).catch((err) => {
             rej(err)
