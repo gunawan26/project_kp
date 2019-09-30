@@ -1,94 +1,113 @@
 <template>
     <div id="create-offer">
-        <div><navi/></div>
-        <div id="top-box">
-            <div class="row">
-                <div id="menu1" class="col-sm-6">
-                    <form @submit="formSubmit">
-                        <input v-model="email" type="text" class="form-control-lg" style="margin-left:20%;" id="InputEmail" aria-describedby="emailHelp" placeholder="Nama File">
-                    </form>
-                </div>
-                <div class="col-sm-1">
-                    <button @click="triggerPrintHelloWorld()" class="btn btn-primary">Tambah Kolom</button>
-                </div>
-                 <div class="col-sm-1">
-                    <button type="submit" class="btn btn-primary">Delete</button>
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Save Kop</button>
-                </div>
-                <div id="menu2" class="col-sm-2">
-                    <button id="create-button1" type="button" style="widtth:15px;">Preview</button>
-                    <button id="create-button1" type="button" style="widtth:15px;">Save</button>
-                </div>
-            </div>
+
+        <div>
+            <navi/>
         </div>
-        <div><Offer ref="OfferComponent"/></div>
+        <v-app-bar elevate-on-scroll:true flat fixed class="pt-5" color="grey lighten-3" style="margin-top:55px;" height="100">
+          <v-layout row wrap class="mx-5">
+            <v-text-field label="File name" placeholder="File name"></v-text-field>
+            <v-btn text outlined small class="d-flex d-sm-none">
+                <v-icon>mdi-playlist-plus</v-icon>
+            </v-btn>
+            <v-btn text small class="d-none d-sm-flex">
+                <v-icon>mdi-playlist-plus</v-icon>Add Category
+            </v-btn>
+            <v-btn text outlined small class="d-flex d-sm-none">
+                <v-icon>mdi-delete</v-icon>
+            </v-btn>
+            <v-btn text small class="d-none d-sm-flex">
+                <v-icon>mdi-delete</v-icon>Delete
+            </v-btn>
+            <v-menu offset-y open-on-hover>
+                <template v-slot:activator="{ on }">
+                    <v-btn small="" text v-on="on" outlined class="d-flex d-sm-none">
+                       <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+            <v-menu offset-y open-on-hover>
+                <template v-slot:activator="{ on }">
+                    <v-btn small="" text v-on="on" class="d-none d-sm-flex">
+                        <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>Add Cell
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+            <v-btn outlined text small class="d-flex d-sm-none">
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+            <v-btn outlined rounded text small class="d-none d-sm-flex">
+                Preview
+            </v-btn>
+          </v-layout>
+        </v-app-bar>
+        <div style="margin-top:10%;">
+            <Offer ref="OfferComponent" />
+        </div>
     </div>
 </template>
 
 <script>
-import Navi from "@/js/components/Navi.vue";
-import Offer from "@/js/components/Offer.vue";
-import { openFileApi } from "@/js/helpers/fileOffer";
+    import Navi from "@/js/components/Navi.vue";
+    import Offer from "@/js/components/Offer.vue";
+    import {
+        openFileApi
+    } from "@/js/helpers/fileOffer";
 
-export default {
-  name: "create-offer",
-  components: {
-    Navi,
-    Offer
-  },
+    export default {
+        name: "create-offer",
+        components: {
+            Navi,
+            Offer
+        },
+        data() {
+            return {
+                doc_id: 0,
+                data_dokumen: "",
+                items: [{
+                        title: 'Sub-category'
+                    },
+                    {
+                        title: 'Item'
+                    },
+                ],
+            };
+        },
 
-  data() {
-    return {
-      doc_id: 0,
-      data_dokumen: ""
-    };
-  },
+        created() {
+            console.log(this.$route.params);
+            this.$data.doc_id = this.$route.params.id_dokumen;
 
-  created() {
-    console.log(this.$route.params);
-    this.$data.doc_id = this.$route.params.id_dokumen;
-
-    openFileApi(this.$data.doc_id)
-      .then(result => {
-        console.log("masuk");
-        console.log(result);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  methods: {
-    triggerPrintHelloWorld() {
-      this.$refs.OfferComponent.printHelloWorld();
+            openFileApi(this.$data.doc_id)
+                .then(result => {
+                    console.log("masuk");
+                    console.log(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        },
+        // methods: {
+        //   triggerPrintHelloWorld() {
+        //     this.$refs.OfferComponent.printHelloWorld();
+        //   }
+        // }
     }
-  }
-};
+
 </script>
+<style>
+    * {
+        text-transform: none !important;
+    }
 
-<style lang="scss" scoped>
-#top-box {
-  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
-}
-
-#create-button1 {
-  color: #fff !important;
-  width: 150px;
-  text-decoration: none;
-  background: #1b4f72;
-  padding: 5px 30px;
-  border-radius: 50px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-  margin-top: 5%;
-}
-
-#create-button1:hover {
-  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.4s ease 0s;
-}
 </style>

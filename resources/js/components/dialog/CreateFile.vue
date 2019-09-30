@@ -1,21 +1,27 @@
 <template>
 <form @submit.prevent="createFile">
-
-
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="344">
       <template v-slot:activator="{ on }">
+<<<<<<< HEAD
         <v-btn color="primary" my-auto rounded outlined v-on="on">Create</v-btn>
+=======
+        <v-btn my-auto rounded outlined v-on="on"><v-icon>mdi-file-document-outline</v-icon>Create</v-btn>
+>>>>>>> 93da2f3277414db64d089ec2f475592a7c4972a5
       </template>
-      <v-card>
+      <v-card 
+        max-width="344"
+        class="mx-auto">
         <v-card-title>
           <span class="headline">Create File Offer</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="Offer Name*" required v-model="form.offername"></v-text-field>
+              <v-col cols="12" sm="6" md="12">
+                <v-form v-model="valid">
+                  <v-text-field label="Offer Name*" v-model="form.offername" :rules="[rules.required, rules.min]"></v-text-field>
+                </v-form>
               </v-col>
             </v-row>
           </v-container>
@@ -23,8 +29,8 @@
         </v-card-text>
         <v-card-actions>
           <div class="flex-grow-1"></div>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text  @click="createFile">Submit</v-btn>
+          <v-btn color="blue darken-1" outlined text @click="dialogClose">Close</v-btn>
+          <v-btn color="blue darken-1" outlined text :disabled="!valid" @click="createFile">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -40,6 +46,10 @@ export default {
     form: {
       offername: ""
     },
+    rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 10 || 'Min 10 characters',
+        },
     id_dokumen: 0
   }),
   methods: {
@@ -53,12 +63,15 @@ export default {
       createFileApi(this.$data.form)
         .then(res => {
           this.$data.id_dokumen = res.id_dokumen;
-
           this.redirectToFile(this.$data.id_dokumen);
         })
         .catch(err => {
           console.log("gagal dibuat", { err });
         });
+    },
+    dialogClose(){
+      this.dialog = false;
+      this.form.offername = "";
     }
   }
 };
