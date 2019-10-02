@@ -40,8 +40,10 @@ export default {
   data: () => ({
     dialog: false,
     form: {
-      offername: ""
+      offername: "",
+      
     },
+    valid:"",
     rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 10 || 'Min 10 characters',

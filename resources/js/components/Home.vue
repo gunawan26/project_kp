@@ -60,4 +60,17 @@ export default {
   margin-top: 5%;
 }
 
+#top-img{
+        width: 10%;
+        margin-left: 10%;
+        float: left;
+    }
+
+  #top-text{
+      // height: 100px;
+      margin-top: 40px;
+      margin-left: 10%;
+      float: left;
+  }
+
 </style>

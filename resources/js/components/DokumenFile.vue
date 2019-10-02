@@ -10,7 +10,7 @@
             <v-btn text outlined small class="d-flex d-sm-none">
                 <v-icon>mdi-playlist-plus</v-icon>
             </v-btn>
-            <v-btn text small class="d-none d-sm-flex">
+            <v-btn text small class="d-none d-sm-flex" v-on:click="triggerAddCategory">
                 <v-icon>mdi-playlist-plus</v-icon>Add Category
             </v-btn>
             <v-btn text outlined small class="d-flex d-sm-none">
@@ -26,7 +26,7 @@
                     </v-btn>
                 </template>
                 <v-list>
-                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
+                    <v-list-item v-for="(item, index) in items" :key="index">
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
@@ -38,7 +38,7 @@
                     </v-btn>
                 </template>
                 <v-list>
-                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
+                    <v-list-item v-for="(item, index) in items" :key="index">
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
@@ -60,6 +60,7 @@
 <script>
     import Navi from "@/js/components/Navi.vue";
     import Offer from "@/js/components/Offer.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue"
     import {
         openFileApi
     } from "@/js/helpers/fileOffer";
@@ -96,12 +97,13 @@
                 .catch(err => {
                     console.log(err);
                 });
-        },
-        // methods: {
-        //   triggerPrintHelloWorld() {
-        //     this.$refs.OfferComponent.printHelloWorld();
-        //   }
-        // }
+        }, 
+
+        methods: {
+          triggerAddCategory() {
+            this.$refs.OfferComponent.addCategory();
+          }
+        }
     }
 
 </script>

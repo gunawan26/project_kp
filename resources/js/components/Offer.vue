@@ -33,9 +33,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <div class="file-upload-form">
-                                        <input type="file" @change="previewImage" accept="image/*">
-                                    </div>
+                                    <createLogo />
                                 </div>
                             </v-col>
                         </v-row>
@@ -114,38 +112,9 @@
                     </div>
                 </form>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="card-header">
+                <div v-for="(tab,index) in categories" v-bind:key="index">
+                    <CategoryAdd />
                 </div>
             </div>
         </div>
@@ -154,25 +123,40 @@
 
 <script>
     import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue";
     export default {
         components: {
-            CreateLogo
+            CreateLogo,
+            CategoryAdd,
         },
-        data:()=>({
-             company: {
+        data: () => ({
+            company: {
                 name: "",
                 address: "",
                 number: "",
                 website: "",
                 email: "",
-            }, 
+            },
+
             imageData: "/storage/images/logo.png",
+            items: [],
+            item: [],
+            categories:[]
+
         }),
         methods: {
+            addCategory() {
+                console.log('AddCategory')
+                this.categories.push({
+                    message: "test"
+                })
+                console.log(this.table)
+
+            },
             printHelloWorld() {
                 console.log("hello world");
             },
-            previewImage: function(event) {
+            previewImage: function (event) {
                 // Reference to the DOM input element
                 var input = event.target;
                 // Ensure that you have a file before attempting to read it
@@ -189,10 +173,14 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             },
+        },
+        created(){
+            this.addCategory()
         }
     };
 
 </script>
+
 
 <style lang="scss" scoped>
     #logo {
@@ -206,7 +194,7 @@
         height: 100px;
     }
 
-    input{
+    input {
         border-bottom: 1px solid #7e7a7a
     }
 

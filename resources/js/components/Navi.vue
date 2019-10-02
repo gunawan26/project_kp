@@ -1,7 +1,6 @@
 <template>
     <v-app-bar
         fixed
-        scroll-target="#playground-example"
         collapse:true
         
     >
@@ -10,10 +9,10 @@
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn text to="/create-offer" class="d-flex d-sm-none" style="display:none;"><v-icon>mdi-check-box-multiple-outline</v-icon></v-btn>
-        <v-btn text to="/create-offer" class="d-none d-sm-flex"><v-icon>mdi-check-box-multiple-outline</v-icon>Verification</v-btn>
-        <v-btn text to="/Home" class="d-flex d-sm-none"><v-icon>mdi-home</v-icon></v-btn>
-        <v-btn text to="/Home" class="d-none d-sm-flex"><v-icon>mdi-home</v-icon>Home</v-btn>
+        <v-btn text to="/history" class="d-flex d-sm-none" style="display:none;"><v-icon>mdi-check-box-multiple-outline</v-icon></v-btn>
+        <v-btn text to="/history" class="d-none d-sm-flex"><v-icon>mdi-check-box-multiple-outline</v-icon>History</v-btn>
+        <v-btn text to="/" class="d-flex d-sm-none"><v-icon>mdi-home</v-icon></v-btn>
+        <v-btn text to="/" class="d-none d-sm-flex"><v-icon>mdi-home</v-icon>Home</v-btn>
         <v-btn text disabled="">
           <v-avatar
             color="teal"
