@@ -1,30 +1,17 @@
 <template>
     <v-app-bar
         fixed
-        collapse:true
-        
-    >
-      <v-toolbar-title class="ml-5">OfferApps</v-toolbar-title>
+        collapse:true>
+ 
+          <v-toolbar-title class="ml-5">OfferApps</v-toolbar-title>
 
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn text to="/history" class="d-flex d-sm-none" style="display:none;"><v-icon>mdi-check-box-multiple-outline</v-icon></v-btn>
-        <v-btn text to="/history" class="d-none d-sm-flex"><v-icon>mdi-check-box-multiple-outline</v-icon>History</v-btn>
-        <v-btn text to="/" class="d-flex d-sm-none"><v-icon>mdi-home</v-icon></v-btn>
-        <v-btn text to="/" class="d-none d-sm-flex"><v-icon>mdi-home</v-icon>Home</v-btn>
-        <v-btn text disabled="">
-          <v-avatar
-            color="teal"
-            tile:false
-            size="30"
-          >
-            <img
-              src="https://vuetifyjs.com/apple-touch-icon-180x180.png"
-              alt="avatar"
-            >
-          </v-avatar>
-        </v-btn>
+        <v-btn text class="d-flex d-sm-none" to="/history" style="text-decoration:none;"><v-icon>mdi-check-box-multiple-outline</v-icon></v-btn>
+        <v-btn text class="d-none d-sm-flex no-text-transform" to="/history" style="text-decoration:none;"><v-icon>mdi-check-box-multiple-outline</v-icon>History</v-btn>
+        <v-btn text class="d-flex d-sm-none" to="/" style="text-decoration:none;"><v-icon>mdi-home</v-icon></v-btn>
+        <v-btn text class="d-none d-sm-flex" to="/" style="text-decoration:none;"><v-icon>mdi-home</v-icon>Home</v-btn>
         <v-menu
           open-on-hover
           offset-y
@@ -33,7 +20,7 @@
             <v-btn
               text
               v-on="on"
-            >Praba
+            ><v-icon color="black">mdi-account-circle</v-icon>Praba
             </v-btn>
           </template>
           <v-list>
@@ -45,21 +32,24 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </v-toolbar-items>
+      </v-toolbar-items>   
     </v-app-bar>
-
-
-
-    
+   
 </template>
 
 <script>
 import store from "@/js/store";
-import Home from "@/js/components/Home";
+import {setTimeout} from 'timers';
 export default {
   name: "navi",
+  data(){
+    return{
+      overlay: false,
+    }
+  },
   components:{
-    Home
+    // Home,
+    // Loading
   },
   mounted() {
     console.log("Component mounted.");
@@ -68,7 +58,8 @@ export default {
     currentUser() {
       return store.state.currentUser;
     }
-  }
+  }, 
+
 };
 </script>
 

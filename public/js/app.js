@@ -1886,6 +1886,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
@@ -1903,7 +1909,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       subCat: "",
       category: "",
-      hidden: true
+      hidden: true,
+      hiddenSub: true
     };
   },
   methods: {
@@ -1931,6 +1938,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log(sub_cat.list_row);
       console.log(index_row);
       sub_cat.list_row.splice(index_row, 1);
+    },
+    deleteSub: function deleteSub(list_subs, index) {
+      console.log(index);
+      list_subs.splice(index, 1);
     }
   },
   created: function created() {
@@ -1953,36 +1964,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_Offer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/Offer.vue */ "./resources/js/components/Offer.vue");
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
 /* harmony import */ var _js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/helpers/fileOffer */ "./resources/js/helpers/fileOffer.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2089,11 +2070,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "home",
+  data: function data() {
+    return {
+      overlay: false
+    };
+  },
   components: {
     Navi: _js_components_Navi_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     CreateFile: _js_components_dialog_CreateFile_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -2102,6 +2089,18 @@ __webpack_require__.r(__webpack_exports__);
     curentUser: function curentUser() {
       //   return store.getters.currentUser;
       return _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.currentUser;
+    }
+  },
+  created: function created() {
+    this.overlay = true;
+  },
+  watch: {
+    overlay: function overlay(val) {
+      var _this = this;
+
+      val && setTimeout(function () {
+        _this.overlay = false;
+      }, 3000);
     }
   }
 });
@@ -2154,11 +2153,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "home",
+  data: function data() {
+    return {
+      overlay: false
+    };
+  },
   components: {
     Navi: _js_components_Navi_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     CreateFile: _js_components_dialog_CreateFile_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -2167,6 +2177,18 @@ __webpack_require__.r(__webpack_exports__);
     curentUser: function curentUser() {
       //   return store.getters.currentUser;
       return _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].state.currentUser;
+    }
+  },
+  created: function created() {
+    this.overlay = true;
+  },
+  watch: {
+    overlay: function overlay(val) {
+      var _this = this;
+
+      val && setTimeout(function () {
+        _this.overlay = false;
+      }, 3000);
     }
   }
 });
@@ -2372,23 +2394,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/store */ "./resources/js/store.js");
-/* harmony import */ var _js_components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/Home */ "./resources/js/components/Home.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2432,8 +2439,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navi",
-  components: {
-    Home: _js_components_Home__WEBPACK_IMPORTED_MODULE_1__["default"]
+  data: function data() {
+    return {
+      overlay: false
+    };
+  },
+  components: {// Home,
+    // Loading
   },
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -2458,6 +2470,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
+//
+//
+//
 //
 //
 //
@@ -2610,6 +2625,10 @@ __webpack_require__.r(__webpack_exports__);
         message: "test"
       });
       console.log(this.table);
+    },
+    deleteCategory: function deleteCategory(categories, index) {
+      console.log(index);
+      categories.splice(index, 1);
     },
     printHelloWorld: function printHelloWorld() {
       console.log("hello world");
@@ -2877,6 +2896,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2894,11 +2919,14 @@ __webpack_require__.r(__webpack_exports__);
           return v.length >= 10 || 'Min 10 characters';
         }
       },
-      id_dokumen: 0
+      id_dokumen: 0,
+      loading: false,
+      alert: false
     };
   },
   methods: {
     redirectToFile: function redirectToFile($id) {
+      this.loading = false;
       console.log("id doc", this.$data.id_dokumen);
       this.$router.push({
         path: "/offer-document/".concat($id)
@@ -2907,14 +2935,17 @@ __webpack_require__.r(__webpack_exports__);
     createFile: function createFile() {
       var _this = this;
 
+      this.loading = true;
       Object(_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_0__["createFileApi"])(this.$data.form).then(function (res) {
         _this.$data.id_dokumen = res.id_dokumen;
 
         _this.redirectToFile(_this.$data.id_dokumen);
       })["catch"](function (err) {
+        _this.loading = false;
         console.log("gagal dibuat", {
           err: err
         });
+        _this.alert = true;
       });
     },
     dialogClose: function dialogClose() {
@@ -39487,22 +39518,67 @@ var render = function() {
       _vm._l(_vm.list_subs, function(sub_cat, index) {
         return _c(
           "div",
-          { key: index },
+          {
+            key: index,
+            on: {
+              mouseover: function($event) {
+                _vm.hiddenSub = false
+              },
+              mouseleave: function($event) {
+                _vm.hiddenSub = true
+              }
+            }
+          },
           [
             _c(
               "v-row",
               [
-                _c("v-text-field", {
-                  staticClass: "col-sm-12",
-                  attrs: { label: "SubCategory" },
-                  model: {
-                    value: _vm.subCat[index],
-                    callback: function($$v) {
-                      _vm.$set(_vm.subCat, index, $$v)
-                    },
-                    expression: "subCat[index]"
-                  }
-                })
+                _c(
+                  "v-col",
+                  { attrs: { sm: "11" } },
+                  [
+                    _c("v-text-field", {
+                      staticClass: "col-sm-12",
+                      attrs: { label: "SubCategory" },
+                      model: {
+                        value: _vm.subCat[index],
+                        callback: function($$v) {
+                          _vm.$set(_vm.subCat, index, $$v)
+                        },
+                        expression: "subCat[index]"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { sm: "1" } },
+                  [
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "col-sm-1",
+                        attrs: {
+                          tile: "",
+                          large: "",
+                          color: "red",
+                          icon: "",
+                          hidden: _vm.hiddenSub
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteSub(_vm.list_subs, index)
+                          }
+                        }
+                      },
+                      [_c("v-icon", [_vm._v("mdi-close")])],
+                      1
+                    )
+                  ],
+                  1
+                )
               ],
               1
             ),
@@ -39510,14 +39586,7 @@ var render = function() {
             _vm._l(sub_cat.list_row, function(modul, index_row) {
               return _c(
                 "div",
-                {
-                  key: index_row,
-                  on: {
-                    remove: function($event) {
-                      return _vm.deleteItem()
-                    }
-                  }
-                },
+                { key: index_row },
                 [
                   _c(
                     "v-row",
@@ -39722,7 +39791,8 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "d-flex d-sm-none",
-                  attrs: { text: "", outlined: "", small: "" }
+                  attrs: { text: "", outlined: "", small: "" },
+                  on: { click: _vm.triggerAddCategory }
                 },
                 [_c("v-icon", [_vm._v("mdi-playlist-plus")])],
                 1
@@ -39738,128 +39808,6 @@ var render = function() {
                 [
                   _c("v-icon", [_vm._v("mdi-playlist-plus")]),
                   _vm._v("Add Category\n        ")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "d-flex d-sm-none",
-                  attrs: { text: "", outlined: "", small: "" }
-                },
-                [_c("v-icon", [_vm._v("mdi-delete")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "d-none d-sm-flex",
-                  attrs: { text: "", small: "" }
-                },
-                [
-                  _c("v-icon", [_vm._v("mdi-delete")]),
-                  _vm._v("Delete\n        ")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-menu",
-                {
-                  attrs: { "offset-y": "", "open-on-hover": "" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "activator",
-                      fn: function(ref) {
-                        var on = ref.on
-                        return [
-                          _c(
-                            "v-btn",
-                            _vm._g(
-                              {
-                                staticClass: "d-flex d-sm-none",
-                                attrs: { small: "", text: "", outlined: "" }
-                              },
-                              on
-                            ),
-                            [
-                              _c("v-icon", [
-                                _vm._v("mdi-arrow-down-drop-circle-outline")
-                              ])
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                },
-                [
-                  _vm._v(" "),
-                  _c(
-                    "v-list",
-                    _vm._l(_vm.items, function(item, index) {
-                      return _c(
-                        "v-list-item",
-                        { key: index },
-                        [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])],
-                        1
-                      )
-                    }),
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-menu",
-                {
-                  attrs: { "offset-y": "", "open-on-hover": "" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "activator",
-                      fn: function(ref) {
-                        var on = ref.on
-                        return [
-                          _c(
-                            "v-btn",
-                            _vm._g(
-                              {
-                                staticClass: "d-none d-sm-flex",
-                                attrs: { small: "", text: "" }
-                              },
-                              on
-                            ),
-                            [
-                              _c("v-icon", [
-                                _vm._v("mdi-arrow-down-drop-circle-outline")
-                              ]),
-                              _vm._v("Add Cell\n                ")
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                },
-                [
-                  _vm._v(" "),
-                  _c(
-                    "v-list",
-                    _vm._l(_vm.items, function(item, index) {
-                      return _c(
-                        "v-list-item",
-                        { key: index },
-                        [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])],
-                        1
-                      )
-                    }),
-                    1
-                  )
                 ],
                 1
               ),
@@ -40005,6 +39953,19 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-overlay",
+        {
+          attrs: { opacity: "1", color: "white", light: "", value: _vm.overlay }
+        },
+        [
+          _c("v-progress-circular", {
+            attrs: { indeterminate: "", size: "64", color: "primary" }
+          })
+        ],
+        1
       )
     ],
     1
@@ -40107,11 +40068,9 @@ var render = function() {
                     "v-col",
                     { attrs: { md: "3" } },
                     [
-                      _c(
-                        "v-btn",
-                        { attrs: { rounded: "", outlined: "", to: "/" } },
-                        [_vm._v("Delete")]
-                      ),
+                      _c("v-btn", { attrs: { rounded: "", outlined: "" } }, [
+                        _vm._v("Delete")
+                      ]),
                       _vm._v(" "),
                       _c(
                         "v-btn",
@@ -40127,6 +40086,19 @@ var render = function() {
             ],
             1
           )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-overlay",
+        {
+          attrs: { opacity: "1", color: "white", light: "", value: _vm.overlay }
+        },
+        [
+          _c("v-progress-circular", {
+            attrs: { indeterminate: "", size: "64", color: "primary" }
+          })
         ],
         1
       )
@@ -40503,7 +40475,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "d-flex d-sm-none",
-              staticStyle: { display: "none" },
+              staticStyle: { "text-decoration": "none" },
               attrs: { text: "", to: "/history" }
             },
             [_c("v-icon", [_vm._v("mdi-check-box-multiple-outline")])],
@@ -40513,7 +40485,8 @@ var render = function() {
           _c(
             "v-btn",
             {
-              staticClass: "d-none d-sm-flex",
+              staticClass: "d-none d-sm-flex no-text-transform",
+              staticStyle: { "text-decoration": "none" },
               attrs: { text: "", to: "/history" }
             },
             [
@@ -40525,35 +40498,23 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-btn",
-            { staticClass: "d-flex d-sm-none", attrs: { text: "", to: "/" } },
+            {
+              staticClass: "d-flex d-sm-none",
+              staticStyle: { "text-decoration": "none" },
+              attrs: { text: "", to: "/" }
+            },
             [_c("v-icon", [_vm._v("mdi-home")])],
             1
           ),
           _vm._v(" "),
           _c(
             "v-btn",
-            { staticClass: "d-none d-sm-flex", attrs: { text: "", to: "/" } },
+            {
+              staticClass: "d-none d-sm-flex",
+              staticStyle: { "text-decoration": "none" },
+              attrs: { text: "", to: "/" }
+            },
             [_c("v-icon", [_vm._v("mdi-home")]), _vm._v("Home")],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { text: "", disabled: "" } },
-            [
-              _c(
-                "v-avatar",
-                { attrs: { color: "teal", "tile:false": "", size: "30" } },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: "https://vuetifyjs.com/apple-touch-icon-180x180.png",
-                      alt: "avatar"
-                    }
-                  })
-                ]
-              )
-            ],
             1
           ),
           _vm._v(" "),
@@ -40567,9 +40528,17 @@ var render = function() {
                   fn: function(ref) {
                     var on = ref.on
                     return [
-                      _c("v-btn", _vm._g({ attrs: { text: "" } }, on), [
-                        _vm._v("Praba\n        ")
-                      ])
+                      _c(
+                        "v-btn",
+                        _vm._g({ attrs: { text: "" } }, on),
+                        [
+                          _c("v-icon", { attrs: { color: "black" } }, [
+                            _vm._v("mdi-account-circle")
+                          ]),
+                          _vm._v("Praba\n        ")
+                        ],
+                        1
+                      )
                     ]
                   }
                 }
@@ -40825,8 +40794,38 @@ var render = function() {
       _c(
         "div",
         { staticClass: "card-header" },
-        _vm._l(_vm.categories, function(tab, index) {
-          return _c("div", { key: index }, [_c("CategoryAdd")], 1)
+        _vm._l(_vm.categories, function(cat, index) {
+          return _c(
+            "div",
+            {
+              key: index,
+              on: {
+                remove: function($event) {
+                  return _vm.deleteCategory()
+                }
+              }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "col-sm-1",
+                  staticStyle: { "z-index": "1", "margin-bottom": "-130px" },
+                  attrs: { tile: "", large: "", color: "red", icon: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteCategory(_vm.categories, index)
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("CategoryAdd")
+            ],
+            1
+          )
         }),
         0
       )
@@ -41597,7 +41596,7 @@ var render = function() {
                         ),
                         [
                           _c("v-icon", [_vm._v("mdi-file-document-outline")]),
-                          _vm._v("Create")
+                          _vm._v("Create\n                ")
                         ],
                         1
                       )
@@ -41668,6 +41667,31 @@ var render = function() {
                                       })
                                     ],
                                     1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-alert",
+                                    {
+                                      attrs: {
+                                        dense: "",
+                                        outlined: "",
+                                        type: "error",
+                                        transition: "scale-transition",
+                                        value: "alert"
+                                      },
+                                      model: {
+                                        value: _vm.alert,
+                                        callback: function($$v) {
+                                          _vm.alert = $$v
+                                        },
+                                        expression: "alert"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Cannot create new file!!!\n                                "
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
@@ -41709,7 +41733,8 @@ var render = function() {
                             color: "blue darken-1",
                             outlined: "",
                             text: "",
-                            disabled: !_vm.valid
+                            disabled: !_vm.valid,
+                            loading: _vm.loading
                           },
                           on: { click: _vm.createFile }
                         },

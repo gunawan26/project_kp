@@ -113,7 +113,10 @@
                 </form>
             </div>
             <div class="card-header">
-                <div v-for="(tab,index) in categories" v-bind:key="index">
+                <div v-for="(cat,index) in categories" v-bind:key="index" v-on:remove="deleteCategory()">
+                    <v-btn class="col-sm-1" style="z-index:1; margin-bottom:-130px;" v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
                     <CategoryAdd />
                 </div>
             </div>
@@ -141,7 +144,7 @@
             imageData: "/storage/images/logo.png",
             items: [],
             item: [],
-            categories:[]
+            categories: []
 
         }),
         methods: {
@@ -153,6 +156,12 @@
                 console.log(this.table)
 
             },
+
+            deleteCategory(categories, index) {
+                console.log(index)
+                categories.splice(index, 1)
+            },
+
             printHelloWorld() {
                 console.log("hello world");
             },
@@ -174,7 +183,7 @@
                 }
             },
         },
-        created(){
+        created() {
             this.addCategory()
         }
     };
