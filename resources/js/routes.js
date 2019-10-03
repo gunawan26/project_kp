@@ -43,7 +43,10 @@ const router = new Router({
         }, {
             path: '/offer-document/:id_dokumen',
             name: 'offer-document',
-            component: DokumenFile
+            component: DokumenFile,
+            meta: {
+                requiresAuth: true
+            }
         }, {
             path: '/app1',
             name: 'app1',
@@ -83,13 +86,43 @@ const router = new Router({
     ]
 })
 
+
+
+
 router.beforeEach((to, from, next) => {
-    // console.log(to, from, next)
 
 
+
+
+
+    if (to.path == '/login' && store.getters.isLoggedIn) {
+        next('/');
+    }
     if (to.matched.some(record => record.meta.requiresAuth)) {
 
+
         if (store.getters.isLoggedIn) {
+            axios.interceptors.request.use(function (config) {
+                const token = store.getters.get_header
+
+                if (token != null) {
+                    config.headers.Authorization = `Bearer ${token}`;
+                }
+
+                return config;
+            }, function (err) {
+                return Promise.reject(err);
+            });
+            axios.interceptors.response.use(null, function (err) {
+                if (err.response.status === 401) {
+                    store.dispatch('authFailed')
+                    next('/login');
+                    console.log("keluar cuy")
+                }
+                // console.log()
+
+                return Promise.reject(err);
+            });
             next();
             return
         }

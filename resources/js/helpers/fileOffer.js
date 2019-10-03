@@ -1,5 +1,6 @@
-export function createFileApi(payload) {
-    // console.log(payload);
+export function createFileApi(payload, token) {
+
+
 
     return new Promise((res, rej) => {
         axios.post('/api/auth/add-new-document', payload).then(response => {
@@ -14,7 +15,7 @@ export function createFileApi(payload) {
 }
 
 
-export function openFileApi(id_dokumen) {
+export function openFileApi(id_dokumen, header) {
 
     return new Promise((res, rej) => {
         axios.get('/api/auth/get-document/' + id_dokumen).then((result) => {

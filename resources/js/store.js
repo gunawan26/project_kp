@@ -12,8 +12,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isLoading: false,
-        listAgenda: [
-        ],
+        listAgenda: [],
         /**
          * 
          * 
@@ -23,7 +22,8 @@ export default new Vuex.Store({
         isLoggedIn: !!user,
         loading: false,
         auth_error: null,
-
+        token: null,
+        header: {}
 
     },
     getters: {
@@ -42,6 +42,13 @@ export default new Vuex.Store({
 
         },
 
+        get_header(state) {
+            let json_token = JSON.parse(localStorage.getItem('user'))
+            console.log(json_token.token)
+            // console.log(String(json_token.token))
+            return json_token.token
+        }
+
     },
     mutations: {
         KONFIRMASI_AGENDA: (state, agenda) => {
@@ -58,8 +65,9 @@ export default new Vuex.Store({
             state.currentUser = Object.assign({}, payload.user, {
                 token: payload.access_token
             });
-
             localStorage.setItem("user", JSON.stringify(state.currentUser));
+            console.log("sukses login")
+
         },
         loginFailed(state, payload) {
             state.loading = false;
@@ -70,7 +78,13 @@ export default new Vuex.Store({
             state.isLoggedIn = false;
             state.currentUser = null;
 
+        },
+        tokenFailedAuth(state) {
+            localStorage.removeItem("user");
+            state.isLoggedIn = false;
+            state.currentUser = null;
         }
+
 
     },
     actions: {
@@ -86,6 +100,9 @@ export default new Vuex.Store({
         },
         login(context) {
             context.commit("login");
+        },
+        authFailed(context) {
+            context.commit("tokenFailedAuth");
         }
     }
 })

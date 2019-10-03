@@ -2876,10 +2876,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2890,18 +2886,18 @@ __webpack_require__.r(__webpack_exports__);
       },
       rules: {
         required: function required(value) {
-          return !!value || 'Required.';
+          return !!value || "Required.";
         },
         min: function min(v) {
-          return v.length >= 10 || 'Min 10 characters';
+          return v.length >= 10 || "Min 10 characters";
         }
       },
-      id_dokumen: 0
+      id_dokumen: 0,
+      valid: ""
     };
   },
   methods: {
     redirectToFile: function redirectToFile($id) {
-      console.log("id doc", this.$data.id_dokumen);
       this.$router.push({
         path: "/offer-document/".concat($id)
       });
@@ -2909,14 +2905,11 @@ __webpack_require__.r(__webpack_exports__);
     createFile: function createFile() {
       var _this = this;
 
-      Object(_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_0__["createFileApi"])(this.$data.form).then(function (res) {
+      Object(_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_0__["createFileApi"])(this.$data.form, this.$store.getters.get_header).then(function (res) {
         _this.$data.id_dokumen = res.id_dokumen;
 
         _this.redirectToFile(_this.$data.id_dokumen);
-      })["catch"](function (err) {
-        console.log("gagal dibuat", {
-          err: err
-        });
+      })["catch"](function (err) {// console.log(err);
       });
     },
     dialogClose: function dialogClose() {
@@ -7761,7 +7754,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#nav-up {\r\n  padding: 20px;\r\n  background: #ffffff;\n}\r\n /* body{\r\n   overflow: hidden;\r\n }\r\n\r\n::-webkit-scrollbar { \r\n    display: none; \r\n} */\r\n", ""]);
+exports.push([module.i, "\n#nav-up {\r\n  padding: 20px;\r\n  background: #ffffff;\n}\r\n/* body{\r\n   overflow: hidden;\r\n }\r\n\r\n::-webkit-scrollbar { \r\n    display: none; \r\n} */\r\n", ""]);
 
 // exports
 
@@ -41534,23 +41527,6 @@ var render = function() {
                   fn: function(ref) {
                     var on = ref.on
                     return [
-                      _vm._v("\r\n<<<<<<< HEAD\r\n        "),
-                      _c(
-                        "v-btn",
-                        _vm._g(
-                          {
-                            attrs: {
-                              color: "primary",
-                              "my-auto": "",
-                              rounded: "",
-                              outlined: ""
-                            }
-                          },
-                          on
-                        ),
-                        [_vm._v("Create")]
-                      ),
-                      _vm._v("\r\n=======\r\n        "),
                       _c(
                         "v-btn",
                         _vm._g(
@@ -41564,9 +41540,6 @@ var render = function() {
                           _vm._v("Create")
                         ],
                         1
-                      ),
-                      _vm._v(
-                        "\r\n>>>>>>> 93da2f3277414db64d089ec2f475592a7c4972a5\r\n      "
                       )
                     ]
                   }
@@ -96026,8 +95999,7 @@ function getLocalUsers() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFileApi", function() { return createFileApi; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openFileApi", function() { return openFileApi; });
-function createFileApi(payload) {
-  // console.log(payload);
+function createFileApi(payload, token) {
   return new Promise(function (res, rej) {
     axios.post('/api/auth/add-new-document', payload).then(function (response) {
       res(response.data);
@@ -96036,7 +96008,7 @@ function createFileApi(payload) {
     });
   });
 }
-function openFileApi(id_dokumen) {
+function openFileApi(id_dokumen, header) {
   return new Promise(function (res, rej) {
     axios.get('/api/auth/get-document/' + id_dokumen).then(function (result) {
       res(result);
@@ -96151,7 +96123,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/offer-document/:id_dokumen',
     name: 'offer-document',
-    component: _js_components_DokumenFile__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _js_components_DokumenFile__WEBPACK_IMPORTED_MODULE_7__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: '/app1',
     name: 'app1',
@@ -96186,11 +96161,35 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   ]
 });
 router.beforeEach(function (to, from, next) {
-  // console.log(to, from, next)
+  if (to.path == '/login' && _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.isLoggedIn) {
+    next('/');
+  }
+
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
   })) {
     if (_js_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.isLoggedIn) {
+      axios.interceptors.request.use(function (config) {
+        var token = _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.get_header;
+
+        if (token != null) {
+          config.headers.Authorization = "Bearer ".concat(token);
+        }
+
+        return config;
+      }, function (err) {
+        return Promise.reject(err);
+      });
+      axios.interceptors.response.use(null, function (err) {
+        if (err.response.status === 401) {
+          _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch('authFailed');
+          next('/login');
+          console.log("keluar cuy");
+        } // console.log()
+
+
+        return Promise.reject(err);
+      });
       next();
       return;
     }
@@ -96235,7 +96234,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     currentUser: user,
     isLoggedIn: !!user,
     loading: false,
-    auth_error: null
+    auth_error: null,
+    token: null,
+    header: {}
   },
   getters: {
     isLoading: function isLoading(state) {
@@ -96249,6 +96250,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     auth_error: function auth_error(state) {
       return state.auth_error;
+    },
+    get_header: function get_header(state) {
+      var json_token = JSON.parse(localStorage.getItem('user'));
+      console.log(json_token.token); // console.log(String(json_token.token))
+
+      return json_token.token;
     }
   },
   mutations: {
@@ -96267,12 +96274,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         token: payload.access_token
       });
       localStorage.setItem("user", JSON.stringify(state.currentUser));
+      console.log("sukses login");
     },
     loginFailed: function loginFailed(state, payload) {
       state.loading = false;
       state.auth_error = payload.error;
     },
     logOut: function logOut(state) {
+      localStorage.removeItem("user");
+      state.isLoggedIn = false;
+      state.currentUser = null;
+    },
+    tokenFailedAuth: function tokenFailedAuth(state) {
       localStorage.removeItem("user");
       state.isLoggedIn = false;
       state.currentUser = null;
@@ -96290,6 +96303,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     login: function login(context) {
       context.commit("login");
+    },
+    authFailed: function authFailed(context) {
+      context.commit("tokenFailedAuth");
     }
   }
 }));

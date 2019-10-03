@@ -21,39 +21,43 @@ use App\Http\Controllers\api\AuthController;
 
 Route::group([
 
-    'middleware' => 'auth:api',
+    // 'middleware' => ['auth:api', ['except' => 'login']],
+
     'namespace' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
 
     Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-    Route::post('register', 'AuthController@register');
+    Route::group(['middleware' => ['jwt.verify']], function () {
+
+        Route::post('register', 'AuthController@register');
+        Route::post('logout', 'AuthController@logout');
+        Route::post('refresh', 'AuthController@refresh');
+        Route::post('me', 'AuthController@me');
+
+        Route::get('users/user_role', function () {
+            //
+            return "mau";
+        })->middleware(['roleuser']);
+        /***
+         * 
+         * Bagian Kop surat
+         */
+        Route::post('update-insert-data-header', 'HeaderController@update_or_store');
+        Route::get('get-data-header', 'HeaderController@getKopSurat');
 
 
-    Route::get('users/user_role', function () {
-        //
-        return "mau";
-    })->middleware(['auth:api', 'roleuser']);
-
-    /***
-     * 
-     * Bagian Kop surat
-     */
-    Route::post('update-insert-data-header', 'HeaderController@update_or_store');
-    Route::get('get-data-header', 'HeaderController@getKopSurat');
+        /**
+         * 
+         * Bagian Form surat
+         */
+        Route::post('add-new-document', 'FormController@new_document');
+        Route::put('update-form-data/{id}', 'FormController@update_form_data');
+        Route::get('get-document/{id}', 'FormController@index');
+    });
 
 
-    /**
-     * 
-     * Bagian Form surat
-     */
-    Route::post('add-new-document', 'FormController@new_document');
-    Route::put('update-form-data/{id}', 'FormController@update_form_data');
-    Route::get('get-document/{id}', 'FormController@index');
 
 
     Route::get('foo', function () {

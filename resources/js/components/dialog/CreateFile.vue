@@ -3,11 +3,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="344">
       <template v-slot:activator="{ on }">
-<<<<<<< HEAD
-        <v-btn color="primary" my-auto rounded outlined v-on="on">Create</v-btn>
-=======
         <v-btn my-auto rounded outlined v-on="on"><v-icon>mdi-file-document-outline</v-icon>Create</v-btn>
->>>>>>> 93da2f3277414db64d089ec2f475592a7c4972a5
       </template>
       <v-card 
         max-width="344"
@@ -47,29 +43,29 @@ export default {
       offername: ""
     },
     rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 10 || 'Min 10 characters',
-        },
-    id_dokumen: 0
+      required: value => !!value || "Required.",
+      min: v => v.length >= 10 || "Min 10 characters"
+    },
+    id_dokumen: 0,
+    valid: ""
   }),
   methods: {
     redirectToFile($id) {
-      console.log("id doc", this.$data.id_dokumen);
       this.$router.push({
         path: `/offer-document/${$id}`
       });
     },
     createFile() {
-      createFileApi(this.$data.form)
+      createFileApi(this.$data.form, this.$store.getters.get_header)
         .then(res => {
           this.$data.id_dokumen = res.id_dokumen;
           this.redirectToFile(this.$data.id_dokumen);
         })
         .catch(err => {
-          console.log("gagal dibuat", { err });
+          // console.log(err);
         });
     },
-    dialogClose(){
+    dialogClose() {
       this.dialog = false;
       this.form.offername = "";
     }
