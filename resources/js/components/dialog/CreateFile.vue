@@ -1,37 +1,43 @@
 <template>
-<form @submit.prevent="createFile">
-  <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="344">
-      <template v-slot:activator="{ on }">
-        <v-btn my-auto rounded outlined v-on="on"><v-icon>mdi-file-document-outline</v-icon>Create</v-btn>
-      </template>
-      <v-card 
-        max-width="344"
-        class="mx-auto">
-        <v-card-title>
-          <span class="headline">Create File Offer</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="6" md="12">
-                <v-form v-model="valid">
-                  <v-text-field label="Offer Name*" v-model="form.offername" :rules="[rules.required, rules.min]"></v-text-field>
-                </v-form>
-              </v-col>
-            </v-row>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <div class="flex-grow-1"></div>
-          <v-btn color="blue darken-1" outlined text @click="dialogClose">Close</v-btn>
-          <v-btn color="blue darken-1" outlined text :disabled="!valid" @click="createFile">Submit</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
-</form>
+    <form @submit.prevent="createFile">
+        <v-row justify="center">
+            <v-dialog v-model="dialog" persistent max-width="344">
+                <template v-slot:activator="{ on }">
+                    <v-btn my-auto rounded outlined v-on="on">
+                        <v-icon>mdi-file-document-outline</v-icon>Create
+                    </v-btn>
+                </template>
+                <v-card max-width="344" class="mx-auto">
+                    <v-card-title>
+                        <span class="headline">Create File Offer</span>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12" sm="6" md="12">
+                                    <v-form v-model="valid">
+                                        <v-text-field label="Offer Name*" v-model="form.offername"
+                                            :rules="[rules.required, rules.min]"></v-text-field>
+                                    </v-form>
+                                    <v-alert dense outlined type="error" transition="scale-transition" value="alert"
+                                        v-model="alert">
+                                        Cannot create new file!!!
+                                    </v-alert>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <small>*indicates required field</small>
+                    </v-card-text>
+                    <v-card-actions>
+                        <div class="flex-grow-1"></div>
+                        <v-btn color="blue darken-1" outlined text @click="dialogClose">Close</v-btn>
+                        <v-btn color="blue darken-1" outlined text :disabled="!valid" @click="createFile"
+                            :loading="loading">Submit</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-row>
+    </form>
 </template>
 
 <script>

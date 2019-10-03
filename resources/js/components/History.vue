@@ -1,97 +1,60 @@
 <template>
-    <div id="history"> 
-        <div class='navi'><Navi/></div>
-        <!-- <div id="top-box">
-            <img id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
-            <div id="top-text">Let's Start Create Something ...</div>
-            <button id="create-button" type="button">Create</button>
-        </div> -->
-        <div class="container">
-            <h4 style="margin-top:30px; margin-left: -20px;">History</h4>
-            <h6 style="margin-top:25px; margin-bottom: 20px; margin-left: -20px;">Recent</h6>
-            <div id="draf-box" class="alert alert-danger">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <h5 class="row-sm-2">Project Name</h5>
-                        <p class="row-sm-2">Category</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <div id="aprove-text">
-                            <p class="font-weight-bold">Waiting Aproved</p>
-                        </div>
-                        <!-- <button type="button" class="btn btn-outline-primary">
-                            Delete
-                        </button>
-                        <button type="button" class="btn btn-outline-primary">
-                            Continue
-                        </button> -->
-                    </div>
-                </div>
-            </div>
+    <div id="home">
+        <div>
+            <Navi />
         </div>
+        <v-container>
+            <h3 style="margin-top:100px; margin-bottom: 20px;">History</h3>
+            <v-card class="mx-auto" color="green lighten-4" height="120">
+                <v-row align="center">
+                    <v-col md="9">
+                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
+                        <v-card-text>I'm Category</v-card-text>
+                    </v-col>
+                    <v-col md="3">
+                        <v-btn rounded fluid color="green lighten-1" to="/">Approve</v-btn>
+                        <v-btn rounded fluid color="red lighten-1" to="/">Decline</v-btn>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-container>
+        <v-overlay opacity="1" color="white" light :value="overlay">
+            <v-progress-circular indeterminate size="64" color="primary"></v-progress-circular>
+        </v-overlay>
     </div>
 </template>
 
 <script>
-import Navi from '@/js/components/Navi.vue';
+    import Navi from "@/js/components/Navi.vue";
+    import CreateFile from "@/js/components/dialog/CreateFile.vue";
+    import store from "@/js/store";
+    export default {
+        name: "home",
+        data() {
+            return {
+                overlay: false
+            }
+        },
+        components: {
+            Navi,
+            CreateFile
+        },
+        computed: {
+            curentUser() {
+                //   return store.getters.currentUser;
+                return store.state.currentUser;
+            }
+        },
+        created() {
+            this.overlay = true
+        },
+        watch: {
+            overlay(val) {
+                val && setTimeout(() => {
+                    this.overlay = false
+                }, 3000)
+            },
+        },
+    };
 
-export default {
-    name: 'history',
-    components:{
-        Navi,
-    }
-}
 </script>
-
-<style lang="scss">
-
-    // #top-box{
-    //     background-color:#f1f0ee;
-    //     padding: 15px; 
-    //     height: 130px;
-    // }
-
-    #top-img{
-        width: 10%;
-        margin-left: 10%;
-        float: left;
-    }
-
-    #top-text{
-        // height: 100px;
-        margin-top: 40px;
-        margin-left: 10%;
-        float: left;
-    }
-
-    #create-button{
-        color: #fff !important;
-        text-decoration: none;
-        background: #1b4f72;
-        padding: 5px 30px;
-        border-radius: 50px;
-        display: inline-block;
-        border: none;
-        transition: all 0.4s ease 0s;
-        float: right;
-        margin-top: 30px;
-        margin-right: 20%;
-    }
-
-    #create-button:hover {
-        text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-        transition: all 0.4s ease 0s;
-    }
-
-    #draf-box{
-        margin-bottom: 50px;
-        padding: 15px;
-        max-height: 100px;
-    }
-    
-    #aprove-text{
-        margin-top: 20px;
-    }
-</style>

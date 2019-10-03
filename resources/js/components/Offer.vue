@@ -33,9 +33,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <div class="file-upload-form">
-                                        <input type="file" @change="previewImage" accept="image/*">
-                                    </div>
+                                    <createLogo />
                                 </div>
                             </v-col>
                         </v-row>
@@ -114,38 +112,12 @@
                     </div>
                 </form>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="card-header">
+                <div v-for="(cat,index) in categories" v-bind:key="index" v-on:remove="deleteCategory()">
+                    <v-btn class="col-sm-1" style="z-index:1; margin-bottom:-130px;" v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                    <CategoryAdd />
                 </div>
             </div>
         </div>
@@ -154,25 +126,46 @@
 
 <script>
     import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue";
     export default {
         components: {
-            CreateLogo
+            CreateLogo,
+            CategoryAdd,
         },
-        data:()=>({
-             company: {
+        data: () => ({
+            company: {
                 name: "",
                 address: "",
                 number: "",
                 website: "",
                 email: "",
-            }, 
+            },
+
             imageData: "/storage/images/logo.png",
+            items: [],
+            item: [],
+            categories: []
+
         }),
         methods: {
+            addCategory() {
+                console.log('AddCategory')
+                this.categories.push({
+                    message: "test"
+                })
+                console.log(this.table)
+
+            },
+
+            deleteCategory(categories, index) {
+                console.log(index)
+                categories.splice(index, 1)
+            },
+
             printHelloWorld() {
                 console.log("hello world");
             },
-            previewImage: function(event) {
+            previewImage: function (event) {
                 // Reference to the DOM input element
                 var input = event.target;
                 // Ensure that you have a file before attempting to read it
@@ -189,10 +182,14 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             },
+        },
+        created() {
+            this.addCategory()
         }
     };
 
 </script>
+
 
 <style lang="scss" scoped>
     #logo {
@@ -206,7 +203,7 @@
         height: 100px;
     }
 
-    input{
+    input {
         border-bottom: 1px solid #7e7a7a
     }
 

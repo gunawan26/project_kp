@@ -7,42 +7,12 @@
         <v-app-bar elevate-on-scroll:true flat fixed class="pt-5" color="grey lighten-3" style="margin-top:55px;" height="100">
           <v-layout row wrap class="mx-5">
             <v-text-field label="File name" placeholder="File name"></v-text-field>
-            <v-btn text outlined small class="d-flex d-sm-none">
+            <v-btn text outlined small class="d-flex d-sm-none" v-on:click="triggerAddCategory">
                 <v-icon>mdi-playlist-plus</v-icon>
             </v-btn>
-            <v-btn text small class="d-none d-sm-flex">
+            <v-btn text small class="d-none d-sm-flex" v-on:click="triggerAddCategory">
                 <v-icon>mdi-playlist-plus</v-icon>Add Category
             </v-btn>
-            <v-btn text outlined small class="d-flex d-sm-none">
-                <v-icon>mdi-delete</v-icon>
-            </v-btn>
-            <v-btn text small class="d-none d-sm-flex">
-                <v-icon>mdi-delete</v-icon>Delete
-            </v-btn>
-            <v-menu offset-y open-on-hover>
-                <template v-slot:activator="{ on }">
-                    <v-btn small="" text v-on="on" outlined class="d-flex d-sm-none">
-                       <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>
-                    </v-btn>
-                </template>
-                <v-list>
-                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
-            <v-menu offset-y open-on-hover>
-                <template v-slot:activator="{ on }">
-                    <v-btn small="" text v-on="on" class="d-none d-sm-flex">
-                        <v-icon>mdi-arrow-down-drop-circle-outline</v-icon>Add Cell
-                    </v-btn>
-                </template>
-                <v-list>
-                    <v-list-item v-for="(item, index) in items" :key="index" @click="">
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
             <v-btn outlined text small class="d-flex d-sm-none">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
@@ -60,6 +30,7 @@
 <script>
     import Navi from "@/js/components/Navi.vue";
     import Offer from "@/js/components/Offer.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue"
     import {
         openFileApi
     } from "@/js/helpers/fileOffer";
@@ -96,12 +67,13 @@
                 .catch(err => {
                     console.log(err);
                 });
-        },
-        // methods: {
-        //   triggerPrintHelloWorld() {
-        //     this.$refs.OfferComponent.printHelloWorld();
-        //   }
-        // }
+        }, 
+
+        methods: {
+          triggerAddCategory() {
+            this.$refs.OfferComponent.addCategory();
+          }
+        }
     }
 
 </script>

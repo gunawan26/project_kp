@@ -1,34 +1,40 @@
 <template>
-    <div id="home"> 
-        <div><Navi/></div>
+    <div id="home">
+        <div>
+            <Navi />
+        </div>
         <div id="top-box">
-            <div class="d-none d-lg-block" >
-                <img style="margin-right:10%; margin-left:20%;" id="top-img" src="@/images/undraw_complete_task_u2c3.svg" alt="">
+            <div class="d-none d-lg-block">
+                <img style="margin-right:10%; margin-left:20%;" id="top-img"
+                    src="@/images/undraw_complete_task_u2c3.svg" alt="">
             </div>
             <v-row justify="center" style="margin-top:2%;">
-                <v-col><div id="top-text1">Let's Start Create Something ...</div></v-col>            
-                <v-col><create-file/></v-col>              
+                <v-col>
+                    <div id="top-text1">Let's Start Create Something ...</div>
+                </v-col>
+                <v-col>
+                    <create-file />
+                </v-col>
             </v-row>
-        </div>        
-        <v-container >
-            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>           
-            <v-card
-                class="mx-auto"
-                color="blue lighten-4"
-                height="120"
-                >
+        </div>
+        <v-container>
+            <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
+            <v-card class="mx-auto" color="blue lighten-4" height="120">
                 <v-row align="center">
                     <v-col md="9">
                         <v-card-title small class="font-weight-bold">I'm title</v-card-title>
                         <v-card-text>I'm Category</v-card-text>
                     </v-col>
-                    <v-col md="3"> 
-                        <v-btn rounded outlined to="/">Delete</v-btn>
+                    <v-col md="3">
+                        <v-btn rounded outlined>Delete</v-btn>
                         <v-btn rounded outlined to="/">Continue</v-btn>
                     </v-col>
                 </v-row>
             </v-card>
         </v-container>
+        <v-overlay opacity="1" color="white" light :value="overlay">
+            <v-progress-circular indeterminate size="64" color="primary"></v-progress-circular>
+        </v-overlay>
     </div>
 </template>
 
@@ -36,9 +42,14 @@
 import Navi from "@/js/components/Navi.vue";
 import CreateFile from "@/js/components/dialog/CreateFile.vue";
 import store from "@/js/store";
+
 export default {
   name: "home",
-
+  data() {
+    return {
+      overlay: false
+    };
+  },
   components: {
     Navi,
     CreateFile
@@ -47,6 +58,17 @@ export default {
     curentUser() {
       //   return store.getters.currentUser;
       return store.state.currentUser;
+    }
+  },
+  created() {
+    this.overlay = true;
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false;
+        }, 3000);
     }
   }
 };
@@ -58,5 +80,18 @@ export default {
   padding: 15px;
   height: 130px;
   margin-top: 5%;
+}
+
+#top-img {
+  width: 10%;
+  margin-left: 10%;
+  float: left;
+}
+
+#top-text {
+  // height: 100px;
+  margin-top: 40px;
+  margin-left: 10%;
+  float: left;
 }
 </style>
