@@ -108,13 +108,14 @@ router.beforeEach((to, from, next) => {
                 if (token != null) {
                     config.headers.Authorization = `Bearer ${token}`;
                 }
-
+                // console.log(config)
                 return config;
             }, function (err) {
                 return Promise.reject(err);
             });
             axios.interceptors.response.use(null, function (err) {
                 if (err.response.status === 401) {
+                    console.log(err)
                     store.dispatch('authFailed')
                     next('/login');
                     console.log("keluar cuy")
