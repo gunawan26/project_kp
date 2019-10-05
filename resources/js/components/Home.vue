@@ -19,15 +19,19 @@
         </div>
         <v-container>
             <h6 style="margin-top:50px; margin-bottom: 20px;">Recent</h6>
-            <v-card class="mx-auto" color="blue lighten-4" height="120">
+            <v-card class="mx-auto" color="blue lighten-4" height="80">
                 <v-row align="center">
-                    <v-col md="9">
-                        <v-card-title small class="font-weight-bold">I'm title</v-card-title>
-                        <v-card-text>I'm Category</v-card-text>
+                    <v-col md="9" class="ml-5">
+                        <h5 small class="font-weight-bold">I'm title</h5>
+                        <h6>I'm Category</h6>
                     </v-col>
-                    <v-col md="3">
-                        <v-btn rounded outlined>Delete</v-btn>
-                        <v-btn rounded outlined to="/">Continue</v-btn>
+                    <v-col md="2" d-inline>
+                        <v-row>
+                          <v-btn class="d-flex d-sm-none" rounded outlined><v-icon>mdi-delete</v-icon></v-btn>
+                          <v-btn  rounded outlined class="d-none d-sm-flex">Delete</v-btn>
+                          <v-btn class="d-flex d-sm-none ml-2" rounded outlined><v-icon>mdi-pencil</v-icon></v-btn>
+                          <v-btn rounded outlined class="d-none d-sm-flex ml-2">Continue</v-btn>
+                        </v-row>
                     </v-col>
                 </v-row>
             </v-card>

@@ -84,7 +84,7 @@
                 min: v => v.length >= 10 || 'Min 10 characters',
             },
             id_dokumen: 0,
-            imageData: "/storage/images/logo.png",
+            imageData: "/storage/images/logo-here.jpg",
         }),
         methods: {
               previewImage: function(event) {

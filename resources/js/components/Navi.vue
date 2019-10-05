@@ -24,7 +24,10 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item >
+            <v-list-item @click="createAdmin">
+              <v-list-item-title><v-icon>mdi-account-plus</v-icon>Create Admin</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="account">
               <v-list-item-title><v-icon>mdi-account</v-icon>Profile</v-list-item-title>
             </v-list-item>
             <v-list-item>
@@ -32,7 +35,9 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </v-toolbar-items>   
+      </v-toolbar-items>
+      <CreateAdmin ref="AdminComponent"/>   
+      <AccountEdit ref="AccountComponent"/> 
     </v-app-bar>
    
 </template>
@@ -40,6 +45,8 @@
 <script>
 import store from "@/js/store";
 import {setTimeout} from 'timers';
+import CreateAdmin from '@/js/components/dialog/CreateAdmin.vue'
+import AccountEdit from '@/js/components/dialog/AccountEdit.vue'
 export default {
   name: "navi",
   data(){
@@ -48,8 +55,8 @@ export default {
     }
   },
   components:{
-    // Home,
-    // Loading
+    CreateAdmin,
+    AccountEdit,
   },
   mounted() {
     console.log("Component mounted.");
@@ -58,7 +65,17 @@ export default {
     currentUser() {
       return store.state.currentUser;
     }
-  }, 
+  },
+  methods:{
+    createAdmin(){
+      console.log('create Admin');
+      this.$refs.AdminComponent.dialogOpen();
+    },
+    account(){
+      console.log('profile');
+      this.$refs.AccountComponent.dialogOpen();
+    }
+  }
 
 };
 </script>
