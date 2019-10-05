@@ -7,21 +7,21 @@
                     <v-form>
                         <v-row>
                             <v-col cols="12" sm="6" md="9">
-                                <v-text-field outlined label="Company Name*" v-model="company.name">
+                                <v-text-field label="Company Name*" v-model="company.name" disabled>
                                 </v-text-field>
-                                <v-text-field outlined label="Company Address*" v-model="company.address">
+                                <v-text-field label="Company Address*" v-model="company.address" disabled>
                                 </v-text-field>
                                 <v-row>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field outlined label="Company Number*" v-model="company.number">
+                                        <v-text-field label="Company Number*" v-model="company.number" disabled>
                                         </v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field outlined label="Company Website*" v-model="company.website">
+                                        <v-text-field label="Company Website*" v-model="company.website" disabled>
                                         </v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field outlined label="Company Email*" v-model="company.email">
+                                        <v-text-field label="Company Email*" v-model="company.email" disabled>
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
@@ -141,7 +141,7 @@
                 email: "",
             },
 
-            imageData: "/storage/images/logo.png",
+            imageData: "/storage/images/logo-here.jpg",
             items: [],
             item: [],
             categories: []

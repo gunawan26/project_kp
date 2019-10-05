@@ -20,7 +20,7 @@
                                             :rules="[rules.required, rules.min]"></v-text-field>
                                     </v-form>
                                     <v-alert dense outlined type="error" transition="scale-transition" value="alert"
-                                        v-model="alert">
+                                        v-model="alertCreate" :hidden="alertCreate">
                                         Cannot create new file!!!
                                     </v-alert>
                                 </v-col>
@@ -32,7 +32,7 @@
                         <div class="flex-grow-1"></div>
                         <v-btn color="blue darken-1" outlined text @click="dialogClose">Close</v-btn>
                         <v-btn color="blue darken-1" outlined text :disabled="!valid" @click="createFile"
-                            :loading="loading">Submit</v-btn>
+                            :loading="loadingSubmit">Submit</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -53,15 +53,19 @@ export default {
       min: v => v.length >= 10 || "Min 10 characters"
     },
     id_dokumen: 0,
-    valid: ""
+    valid: "",
+    loadingSubmit: false,
+    alertCreate: false,
   }),
   methods: {
     redirectToFile($id) {
+      this.loadingSubmit= false,
       this.$router.push({
         path: `/offer-document/${$id}`
       });
     },
     createFile() {
+      this.loadingSubmit = true
       createFileApi(this.$data.form, this.$store.getters.get_header)
         .then(res => {
           this.$data.id_dokumen = res.id_dokumen;
@@ -69,11 +73,15 @@ export default {
         })
         .catch(err => {
           // console.log(err);
+          this.loadingSubmit=false;
+          this.alertCreate = true;
         });
     },
     dialogClose() {
       this.dialog = false;
       this.form.offername = "";
+      this.rules.required=true;
+      this.rules.min=true;
     }
   }
 };
