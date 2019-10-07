@@ -2647,7 +2647,7 @@ __webpack_require__.r(__webpack_exports__);
     loadHeaderAPI: function loadHeaderAPI() {
       var _this = this;
 
-      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__["loadHeaderdata"])().then(function (result) {
+      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__["loadHeaderdata"])(this.$authAPI).then(function (result) {
         _this.company = {
           name: result.companyname,
           address: result.address,
@@ -2658,7 +2658,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         console.log("data asdsadas", result);
       })["catch"](function (err) {
-        console.log(err);
+        console.log("err data tidak masuk", err);
       });
     },
     addCategory: function addCategory() {
@@ -97392,32 +97392,30 @@ function openFileApi(axios_param, id_dokumen, header) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createOrUpdateHeader", function() { return createOrUpdateHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadHeaderdata", function() { return loadHeaderdata; });
-function createOrUpdateHeader(payload) {
-  var _this = this;
-
+function createOrUpdateHeader(axios_param, payload) {
   return new Promise(function (resolve, reject) {
-    _this.$authAPI.post('/api/auth/update-insert-data-header', payload, {
+    axios_param.post('/api/auth/update-insert-data-header', payload, {
       config: {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }
     }).then(function (result) {
-      console.log(result);
+      console.log("mau buat data", result);
       resolve(result.data);
     })["catch"](function (err) {
-      console.log(err);
+      console.log("err buat data", err);
       reject(err);
     });
   });
 }
-function loadHeaderdata() {
-  var _this2 = this;
-
+function loadHeaderdata(axios_param) {
   return new Promise(function (resolve, reject) {
-    _this2.$authAPI.get('/api/auth/get-data-header').then(function (result) {
+    axios_param.get('/api/auth/get-data-header').then(function (result) {
+      console.log("mau get data", result);
       resolve(result.data);
     })["catch"](function (err) {
+      console.log("err data", result);
       reject(err);
     });
   });
@@ -97451,10 +97449,7 @@ function setup(axios_param) {
     console.log("error nih");
     return Promise.reject(err);
   });
-  axios_param.interceptors.response.use(function (config) {
-    console.log("no error");
-    return config;
-  }, function (err) {
+  axios_param.interceptors.response.use(null, function (err) {
     console.log("respone error di interceptor", err.response.status);
 
     if (err.response.status == 401) {

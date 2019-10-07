@@ -27,7 +27,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-
+    Route::get('data', 'DocumentController@get_file');
     Route::post('login', 'AuthController@login');
     Route::group(['middleware' => ['jwt.verify']], function () {
 
