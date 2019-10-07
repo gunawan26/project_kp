@@ -14,6 +14,14 @@ class DocumentController extends Controller
 
     public function get_file()
     {
-        return Offer::paginate(10);
+        return Offer::orderBy('id', 'desc')->paginate(10);
+    }
+
+
+    public function get_history()
+    {
+
+        // return Offer::where('');
+        return True;
     }
 }
