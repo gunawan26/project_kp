@@ -27,7 +27,6 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::get('data', 'DocumentController@get_file');
     Route::post('login', 'AuthController@login');
     Route::group(['middleware' => ['jwt.verify']], function () {
 
@@ -35,6 +34,10 @@ Route::group([
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
         Route::post('me', 'AuthController@me');
+
+        Route::get('data', 'DocumentController@get_file');
+        Route::get('data-history', 'DocumentController@get_history');
+
 
         Route::get('users/user_role', function () {
             //
