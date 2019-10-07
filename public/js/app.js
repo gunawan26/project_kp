@@ -2253,7 +2253,7 @@ __webpack_require__.r(__webpack_exports__);
     getUsers: function getUsers(url) {
       var _this2 = this;
 
-      axios.get(url).then(function (response) {
+      this.$authAPI.get(url).then(function (response) {
         _this2.docs = response.data;
       })["catch"](function (errors) {
         console.error(errors);
@@ -98035,8 +98035,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

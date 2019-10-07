@@ -126,7 +126,7 @@
         },
         methods: {
             getUsers(url) {
-                axios.get(url).then(response => {
+                this.$authAPI.get(url).then(response => {
                     this.docs = response.data;
                 }).catch(errors => {
                     console.error(errors);
