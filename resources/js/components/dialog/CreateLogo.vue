@@ -87,12 +87,26 @@ export default {
     imageData: "/storage/images/logo-here.jpg"
   }),
 
-  created() {
+  mounted() {
     console.log("show data in child");
     console.log(this.companyData);
   },
+  watch: {
+    companyData: "getData"
+  },
 
   methods: {
+    getData() {
+      console.log(this.companyData);
+      this.company = {
+        name: this.companyData.name,
+        address: this.companyData.address,
+        number: this.companyData.number,
+        email: this.companyData.email,
+        website: this.companyData.website,
+        logo: this.companyData.logo
+      };
+    },
     previewImage: function(event) {
       // Reference to the DOM input element
       var input = event.target;
@@ -113,11 +127,14 @@ export default {
 
     dialogClose() {
       this.dialog = false;
-      this.company.name = "";
-      this.company.address = "";
-      this.company.number = "";
-      this.company.website = "";
-      this.company.email = "";
+      this.company = {
+        name: this.companyData.name,
+        address: this.companyData.address,
+        number: this.companyData.number,
+        email: this.companyData.email,
+        website: this.companyData.website,
+        logo: this.companyData.logo
+      };
     }
   },
   props: ["company-data"]
