@@ -28,7 +28,6 @@
 
                             </v-col>
                             <v-col cols="12" sm="6" md="3">
-
                                 <div>
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
@@ -164,7 +163,9 @@ export default {
           };
           console.log("data asdsadas", result);
         })
-        .catch(err => {});
+        .catch(err => {
+            console.log(err);
+        });
     },
     addCategory() {
       console.log("AddCategory");

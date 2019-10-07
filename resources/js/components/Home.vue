@@ -39,7 +39,7 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <nav v-cloak>
+            <!-- <nav v-cloak>
                 <ul class="pagination">
                     <li v-if="users.prev_page_url">
                         <a @click.prevent="getUsers(users.prev_page_url)"
@@ -50,7 +50,7 @@
                             :href="users.next_page_url">@lang('pagination.next')</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         </v-container>
         <v-overlay opacity="1" color="white" light :value="overlay">
             <v-progress-circular indeterminate size="64" color="primary"></v-progress-circular>

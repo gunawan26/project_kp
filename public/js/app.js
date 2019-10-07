@@ -2619,7 +2619,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2658,7 +2657,9 @@ __webpack_require__.r(__webpack_exports__);
           logo: result.logo
         };
         console.log("data asdsadas", result);
-      })["catch"](function (err) {});
+      })["catch"](function (err) {
+        console.log(err);
+      });
     },
     addCategory: function addCategory() {
       console.log("AddCategory");
@@ -40497,47 +40498,7 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("nav", {}, [
-            _c("ul", { staticClass: "pagination" }, [
-              _vm.users.prev_page_url
-                ? _c("li", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: _vm.users.prev_page_url },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.getUsers(_vm.users.prev_page_url)
-                          }
-                        }
-                      },
-                      [_vm._v("@lang('pagination.previous')")]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.users.next_page_url
-                ? _c("li", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: _vm.users.next_page_url },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.getUsers(_vm.users.next_page_url)
-                          }
-                        }
-                      },
-                      [_vm._v("@lang('pagination.next')")]
-                    )
-                  ])
-                : _vm._e()
-            ])
-          ])
+          )
         ],
         1
       ),
@@ -97913,8 +97874,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
