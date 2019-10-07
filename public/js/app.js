@@ -2168,6 +2168,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -40455,7 +40471,47 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("nav", {}, [
+            _c("ul", { staticClass: "pagination" }, [
+              _vm.users.prev_page_url
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: _vm.users.prev_page_url },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.getUsers(_vm.users.prev_page_url)
+                          }
+                        }
+                      },
+                      [_vm._v("@lang('pagination.previous')")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.users.next_page_url
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: _vm.users.next_page_url },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.getUsers(_vm.users.next_page_url)
+                          }
+                        }
+                      },
+                      [_vm._v("@lang('pagination.next')")]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ])
         ],
         1
       ),
