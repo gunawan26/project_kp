@@ -15,10 +15,7 @@ export function setup(axios_param) {
         return Promise.reject(err);
     });
 
-    axios_param.interceptors.response.use(function (config) {
-        console.log("no error")
-        return config
-    }, function (err) {
+    axios_param.interceptors.response.use(null, function (err) {
 
         console.log("respone error di interceptor", err.response.status)
         if (err.response.status == 401) {

@@ -152,7 +152,7 @@ export default {
   }),
   methods: {
     loadHeaderAPI() {
-      loadHeaderdata()
+      loadHeaderdata(this.$authAPI)
         .then(result => {
           this.company = {
             name: result.companyname,
@@ -164,7 +164,9 @@ export default {
           };
           console.log("data asdsadas", result);
         })
-        .catch(err => {});
+        .catch(err => {
+          console.log("err data tidak masuk", err);
+        });
     },
     addCategory() {
       console.log("AddCategory");

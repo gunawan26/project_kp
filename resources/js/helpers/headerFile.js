@@ -1,7 +1,7 @@
-export function createOrUpdateHeader(payload) {
+export function createOrUpdateHeader(axios_param, payload) {
 
     return new Promise((resolve, reject) => {
-        this.$authAPI.post('/api/auth/update-insert-data-header',
+        axios_param.post('/api/auth/update-insert-data-header',
                 payload, {
                     config: {
                         headers: {
@@ -12,22 +12,24 @@ export function createOrUpdateHeader(payload) {
 
             )
             .then((result) => {
-                console.log(result)
+                console.log("mau buat data", result)
                 resolve(result.data)
             }).catch((err) => {
-                console.log(err)
+                console.log("err buat data", err)
                 reject(err)
             });
     });
 
 }
 
-export function loadHeaderdata() {
+export function loadHeaderdata(axios_param) {
 
     return new Promise((resolve, reject) => {
-        this.$authAPI.get('/api/auth/get-data-header').then((result) => {
+        axios_param.get('/api/auth/get-data-header').then((result) => {
+            console.log("mau get data", result)
             resolve(result.data)
         }).catch((err) => {
+            console.log("err data", result)
             reject(err)
         });
     })
