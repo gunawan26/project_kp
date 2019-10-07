@@ -2218,7 +2218,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       overlay: false,
       api: {
-        documentIndex: '/api/auth/data'
+        documentIndex: "/api/auth/data"
       },
       docs: null
     };
@@ -2237,7 +2237,7 @@ __webpack_require__.r(__webpack_exports__);
     this.overlay = true;
   },
   mounted: function mounted() {
-    console.log('Home is ready!');
+    console.log("Home is ready!");
     this.getUsers(this.api.documentIndex);
   },
   watch: {
@@ -3458,11 +3458,25 @@ __webpack_require__.r(__webpack_exports__);
       imageData: "/storage/images/logo-here.jpg"
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     console.log("show data in child");
     console.log(this.companyData);
   },
+  watch: {
+    companyData: "getData"
+  },
   methods: {
+    getData: function getData() {
+      console.log(this.companyData);
+      this.company = {
+        name: this.companyData.name,
+        address: this.companyData.address,
+        number: this.companyData.number,
+        email: this.companyData.email,
+        website: this.companyData.website,
+        logo: this.companyData.logo
+      };
+    },
     previewImage: function previewImage(event) {
       var _this = this;
 
@@ -3485,11 +3499,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     dialogClose: function dialogClose() {
       this.dialog = false;
-      this.company.name = "";
-      this.company.address = "";
-      this.company.number = "";
-      this.company.website = "";
-      this.company.email = "";
+      this.company = {
+        name: this.companyData.name,
+        address: this.companyData.address,
+        number: this.companyData.number,
+        email: this.companyData.email,
+        website: this.companyData.website,
+        logo: this.companyData.logo
+      };
     }
   },
   props: ["company-data"]
