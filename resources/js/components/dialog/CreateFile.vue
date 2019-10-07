@@ -55,33 +55,37 @@ export default {
     id_dokumen: 0,
     valid: "",
     loadingSubmit: false,
-    alertCreate: false,
+    alertCreate: false
   }),
   methods: {
     redirectToFile($id) {
-      this.loadingSubmit= false,
-      this.$router.push({
-        path: `/offer-document/${$id}`
-      });
+      (this.loadingSubmit = false),
+        this.$router.push({
+          path: `/offer-document/${$id}`
+        });
     },
     createFile() {
-      this.loadingSubmit = true
-      createFileApi(this.$data.form, this.$store.getters.get_header)
+      this.loadingSubmit = true;
+      createFileApi(
+        this.$authAPI,
+        this.$data.form,
+        this.$store.getters.get_header
+      )
         .then(res => {
           this.$data.id_dokumen = res.id_dokumen;
           this.redirectToFile(this.$data.id_dokumen);
         })
         .catch(err => {
-          // console.log(err);
-          this.loadingSubmit=false;
+          console.log(err);
+          this.loadingSubmit = false;
           this.alertCreate = true;
         });
     },
     dialogClose() {
       this.dialog = false;
       this.form.offername = "";
-      this.rules.required=true;
-      this.rules.min=true;
+      this.rules.required = true;
+      this.rules.min = true;
     }
   }
 };

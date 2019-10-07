@@ -28,58 +28,55 @@
 </template>
 
 <script>
-    import Navi from "@/js/components/Navi.vue";
-    import Offer from "@/js/components/Offer.vue";
-    import CategoryAdd from "@/js/components/CategoryAdd.vue"
-    import {
-        openFileApi
-    } from "@/js/helpers/fileOffer";
+import Navi from "@/js/components/Navi.vue";
+import Offer from "@/js/components/Offer.vue";
+import CategoryAdd from "@/js/components/CategoryAdd.vue";
+import { openFileApi } from "@/js/helpers/fileOffer";
 
-    export default {
-        name: "create-offer",
-        components: {
-            Navi,
-            Offer
+export default {
+  name: "create-offer",
+  components: {
+    Navi,
+    Offer
+  },
+  data() {
+    return {
+      doc_id: 0,
+      data_dokumen: "",
+      items: [
+        {
+          title: "Sub-category"
         },
-        data() {
-            return {
-                doc_id: 0,
-                data_dokumen: "",
-                items: [{
-                        title: 'Sub-category'
-                    },
-                    {
-                        title: 'Item'
-                    },
-                ],
-            };
-        },
-
-        created() {
-            console.log(this.$route.params);
-            this.$data.doc_id = this.$route.params.id_dokumen;
-
-            openFileApi(this.$data.doc_id)
-                .then(result => {
-                    console.log("masuk");
-                    console.log(result);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }, 
-
-        methods: {
-          triggerAddCategory() {
-            this.$refs.OfferComponent.addCategory();
-          }
+        {
+          title: "Item"
         }
-    }
+      ]
+    };
+  },
 
+  created() {
+    console.log(this.$route.params);
+    this.$data.doc_id = this.$route.params.id_dokumen;
+
+    openFileApi(this.$authAPI, this.$data.doc_id)
+      .then(result => {
+        console.log("masuk");
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  methods: {
+    triggerAddCategory() {
+      this.$refs.OfferComponent.addCategory();
+    }
+  }
+};
 </script>
 <style>
-    * {
-        text-transform: none !important;
-    }
-
+* {
+  text-transform: none !important;
+}
 </style>

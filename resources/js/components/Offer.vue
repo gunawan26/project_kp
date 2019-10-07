@@ -33,7 +33,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <createLogo />
+                                    <createLogo v-bind:company-data="company"/>
                                 </div>
                             </v-col>
                         </v-row>
@@ -162,7 +162,7 @@ export default {
             website: result.website,
             logo: result.logo
           };
-          console.log("data", result);
+          console.log("data asdsadas", result);
         })
         .catch(err => {});
     },
@@ -201,6 +201,7 @@ export default {
     }
   },
   created() {
+    console.log("created offer");
     this.addCategory();
     this.loadHeaderAPI();
   }

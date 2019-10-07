@@ -67,71 +67,75 @@
 </template>
 
 <script>
-    // import { createFileApi } from "../../helpers/fileOffer";
-    export default {
-        data: () => ({
-            dialog: false,
-            company: {
-                name: "",
-                address: "",
-                number: "",
-                website: "",
-                email: "",
-            },
+// import { createFileApi } from "../../helpers/fileOffer";
+export default {
+  data: () => ({
+    dialog: false,
+    company: {
+      name: "",
+      address: "",
+      number: "",
+      website: "",
+      email: ""
+    },
 
-            rules: {
-                required: value => !!value || 'Required.',
-                min: v => v.length >= 10 || 'Min 10 characters',
-            },
-            id_dokumen: 0,
-            imageData: "/storage/images/logo-here.jpg",
-        }),
-        methods: {
-              previewImage: function(event) {
-                // Reference to the DOM input element
-                var input = event.target;
-                // Ensure that you have a file before attempting to read it
-                if (input.files && input.files[0]) {
-                    // create a new FileReader to read this image and convert to base64 format
-                    var reader = new FileReader();
-                    // Define a callback function to run, when FileReader finishes its job
-                    reader.onload = (e) => {
-                        // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
-                        // Read image as base64 and set to imageData
-                        this.imageData = e.target.result;
-                    }
-                    // Start the reader job - read file as a data url (base64 format)
-                    reader.readAsDataURL(input.files[0]);
-                }
-            },
+    rules: {
+      required: value => !!value || "Required.",
+      min: v => v.length >= 10 || "Min 10 characters"
+    },
+    id_dokumen: 0,
+    imageData: "/storage/images/logo-here.jpg"
+  }),
 
-            dialogClose() {
-                this.dialog = false;
-                this.company.name = "";
-                this.company.address = "";
-                this.company.number = "";
-                this.company.website = "";
-                this.company.email = "";
-            },
+  created() {
+    console.log("show data in child");
+    console.log(this.companyData);
+  },
 
-        }
-    };
+  methods: {
+    previewImage: function(event) {
+      // Reference to the DOM input element
+      var input = event.target;
+      // Ensure that you have a file before attempting to read it
+      if (input.files && input.files[0]) {
+        // create a new FileReader to read this image and convert to base64 format
+        var reader = new FileReader();
+        // Define a callback function to run, when FileReader finishes its job
+        reader.onload = e => {
+          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+          // Read image as base64 and set to imageData
+          this.imageData = e.target.result;
+        };
+        // Start the reader job - read file as a data url (base64 format)
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
 
+    dialogClose() {
+      this.dialog = false;
+      this.company.name = "";
+      this.company.address = "";
+      this.company.number = "";
+      this.company.website = "";
+      this.company.email = "";
+    }
+  },
+  props: ["company-data"]
+};
 </script>
 
 <style>
-  .file-upload-form, .image-preview {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    padding: 20px;
+.file-upload-form,
+.image-preview {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 20px;
 }
 
-
 img.preview {
- width: 200px;
+  width: 200px;
   height: 200px;
   background-color: white;
   border: 1px solid #000;
   padding: 5px;
 }
-
 </style>
