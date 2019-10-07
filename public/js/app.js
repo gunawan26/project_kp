@@ -2184,6 +2184,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2191,7 +2216,11 @@ __webpack_require__.r(__webpack_exports__);
   name: "home",
   data: function data() {
     return {
-      overlay: false
+      overlay: false,
+      api: {
+        documentIndex: '/api/auth/data'
+      },
+      docs: null
     };
   },
   components: {
@@ -2207,6 +2236,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.overlay = true;
   },
+  mounted: function mounted() {
+    console.log('Home is ready!');
+    this.getUsers(this.api.documentIndex);
+  },
   watch: {
     overlay: function overlay(val) {
       var _this = this;
@@ -2214,6 +2247,17 @@ __webpack_require__.r(__webpack_exports__);
       val && setTimeout(function () {
         _this.overlay = false;
       }, 3000);
+    }
+  },
+  methods: {
+    getUsers: function getUsers(url) {
+      var _this2 = this;
+
+      axios.get(url).then(function (response) {
+        _this2.docs = response.data;
+      })["catch"](function (errors) {
+        console.error(errors);
+      });
     }
   }
 });
@@ -40422,85 +40466,207 @@ var render = function() {
             [_vm._v("Recent")]
           ),
           _vm._v(" "),
-          _c(
-            "v-card",
-            {
-              staticClass: "mx-auto",
-              attrs: { color: "blue lighten-4", height: "80" }
-            },
-            [
-              _c(
-                "v-row",
-                { attrs: { align: "center" } },
-                [
-                  _c("v-col", { staticClass: "ml-5", attrs: { md: "9" } }, [
-                    _c(
-                      "h5",
-                      { staticClass: "font-weight-bold", attrs: { small: "" } },
-                      [_vm._v("I'm title")]
-                    ),
-                    _vm._v(" "),
-                    _c("h6", [_vm._v("I'm Category")])
-                  ]),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("nav", {}, [
+                _c("ul", { staticClass: "pagination" }, [
+                  _vm.docs.prev_page_url
+                    ? _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: _vm.docs.prev_page_url },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.getUsers(_vm.docs.prev_page_url)
+                              }
+                            }
+                          },
+                          [
+                            _c("v-icon", [
+                              _vm._v("mdi-arrow-left-bold-circle-outline")
+                            ])
+                          ],
+                          1
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { attrs: { md: "2", "d-inline": "" } },
-                    [
-                      _c(
-                        "v-row",
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "d-flex d-sm-none",
-                              attrs: { rounded: "", outlined: "" }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-delete")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "d-none d-sm-flex",
-                              attrs: { rounded: "", outlined: "" }
-                            },
-                            [_vm._v("Delete")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "d-flex d-sm-none ml-2",
-                              attrs: { rounded: "", outlined: "" }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-pencil")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "d-none d-sm-flex ml-2",
-                              attrs: { rounded: "", outlined: "" }
-                            },
-                            [_vm._v("Continue")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
+                  _vm.docs.next_page_url
+                    ? _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: _vm.docs.next_page_url },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.getUsers(_vm.docs.next_page_url)
+                              }
+                            }
+                          },
+                          [
+                            _c("v-icon", [
+                              _vm._v("mdi-arrow-right-bold-circle-outline")
+                            ])
+                          ],
+                          1
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8 text-right" }, [
+              _vm._v(
+                "\n                Display from @" +
+                  _vm._s(_vm.docs.from) +
+                  " to @" +
+                  _vm._s(_vm.docs.to) +
+                  " of @" +
+                  _vm._s(_vm.docs.total) +
+                  " data.\n            "
               )
-            ],
-            1
-          )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.docs.data, function(doc, index) {
+            return _c(
+              "v-card",
+              {
+                key: index,
+                staticClass: "mx-auto my-5",
+                attrs: { color: "blue lighten-4", height: "80" }
+              },
+              [
+                _c(
+                  "v-row",
+                  { attrs: { align: "center" } },
+                  [
+                    _c("v-col", { staticClass: "ml-5", attrs: { md: "9" } }, [
+                      _c(
+                        "h5",
+                        {
+                          staticClass: "font-weight-bold",
+                          attrs: { small: "" }
+                        },
+                        [_vm._v(_vm._s(doc.offername))]
+                      ),
+                      _vm._v(" "),
+                      _c("h6", [_vm._v(_vm._s(doc.created_at))])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { md: "2", "d-inline": "" } },
+                      [
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "d-flex d-sm-none",
+                                attrs: { rounded: "", outlined: "" }
+                              },
+                              [_c("v-icon", [_vm._v("mdi-delete")])],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "d-none d-sm-flex",
+                                attrs: { rounded: "", outlined: "" }
+                              },
+                              [_vm._v("Delete")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "d-flex d-sm-none ml-2",
+                                attrs: { rounded: "", outlined: "" }
+                              },
+                              [_c("v-icon", [_vm._v("mdi-pencil")])],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "d-none d-sm-flex ml-2",
+                                attrs: { rounded: "", outlined: "" }
+                              },
+                              [_vm._v("Continue")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          }),
+          _vm._v(" "),
+          _c("nav", {}, [
+            _c("ul", { staticClass: "pagination" }, [
+              _vm.docs.prev_page_url
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: _vm.docs.prev_page_url },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.getUsers(_vm.docs.prev_page_url)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", [
+                          _vm._v("mdi-arrow-left-bold-circle-outline")
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.docs.next_page_url
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: _vm.docs.next_page_url },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.getUsers(_vm.docs.next_page_url)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", [
+                          _vm._v("mdi-arrow-right-bold-circle-outline")
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ])
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(

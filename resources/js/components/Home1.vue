@@ -25,14 +25,12 @@
                     <nav v-cloak>
                         <ul class="pagination">
                             <li v-if="docs.prev_page_url">
-                                <a @click.prevent="getUsers(docs.prev_page_url)" :href="docs.prev_page_url">
-                                    <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
-                                </a>
+                                <a @click.prevent="getUsers(docs.prev_page_url)"
+                                    :href="docs.prev_page_url">@lang('pagination.previous')</a>
                             </li>
                             <li v-if="docs.next_page_url">
-                                <a @click.prevent="getUsers(docs.next_page_url)" :href="docs.next_page_url">
-                                    <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
-                                </a>
+                                <a @click.prevent="getUsers(docs.next_page_url)"
+                                    :href="docs.next_page_url">@lang('pagination.next')</a>
                             </li>
                         </ul>
                     </nav>
@@ -41,38 +39,36 @@
                     Display from @{{ docs.from }} to @{{ docs.to }} of @{{ docs.total }} data.
                 </div>
             </div>
-            <v-card class="mx-auto my-5" color="blue lighten-4" height="80" v-for="(doc, index) in docs.data"
-                v-bind:key="index">
-                <v-row align="center">
-                    <v-col md="9" class="ml-5">
-                        <h5 small class="font-weight-bold">{{doc.offername}}</h5>
-                        <h6>{{doc.created_at}}</h6>
-                    </v-col>
-                    <v-col md="2" d-inline>
-                        <v-row>
-                            <v-btn class="d-flex d-sm-none" rounded outlined>
-                                <v-icon>mdi-delete</v-icon>
-                            </v-btn>
-                            <v-btn rounded outlined class="d-none d-sm-flex">Delete</v-btn>
-                            <v-btn class="d-flex d-sm-none ml-2" rounded outlined>
-                                <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
-                            <v-btn rounded outlined class="d-none d-sm-flex ml-2">Continue</v-btn>
-                        </v-row>
-                    </v-col>
-                </v-row>
-            </v-card>
+            <div class="table-responsive">
+                <table class="table table-striped" v-cloak>
+                    <thead>
+                        <th>Email</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(doc, index) in docs.data" v-bind:key="index">
+                            <td>{{ doc.offername }}</td>
+                            <td>{{ doc.created_at }}</td>
+                            <td>{{ doc.updated_at }}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs">Edit</button>
+                                <button class="btn btn-danger btn-xs">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <nav v-cloak>
                 <ul class="pagination">
                     <li v-if="docs.prev_page_url">
-                        <a @click.prevent="getUsers(docs.prev_page_url)" :href="docs.prev_page_url">
-                            <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
-                        </a>
+                        <a @click.prevent="getUsers(docs.prev_page_url)"
+                            :href="docs.prev_page_url">@lang('pagination.previous')</a>
                     </li>
                     <li v-if="docs.next_page_url">
-                        <a @click.prevent="getUsers(docs.next_page_url)" :href="docs.next_page_url">
-                            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
-                        </a>
+                        <a @click.prevent="getUsers(docs.next_page_url)"
+                            :href="docs.next_page_url">@lang('pagination.next')</a>
                     </li>
                 </ul>
             </nav>
@@ -94,7 +90,7 @@
             return {
                 overlay: false,
                 api: {
-                    documentIndex: '/api/auth/data'
+                    userIndex: '/api/auth/data'
                 },
                 docs: null
             };
@@ -114,7 +110,7 @@
         },
         mounted() {
             console.log('Home is ready!')
-            this.getUsers(this.api.documentIndex);
+            this.getUsers(this.api.userIndex);
         },
         watch: {
             overlay(val) {
