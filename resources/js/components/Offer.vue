@@ -33,7 +33,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <createLogo v-bind:company-data="company"/>
+                                    <createLogo :company-data="company"/>
                                 </div>
                             </v-col>
                         </v-row>
