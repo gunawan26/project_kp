@@ -22,6 +22,6 @@ class DocumentController extends Controller
     {
 
         // return Offer::where('');
-        return True;
+        return Offer::where('status_file', '1')->orderBy('id', 'desc')->paginate(10);
     }
 }
