@@ -32,7 +32,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <createLogo :company-data="company"/>
+                                    <createLogo :company-data="company" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -41,53 +41,97 @@
             </div>
             <div class="card-body">
                 <form @submit.prevent="authenticate">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <span for="exampleInputEmail1">Nomor</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                    placeholder="Masukan no surat" required>
-                            </div>
-                        </div>
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="1">
+                                <v-text-field placeholder="Nomor" disabled></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="nomor" text placeholder="Masukan no surat"></v-text-field>
+                            </v-col>
+                        </v-row>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <span for="exampleInputEmail1">Lampiran</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                    placeholder="Jumlah lampiran" required>
-                            </div>
-                        </div>
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="1">
+                                <v-text-field placeholder="Lampiran" disabled></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="lampiran" text placeholder="Masukan Lampiran"></v-text-field>
+                            </v-col>
+                        </v-row>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <span for="exampleInputEmail1">Yth.</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                    placeholder="Nama tujuan surat" required>
-                            </div>
-                        </div>
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="1">
+                                <v-text-field placeholder="Kepada" disabled></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="kepada" text placeholder="Kepada"></v-text-field>
+                            </v-col>
+                        </v-row>    
                     </div>
                     <p>di -</p>
                     <p>Tempat</p>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <span for="exampleInputEmail1">Perihal</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                    placeholder="Masukan perihal" required>
-                            </div>
-                        </div>
-                        <br>
-                        <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span> yang
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="1">
+                                <v-text-field placeholder="perihal" disabled></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="perihal" text placeholder="Perihal"></v-text-field>
+                            </v-col>
+                        </v-row>    
+                    </div>
+                     <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerdate" text placeholder="Tanggal diskusi"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerplace" text placeholder="Tempat Diskusi diskusi"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerprice" text placeholder="Harga Penawaran"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerpricename" text placeholder="Harga Penawaran Terbilang"></v-text-field>
+                            </v-col>
+                        </v-row>  
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerduetime" text placeholder="Waktu Pengerjaan"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="offerduetimename" text placeholder="Waktu Pengerjaan terbilang"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="attachment" text placeholder="Lampiran"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="attachmentname" text placeholder="Lampiran Terbilang"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-img v-model="sign" text placeholder="Lampiran Terbilang"></v-img>
+                            </v-col>
+                        </v-row>      
+                    </div>
+
+                        <!-- <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span> yang
                             bertempat di <span><input type="text" id="InputEmail" required></span>
                             dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
                             Aplikasi Survei Sebersar Rp. <span><input type="text" id="InputEmail" required></span>
@@ -102,13 +146,13 @@
                             surat penawaran ini.
                             surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input type="text"
                                     id="InputEmail" required></span> (<span><input type="text" id="InputEmail"
-                                    required></span>) rangkap dokumen.</p>
+                                    required></span>) rangkap
+                            dokumen.</p>
                         <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
-                            pekerjaan ini.</p>
+                            pekerjaan ini.</p> -->
                         <br>
                         <p style="margin-left:80%">Hormat kami</p>
                         <img id="signature" src="@/images/tiny-checkers.png" alt="">
-                    </div>
                 </form>
             </div>
             <div class="card-header">
@@ -125,104 +169,122 @@
 </template>
 
 <script>
-import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
-import CategoryAdd from "@/js/components/CategoryAdd.vue";
-import { loadHeaderdata } from "@/js/helpers/headerFile";
+    import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue";
+    import {
+        loadHeaderdata
+    } from "@/js/helpers/headerFile";
 
-export default {
-  components: {
-    CreateLogo,
-    CategoryAdd
-  },
-  data: () => ({
-    company: {
-      name: "",
-      address: "",
-      number: "",
-      website: "",
-      email: "",
-      logo: ""
-    },
+    export default {
+        components: {
+            CreateLogo,
+            CategoryAdd
+        },
+        data: () => ({
+            company: {
+                name: "",
+                address: "",
+                number: "",
+                website: "",
+                email: "",
+                logo: ""
+            },
+            offers:{
+                nomor:"",
+                lampiran:"",
+                kepada:"",
+                perihal:"",
+                offerdate:"",
+                offerplace:"",
+                offerprice:"",
+                offerpricename:"",
+                offerduetime:"",
+                offerduetimename:"",
+                attachment:"",
+                attachmentname:"",
+                sign:"",
+            },
+            imageData: "/storage/images/logo.png",
+            items: [],
+            item: [],
+            categories: []
+        }),
+        methods: {
+            loadHeaderAPI() {
+                loadHeaderdata(this.$authAPI)
+                    .then(result => {
+                        this.company = {
+                            name: result.companyname,
+                            address: result.address,
+                            number: result.phonenumber,
+                            email: result.email,
+                            website: result.website,
+                            logo: result.logo
+                        };
+                        console.log("data asdsadas", result);
+                    })
+                    .catch(err => {
+                        console.log("err data tidak masuk", err);
+                    });
+            },
+            addCategory() {
+                console.log("AddCategory");
+                this.categories.push({
+                    message: "test"
+                });
+                console.log(this.table);
+            },
 
-    imageData: "/storage/images/logo.png",
-    items: [],
-    item: [],
-    categories: []
-  }),
-  methods: {
-    loadHeaderAPI() {
-      loadHeaderdata(this.$authAPI)
-        .then(result => {
-          this.company = {
-            name: result.companyname,
-            address: result.address,
-            number: result.phonenumber,
-            email: result.email,
-            website: result.website,
-            logo: result.logo
-          };
-          console.log("data asdsadas", result);
-        })
-        .catch(err => {
-          console.log("err data tidak masuk", err);
-        });
-    },
-    addCategory() {
-      console.log("AddCategory");
-      this.categories.push({
-        message: "test"
-      });
-      console.log(this.table);
-    },
+            deleteCategory(categories, index) {
+                console.log(index);
+                categories.splice(index, 1);
+            },
 
-    deleteCategory(categories, index) {
-      console.log(index);
-      categories.splice(index, 1);
-    },
+            printHelloWorld() {
+                console.log("hello world");
+            },
+            previewImage: function (event) {
+                // Reference to the DOM input element
+                var input = event.target;
+                // Ensure that you have a file before attempting to read it
+                if (input.files && input.files[0]) {
+                    // create a new FileReader to read this image and convert to base64 format
+                    var reader = new FileReader();
+                    // Define a callback function to run, when FileReader finishes its job
+                    reader.onload = e => {
+                        // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+                        // Read image as base64 and set to imageData
+                        this.imageData = e.target.result;
+                    };
+                    // Start the reader job - read file as a data url (base64 format)
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        },
+        created() {
+            console.log("created offer");
+            this.addCategory();
+            this.loadHeaderAPI();
+        }
+    };
 
-    printHelloWorld() {
-      console.log("hello world");
-    },
-    previewImage: function(event) {
-      // Reference to the DOM input element
-      var input = event.target;
-      // Ensure that you have a file before attempting to read it
-      if (input.files && input.files[0]) {
-        // create a new FileReader to read this image and convert to base64 format
-        var reader = new FileReader();
-        // Define a callback function to run, when FileReader finishes its job
-        reader.onload = e => {
-          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
-          // Read image as base64 and set to imageData
-          this.imageData = e.target.result;
-        };
-        // Start the reader job - read file as a data url (base64 format)
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  },
-  created() {
-    console.log("created offer");
-    this.addCategory();
-    this.loadHeaderAPI();
-  }
-};
 </script>
 
 
 <style lang="scss" scoped>
-#logo {
-  width: 150px;
-  height: 150px;
-}
+    #logo {
+        width: 150px;
+        height: 150px;
+    }
 
-#signature {
-  margin-left: 77%;
-  width: 150px;
-  height: 100px;
-}
+    #signature {
+        margin-left: 77%;
+        width: 150px;
+        height: 100px;
+    }
 
-input {
-  border-bottom: 1px solid #7e7a7a;
-}
+    input {
+        border-bottom: 1px solid #7e7a7a;
+    }
+
 </style>
