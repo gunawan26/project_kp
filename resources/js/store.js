@@ -42,9 +42,9 @@ export default new Vuex.Store({
 
         },
 
-        get_header(state) {
+        get_header() {
             let json_token = JSON.parse(localStorage.getItem('user'))
-            console.log(json_token.token)
+            console.log("get header", json_token.token)
             // console.log(String(json_token.token))
             return json_token.token
         }

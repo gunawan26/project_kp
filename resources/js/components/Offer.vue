@@ -33,7 +33,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <createLogo />
+                                    <createLogo v-bind:company-data="company"/>
                                 </div>
                             </v-col>
                         </v-row>
@@ -114,7 +114,8 @@
             </div>
             <div class="card-header">
                 <div v-for="(cat,index) in categories" v-bind:key="index" v-on:remove="deleteCategory()">
-                    <v-btn class="col-sm-1" style="z-index:1; margin-bottom:-130px;" v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
+                    <v-btn class="col-sm-1" style="z-index:1; margin-bottom:-130px;"
+                        v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
                     <CategoryAdd />
@@ -125,86 +126,102 @@
 </template>
 
 <script>
-    import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
-    import CategoryAdd from "@/js/components/CategoryAdd.vue";
-    export default {
-        components: {
-            CreateLogo,
-            CategoryAdd,
-        },
-        data: () => ({
-            company: {
-                name: "",
-                address: "",
-                number: "",
-                website: "",
-                email: "",
-            },
+import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+import CategoryAdd from "@/js/components/CategoryAdd.vue";
+import { loadHeaderdata } from "@/js/helpers/headerFile";
 
-            imageData: "/storage/images/logo-here.jpg",
-            items: [],
-            item: [],
-            categories: []
+export default {
+  components: {
+    CreateLogo,
+    CategoryAdd
+  },
+  data: () => ({
+    company: {
+      name: "",
+      address: "",
+      number: "",
+      website: "",
+      email: "",
+      logo: ""
+    },
 
-        }),
-        methods: {
-            addCategory() {
-                console.log('AddCategory')
-                this.categories.push({
-                    message: "test"
-                })
-                console.log(this.table)
+    imageData: "/storage/images/logo.png",
+    items: [],
+    item: [],
+    categories: []
+  }),
+  methods: {
+    loadHeaderAPI() {
+      loadHeaderdata()
+        .then(result => {
+          this.company = {
+            name: result.companyname,
+            address: result.address,
+            number: result.phonenumber,
+            email: result.email,
+            website: result.website,
+            logo: result.logo
+          };
+          console.log("data asdsadas", result);
+        })
+        .catch(err => {});
+    },
+    addCategory() {
+      console.log("AddCategory");
+      this.categories.push({
+        message: "test"
+      });
+      console.log(this.table);
+    },
 
-            },
+    deleteCategory(categories, index) {
+      console.log(index);
+      categories.splice(index, 1);
+    },
 
-            deleteCategory(categories, index) {
-                console.log(index)
-                categories.splice(index, 1)
-            },
-
-            printHelloWorld() {
-                console.log("hello world");
-            },
-            previewImage: function (event) {
-                // Reference to the DOM input element
-                var input = event.target;
-                // Ensure that you have a file before attempting to read it
-                if (input.files && input.files[0]) {
-                    // create a new FileReader to read this image and convert to base64 format
-                    var reader = new FileReader();
-                    // Define a callback function to run, when FileReader finishes its job
-                    reader.onload = (e) => {
-                        // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
-                        // Read image as base64 and set to imageData
-                        this.imageData = e.target.result;
-                    }
-                    // Start the reader job - read file as a data url (base64 format)
-                    reader.readAsDataURL(input.files[0]);
-                }
-            },
-        },
-        created() {
-            this.addCategory()
-        }
-    };
-
+    printHelloWorld() {
+      console.log("hello world");
+    },
+    previewImage: function(event) {
+      // Reference to the DOM input element
+      var input = event.target;
+      // Ensure that you have a file before attempting to read it
+      if (input.files && input.files[0]) {
+        // create a new FileReader to read this image and convert to base64 format
+        var reader = new FileReader();
+        // Define a callback function to run, when FileReader finishes its job
+        reader.onload = e => {
+          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+          // Read image as base64 and set to imageData
+          this.imageData = e.target.result;
+        };
+        // Start the reader job - read file as a data url (base64 format)
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  },
+  created() {
+    console.log("created offer");
+    this.addCategory();
+    this.loadHeaderAPI();
+  }
+};
 </script>
 
 
 <style lang="scss" scoped>
-    #logo {
-        width: 150px;
-        height: 150px;
-    }
+#logo {
+  width: 150px;
+  height: 150px;
+}
 
-    #signature {
-        margin-left: 77%;
-        width: 150px;
-        height: 100px;
-    }
+#signature {
+  margin-left: 77%;
+  width: 150px;
+  height: 100px;
+}
 
-    input {
-        border-bottom: 1px solid #7e7a7a
-    }
-
+input {
+  border-bottom: 1px solid #7e7a7a;
+}
 </style>

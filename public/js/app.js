@@ -2008,16 +2008,16 @@ __webpack_require__.r(__webpack_exports__);
       doc_id: 0,
       data_dokumen: "",
       items: [{
-        title: 'Sub-category'
+        title: "Sub-category"
       }, {
-        title: 'Item'
+        title: "Item"
       }]
     };
   },
   created: function created() {
     console.log(this.$route.params);
     this.$data.doc_id = this.$route.params.id_dokumen;
-    Object(_js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__["openFileApi"])(this.$data.doc_id).then(function (result) {
+    Object(_js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__["openFileApi"])(this.$authAPI, this.$data.doc_id).then(function (result) {
       console.log("masuk");
       console.log(result);
     })["catch"](function (err) {
@@ -2492,6 +2492,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
+/* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
 //
 //
 //
@@ -2618,6 +2619,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2632,17 +2635,33 @@ __webpack_require__.r(__webpack_exports__);
         address: "",
         number: "",
         website: "",
-        email: ""
+        email: "",
+        logo: ""
       },
-      imageData: "/storage/images/logo-here.jpg",
+      imageData: "/storage/images/logo.png",
       items: [],
       item: [],
       categories: []
     };
   },
   methods: {
+    loadHeaderAPI: function loadHeaderAPI() {
+      var _this = this;
+
+      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__["loadHeaderdata"])().then(function (result) {
+        _this.company = {
+          name: result.companyname,
+          address: result.address,
+          number: result.phonenumber,
+          email: result.email,
+          website: result.website,
+          logo: result.logo
+        };
+        console.log("data asdsadas", result);
+      })["catch"](function (err) {});
+    },
     addCategory: function addCategory() {
-      console.log('AddCategory');
+      console.log("AddCategory");
       this.categories.push({
         message: "test"
       });
@@ -2656,7 +2675,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log("hello world");
     },
     previewImage: function previewImage(event) {
-      var _this = this;
+      var _this2 = this;
 
       // Reference to the DOM input element
       var input = event.target; // Ensure that you have a file before attempting to read it
@@ -2668,7 +2687,7 @@ __webpack_require__.r(__webpack_exports__);
         reader.onload = function (e) {
           // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
           // Read image as base64 and set to imageData
-          _this.imageData = e.target.result;
+          _this2.imageData = e.target.result;
         }; // Start the reader job - read file as a data url (base64 format)
 
 
@@ -2677,7 +2696,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    console.log("created offer");
     this.addCategory();
+    this.loadHeaderAPI();
   }
 });
 
@@ -3270,12 +3291,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loadingSubmit = true;
-      Object(_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_0__["createFileApi"])(this.$data.form, this.$store.getters.get_header).then(function (res) {
+      Object(_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_0__["createFileApi"])(this.$authAPI, this.$data.form, this.$store.getters.get_header).then(function (res) {
         _this.$data.id_dokumen = res.id_dokumen;
 
         _this.redirectToFile(_this.$data.id_dokumen);
       })["catch"](function (err) {
-        // console.log(err);
+        console.log(err);
         _this.loadingSubmit = false;
         _this.alertCreate = true;
       });
@@ -3382,15 +3403,19 @@ __webpack_require__.r(__webpack_exports__);
       },
       rules: {
         required: function required(value) {
-          return !!value || 'Required.';
+          return !!value || "Required.";
         },
         min: function min(v) {
-          return v.length >= 10 || 'Min 10 characters';
+          return v.length >= 10 || "Min 10 characters";
         }
       },
       id_dokumen: 0,
       imageData: "/storage/images/logo-here.jpg"
     };
+  },
+  created: function created() {
+    console.log("show data in child");
+    console.log(this.companyData);
   },
   methods: {
     previewImage: function previewImage(event) {
@@ -3421,7 +3446,8 @@ __webpack_require__.r(__webpack_exports__);
       this.company.website = "";
       this.company.email = "";
     }
-  }
+  },
+  props: ["company-data"]
 });
 
 /***/ }),
@@ -8048,7 +8074,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\n    text-transform: none !important;\n}\n\n", ""]);
+exports.push([module.i, "\n* {\r\n  text-transform: none !important;\n}\r\n", ""]);
 
 // exports
 
@@ -8086,7 +8112,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.file-upload-form, .image-preview {\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\n    padding: 20px;\n}\nimg.preview {\n width: 200px;\n  height: 200px;\n  background-color: white;\n  border: 1px solid #000;\n  padding: 5px;\n}\n\n", ""]);
+exports.push([module.i, "\n.file-upload-form,\r\n.image-preview {\r\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\r\n  padding: 20px;\n}\nimg.preview {\r\n  width: 200px;\r\n  height: 200px;\r\n  background-color: white;\r\n  border: 1px solid #000;\r\n  padding: 5px;\n}\r\n", ""]);
 
 // exports
 
@@ -41173,7 +41199,9 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            _c("createLogo")
+                            _c("createLogo", {
+                              attrs: { "company-data": _vm.company }
+                            })
                           ],
                           1
                         )
@@ -95881,6 +95909,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_views_App__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/views/App */ "./resources/js/views/App.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _js_helpers_interceptors_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/js/helpers/interceptors.js */ "./resources/js/helpers/interceptors.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -95895,9 +95924,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 window.Vuetify = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_3___default.a, axios__WEBPACK_IMPORTED_MODULE_8___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use({
+  install: function install(Vue) {
+    Vue.prototype.$authAPI = axios__WEBPACK_IMPORTED_MODULE_8___default.a.create();
+  }
+});
+Object(_js_helpers_interceptors_js__WEBPACK_IMPORTED_MODULE_9__["setup"])(vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$authAPI);
 var vuetifyOptions = {
   icons: {
     iconfont: 'mdi'
@@ -97362,18 +97398,19 @@ function getLocalUsers() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFileApi", function() { return createFileApi; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openFileApi", function() { return openFileApi; });
-function createFileApi(payload, token) {
+function createFileApi(axios_param, payload, token) {
   return new Promise(function (res, rej) {
-    axios.post('/api/auth/add-new-document', payload).then(function (response) {
+    axios_param.post('/api/auth/add-new-document', payload).then(function (response) {
+      console.log(response);
       res(response.data);
     })["catch"](function (err) {
       rej(err);
     });
   });
 }
-function openFileApi(id_dokumen, header) {
+function openFileApi(axios_param, id_dokumen, header) {
   return new Promise(function (res, rej) {
-    axios.get('/api/auth/get-document/' + id_dokumen).then(function (result) {
+    axios_param.get('/api/auth/get-document/' + id_dokumen).then(function (result) {
       res(result);
     })["catch"](function (err) {
       rej(err);
@@ -97394,10 +97431,11 @@ function openFileApi(id_dokumen, header) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createOrUpdateHeader", function() { return createOrUpdateHeader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadHeaderdata", function() { return loadHeaderdata; });
-// import Axios from "axios";
 function createOrUpdateHeader(payload) {
+  var _this = this;
+
   return new Promise(function (resolve, reject) {
-    axios.post('/api/auth/update-insert-data-header', payload, {
+    _this.$authAPI.post('/api/auth/update-insert-data-header', payload, {
       config: {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -97413,12 +97451,59 @@ function createOrUpdateHeader(payload) {
   });
 }
 function loadHeaderdata() {
+  var _this2 = this;
+
   return new Promise(function (resolve, reject) {
-    axios.get('/api/auth/get-data-header').then(function (result) {
+    _this2.$authAPI.get('/api/auth/get-data-header').then(function (result) {
       resolve(result.data);
     })["catch"](function (err) {
       reject(err);
     });
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/helpers/interceptors.js":
+/*!**********************************************!*\
+  !*** ./resources/js/helpers/interceptors.js ***!
+  \**********************************************/
+/*! exports provided: setup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setup", function() { return setup; });
+/* harmony import */ var _js_store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/store.js */ "./resources/js/store.js");
+
+function setup(axios_param) {
+  axios_param.interceptors.request.use(function (config) {
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    if (user != null) {
+      console.log("token dari user", user);
+      config.headers.Authorization = "Bearer ".concat(user.token);
+    }
+
+    return config;
+  }, function (err) {
+    console.log("error nih");
+    return Promise.reject(err);
+  });
+  axios_param.interceptors.response.use(function (config) {
+    console.log("no error");
+    return config;
+  }, function (err) {
+    console.log("respone error di interceptor", err.response.status);
+
+    if (err.response.status == 401) {
+      _js_store_js__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('authFailed');
+      next('/login');
+      console.log("keluar cuy");
+    } // console.log()
+
+
+    return Promise.reject(err);
   });
 }
 
@@ -97532,27 +97617,6 @@ router.beforeEach(function (to, from, next) {
     return record.meta.requiresAuth;
   })) {
     if (_js_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.isLoggedIn) {
-      axios.interceptors.request.use(function (config) {
-        var token = _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.get_header;
-
-        if (token != null) {
-          config.headers.Authorization = "Bearer ".concat(token);
-        }
-
-        return config;
-      }, function (err) {
-        return Promise.reject(err);
-      });
-      axios.interceptors.response.use(null, function (err) {
-        if (err.response.status === 401) {
-          _js_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch('authFailed');
-          next('/login');
-          console.log("keluar cuy");
-        } // console.log()
-
-
-        return Promise.reject(err);
-      });
       next();
       return;
     }
@@ -97614,9 +97678,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     auth_error: function auth_error(state) {
       return state.auth_error;
     },
-    get_header: function get_header(state) {
+    get_header: function get_header() {
       var json_token = JSON.parse(localStorage.getItem('user'));
-      console.log(json_token.token); // console.log(String(json_token.token))
+      console.log("get header", json_token.token); // console.log(String(json_token.token))
 
       return json_token.token;
     }
@@ -97849,8 +97913,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

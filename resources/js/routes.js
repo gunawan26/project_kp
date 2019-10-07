@@ -88,7 +88,6 @@ const router = new Router({
 
 
 
-
 router.beforeEach((to, from, next) => {
 
 
@@ -102,27 +101,8 @@ router.beforeEach((to, from, next) => {
 
 
         if (store.getters.isLoggedIn) {
-            axios.interceptors.request.use(function (config) {
-                const token = store.getters.get_header
 
-                if (token != null) {
-                    config.headers.Authorization = `Bearer ${token}`;
-                }
 
-                return config;
-            }, function (err) {
-                return Promise.reject(err);
-            });
-            axios.interceptors.response.use(null, function (err) {
-                if (err.response.status === 401) {
-                    store.dispatch('authFailed')
-                    next('/login');
-                    console.log("keluar cuy")
-                }
-                // console.log()
-
-                return Promise.reject(err);
-            });
             next();
             return
         }

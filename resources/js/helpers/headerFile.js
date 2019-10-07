@@ -1,10 +1,7 @@
-// import Axios from "axios";
-
-
 export function createOrUpdateHeader(payload) {
 
     return new Promise((resolve, reject) => {
-        axios.post('/api/auth/update-insert-data-header',
+        this.$authAPI.post('/api/auth/update-insert-data-header',
                 payload, {
                     config: {
                         headers: {
@@ -28,7 +25,7 @@ export function createOrUpdateHeader(payload) {
 export function loadHeaderdata() {
 
     return new Promise((resolve, reject) => {
-        axios.get('/api/auth/get-data-header').then((result) => {
+        this.$authAPI.get('/api/auth/get-data-header').then((result) => {
             resolve(result.data)
         }).catch((err) => {
             reject(err)
