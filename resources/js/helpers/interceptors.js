@@ -1,4 +1,5 @@
-import store from '@/js/store.js'
+import store from '@/js/store.js';
+import router from '@/js/routes.js';
 
 
 export function setup(axios_param) {
@@ -19,9 +20,11 @@ export function setup(axios_param) {
 
         console.log("respone error di interceptor", err.response.status)
         if (err.response.status == 401) {
-            store.dispatch('authFailed')
-            next('/login');
             console.log("keluar cuy")
+            store.dispatch('authFailed')
+            router.push({
+                path: "/login"
+            });
         }
         // console.log()
 

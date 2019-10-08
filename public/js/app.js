@@ -2006,7 +2006,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       doc_id: 0,
-      data_dokumen: "",
+      // data_dokumen: {
+      //   attachmentname:"",
+      //   created_at:"",
+      //   customername:"",
+      //   date:"",
+      //   discussion_date:null
+      // }
+      data_dokumen: {},
       items: [{
         title: "Sub-category"
       }, {
@@ -2015,11 +2022,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     console.log(this.$route.params);
     this.$data.doc_id = this.$route.params.id_dokumen;
     Object(_js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__["openFileApi"])(this.$authAPI, this.$data.doc_id).then(function (result) {
-      console.log("masuk");
-      console.log(result);
+      _this.data_dokumen = Object.assign({}, result.data);
+      console.log("data dokumen", _this.data_dokumen);
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2028,7 +2037,8 @@ __webpack_require__.r(__webpack_exports__);
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
-  }
+  },
+  props: ["document-data"]
 });
 
 /***/ }),
@@ -40206,7 +40216,14 @@ var render = function() {
             { staticClass: "mx-5", attrs: { row: "", wrap: "" } },
             [
               _c("v-text-field", {
-                attrs: { label: "File name", placeholder: "File name" }
+                attrs: { label: "File name", placeholder: "File name" },
+                model: {
+                  value: _vm.data_dokumen.offername,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data_dokumen, "offername", $$v)
+                  },
+                  expression: "data_dokumen.offername"
+                }
               }),
               _vm._v(" "),
               _c(
@@ -40262,7 +40279,12 @@ var render = function() {
       _c(
         "div",
         { staticStyle: { "margin-top": "10%" } },
-        [_c("Offer", { ref: "OfferComponent" })],
+        [
+          _c("Offer", {
+            ref: "OfferComponent",
+            attrs: { "document-data": _vm.data_dokumen }
+          })
+        ],
         1
       )
     ],
@@ -97617,6 +97639,8 @@ function loadHeaderdata(axios_param) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setup", function() { return setup; });
 /* harmony import */ var _js_store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/store.js */ "./resources/js/store.js");
+/* harmony import */ var _js_routes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/routes.js */ "./resources/js/routes.js");
+
 
 function setup(axios_param) {
   axios_param.interceptors.request.use(function (config) {
@@ -97636,9 +97660,11 @@ function setup(axios_param) {
     console.log("respone error di interceptor", err.response.status);
 
     if (err.response.status == 401) {
-      _js_store_js__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('authFailed');
-      next('/login');
       console.log("keluar cuy");
+      _js_store_js__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('authFailed');
+      _js_routes_js__WEBPACK_IMPORTED_MODULE_1__["default"].push({
+        path: "/login"
+      });
     } // console.log()
 
 

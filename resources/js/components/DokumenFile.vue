@@ -6,7 +6,7 @@
         </div>
         <v-app-bar elevate-on-scroll:true flat fixed class="pt-5" color="grey lighten-3" style="margin-top:55px;" height="100">
           <v-layout row wrap class="mx-5">
-            <v-text-field label="File name" placeholder="File name"></v-text-field>
+            <v-text-field label="File name" placeholder="File name" v-model="data_dokumen.offername"></v-text-field>
             <v-btn text outlined small class="d-flex d-sm-none" v-on:click="triggerAddCategory">
                 <v-icon>mdi-playlist-plus</v-icon>
             </v-btn>
@@ -22,7 +22,7 @@
           </v-layout>
         </v-app-bar>
         <div style="margin-top:10%;">
-            <Offer ref="OfferComponent" />
+            <Offer ref="OfferComponent" v-bind:document-data="data_dokumen"/>
         </div>
     </div>
 </template>
@@ -42,7 +42,15 @@ export default {
   data() {
     return {
       doc_id: 0,
-      data_dokumen: "",
+      // data_dokumen: {
+      //   attachmentname:"",
+      //   created_at:"",
+      //   customername:"",
+      //   date:"",
+      //   discussion_date:null
+
+      // }
+      data_dokumen: {},
       items: [
         {
           title: "Sub-category"
@@ -60,8 +68,8 @@ export default {
 
     openFileApi(this.$authAPI, this.$data.doc_id)
       .then(result => {
-        console.log("masuk");
-        console.log(result);
+        this.data_dokumen = Object.assign({}, result.data);
+        console.log("data dokumen", this.data_dokumen);
       })
       .catch(err => {
         console.log(err);
@@ -72,7 +80,8 @@ export default {
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
-  }
+  },
+  props: ["document-data"]
 };
 </script>
 <style>
