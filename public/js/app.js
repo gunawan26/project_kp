@@ -2673,6 +2673,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2690,6 +2734,21 @@ __webpack_require__.r(__webpack_exports__);
         website: "",
         email: "",
         logo: ""
+      },
+      offers: {
+        nomor: "",
+        lampiran: "",
+        kepada: "",
+        perihal: "",
+        offerdate: "",
+        offerplace: "",
+        offerprice: "",
+        offerpricename: "",
+        offerduetime: "",
+        offerduetimename: "",
+        attachment: "",
+        attachmentname: "",
+        sign: ""
       },
       imageData: "/storage/images/logo.png",
       items: [],
@@ -41397,17 +41456,437 @@ var render = function() {
             }
           },
           [
-            _vm._m(0),
+            _c(
+              "div",
+              [
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "1" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { placeholder: "Nomor", disabled: "" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Masukan no surat" },
+                          model: {
+                            value: _vm.nomor,
+                            callback: function($$v) {
+                              _vm.nomor = $$v
+                            },
+                            expression: "nomor"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "div",
+              [
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "1" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { placeholder: "Lampiran", disabled: "" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Masukan Lampiran" },
+                          model: {
+                            value: _vm.lampiran,
+                            callback: function($$v) {
+                              _vm.lampiran = $$v
+                            },
+                            expression: "lampiran"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
-            _vm._m(2),
+            _c(
+              "div",
+              [
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "1" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { placeholder: "Kepada", disabled: "" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Kepada" },
+                          model: {
+                            value: _vm.kepada,
+                            callback: function($$v) {
+                              _vm.kepada = $$v
+                            },
+                            expression: "kepada"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("p", [_vm._v("di -")]),
             _vm._v(" "),
             _c("p", [_vm._v("Tempat")]),
             _vm._v(" "),
-            _vm._m(3)
+            _c(
+              "div",
+              [
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "1" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { placeholder: "perihal", disabled: "" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Perihal" },
+                          model: {
+                            value: _vm.perihal,
+                            callback: function($$v) {
+                              _vm.perihal = $$v
+                            },
+                            expression: "perihal"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Tanggal diskusi" },
+                          model: {
+                            value: _vm.offerdate,
+                            callback: function($$v) {
+                              _vm.offerdate = $$v
+                            },
+                            expression: "offerdate"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            text: "",
+                            placeholder: "Tempat Diskusi diskusi"
+                          },
+                          model: {
+                            value: _vm.offerplace,
+                            callback: function($$v) {
+                              _vm.offerplace = $$v
+                            },
+                            expression: "offerplace"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Harga Penawaran" },
+                          model: {
+                            value: _vm.offerprice,
+                            callback: function($$v) {
+                              _vm.offerprice = $$v
+                            },
+                            expression: "offerprice"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            text: "",
+                            placeholder: "Harga Penawaran Terbilang"
+                          },
+                          model: {
+                            value: _vm.offerpricename,
+                            callback: function($$v) {
+                              _vm.offerpricename = $$v
+                            },
+                            expression: "offerpricename"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Waktu Pengerjaan" },
+                          model: {
+                            value: _vm.offerduetime,
+                            callback: function($$v) {
+                              _vm.offerduetime = $$v
+                            },
+                            expression: "offerduetime"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            text: "",
+                            placeholder: "Waktu Pengerjaan terbilang"
+                          },
+                          model: {
+                            value: _vm.offerduetimename,
+                            callback: function($$v) {
+                              _vm.offerduetimename = $$v
+                            },
+                            expression: "offerduetimename"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: { text: "", placeholder: "Lampiran" },
+                          model: {
+                            value: _vm.attachment,
+                            callback: function($$v) {
+                              _vm.attachment = $$v
+                            },
+                            expression: "attachment"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            text: "",
+                            placeholder: "Lampiran Terbilang"
+                          },
+                          model: {
+                            value: _vm.attachmentname,
+                            callback: function($$v) {
+                              _vm.attachmentname = $$v
+                            },
+                            expression: "attachmentname"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { "align-center": "" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      [
+                        _c("v-img", {
+                          attrs: {
+                            text: "",
+                            placeholder: "Lampiran Terbilang"
+                          },
+                          model: {
+                            value: _vm.sign,
+                            callback: function($$v) {
+                              _vm.sign = $$v
+                            },
+                            expression: "sign"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("p", { staticStyle: { "margin-left": "80%" } }, [
+              _vm._v("Hormat kami")
+            ]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: {
+                id: "signature",
+                src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
+                alt: ""
+              }
+            })
           ]
         )
       ]),
@@ -41453,220 +41932,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("span", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Nomor")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "email",
-              id: "InputEmail",
-              "aria-describedby": "emailHelp",
-              placeholder: "Masukan no surat",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("span", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Lampiran")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "email",
-              id: "InputEmail",
-              "aria-describedby": "emailHelp",
-              placeholder: "Jumlah lampiran",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("span", { attrs: { for: "exampleInputEmail1" } }, [_vm._v("Yth.")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "email",
-              id: "InputEmail",
-              "aria-describedby": "emailHelp",
-              placeholder: "Nama tujuan surat",
-              required: ""
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("span", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Perihal")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "InputEmail",
-              "aria-describedby": "emailHelp",
-              placeholder: "Masukan perihal",
-              required: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Sehubung dengan diskusi pada "),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(" yang\n                        bertempat di "),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(
-          "\n                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                        Aplikasi Survei Sebersar Rp. "
-        ),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v("\n                        ,- ("),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v("). ")
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan\n                        tersebut di atas."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                        "
-        ),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(" ("),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(") hari kerja.")
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Penawaran ini berlaku selama "),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v("\n                        ("),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(
-          ") hari kalender sejak tanggal\n                        surat penawaran ini.\n                        surat penawaran beserta lampirannya kami sampaikan sebanyak "
-        ),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(" ("),
-        _c("span", [
-          _c("input", {
-            attrs: { type: "text", id: "InputEmail", required: "" }
-          })
-        ]),
-        _vm._v(") rangkap dokumen.")
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan\n                        pekerjaan ini."
-        )
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "margin-left": "80%" } }, [
-        _vm._v("Hormat kami")
-      ]),
-      _vm._v(" "),
-      _c("img", {
-        attrs: {
-          id: "signature",
-          src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
-          alt: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -98078,8 +98344,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
