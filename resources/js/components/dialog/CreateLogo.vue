@@ -91,9 +91,6 @@ export default {
     console.log("show data in child");
     console.log(this.companyData);
   },
-  watch: {
-    companyData: "getData"
-  },
 
   methods: {
     getData() {

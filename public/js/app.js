@@ -2037,8 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
-  },
-  props: ["document-data"]
+  }
 });
 
 /***/ }),
@@ -2727,6 +2726,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      nomor: "",
       company: {
         name: "",
         address: "",
@@ -2756,7 +2756,19 @@ __webpack_require__.r(__webpack_exports__);
       categories: []
     };
   },
+  watch: {
+    documentData: {
+      handler: function handler(val, oldVal) {
+        /* ... */
+        console.log(val);
+      },
+      deep: true
+    }
+  },
   methods: {
+    saveLocalStorage: function saveLocalStorage() {},
+    updateLocalStorage: function updateLocalStorage() {},
+    removeLocalStorage: function removeLocalStorage() {},
     loadHeaderAPI: function loadHeaderAPI() {
       var _this = this;
 
@@ -2810,10 +2822,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    console.log("created offer");
     this.addCategory();
     this.loadHeaderAPI();
-  }
+  },
+  props: ["document-data"]
 });
 
 /***/ }),
@@ -3530,9 +3542,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("show data in child");
     console.log(this.companyData);
-  },
-  watch: {
-    companyData: "getData"
   },
   methods: {
     getData: function getData() {
@@ -41481,11 +41490,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Masukan no surat" },
                           model: {
-                            value: _vm.nomor,
+                            value: _vm.documentData.number,
                             callback: function($$v) {
-                              _vm.nomor = $$v
+                              _vm.$set(_vm.documentData, "number", $$v)
                             },
-                            expression: "nomor"
+                            expression: "documentData.number"
                           }
                         })
                       ],
@@ -41523,11 +41532,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Masukan Lampiran" },
                           model: {
-                            value: _vm.lampiran,
+                            value: _vm.documentData.attachmentname,
                             callback: function($$v) {
-                              _vm.lampiran = $$v
+                              _vm.$set(_vm.documentData, "attachmentname", $$v)
                             },
-                            expression: "lampiran"
+                            expression: "documentData.attachmentname"
                           }
                         })
                       ],
@@ -41565,11 +41574,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Kepada" },
                           model: {
-                            value: _vm.kepada,
+                            value: _vm.documentData.customername,
                             callback: function($$v) {
-                              _vm.kepada = $$v
+                              _vm.$set(_vm.documentData, "customername", $$v)
                             },
-                            expression: "kepada"
+                            expression: "documentData.customername"
                           }
                         })
                       ],
@@ -41611,11 +41620,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Perihal" },
                           model: {
-                            value: _vm.perihal,
+                            value: _vm.documentData.subject,
                             callback: function($$v) {
-                              _vm.perihal = $$v
+                              _vm.$set(_vm.documentData, "subject", $$v)
                             },
-                            expression: "perihal"
+                            expression: "documentData.subject"
                           }
                         })
                       ],
@@ -41642,11 +41651,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Tanggal diskusi" },
                           model: {
-                            value: _vm.offerdate,
+                            value: _vm.documentData.discussion_date,
                             callback: function($$v) {
-                              _vm.offerdate = $$v
+                              _vm.$set(_vm.documentData, "discussion_date", $$v)
                             },
-                            expression: "offerdate"
+                            expression: "documentData.discussion_date"
                           }
                         })
                       ],
@@ -41670,11 +41679,11 @@ var render = function() {
                             placeholder: "Tempat Diskusi diskusi"
                           },
                           model: {
-                            value: _vm.offerplace,
+                            value: _vm.documentData.discussion_loc,
                             callback: function($$v) {
-                              _vm.offerplace = $$v
+                              _vm.$set(_vm.documentData, "discussion_loc", $$v)
                             },
-                            expression: "offerplace"
+                            expression: "documentData.discussion_loc"
                           }
                         })
                       ],
@@ -41695,11 +41704,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Harga Penawaran" },
                           model: {
-                            value: _vm.offerprice,
+                            value: _vm.documentData.offerprice,
                             callback: function($$v) {
-                              _vm.offerprice = $$v
+                              _vm.$set(_vm.documentData, "offerprice", $$v)
                             },
-                            expression: "offerprice"
+                            expression: "documentData.offerprice"
                           }
                         })
                       ],
@@ -41723,11 +41732,11 @@ var render = function() {
                             placeholder: "Harga Penawaran Terbilang"
                           },
                           model: {
-                            value: _vm.offerpricename,
+                            value: _vm.documentData.offerpricename,
                             callback: function($$v) {
-                              _vm.offerpricename = $$v
+                              _vm.$set(_vm.documentData, "offerpricename", $$v)
                             },
-                            expression: "offerpricename"
+                            expression: "documentData.offerpricename"
                           }
                         })
                       ],
@@ -41748,11 +41757,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Waktu Pengerjaan" },
                           model: {
-                            value: _vm.offerduetime,
+                            value: _vm.documentData.duration,
                             callback: function($$v) {
-                              _vm.offerduetime = $$v
+                              _vm.$set(_vm.documentData, "duration", $$v)
                             },
-                            expression: "offerduetime"
+                            expression: "documentData.duration"
                           }
                         })
                       ],
@@ -41776,11 +41785,15 @@ var render = function() {
                             placeholder: "Waktu Pengerjaan terbilang"
                           },
                           model: {
-                            value: _vm.offerduetimename,
+                            value: _vm.documentData.offerduetimename,
                             callback: function($$v) {
-                              _vm.offerduetimename = $$v
+                              _vm.$set(
+                                _vm.documentData,
+                                "offerduetimename",
+                                $$v
+                              )
                             },
-                            expression: "offerduetimename"
+                            expression: "documentData.offerduetimename"
                           }
                         })
                       ],
@@ -41801,11 +41814,11 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: { text: "", placeholder: "Lampiran" },
                           model: {
-                            value: _vm.attachment,
+                            value: _vm.documentData.attachment,
                             callback: function($$v) {
-                              _vm.attachment = $$v
+                              _vm.$set(_vm.documentData, "attachment", $$v)
                             },
-                            expression: "attachment"
+                            expression: "documentData.attachment"
                           }
                         })
                       ],
@@ -41829,11 +41842,11 @@ var render = function() {
                             placeholder: "Lampiran Terbilang"
                           },
                           model: {
-                            value: _vm.attachmentname,
+                            value: _vm.documentData.attachmentname,
                             callback: function($$v) {
-                              _vm.attachmentname = $$v
+                              _vm.$set(_vm.documentData, "attachmentname", $$v)
                             },
-                            expression: "attachmentname"
+                            expression: "documentData.attachmentname"
                           }
                         })
                       ],
@@ -41857,11 +41870,11 @@ var render = function() {
                             placeholder: "Lampiran Terbilang"
                           },
                           model: {
-                            value: _vm.sign,
+                            value: _vm.documentData.sign,
                             callback: function($$v) {
-                              _vm.sign = $$v
+                              _vm.$set(_vm.documentData, "sign", $$v)
                             },
-                            expression: "sign"
+                            expression: "documentData.sign"
                           }
                         })
                       ],
@@ -98344,8 +98357,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

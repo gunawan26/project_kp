@@ -80,8 +80,7 @@ export default {
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
-  },
-  props: ["document-data"]
+  }
 };
 </script>
 <style>
