@@ -2670,27 +2670,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40014,7 +39993,11 @@ var render = function() {
                   [
                     _c("v-text-field", {
                       staticClass: "col-sm-12",
-                      attrs: { label: "SubCategory" },
+                      attrs: {
+                        clearable: "",
+                        hint: "For example, Layouting",
+                        label: "SubCategory"
+                      },
                       model: {
                         value: _vm.subCat[index],
                         callback: function($$v) {
@@ -40090,7 +40073,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-4",
-                        attrs: { label: "Modul" },
+                        attrs: {
+                          hint: "For example, Integrasi API",
+                          label: "Modul"
+                        },
                         model: {
                           value: _vm.form.modul[index_row],
                           callback: function($$v) {
@@ -40102,7 +40088,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Durasi" },
+                        attrs: { hint: "For example, 8", label: "Durasi" },
                         model: {
                           value: _vm.form.durasi[index_row],
                           callback: function($$v) {
@@ -40114,7 +40100,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Satuan" },
+                        attrs: { hint: "For example, Hari", label: "Satuan" },
                         model: {
                           value: _vm.form.satuan[index_row],
                           callback: function($$v) {
@@ -40126,7 +40112,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-3",
-                        attrs: { label: "Biaya" },
+                        attrs: {
+                          hint: "For example, 4.000.000",
+                          label: "Biaya"
+                        },
                         model: {
                           value: _vm.form.biaya[index_row],
                           callback: function($$v) {
@@ -40138,7 +40127,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Keterangan" },
+                        attrs: { hint: "For example, ", label: "Keterangan" },
                         model: {
                           value: _vm.form.ket[index_row],
                           callback: function($$v) {
@@ -41488,122 +41477,34 @@ var render = function() {
               },
               [
                 _c(
-                  "v-row",
+                  "div",
                   [
                     _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      "v-row",
+                      { attrs: { "align-center": "" } },
                       [
-                        _c("v-text-field", {
-                          attrs: {
-                            text: "",
-                            clearable: "",
-                            label: "Nomor surat"
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "prepend",
-                              fn: function() {
-                                return [
-                                  _c(
-                                    "v-tooltip",
-                                    {
-                                      attrs: { bottom: "" },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            return [
-                                              _c("v-icon", _vm._g({}, on), [
-                                                _vm._v(
-                                                  "mdi-help-circle-outline"
-                                                )
-                                              ])
-                                            ]
-                                          }
-                                        }
-                                      ])
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    example\n                                "
-                                      )
-                                    ]
-                                  )
-                                ]
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "4" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: {
+                                text: "",
+                                clearable: "",
+                                hint: "For example, 22/DART/QTT/2019",
+                                label: "Nomor Surat"
                               },
-                              proxy: true
-                            }
-                          ]),
-                          model: {
-                            value: _vm.documentData.number,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "number", $$v)
-                            },
-                            expression: "documentData.number"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", clearable: "", label: "Lampiran" },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "prepend",
-                              fn: function() {
-                                return [
-                                  _c(
-                                    "v-tooltip",
-                                    {
-                                      attrs: { bottom: "" },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            return [
-                                              _c("v-icon", _vm._g({}, on), [
-                                                _vm._v(
-                                                  "mdi-help-circle-outline"
-                                                )
-                                              ])
-                                            ]
-                                          }
-                                        }
-                                      ])
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    example\n                                "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              },
-                              proxy: true
-                            }
-                          ]),
-                          model: {
-                            value: _vm.documentData.attachmentname,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "attachmentname", $$v)
-                            },
-                            expression: "documentData.attachmentname"
-                          }
-                        })
+                              model: {
+                                value: _vm.documentData.number,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.documentData, "number", $$v)
+                                },
+                                expression: "documentData.number"
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ],
                       1
                     )
@@ -41620,21 +41521,55 @@ var render = function() {
                       [
                         _c(
                           "v-col",
-                          { attrs: { cols: "12", sm: "6", md: "1" } },
+                          { attrs: { cols: "12", sm: "6", md: "4" } },
                           [
                             _c("v-text-field", {
-                              attrs: { placeholder: "Kepada", disabled: "" }
+                              attrs: {
+                                text: "",
+                                clearable: "",
+                                hint: "For example, 1 (satu) lembar",
+                                label: "Lampiran Surat"
+                              },
+                              model: {
+                                value: _vm.documentData.attachmentname,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.documentData,
+                                    "attachmentname",
+                                    $$v
+                                  )
+                                },
+                                expression: "documentData.attachmentname"
+                              }
                             })
                           ],
                           1
-                        ),
-                        _vm._v(" "),
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "v-row",
+                      { attrs: { "align-center": "" } },
+                      [
                         _c(
                           "v-col",
                           { attrs: { cols: "12", sm: "6", md: "4" } },
                           [
                             _c("v-text-field", {
-                              attrs: { text: "", placeholder: "Kepada" },
+                              attrs: {
+                                text: "",
+                                clearable: "",
+                                hint: "For example, Edi",
+                                label: "Kepada"
+                              },
                               model: {
                                 value: _vm.documentData.customername,
                                 callback: function($$v) {
@@ -41670,21 +41605,16 @@ var render = function() {
                       [
                         _c(
                           "v-col",
-                          { attrs: { cols: "12", sm: "6", md: "1" } },
-                          [
-                            _c("v-text-field", {
-                              attrs: { placeholder: "perihal", disabled: "" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
                           { attrs: { cols: "12", sm: "6", md: "4" } },
                           [
                             _c("v-text-field", {
-                              attrs: { text: "", placeholder: "Perihal" },
+                              attrs: {
+                                text: "",
+                                clearable: "",
+                                hint:
+                                  "For example, Penawaran Pekerjaan Pengembangan Web Sistem",
+                                label: "Prihal Surat"
+                              },
                               model: {
                                 value: _vm.documentData.subject,
                                 callback: function($$v) {
@@ -42016,8 +41946,7 @@ var render = function() {
                     alt: ""
                   }
                 })
-              ],
-              1
+              ]
             )
           ]
         ),

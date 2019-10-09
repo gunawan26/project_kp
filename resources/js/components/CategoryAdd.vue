@@ -16,7 +16,7 @@
         <div v-for="(sub_cat,index) in list_subs" v-bind:key="index" @mouseover="hiddenSub=false"
                     @mouseleave="hiddenSub=true">
             <v-row>
-                <v-col sm="11"><v-text-field class="col-sm-12" v-model="subCat[index]" label="SubCategory"></v-text-field></v-col>
+                <v-col sm="11"><v-text-field class="col-sm-12" v-model="subCat[index]" clearable hint="For example, Layouting" label="SubCategory"></v-text-field></v-col>
                 
                 <v-col sm="1"><v-btn class="col-sm-1" v-on:click="deleteSub(list_subs,index)" tile large color="red" icon
                     :hidden="hiddenSub">
@@ -28,11 +28,11 @@
                     @mouseleave="hidden=true">
                     <!-- <v-text-field class="col-sm-1" v-model="form.no[index_row]" label="No" disabled value="index_row"></v-text-field> -->
                     <v-col class="col-sm-1 mb-4">{{index_row+1}}.</v-col>
-                    <v-text-field class="col-sm-4" v-model="form.modul[index_row]" label="Modul"></v-text-field>
-                    <v-text-field class="col-sm-1" v-model="form.durasi[index_row]" label="Durasi"></v-text-field>
-                    <v-text-field class="col-sm-1" v-model="form.satuan[index_row]" label="Satuan"></v-text-field>
-                    <v-text-field class="col-sm-3" v-model="form.biaya[index_row]" label="Biaya"></v-text-field>
-                    <v-text-field class="col-sm-1" v-model="form.ket[index_row]" label="Keterangan"></v-text-field>
+                    <v-text-field class="col-sm-4" v-model="form.modul[index_row]" hint="For example, Integrasi API" label="Modul"></v-text-field>
+                    <v-text-field class="col-sm-1" v-model="form.durasi[index_row]" hint="For example, 8" label="Durasi"></v-text-field>
+                    <v-text-field class="col-sm-1" v-model="form.satuan[index_row]" hint="For example, Hari" label="Satuan"></v-text-field>
+                    <v-text-field class="col-sm-3" v-model="form.biaya[index_row]" hint="For example, 4.000.000" label="Biaya"></v-text-field>
+                    <v-text-field class="col-sm-1" v-model="form.ket[index_row]" hint="For example, " label="Keterangan"></v-text-field>
                     <v-btn class="col-sm-1" v-on:click="deleteItem(sub_cat,index_row)" tile large color="red" icon
                         :hidden="hidden">
                         <v-icon>mdi-close</v-icon>

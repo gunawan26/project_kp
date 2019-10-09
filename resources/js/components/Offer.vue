@@ -41,42 +41,24 @@
             </div>
             <v-container fluid class="px-10 py-10">
                 <form @submit.prevent="authenticate">
-                    <v-row>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-text-field v-model="documentData.number" text clearable label="Nomor surat">
-                                <template v-slot:prepend>
-                                    <v-tooltip bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-icon v-on="on">mdi-help-circle-outline</v-icon>
-                                        </template>
-                                        example
-                                    </v-tooltip>
-                                </template></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                    <v-row>
-                        <v-col cols="12" sm="6" md="4">
-                            <v-text-field v-model="documentData.attachmentname" text clearable label="Lampiran">
-                                <template v-slot:prepend>
-                                    <v-tooltip bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-icon v-on="on">mdi-help-circle-outline</v-icon>
-                                        </template>
-                                        example
-                                    </v-tooltip>
-                                </template></v-text-field>
-                        </v-col>
-                    </v-row>
-
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Kepada" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.customername" text placeholder="Kepada">
-                                </v-text-field>
+                                <v-text-field v-model="documentData.number" text clearable hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="documentData.attachmentname" text clearable hint="For example, 1 (satu) lembar" label="Lampiran Surat"></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div>
+                        <v-row align-center>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field v-model="documentData.customername" text clearable hint="For example, Edi" label="Kepada"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
@@ -84,11 +66,8 @@
                     <p>Tempat</p>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="perihal" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.subject" text placeholder="Perihal"></v-text-field>
+                                <v-text-field v-model="documentData.subject" text clearable hint="For example, Penawaran Pekerjaan Pengembangan Web Sistem" label="Prihal Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
