@@ -1892,47 +1892,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
     return {
-      list_category: [],
       list_subs: [],
-      row: '',
-      form: {
+      hidden: true,
+      hiddenSub: true
+    };
+  },
+  methods: {
+    addSubCategory: function addSubCategory(index) {
+      console.log('Addsubcat ' + index);
+      this.list_subs.push(this.sub_cat = {
+        id: "",
+        list_row: [{
+          no: "",
+          modul: "",
+          durasi: "",
+          satuan: "",
+          biaya: "",
+          ket: ""
+        }]
+      });
+      console.log(this.list_subs); // this.list_subs[0].list_row.push("im here")
+    },
+    addRow: function addRow() {
+      console.log('Addrow');
+      this.sub_cat.list_row.push({
         no: "",
         modul: "",
         durasi: "",
         satuan: "",
         biaya: "",
         ket: ""
-      },
-      subCat: "",
-      category: "",
-      hidden: true,
-      hiddenSub: true
-    };
-  },
-  methods: {
-    addSubCategory: function addSubCategory() {
-      console.log('Addrow'); // this.sub.push({
-      //     judul:"dummy",
-      // })
-      // this.sub.row.push()
-
-      this.list_subs.push(this.sub_cat = {
-        id: '1',
-        judul: 'wewewewe',
-        list_row: [{
-          judul: 'sdsd'
-        }]
       });
-      console.log(this.list_subs[0]); // this.list_subs[0].list_row.push("im here")
-    },
-    addRow: function addRow(index) {
-      console.log('Addrow');
-      this.list_subs[index].list_row.push('sss');
-      console.log(this.row);
+      console.log(this.sub_cat.list_row);
     },
     deleteItem: function deleteItem(sub_cat, index_row) {
       console.log(sub_cat.list_row);
@@ -1945,7 +1952,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.addSubCategory();
+    this.addSubCategory(0);
   }
 });
 
@@ -2557,8 +2564,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
-/* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
-/* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
+/* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
 //
 //
 //
@@ -2668,13 +2674,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ // import CategoryAdd from "@/js/components/CategoryAdd.vue";
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CreateLogo: _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    CategoryAdd: _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    CreateLogo: _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // CategoryAdd
+
   },
   data: function data() {
     return {
@@ -2705,7 +2775,10 @@ __webpack_require__.r(__webpack_exports__);
       imageData: "/storage/images/logo.png",
       items: [],
       item: [],
-      categories: []
+      categories: [],
+      // list_subs: [],
+      hidden: true,
+      hiddenSub: true
     };
   },
   watch: {
@@ -2724,7 +2797,7 @@ __webpack_require__.r(__webpack_exports__);
     loadHeaderAPI: function loadHeaderAPI() {
       var _this = this;
 
-      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__["loadHeaderdata"])(this.$authAPI).then(function (result) {
+      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_1__["loadHeaderdata"])(this.$authAPI).then(function (result) {
         _this.company = {
           name: result.companyname,
           address: result.address,
@@ -2740,14 +2813,57 @@ __webpack_require__.r(__webpack_exports__);
     },
     addCategory: function addCategory() {
       console.log("AddCategory");
-      this.categories.push({
-        message: "test"
+      this.categories.push(this.category = {
+        title: "",
+        list_subs: [{
+          id: "",
+          list_row: [{
+            modul: "",
+            durasi: "",
+            satuan: "",
+            biaya: "",
+            ket: ""
+          }]
+        }]
       });
-      console.log(this.table);
+      console.log(this.categories);
     },
     deleteCategory: function deleteCategory(categories, index) {
       console.log(index);
       categories.splice(index, 1);
+    },
+    addSubCategory: function addSubCategory(cat_index) {
+      console.log('Addcat ' + cat_index);
+      this.categories[cat_index].list_subs.push(this.sub_cat = {
+        id: "",
+        list_row: [{
+          modul: "",
+          durasi: "",
+          satuan: "",
+          biaya: "",
+          ket: ""
+        }]
+      });
+      console.log(this.list_subs); // this.list_subs[0].list_row.push("im here")
+    },
+    addRow: function addRow(cat_index, index) {
+      console.log('Addrow');
+      this.categories[cat_index].list_subs[index].list_row.push(this.item = {
+        modul: "",
+        durasi: "",
+        satuan: "",
+        biaya: "",
+        ket: ""
+      });
+    },
+    deleteItem: function deleteItem(sub_cat, index_row) {
+      // console.log(sub_cat.list_row)
+      // console.log(index_row)
+      sub_cat.list_row.splice(index_row, 1);
+    },
+    deleteSub: function deleteSub(category, index) {
+      console.log(index);
+      category.list_subs.splice(index, 1);
     },
     printHelloWorld: function printHelloWorld() {
       console.log("hello world");
@@ -39982,8 +40098,10 @@ var render = function() {
             }
           },
           [
+            _vm._v("\n        " + _vm._s(sub_cat) + "\n        "),
             _c(
               "v-row",
+              { attrs: { justify: "center" } },
               [
                 _c(
                   "v-col",
@@ -39997,11 +40115,11 @@ var render = function() {
                         label: "SubCategory"
                       },
                       model: {
-                        value: _vm.subCat[index],
+                        value: sub_cat.id,
                         callback: function($$v) {
-                          _vm.$set(_vm.subCat, index, $$v)
+                          _vm.$set(sub_cat, "id", $$v)
                         },
-                        expression: "subCat[index]"
+                        expression: "sub_cat.id"
                       }
                     })
                   ],
@@ -40015,9 +40133,7 @@ var render = function() {
                     _c(
                       "v-btn",
                       {
-                        staticClass: "col-sm-1",
                         attrs: {
-                          tile: "",
                           large: "",
                           color: "red",
                           icon: "",
@@ -40029,7 +40145,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_c("v-icon", [_vm._v("mdi-close")])],
+                      [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
                       1
                     )
                   ],
@@ -40039,11 +40155,14 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._l(sub_cat.list_row, function(modul, index_row) {
+            _vm._l(sub_cat.list_row, function(item, index_row) {
               return _c(
                 "div",
                 { key: index_row },
                 [
+                  _vm._v(
+                    "\n            " + _vm._s(index_row) + "\n            "
+                  ),
                   _c(
                     "v-row",
                     {
@@ -40055,13 +40174,6 @@ var render = function() {
                         mouseleave: function($event) {
                           _vm.hidden = true
                         }
-                      },
-                      model: {
-                        value: modul.id,
-                        callback: function($$v) {
-                          _vm.$set(modul, "id", $$v)
-                        },
-                        expression: "modul.id"
                       }
                     },
                     [
@@ -40076,11 +40188,11 @@ var render = function() {
                           label: "Modul"
                         },
                         model: {
-                          value: _vm.form.modul[index_row],
+                          value: item.modul,
                           callback: function($$v) {
-                            _vm.$set(_vm.form.modul, index_row, $$v)
+                            _vm.$set(item, "modul", $$v)
                           },
-                          expression: "form.modul[index_row]"
+                          expression: "item.modul"
                         }
                       }),
                       _vm._v(" "),
@@ -40088,11 +40200,11 @@ var render = function() {
                         staticClass: "col-sm-1",
                         attrs: { hint: "For example, 8", label: "Durasi" },
                         model: {
-                          value: _vm.form.durasi[index_row],
+                          value: item.durasi,
                           callback: function($$v) {
-                            _vm.$set(_vm.form.durasi, index_row, $$v)
+                            _vm.$set(item, "durasi", $$v)
                           },
-                          expression: "form.durasi[index_row]"
+                          expression: "item.durasi"
                         }
                       }),
                       _vm._v(" "),
@@ -40100,11 +40212,11 @@ var render = function() {
                         staticClass: "col-sm-1",
                         attrs: { hint: "For example, Hari", label: "Satuan" },
                         model: {
-                          value: _vm.form.satuan[index_row],
+                          value: item.satuan,
                           callback: function($$v) {
-                            _vm.$set(_vm.form.satuan, index_row, $$v)
+                            _vm.$set(item, "satuan", $$v)
                           },
-                          expression: "form.satuan[index_row]"
+                          expression: "item.satuan"
                         }
                       }),
                       _vm._v(" "),
@@ -40115,11 +40227,11 @@ var render = function() {
                           label: "Biaya"
                         },
                         model: {
-                          value: _vm.form.biaya[index_row],
+                          value: item.biaya,
                           callback: function($$v) {
-                            _vm.$set(_vm.form.biaya, index_row, $$v)
+                            _vm.$set(item, "biaya", $$v)
                           },
-                          expression: "form.biaya[index_row]"
+                          expression: "item.biaya"
                         }
                       }),
                       _vm._v(" "),
@@ -40127,20 +40239,18 @@ var render = function() {
                         staticClass: "col-sm-1",
                         attrs: { hint: "For example, ", label: "Keterangan" },
                         model: {
-                          value: _vm.form.ket[index_row],
+                          value: item.ket,
                           callback: function($$v) {
-                            _vm.$set(_vm.form.ket, index_row, $$v)
+                            _vm.$set(item, "ket", $$v)
                           },
-                          expression: "form.ket[index_row]"
+                          expression: "item.ket"
                         }
                       }),
                       _vm._v(" "),
                       _c(
                         "v-btn",
                         {
-                          staticClass: "col-sm-1",
                           attrs: {
-                            tile: "",
                             large: "",
                             color: "red",
                             icon: "",
@@ -40152,7 +40262,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_c("v-icon", [_vm._v("mdi-close")])],
+                        [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
                         1
                       )
                     ],
@@ -40170,8 +40280,12 @@ var render = function() {
                 _c(
                   "v-btn",
                   {
-                    attrs: { fluid: "", color: "primary" },
-                    on: { click: _vm.addSubCategory }
+                    attrs: { fluid: "", rounded: "", color: "primary" },
+                    on: {
+                      click: function($event) {
+                        return _vm.addSubCategory(index)
+                      }
+                    }
                   },
                   [_vm._v("Add Sub")]
                 ),
@@ -40179,7 +40293,7 @@ var render = function() {
                 _c(
                   "v-btn",
                   {
-                    attrs: { fluid: "", color: "success" },
+                    attrs: { fluid: "", rounded: "", color: "success" },
                     on: {
                       click: function($event) {
                         return _vm.addRow(index)
@@ -40190,7 +40304,9 @@ var render = function() {
                 )
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("hr")
           ],
           2
         )
@@ -41657,7 +41773,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(" yang\n                        bertempat di "),
+                  _vm._v(" yang\n                    bertempat di "),
                   _c("span", [
                     _c("input", {
                       directives: [
@@ -41685,7 +41801,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(
-                    "\n                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                        Aplikasi Survei Sebersar Rp. "
+                    "\n                    dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                    Aplikasi Survei Sebersar Rp. "
                   ),
                   _c("span", [
                     _c("input", {
@@ -41713,7 +41829,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v("\n                        ,- ("),
+                  _vm._v("\n                    ,- ("),
                   _c("span", [
                     _c("input", {
                       directives: [
@@ -41745,13 +41861,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan\n                        tersebut di atas."
+                    "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan\n                    tersebut di atas."
                   )
                 ]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                        "
+                    "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                    "
                   ),
                   _c("span", [
                     _c("input", {
@@ -41779,7 +41895,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(" ("),
+                  _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
                       directives: [
@@ -41806,7 +41922,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(") hari kerja.")
+                  _vm._v(")\n                    hari kerja.")
                 ]),
                 _vm._v(" "),
                 _c("p", [
@@ -41837,7 +41953,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v("\n                        ("),
+                  _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
                       directives: [
@@ -41865,7 +41981,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(
-                    ") hari kalender sejak tanggal\n                        surat penawaran ini.\n                        surat penawaran beserta lampirannya kami sampaikan sebanyak "
+                    ") hari kalender sejak tanggal\n                    surat penawaran ini.\n                    surat penawaran beserta lampirannya kami sampaikan sebanyak "
                   ),
                   _c("span", [
                     _c("input", {
@@ -41893,7 +42009,7 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(" ("),
+                  _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
                       directives: [
@@ -41920,12 +42036,12 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(") rangkap\n                        dokumen.")
+                  _vm._v(") rangkap\n                    dokumen.")
                 ]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan\n                        pekerjaan ini."
+                    "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan\n                    pekerjaan ini."
                   )
                 ]),
                 _vm._v(" "),
@@ -41950,11 +42066,11 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card-header" },
-          _vm._l(_vm.categories, function(cat, index) {
+          _vm._l(_vm.categories, function(category, cat_index) {
             return _c(
               "div",
               {
-                key: index,
+                key: cat_index,
                 on: {
                   remove: function($event) {
                     return _vm.deleteCategory()
@@ -41965,20 +42081,342 @@ var render = function() {
                 _c(
                   "v-btn",
                   {
-                    staticClass: "col-sm-1",
-                    staticStyle: { "z-index": "1", "margin-bottom": "-130px" },
-                    attrs: { tile: "", large: "", color: "red", icon: "" },
+                    staticStyle: { "z-index": "1", "margin-bottom": "-150px" },
+                    attrs: { large: "", color: "red", icon: "" },
                     on: {
                       click: function($event) {
-                        return _vm.deleteCategory(_vm.categories, index)
+                        return _vm.deleteCategory(_vm.categories, cat_index)
                       }
                     }
                   },
-                  [_c("v-icon", [_vm._v("mdi-close")])],
+                  [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
                   1
                 ),
                 _vm._v(" "),
-                _c("CategoryAdd")
+                _c(
+                  "v-card",
+                  { staticClass: "pa-10 mt-10" },
+                  [
+                    _c("v-text-field", {
+                      attrs: { label: "Nama Kategori" },
+                      model: {
+                        value: category.title,
+                        callback: function($$v) {
+                          _vm.$set(category, "title", $$v)
+                        },
+                        expression: "category.title"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "v-row",
+                      { staticClass: "font-weight-bold" },
+                      [
+                        _c("v-col", { staticClass: "col-sm-1" }, [
+                          _vm._v("No")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", { staticClass: "col-sm-4" }, [
+                          _vm._v("Modul")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", { staticClass: "col-sm-1" }, [
+                          _vm._v("Durasi")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", { staticClass: "col-sm-1" }, [
+                          _vm._v("Satuan")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", { staticClass: "col-sm-3" }, [
+                          _vm._v("Biaya")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-col", { staticClass: "col-sm-2" }, [
+                          _vm._v("Keterangan")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "col-sm-12",
+                      staticStyle: { "border-bottom": "1px solid #000" }
+                    }),
+                    _vm._v(" "),
+                    _vm._l(category.list_subs, function(sub_cat, index) {
+                      return _c(
+                        "div",
+                        {
+                          key: index,
+                          on: {
+                            mouseover: function($event) {
+                              _vm.hiddenSub = false
+                            },
+                            mouseleave: function($event) {
+                              _vm.hiddenSub = true
+                            },
+                            remove: function($event) {
+                              return _vm.deleteSub()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            { attrs: { justify: "center" } },
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { sm: "11" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "col-sm-12",
+                                    attrs: {
+                                      clearable: "",
+                                      hint: "For example, Layouting",
+                                      label: "SubCategory"
+                                    },
+                                    model: {
+                                      value: sub_cat.id,
+                                      callback: function($$v) {
+                                        _vm.$set(sub_cat, "id", $$v)
+                                      },
+                                      expression: "sub_cat.id"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { sm: "1" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        large: "",
+                                        color: "red",
+                                        icon: "",
+                                        hidden: _vm.hiddenSub
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteSub(category, index)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("v-icon", [
+                                        _vm._v("mdi-close-circle-outline")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm._l(sub_cat.list_row, function(item, index_row) {
+                            return _c(
+                              "div",
+                              {
+                                key: index_row,
+                                on: {
+                                  remove: function($event) {
+                                    return _vm.deleteItem()
+                                  },
+                                  mouseover: function($event) {
+                                    _vm.hidden = false
+                                  },
+                                  mouseleave: function($event) {
+                                    _vm.hidden = true
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-row",
+                                  {
+                                    attrs: {
+                                      justify: "center",
+                                      align: "center"
+                                    },
+                                    on: {
+                                      mouseover: function($event) {
+                                        _vm.hidden = false
+                                      },
+                                      mouseleave: function($event) {
+                                        _vm.hidden = true
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-text-field", {
+                                      staticClass: "col-sm-4",
+                                      attrs: {
+                                        hint: "For example, Integrasi API",
+                                        label: "Modul"
+                                      },
+                                      model: {
+                                        value: item.modul,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "modul", $$v)
+                                        },
+                                        expression: "item.modul"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      staticClass: "col-sm-1",
+                                      attrs: {
+                                        hint: "For example, 8",
+                                        label: "Durasi"
+                                      },
+                                      model: {
+                                        value: item.durasi,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "durasi", $$v)
+                                        },
+                                        expression: "item.durasi"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      staticClass: "col-sm-1",
+                                      attrs: {
+                                        hint: "For example, Hari",
+                                        label: "Satuan"
+                                      },
+                                      model: {
+                                        value: item.satuan,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "satuan", $$v)
+                                        },
+                                        expression: "item.satuan"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      staticClass: "col-sm-3",
+                                      attrs: {
+                                        hint: "For example, 4.000.000",
+                                        label: "Biaya"
+                                      },
+                                      model: {
+                                        value: item.biaya,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "biaya", $$v)
+                                        },
+                                        expression: "item.biaya"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      staticClass: "col-sm-1",
+                                      attrs: {
+                                        hint: "For example, ",
+                                        label: "Keterangan"
+                                      },
+                                      model: {
+                                        value: item.ket,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "ket", $$v)
+                                        },
+                                        expression: "item.ket"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          large: "",
+                                          color: "red",
+                                          icon: "",
+                                          hidden: _vm.hidden
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteItem(
+                                              sub_cat,
+                                              index_row
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v("mdi-close-circle-outline")
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "mb-10",
+                              attrs: { id: "action-btn" }
+                            },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    fluid: "",
+                                    rounded: "",
+                                    color: "primary"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addSubCategory(cat_index)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Add Sub")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    fluid: "",
+                                    rounded: "",
+                                    color: "success"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addRow(cat_index, index)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Add Row")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("hr")
+                        ],
+                        2
+                      )
+                    })
+                  ],
+                  2
+                )
               ],
               1
             )
