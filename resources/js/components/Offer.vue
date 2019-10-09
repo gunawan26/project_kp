@@ -62,8 +62,6 @@
                             </v-col>
                         </v-row>
                     </div>
-                    <p>di -</p>
-                    <p>Tempat</p>
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
@@ -71,7 +69,7 @@
                             </v-col>
                         </v-row>
                     </div>
-
+                    <br>
                     <p>Sehubung dengan diskusi pada <span><input v-model="documentData.discussion_date" type="text" id="InputEmail" required></span> yang
                             bertempat di <span><input v-model="documentData.discussion_loc" type="text" id="InputEmail" required></span>
                             dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /

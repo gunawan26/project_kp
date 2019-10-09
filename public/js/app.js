@@ -2668,8 +2668,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -41592,10 +41590,6 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("p", [_vm._v("di -")]),
-                _vm._v(" "),
-                _c("p", [_vm._v("Tempat")]),
-                _vm._v(" "),
                 _c(
                   "div",
                   [
@@ -41632,6 +41626,8 @@ var render = function() {
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("br"),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v("Sehubung dengan diskusi pada "),
