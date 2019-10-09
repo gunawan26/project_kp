@@ -1993,6 +1993,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2546,44 +2559,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
 /* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8214,7 +8189,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\r\n  text-transform: none !important;\n}\r\n", ""]);
+exports.push([module.i, "\n* {\n    text-transform: none !important;\n}\n\n", ""]);
 
 // exports
 
@@ -40268,8 +40243,7 @@ var render = function() {
       _c(
         "v-app-bar",
         {
-          staticClass: "pt-5",
-          staticStyle: { "margin-top": "55px" },
+          staticStyle: { "margin-top": "65px" },
           attrs: {
             "elevate-on-scroll:true": "",
             flat: "",
@@ -40281,7 +40255,10 @@ var render = function() {
         [
           _c(
             "v-layout",
-            { staticClass: "mx-5", attrs: { row: "", wrap: "" } },
+            {
+              staticClass: "mx-5 d-none d-sm-flex",
+              attrs: { col: "", wrap: "" }
+            },
             [
               _c("v-text-field", {
                 attrs: { label: "File name", placeholder: "File name" },
@@ -40297,7 +40274,59 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  staticClass: "d-flex d-sm-none",
+                  attrs: { text: "", small: "" },
+                  on: { click: _vm.triggerAddCategory }
+                },
+                [
+                  _c("v-icon", [_vm._v("mdi-playlist-plus")]),
+                  _vm._v("Add Category\n            ")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticClass: "mr-2",
+                  attrs: { outlined: "", rounded: "", text: "", small: "" }
+                },
+                [_vm._v("\n                Save\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { attrs: { outlined: "", rounded: "", text: "", small: "" } },
+                [_vm._v("\n                Preview\n            ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { staticClass: "d-flex d-sm-none", attrs: { col: "", wrap: "" } },
+            [
+              _c("v-text-field", {
+                attrs: { label: "File name", placeholder: "File name" },
+                model: {
+                  value: _vm.data_dokumen.offername,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data_dokumen, "offername", $$v)
+                  },
+                  expression: "data_dokumen.offername"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { staticClass: "d-flex d-sm-none", attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-btn",
+                {
                   attrs: { text: "", outlined: "", small: "" },
                   on: { click: _vm.triggerAddCategory }
                 },
@@ -40307,35 +40336,16 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                {
-                  staticClass: "d-none d-sm-flex",
-                  attrs: { text: "", small: "" },
-                  on: { click: _vm.triggerAddCategory }
-                },
-                [
-                  _c("v-icon", [_vm._v("mdi-playlist-plus")]),
-                  _vm._v("Add Category\n        ")
-                ],
+                { attrs: { outlined: "", text: "", small: "" } },
+                [_c("v-icon", [_vm._v("mdi-content-save")])],
                 1
               ),
               _vm._v(" "),
               _c(
                 "v-btn",
-                {
-                  staticClass: "d-flex d-sm-none",
-                  attrs: { outlined: "", text: "", small: "" }
-                },
+                { attrs: { outlined: "", text: "", small: "" } },
                 [_c("v-icon", [_vm._v("mdi-magnify")])],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "d-none d-sm-flex",
-                  attrs: { outlined: "", rounded: "", text: "", small: "" }
-                },
-                [_vm._v("\n            Preview\n        ")]
               )
             ],
             1
@@ -40346,7 +40356,6 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticStyle: { "margin-top": "10%" } },
         [
           _c("Offer", {
             ref: "OfferComponent",
@@ -41301,194 +41310,232 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "offer-field" } }, [
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "5%" } }, [
-      _c(
-        "div",
-        { staticClass: "card-header" },
-        [
-          _c(
-            "v-container",
-            [
-              _c(
-                "v-form",
-                [
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "9" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Company Name*", disabled: "" },
-                            model: {
-                              value: _vm.company.name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.company, "name", $$v)
-                              },
-                              expression: "company.name"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "Company Address*", disabled: "" },
-                            model: {
-                              value: _vm.company.address,
-                              callback: function($$v) {
-                                _vm.$set(_vm.company, "address", $$v)
-                              },
-                              expression: "company.address"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", sm: "6", md: "4" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Company Number*",
-                                      disabled: ""
-                                    },
-                                    model: {
-                                      value: _vm.company.number,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.company, "number", $$v)
-                                      },
-                                      expression: "company.number"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", sm: "6", md: "4" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Company Website*",
-                                      disabled: ""
-                                    },
-                                    model: {
-                                      value: _vm.company.website,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.company, "website", $$v)
-                                      },
-                                      expression: "company.website"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", sm: "6", md: "4" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Company Email*",
-                                      disabled: ""
-                                    },
-                                    model: {
-                                      value: _vm.company.email,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.company, "email", $$v)
-                                      },
-                                      expression: "company.email"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-col", { attrs: { cols: "12", sm: "6", md: "3" } }, [
-                        _c(
-                          "div",
-                          [
-                            _vm.imageData.length > 0
-                              ? _c(
-                                  "div",
-                                  {
-                                    staticClass: "image-preview",
-                                    attrs: { oulined: "" }
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "preview",
-                                      attrs: { src: _vm.imageData }
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c("createLogo", {
-                              attrs: { "company-data": _vm.company }
-                            })
-                          ],
-                          1
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
+    _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "5%" } },
+      [
         _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.authenticate($event)
-              }
-            }
-          },
+          "div",
+          { staticClass: "card-header" },
           [
             _c(
-              "div",
+              "v-container",
+              [
+                _c(
+                  "v-form",
+                  [
+                    _c(
+                      "v-row",
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "9" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "Company Name*", disabled: "" },
+                              model: {
+                                value: _vm.company.name,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.company, "name", $$v)
+                                },
+                                expression: "company.name"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                label: "Company Address*",
+                                disabled: ""
+                              },
+                              model: {
+                                value: _vm.company.address,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.company, "address", $$v)
+                                },
+                                expression: "company.address"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "4" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Company Number*",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: _vm.company.number,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.company, "number", $$v)
+                                        },
+                                        expression: "company.number"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "4" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Company Website*",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: _vm.company.website,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.company, "website", $$v)
+                                        },
+                                        expression: "company.website"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "4" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Company Email*",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: _vm.company.email,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.company, "email", $$v)
+                                        },
+                                        expression: "company.email"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "3" } },
+                          [
+                            _c(
+                              "div",
+                              [
+                                _vm.imageData.length > 0
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass: "image-preview",
+                                        attrs: { oulined: "" }
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "preview",
+                                          attrs: { src: _vm.imageData }
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("createLogo", {
+                                  attrs: { "company-data": _vm.company }
+                                })
+                              ],
+                              1
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-container",
+          { staticClass: "px-10 py-10", attrs: { fluid: "" } },
+          [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.authenticate($event)
+                  }
+                }
+              },
               [
                 _c(
                   "v-row",
-                  { attrs: { "align-center": "" } },
                   [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Nomor", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
                     _c(
                       "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Masukan no surat" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            label: "Nomor surat"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "prepend",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "v-tooltip",
+                                    {
+                                      attrs: { bottom: "" },
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            return [
+                                              _c("v-icon", _vm._g({}, on), [
+                                                _vm._v(
+                                                  "mdi-help-circle-outline"
+                                                )
+                                              ])
+                                            ]
+                                          }
+                                        }
+                                      ])
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    example\n                                "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ]),
                           model: {
                             value: _vm.documentData.number,
                             callback: function($$v) {
@@ -41502,345 +41549,53 @@ var render = function() {
                     )
                   ],
                   1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Lampiran", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Masukan Lampiran" },
-                          model: {
-                            value: _vm.documentData.attachmentname,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "attachmentname", $$v)
-                            },
-                            expression: "documentData.attachmentname"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Kepada", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Kepada" },
-                          model: {
-                            value: _vm.documentData.customername,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "customername", $$v)
-                            },
-                            expression: "documentData.customername"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("p", [_vm._v("di -")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("Tempat")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "perihal", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Perihal" },
-                          model: {
-                            value: _vm.documentData.subject,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "subject", $$v)
-                            },
-                            expression: "documentData.subject"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Tanggal diskusi" },
-                          model: {
-                            value: _vm.documentData.discussion_date,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "discussion_date", $$v)
-                            },
-                            expression: "documentData.discussion_date"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
                 ),
                 _vm._v(" "),
                 _c(
                   "v-row",
-                  { attrs: { "align-center": "" } },
                   [
                     _c(
                       "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: {
-                            text: "",
-                            placeholder: "Tempat Diskusi diskusi"
-                          },
-                          model: {
-                            value: _vm.documentData.discussion_loc,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "discussion_loc", $$v)
-                            },
-                            expression: "documentData.discussion_loc"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Harga Penawaran" },
-                          model: {
-                            value: _vm.documentData.offerprice,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "offerprice", $$v)
-                            },
-                            expression: "documentData.offerprice"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: {
-                            text: "",
-                            placeholder: "Harga Penawaran Terbilang"
-                          },
-                          model: {
-                            value: _vm.documentData.offerpricename,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "offerpricename", $$v)
-                            },
-                            expression: "documentData.offerpricename"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Waktu Pengerjaan" },
-                          model: {
-                            value: _vm.documentData.duration,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "duration", $$v)
-                            },
-                            expression: "documentData.duration"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: {
-                            text: "",
-                            placeholder: "Waktu Pengerjaan terbilang"
-                          },
-                          model: {
-                            value: _vm.documentData.offerduetimename,
-                            callback: function($$v) {
-                              _vm.$set(
-                                _vm.documentData,
-                                "offerduetimename",
-                                $$v
-                              )
-                            },
-                            expression: "documentData.offerduetimename"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Lampiran" },
-                          model: {
-                            value: _vm.documentData.attachment,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "attachment", $$v)
-                            },
-                            expression: "documentData.attachment"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
-                  [
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: {
-                            text: "",
-                            placeholder: "Lampiran Terbilang"
-                          },
+                          attrs: { text: "", clearable: "", label: "Lampiran" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "prepend",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "v-tooltip",
+                                    {
+                                      attrs: { bottom: "" },
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            return [
+                                              _c("v-icon", _vm._g({}, on), [
+                                                _vm._v(
+                                                  "mdi-help-circle-outline"
+                                                )
+                                              ])
+                                            ]
+                                          }
+                                        }
+                                      ])
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    example\n                                "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ]),
                           model: {
                             value: _vm.documentData.attachmentname,
                             callback: function($$v) {
@@ -41857,92 +41612,457 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c(
-                  "v-row",
-                  { attrs: { "align-center": "" } },
+                  "div",
                   [
                     _c(
-                      "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "4" } },
+                      "v-row",
+                      { attrs: { "align-center": "" } },
                       [
-                        _c("v-img", {
-                          attrs: {
-                            text: "",
-                            placeholder: "Lampiran Terbilang"
-                          },
-                          model: {
-                            value: _vm.documentData.sign,
-                            callback: function($$v) {
-                              _vm.$set(_vm.documentData, "sign", $$v)
-                            },
-                            expression: "documentData.sign"
-                          }
-                        })
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "1" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: { placeholder: "Kepada", disabled: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "4" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: { text: "", placeholder: "Kepada" },
+                              model: {
+                                value: _vm.documentData.customername,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.documentData,
+                                    "customername",
+                                    $$v
+                                  )
+                                },
+                                expression: "documentData.customername"
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ],
                       1
                     )
                   ],
                   1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("p", { staticStyle: { "margin-left": "80%" } }, [
-              _vm._v("Hormat kami")
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              attrs: {
-                id: "signature",
-                src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
-                alt: ""
-              }
-            })
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "card-header" },
-        _vm._l(_vm.categories, function(cat, index) {
-          return _c(
-            "div",
-            {
-              key: index,
-              on: {
-                remove: function($event) {
-                  return _vm.deleteCategory()
-                }
-              }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  staticClass: "col-sm-1",
-                  staticStyle: { "z-index": "1", "margin-bottom": "-130px" },
-                  attrs: { tile: "", large: "", color: "red", icon: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteCategory(_vm.categories, index)
-                    }
+                ),
+                _vm._v(" "),
+                _c("p", [_vm._v("di -")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("Tempat")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "v-row",
+                      { attrs: { "align-center": "" } },
+                      [
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "1" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: { placeholder: "perihal", disabled: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "12", sm: "6", md: "4" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: { text: "", placeholder: "Perihal" },
+                              model: {
+                                value: _vm.documentData.subject,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.documentData, "subject", $$v)
+                                },
+                                expression: "documentData.subject"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v("Sehubung dengan diskusi pada "),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.discussion_date,
+                          expression: "documentData.discussion_date"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.discussion_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "discussion_date",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" yang\n                        bertempat di "),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.discussion_loc,
+                          expression: "documentData.discussion_loc"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.discussion_loc },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "discussion_loc",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(
+                    "\n                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                        Aplikasi Survei Sebersar Rp. "
+                  ),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.offerprice,
+                          expression: "documentData.offerprice"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.offerprice },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "offerprice",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v("\n                        ,- ("),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.offerpricename,
+                          expression: "documentData.offerpricename"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.offerpricename },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "offerpricename",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v("). ")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan\n                        tersebut di atas."
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                        "
+                  ),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.duration,
+                          expression: "documentData.duration"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.duration },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "duration",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" ("),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.durationname,
+                          expression: "documentData.durationname"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.durationname },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "durationname",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(") hari kerja.")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v("Penawaran ini berlaku selama "),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.offerduetime,
+                          expression: "documentData.offerduetime"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.offerduetime },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "offerduetime",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v("\n                        ("),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.offerduetimename,
+                          expression: "documentData.offerduetimename"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.offerduetimename },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "offerduetimename",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(
+                    ") hari kalender sejak tanggal\n                        surat penawaran ini.\n                        surat penawaran beserta lampirannya kami sampaikan sebanyak "
+                  ),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.attachment,
+                          expression: "documentData.attachment"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.attachment },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "attachment",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" ("),
+                  _c("span", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.documentData.attachmentname,
+                          expression: "documentData.attachmentname"
+                        }
+                      ],
+                      attrs: { type: "text", id: "InputEmail", required: "" },
+                      domProps: { value: _vm.documentData.attachmentname },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.documentData,
+                            "attachmentname",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(") rangkap\n                        dokumen.")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan\n                        pekerjaan ini."
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticStyle: { "margin-left": "80%" } }, [
+                  _vm._v("Hormat kami")
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: {
+                    id: "signature",
+                    src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
+                    alt: ""
                   }
-                },
-                [_c("v-icon", [_vm._v("mdi-close")])],
-                1
-              ),
-              _vm._v(" "),
-              _c("CategoryAdd")
-            ],
-            1
-          )
-        }),
-        0
-      )
-    ])
+                })
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-header" },
+          _vm._l(_vm.categories, function(cat, index) {
+            return _c(
+              "div",
+              {
+                key: index,
+                on: {
+                  remove: function($event) {
+                    return _vm.deleteCategory()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "col-sm-1",
+                    staticStyle: { "z-index": "1", "margin-bottom": "-130px" },
+                    attrs: { tile: "", large: "", color: "red", icon: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteCategory(_vm.categories, index)
+                      }
+                    }
+                  },
+                  [_c("v-icon", [_vm._v("mdi-close")])],
+                  1
+                ),
+                _vm._v(" "),
+                _c("CategoryAdd")
+              ],
+              1
+            )
+          }),
+          0
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -98357,8 +98477,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
