@@ -43,31 +43,22 @@
                 <form @submit.prevent="authenticate">
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Nomor"  disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.number" text placeholder="Masukan no surat"></v-text-field>
+                                <v-text-field v-model="documentData.number" text clearable hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Lampiran" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachmentname" text placeholder="Masukan Lampiran"></v-text-field>
+                                <v-text-field v-model="documentData.attachmentname" text clearable hint="For example, 1 (satu) lembar" label="Lampiran Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Kepada" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.customername" text placeholder="Kepada"></v-text-field>
+                                <v-text-field v-model="documentData.customername" text clearable hint="For example, Edi" label="Kepada"></v-text-field>
                             </v-col>
                         </v-row>    
                     </div>
@@ -75,28 +66,25 @@
                     <p>Tempat</p>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="perihal" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.subject" text placeholder="Perihal"></v-text-field>
+                                <v-text-field v-model="documentData.subject" text clearable hint="For example, Penawaran Pekerjaan Pengembangan Web Sistem" label="Prihal Surat"></v-text-field>
                             </v-col>
                         </v-row>    
                     </div>
                      <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.discussion_date" text placeholder="Tanggal diskusi"></v-text-field>
+                                <v-text-field v-model="documentData.discussion_date" text clearable hint="For example, Senin, 1 Agustus 2019" label="Tanggal Diskusi"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.discussion_loc" text placeholder="Tempat Diskusi diskusi"></v-text-field>
+                                <v-text-field v-model="documentData.discussion_loc" text clearable hint="For example, KFC Sesetan" label="Tempat Diskusi"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.offerprice" text placeholder="Harga Penawaran"></v-text-field>
+                                <v-text-field v-model="documentData.offerprice" text clearable hint="For example, Rp. 5.000.000" label="Harga Penawaran"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row align-center>
@@ -106,7 +94,7 @@
                         </v-row>  
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.duration" text placeholder="Waktu Pengerjaan"></v-text-field>
+                                <v-text-field v-model="documentData.duration" text clearable hint="For example, 100" label="Waktu Pengerjaan"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row align-center>
@@ -116,7 +104,7 @@
                         </v-row>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachment" text placeholder="Lampiran"></v-text-field>
+                                <v-text-field v-model="documentData.attachment" text clearable hint="For example, 2" label="Lampiran"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row align-center>

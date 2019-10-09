@@ -2704,18 +2704,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40039,7 +40027,11 @@ var render = function() {
                   [
                     _c("v-text-field", {
                       staticClass: "col-sm-12",
-                      attrs: { label: "SubCategory" },
+                      attrs: {
+                        clearable: "",
+                        hint: "For example, Layouting",
+                        label: "SubCategory"
+                      },
                       model: {
                         value: _vm.subCat[index],
                         callback: function($$v) {
@@ -40115,7 +40107,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-4",
-                        attrs: { label: "Modul" },
+                        attrs: {
+                          hint: "For example, Integrasi API",
+                          label: "Modul"
+                        },
                         model: {
                           value: _vm.form.modul[index_row],
                           callback: function($$v) {
@@ -40127,7 +40122,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Durasi" },
+                        attrs: { hint: "For example, 8", label: "Durasi" },
                         model: {
                           value: _vm.form.durasi[index_row],
                           callback: function($$v) {
@@ -40139,7 +40134,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Satuan" },
+                        attrs: { hint: "For example, Hari", label: "Satuan" },
                         model: {
                           value: _vm.form.satuan[index_row],
                           callback: function($$v) {
@@ -40151,7 +40146,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-3",
-                        attrs: { label: "Biaya" },
+                        attrs: {
+                          hint: "For example, 4.000.000",
+                          label: "Biaya"
+                        },
                         model: {
                           value: _vm.form.biaya[index_row],
                           callback: function($$v) {
@@ -40163,7 +40161,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         staticClass: "col-sm-1",
-                        attrs: { label: "Keterangan" },
+                        attrs: { hint: "For example, ", label: "Keterangan" },
                         model: {
                           value: _vm.form.ket[index_row],
                           callback: function($$v) {
@@ -41474,21 +41472,15 @@ var render = function() {
                   [
                     _c(
                       "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Nomor", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Masukan no surat" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, 22/DART/QTT/2019",
+                            label: "Nomor Surat"
+                          },
                           model: {
                             value: _vm.documentData.number,
                             callback: function($$v) {
@@ -41516,21 +41508,15 @@ var render = function() {
                   [
                     _c(
                       "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Lampiran", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Masukan Lampiran" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, 1 (satu) lembar",
+                            label: "Lampiran Surat"
+                          },
                           model: {
                             value: _vm.documentData.attachmentname,
                             callback: function($$v) {
@@ -41558,21 +41544,15 @@ var render = function() {
                   [
                     _c(
                       "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "Kepada", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Kepada" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, Edi",
+                            label: "Kepada"
+                          },
                           model: {
                             value: _vm.documentData.customername,
                             callback: function($$v) {
@@ -41604,21 +41584,16 @@ var render = function() {
                   [
                     _c(
                       "v-col",
-                      { attrs: { cols: "12", sm: "6", md: "1" } },
-                      [
-                        _c("v-text-field", {
-                          attrs: { placeholder: "perihal", disabled: "" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Perihal" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint:
+                              "For example, Penawaran Pekerjaan Pengembangan Web Sistem",
+                            label: "Prihal Surat"
+                          },
                           model: {
                             value: _vm.documentData.subject,
                             callback: function($$v) {
@@ -41649,7 +41624,12 @@ var render = function() {
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Tanggal diskusi" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, Senin, 1 Agustus 2019",
+                            label: "Tanggal Diskusi"
+                          },
                           model: {
                             value: _vm.documentData.discussion_date,
                             callback: function($$v) {
@@ -41676,7 +41656,9 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: {
                             text: "",
-                            placeholder: "Tempat Diskusi diskusi"
+                            clearable: "",
+                            hint: "For example, KFC Sesetan",
+                            label: "Tempat Diskusi"
                           },
                           model: {
                             value: _vm.documentData.discussion_loc,
@@ -41702,7 +41684,12 @@ var render = function() {
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Harga Penawaran" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, Rp. 5.000.000",
+                            label: "Harga Penawaran"
+                          },
                           model: {
                             value: _vm.documentData.offerprice,
                             callback: function($$v) {
@@ -41755,7 +41742,12 @@ var render = function() {
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Waktu Pengerjaan" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, 100",
+                            label: "Waktu Pengerjaan"
+                          },
                           model: {
                             value: _vm.documentData.duration,
                             callback: function($$v) {
@@ -41812,7 +41804,12 @@ var render = function() {
                       { attrs: { cols: "12", sm: "6", md: "4" } },
                       [
                         _c("v-text-field", {
-                          attrs: { text: "", placeholder: "Lampiran" },
+                          attrs: {
+                            text: "",
+                            clearable: "",
+                            hint: "For example, 2",
+                            label: "Lampiran"
+                          },
                           model: {
                             value: _vm.documentData.attachment,
                             callback: function($$v) {
@@ -98357,8 +98354,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
