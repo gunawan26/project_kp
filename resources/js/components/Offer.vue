@@ -2,7 +2,6 @@
     <div id="offer-field" class="container">
         <div class="card" style="margin-top:5%;">
             <div class="card-header">
-                <!-- <createLogo /> -->
                 <v-container>
                     <v-form>
                         <v-row>
@@ -25,7 +24,6 @@
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
-
                             </v-col>
                             <v-col cols="12" sm="6" md="3">
                                 <div>
@@ -39,130 +37,138 @@
                     </v-form>
                 </v-container>
             </div>
-            <div class="card-body">
+            <v-container fluid class="px-10 py-10">
                 <form @submit.prevent="authenticate">
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Nomor"  disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.number" text placeholder="Masukan no surat"></v-text-field>
+                                <v-text-field v-model="documentData.number" text clearable
+                                    hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Lampiran" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachmentname" text placeholder="Masukan Lampiran"></v-text-field>
+                                <v-text-field v-model="documentData.attachmentname" text clearable
+                                    hint="For example, 1 (satu) lembar" label="Lampiran Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="Kepada" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.customername" text placeholder="Kepada"></v-text-field>
+                                <v-text-field v-model="documentData.customername" text clearable hint="For example, Edi"
+                                    label="Kepada"></v-text-field>
                             </v-col>
-                        </v-row>    
+                        </v-row>
                     </div>
-                    <p>di -</p>
-                    <p>Tempat</p>
                     <div>
                         <v-row align-center>
-                            <v-col cols="12" sm="6" md="1">
-                                <v-text-field placeholder="perihal" disabled></v-text-field>
-                            </v-col>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.subject" text placeholder="Perihal"></v-text-field>
+                                <v-text-field v-model="documentData.subject" text clearable
+                                    hint="For example, Penawaran Pekerjaan Pengembangan Web Sistem"
+                                    label="Prihal Surat"></v-text-field>
                             </v-col>
-                        </v-row>    
+                        </v-row>
                     </div>
-                     <div>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.discussion_date" text placeholder="Tanggal diskusi"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.discussion_loc" text placeholder="Tempat Diskusi diskusi"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.offerprice" text placeholder="Harga Penawaran"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.offerpricename" text placeholder="Harga Penawaran Terbilang"></v-text-field>
-                            </v-col>
-                        </v-row>  
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.duration" text placeholder="Waktu Pengerjaan"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.offerduetimename" text placeholder="Waktu Pengerjaan terbilang"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachment" text placeholder="Lampiran"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachmentname" text placeholder="Lampiran Terbilang"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row align-center>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-img v-model="documentData.sign" text placeholder="Lampiran Terbilang"></v-img>
-                            </v-col>
-                        </v-row>      
-                    </div>
-
-                        <!-- <p>Sehubung dengan diskusi pada <span><input type="text" id="InputEmail" required></span> yang
-                            bertempat di <span><input type="text" id="InputEmail" required></span>
-                            dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
-                            Aplikasi Survei Sebersar Rp. <span><input type="text" id="InputEmail" required></span>
-                            ,- (<span><input type="text" id="InputEmail" required></span>). </p>
-                        <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
-                            tersebut di atas.</p>
-                        <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
-                            <span><input type="text" id="InputEmail" required></span> (<span><input type="text"
-                                    id="InputEmail" required></span>) hari kerja.</p>
-                        <p>Penawaran ini berlaku selama <span><input type="text" id="InputEmail" required></span>
-                            (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
-                            surat penawaran ini.
-                            surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input type="text"
-                                    id="InputEmail" required></span> (<span><input type="text" id="InputEmail"
-                                    required></span>) rangkap
-                            dokumen.</p>
-                        <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
-                            pekerjaan ini.</p> -->
-                        <br>
-                        <p style="margin-left:80%">Hormat kami</p>
-                        <img id="signature" src="@/images/tiny-checkers.png" alt="">
+                    <br>
+                    <p>Sehubung dengan diskusi pada <span><input v-model="documentData.discussion_date" type="text"
+                                id="InputEmail" required></span> yang
+                        bertempat di <span><input v-model="documentData.discussion_loc" type="text" id="InputEmail"
+                                required></span>
+                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
+                        Aplikasi Survei Sebersar Rp. <span><input v-model="documentData.offerprice" type="text"
+                                id="InputEmail" required></span>
+                        ,- (<span><input v-model="documentData.offerpricename" type="text" id="InputEmail"
+                                required></span>). </p>
+                    <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
+                        tersebut di atas.</p>
+                    <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
+                        <span><input v-model="documentData.duration" type="text" id="InputEmail" required></span>
+                        (<span><input v-model="documentData.durationname" type="text" id="InputEmail" required></span>)
+                        hari kerja.</p>
+                    <p>Penawaran ini berlaku selama <span><input v-model="documentData.offerduetime" type="text"
+                                id="InputEmail" required></span>
+                        (<span><input v-model="documentData.offerduetimename" type="text" id="InputEmail"
+                                required></span>) hari kalender sejak tanggal
+                        surat penawaran ini.
+                        surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input
+                                v-model="documentData.attachment" type="text" id="InputEmail" required></span>
+                        (<span><input v-model="documentData.attachmentname" type="text" id="InputEmail"
+                                required></span>) rangkap
+                        dokumen.</p>
+                    <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
+                        pekerjaan ini.</p>
+                    <br>
+                    <p style="margin-left:80%">Hormat kami</p>
+                    <img id="signature" src="@/images/tiny-checkers.png" alt="">
                 </form>
-            </div>
+            </v-container>
             <div class="card-header">
-                <div v-for="(cat,index) in categories" v-bind:key="index" v-on:remove="deleteCategory()">
-                    <v-btn class="col-sm-1" style="z-index:1; margin-bottom:-130px;"
-                        v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
-                        <v-icon>mdi-close</v-icon>
+                <div v-for="(category,cat_index) in categories" v-bind:key="cat_index" v-on:remove="deleteCategory()">
+                    <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(categories,cat_index)"
+                        large color="red" icon>
+                        <v-icon>mdi-close-circle-outline</v-icon>
                     </v-btn>
-                    <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate"/>
+                    <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
                     <CategoryAdd />
+                    <v-card class="pa-10 mt-10">
+                        <v-text-field label="Nama Kategori" v-model="category.title"></v-text-field>
+                        <v-row class="font-weight-bold">
+                            <v-col class="col-sm-1">No</v-col>
+                            <v-col class="col-sm-4">Modul</v-col>
+                            <v-col class="col-sm-1">Durasi</v-col>
+                            <v-col class="col-sm-1">Satuan</v-col>
+                            <v-col class="col-sm-3">Biaya</v-col>
+                            <v-col class="col-sm-2">Keterangan</v-col>
+                        </v-row>
+                        <div class="col-sm-12" style="border-bottom:1px solid #000"></div>
+                        <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index"
+                            @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
+                            <v-row justify="center">
+                                <v-col sm="11">
+                                    <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
+                                        hint="For example, Layouting" label="SubCategory"></v-text-field>
+                                </v-col>
+                                <v-col sm="1">
+                                    <v-btn v-on:click="deleteSub(category,index)" large color="red" icon
+                                        :hidden="hiddenSub">
+                                        <v-icon>mdi-close-circle-outline</v-icon>
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                            <div v-for="(item,index_row) in sub_cat.list_row" v-bind:key="index_row"
+                                v-on:remove="deleteItem()" @mouseover="hidden=false" @mouseleave="hidden=true">
+                                <!-- {{index_row}} -->
+                                <v-row justify="center" align="center" @mouseover="hidden=false"
+                                    @mouseleave="hidden=true">
+                                    <!-- <v-text-field class="col-sm-1" v-model="form.no[index_row]" label="No" disabled value="index_row"></v-text-field> -->
+                                    <v-text-field class="col-sm-4" v-model="item.modul"
+                                        hint="For example, Integrasi API" label="Modul"></v-text-field>
+                                    <v-text-field class="col-sm-1" v-model="item.durasi" hint="For example, 8"
+                                        label="Durasi"></v-text-field>
+                                    <v-text-field class="col-sm-1" v-model="item.satuan" hint="For example, Hari"
+                                        label="Satuan"></v-text-field>
+                                    <v-text-field class="col-sm-3" v-model="item.biaya" hint="For example, 4.000.000"
+                                        label="Biaya"></v-text-field>
+                                    <v-text-field class="col-sm-1" v-model="item.ket" hint="For example, "
+                                        label="Keterangan"></v-text-field>
+                                    <v-btn v-on:click="deleteItem(sub_cat,index_row)" large color="red" icon
+                                        :hidden="hidden">
+                                        <v-icon>mdi-close-circle-outline</v-icon>
+                                    </v-btn>
+                                </v-row>
+                            </div>
+                            <div id="action-btn" class="mb-10">
+                                <v-btn fluid rounded color="primary" v-on:click="addSubCategory(cat_index)">Add Sub
+                                </v-btn>
+                                <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
+                                </v-btn>
+                            </div>
+                            <hr>
+                        </div>
+                    </v-card>
                 </div>
             </div>
         </div>
@@ -194,9 +200,12 @@ export default {
     imageData: "/storage/images/logo.png",
     items: [],
     item: [],
-    categories: [],
     notUpToDate: false,
-    isUpdateFromLocal: false
+    isUpdateFromLocal: false,
+    categories: [],
+    // list_subs: [],
+    hidden: true,
+    hiddenSub: true
   }),
   watch: {
     documentData: {
@@ -275,10 +284,26 @@ export default {
     },
     addCategory() {
       console.log("AddCategory");
-      this.categories.push({
-        message: "test"
-      });
-      console.log(this.table);
+      this.categories.push(
+        (this.category = {
+          title: "",
+          list_subs: [
+            {
+              id: "",
+              list_row: [
+                {
+                  modul: "",
+                  durasi: "",
+                  satuan: "",
+                  biaya: "",
+                  ket: ""
+                }
+              ]
+            }
+          ]
+        })
+      );
+      console.log(this.categories);
     },
 
     deleteCategory(categories, index) {
@@ -286,9 +311,49 @@ export default {
       categories.splice(index, 1);
     },
 
-    printHelloWorld() {
-      console.log("hello world");
+    addSubCategory(cat_index) {
+      console.log("Addcat " + cat_index);
+      this.categories[cat_index].list_subs.push(
+        (this.sub_cat = {
+          id: "",
+          list_row: [
+            {
+              modul: "",
+              durasi: "",
+              satuan: "",
+              biaya: "",
+              ket: ""
+            }
+          ]
+        })
+      );
+      console.log(this.list_subs);
+      // this.list_subs[0].list_row.push("im here")
     },
+    addRow(cat_index, index) {
+      console.log("Addrow");
+      this.categories[cat_index].list_subs[index].list_row.push(
+        (this.item = {
+          modul: "",
+          durasi: "",
+          satuan: "",
+          biaya: "",
+          ket: ""
+        })
+      );
+    },
+
+    deleteItem(sub_cat, index_row) {
+      // console.log(sub_cat.list_row)
+      // console.log(index_row)
+      sub_cat.list_row.splice(index_row, 1);
+    },
+
+    deleteSub(category, index) {
+      console.log(index);
+      category.list_subs.splice(index, 1);
+    },
+
     previewImage: function(event) {
       // Reference to the DOM input element
       var input = event.target;
@@ -305,14 +370,14 @@ export default {
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0]);
       }
-    }
-  },
-  created() {
-    this.addCategory();
-    this.loadHeaderAPI();
-  },
+    },
 
-  props: ["document-data"]
+    created() {
+      this.addCategory();
+      this.loadHeaderAPI();
+    },
+    props: ["document-data"]
+  }
 };
 </script>
 

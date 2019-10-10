@@ -4,25 +4,38 @@
         <div>
             <navi/>
         </div>
-        <v-app-bar elevate-on-scroll:true flat fixed class="pt-5" color="grey lighten-3" style="margin-top:55px;" height="100">
-          <v-layout row wrap class="mx-5">
-            <v-text-field label="File name" placeholder="File name" v-model="data_dokumen.offername"></v-text-field>
-            <v-btn text outlined small class="d-flex d-sm-none" v-on:click="triggerAddCategory">
-                <v-icon>mdi-playlist-plus</v-icon>
-            </v-btn>
-            <v-btn text small class="d-none d-sm-flex" v-on:click="triggerAddCategory">
-                <v-icon>mdi-playlist-plus</v-icon>Add Category
-            </v-btn>
-            <v-btn outlined text small class="d-flex d-sm-none">
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-            <v-btn outlined rounded text small class="d-none d-sm-flex">
-                Preview
-            </v-btn>
-          </v-layout>
+        <v-app-bar elevate-on-scroll:true flat fixed color="grey lighten-3" style="margin-top:65px;"
+            height="100">
+            <v-layout col wrap class="mx-5 d-none d-sm-flex">
+                <v-text-field label="File name" placeholder="File name" v-model="data_dokumen.offername"></v-text-field>
+                <v-btn text small v-on:click="triggerAddCategory">
+                    <v-icon>mdi-playlist-plus</v-icon>Add Category
+                </v-btn>
+                <v-btn outlined rounded text small class="mr-2">
+                    Save
+                </v-btn>
+                <v-btn outlined rounded text small>
+                    Preview
+                </v-btn>
+            </v-layout>
+            
+            <v-layout col wrap class="d-flex d-sm-none">
+                <v-text-field label="File name" placeholder="File name" v-model="data_dokumen.offername"></v-text-field>
+            </v-layout>
+            <v-layout row wrap class="d-flex d-sm-none">
+                <v-btn text outlined small v-on:click="triggerAddCategory">
+                    <v-icon>mdi-playlist-plus</v-icon>
+                </v-btn>
+                <v-btn outlined text small>
+                    <v-icon>mdi-content-save</v-icon>
+                </v-btn>
+                <v-btn outlined text small>
+                    <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+            </v-layout>
         </v-app-bar>
-        <div style="margin-top:10%;">
-            <Offer ref="OfferComponent" v-bind:document-data="data_dokumen"/>
+        <div>
+            <Offer ref="OfferComponent" v-bind:document-data="data_dokumen" />
         </div>
     </div>
 </template>
