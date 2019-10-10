@@ -68,8 +68,8 @@ export default {
 
     openFileApi(this.$authAPI, this.$data.doc_id)
       .then(result => {
-        this.data_dokumen = Object.assign({}, result.data);
-        console.log("data dokumen", this.data_dokumen);
+        this.$store.dispatch("fetchDataDokumen", result.data);
+        console.log("data dokumen", this.$store.getters.dataDokumen);
       })
       .catch(err => {
         console.log(err);

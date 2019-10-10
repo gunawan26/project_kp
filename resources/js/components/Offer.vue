@@ -161,6 +161,7 @@
                         v-on:click="deleteCategory(categories,index)" tile large color="red" icon>
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
+                    <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate"/>
                     <CategoryAdd />
                 </div>
             </div>
@@ -170,13 +171,15 @@
 
 <script>
 import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+import ConfirmUpdateDocument from "@/js/components/dialog/ConfirmUpdateDocument.vue";
 import CategoryAdd from "@/js/components/CategoryAdd.vue";
 import { loadHeaderdata } from "@/js/helpers/headerFile";
 
 export default {
   components: {
     CreateLogo,
-    CategoryAdd
+    CategoryAdd,
+    ConfirmUpdateDocument
   },
   data: () => ({
     nomor: "",
@@ -188,39 +191,71 @@ export default {
       email: "",
       logo: ""
     },
-    offers: {
-      nomor: "",
-      lampiran: "",
-      kepada: "",
-      perihal: "",
-      offerdate: "",
-      offerplace: "",
-      offerprice: "",
-      offerpricename: "",
-      offerduetime: "",
-      offerduetimename: "",
-      attachment: "",
-      attachmentname: "",
-      sign: ""
-    },
     imageData: "/storage/images/logo.png",
     items: [],
     item: [],
-    categories: []
+    categories: [],
+    notUpToDate: false,
+    isUpdateFromLocal: false
   }),
   watch: {
     documentData: {
       handler: function(val, oldVal) {
         /* ... */
-        console.log(val);
+
+        this.saveLocalStorage();
       },
       deep: true
     }
   },
   methods: {
-    saveLocalStorage() {},
-    updateLocalStorage() {},
+    getLocalStorage(localStorageName) {
+      let foo = Object.assign(
+        {},
+        JSON.parse(localStorage.getItem(localStorageName))
+      );
+      this.$emit("document-data", foo);
+      localStorage.setItem(localStorageName, JSON.stringify(this.documentData));
+      console.log("data diupdate", this.documentData);
+    },
+    saveLocalStorage() {
+      console.log(this.documentData);
+      let localStorageName = `document-${this.documentData.id}`;
+      var currentDate = new Date();
+      console.log(currentDate);
+      if (localStorage.getItem(localStorageName) != null) {
+        this.getLocalStorage(localStorageName);
+      } else {
+        localStorage.setItem(
+          localStorageName,
+          JSON.stringify(this.documentData)
+        );
+        console.log("data tidak ada");
+      }
+
+      console.log(new Date(this.documentData.created_at));
+    },
+
+    compareLocalStorageAndDb(localStorageTime, databaseTime) {
+      if (localStorageTime > databaseTime) {
+        this.notUpToDate = True;
+      }
+    },
+
+    updateLocalStorage(localStorageTime, databaseTime) {
+      if (localStorageTime > databaseTime) {
+        this.notUpToDate = True;
+        dialog;
+      }
+    },
+
+    setStatusUpdate(sts) {
+      this.isUpdateFromLocal = sts;
+      console.log("want to load data ?", this.isUpdateFromLocal);
+    },
+
     removeLocalStorage() {},
+
     loadHeaderAPI() {
       loadHeaderdata(this.$authAPI)
         .then(result => {
@@ -276,6 +311,7 @@ export default {
     this.addCategory();
     this.loadHeaderAPI();
   },
+
   props: ["document-data"]
 };
 </script>

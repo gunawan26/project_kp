@@ -1,4 +1,4 @@
-import store from '@/js/store.js';
+import store from '@/js/state/store.js';
 import router from '@/js/routes.js';
 
 

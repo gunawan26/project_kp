@@ -48,115 +48,108 @@
 
 
 <script>
-    import {
-        login
-    } from "@/js/helpers/auth";
-    export default {
-        name: "login",
-        data() {
-            return {
-                form: {
-                    email: "",
-                    password: ""
-                },
-                loading: false,
-                alert: false,
-                error: null,
-                showLogin:false,
-                password : 'Password',
-            };
-        },
-        methods: {
-            authenticate() {
-                this.loading = true
-                this.$store.dispatch("login");
-                login(this.$data.form)
-                    .then(res => {
-                        this.$store.commit("loginSuccess", res);
-                        this.$router.push({
-                            path: "/"
-                        });
-                    })
-                    .catch(error => {
-                        this.$store.commit("loginFailed", {
-                            error
-                        });
-                        console.log(error);
-                        this.alert = true;
-                        this.loading = false;
-                        this.form.password = '';
-                    });
-            },
-        }
+import { login } from "@/js/helpers/auth";
+export default {
+  name: "login",
+  data() {
+    return {
+      form: {
+        email: "",
+        password: ""
+      },
+      loading: false,
+      alert: false,
+      error: null,
+      showLogin: false,
+      password: "Password"
     };
-
+  },
+  methods: {
+    authenticate() {
+      this.loading = true;
+      this.$store.dispatch("login");
+      login(this.$data.form)
+        .then(res => {
+          this.$store.dispatch("loginSuccess", res);
+          this.$router.push({
+            path: "/"
+          });
+        })
+        .catch(error => {
+          this.$store.dispatch("loginFailed", error);
+          console.log(error);
+          this.alert = true;
+          this.loading = false;
+          this.form.password = "";
+        });
+    }
+  }
+};
 </script>
 
 
 <style lang="scss" scoped>
-    body {
-        opacity: 0;
-        z-index: -2;
-    }
+body {
+  opacity: 0;
+  z-index: -2;
+}
 
-    #first-text{
-        max-height: 75%;
-    }
+#first-text {
+  max-height: 75%;
+}
 
-    .login {
-        max-height: 100%;
-        z-index: 3;
-    }
+.login {
+  max-height: 100%;
+  z-index: 3;
+}
 
-    .container {
-        // clip-path: polygon(0 57%, 100% 57%, 100% 100%, 0 100%);
-        height: 100%;
-        z-index: 5;
-    }
+.container {
+  // clip-path: polygon(0 57%, 100% 57%, 100% 100%, 0 100%);
+  height: 100%;
+  z-index: 5;
+}
 
-    .background {
-        position: absolute;
-        background: grey;
-        opacity: 0.2;
-        bottom: 0%;
-        width: 100%;
-        height: 50%;
-        margin: 0;
-        z-index: -1;
-    }
+.background {
+  position: absolute;
+  background: grey;
+  opacity: 0.2;
+  bottom: 0%;
+  width: 100%;
+  height: 50%;
+  margin: 0;
+  z-index: -1;
+}
 
-    #left-image-con {
-        margin-top: 3%;
+#left-image-con {
+  margin-top: 3%;
+}
 
-    }
+#left-image {
+  max-width: 55%;
+  display: block;
+  margin-left: 10%;
+}
 
-    #left-image {
-        max-width: 55%;
-        display: block;
-        margin-left: 10%;
-    }
+.card {
+  border-radius: 25px;
+}
 
-    .card {
-        border-radius: 25px;
-    }
+.card-body {
+  padding: 10%;
+}
 
-    .card-body {
-        padding: 10%;
-    }
+#login-image {
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
 
-    #login-image {
-        border-top-right-radius: 25px;
-        border-top-left-radius: 25px;
-    }
+#login-panel {
+  max-width: 50%;
+}
 
-    #login-panel {
-        max-width: 50%;
-    }
-
-    #first-text {
-        max-width: 70%;
-        float: left;
-        margin-top: 10%;
-    }
-
+#first-text {
+  max-width: 70%;
+  float: left;
+  margin-top: 10%;
+}
 </style>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import storeVuex from '@/js/store'
+import storeVuex from '@/js/state/store.js'
 import Login from '@/js/components/Login';
 import Home from '@/js/components/Home';
 import History from '@/js/components/History';
@@ -16,7 +16,7 @@ import HeaderFile from '@/js/components/dev/HeaderFile';
 
 
 
-import store from './store';
+import store from '@/js/state/store.js';
 import Vuebot from '@/js/components/dev/Vuebot';
 Vue.use(Router)
 Vue.use(storeVuex)

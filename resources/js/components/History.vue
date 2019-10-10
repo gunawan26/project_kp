@@ -30,36 +30,36 @@
 </template>
 
 <script>
-    import Navi from "@/js/components/Navi.vue";
-    import CreateFile from "@/js/components/dialog/CreateFile.vue";
-    import store from "@/js/store";
-    export default {
-        name: "home",
-        data() {
-            return {
-                overlay: false
-            }
-        },
-        components: {
-            Navi,
-            CreateFile
-        },
-        computed: {
-            curentUser() {
-                //   return store.getters.currentUser;
-                return store.state.currentUser;
-            }
-        },
-        created() {
-            this.overlay = true
-        },
-        watch: {
-            overlay(val) {
-                val && setTimeout(() => {
-                    this.overlay = false
-                }, 3000)
-            },
-        },
+import Navi from "@/js/components/Navi.vue";
+import CreateFile from "@/js/components/dialog/CreateFile.vue";
+import store from "@/js/state/store";
+export default {
+  name: "home",
+  data() {
+    return {
+      overlay: false
     };
-
+  },
+  components: {
+    Navi,
+    CreateFile
+  },
+  computed: {
+    curentUser() {
+      //   return store.getters.currentUser;
+      return store.state.currentUser;
+    }
+  },
+  created() {
+    this.overlay = true;
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false;
+        }, 3000);
+    }
+  }
+};
 </script>

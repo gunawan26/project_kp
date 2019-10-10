@@ -1,15 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
 import {
     getLocalUsers
-} from "./helpers/auth";
+} from "../../helpers/auth";
 
 
 const user = getLocalUsers();
 
-Vue.use(Vuex)
+export default {
 
-export default new Vuex.Store({
     state: {
         isLoading: false,
         listAgenda: [],
@@ -54,11 +51,11 @@ export default new Vuex.Store({
         KONFIRMASI_AGENDA: (state, agenda) => {
             state.listAgenda.push(agenda)
         },
-        login(state) {
+        LOGIN(state) {
             state.loading = true;
             state.auth_error = null;
         },
-        loginSuccess(state, payload) {
+        LOGINSUCCESS(state, payload) {
             state.auth_error = null;
             state.isLoggedIn = true;
             state.loading = false;
@@ -69,7 +66,7 @@ export default new Vuex.Store({
             console.log("sukses login")
 
         },
-        loginFailed(state, payload) {
+        LOGINFAILED(state, payload) {
             state.loading = false;
             state.auth_error = payload.error;
         },
@@ -79,7 +76,7 @@ export default new Vuex.Store({
             state.currentUser = null;
 
         },
-        tokenFailedAuth(state) {
+        TOKENAUTHFAILED(state) {
             localStorage.removeItem("user");
             state.isLoggedIn = false;
             state.currentUser = null;
@@ -99,10 +96,16 @@ export default new Vuex.Store({
             }, 1500)
         },
         login(context) {
-            context.commit("login");
+            context.commit("LOGIN");
         },
         authFailed(context) {
-            context.commit("tokenFailedAuth");
+            context.commit("TOKENAUTHFAILED");
+        },
+        loginSuccess(context, payload) {
+            context.commit("LOGINSUCCESS", payload)
+        },
+        loginFailed(context, payload) {
+            context.commit("LOGINFAILED", payload)
         }
     }
-})
+}
