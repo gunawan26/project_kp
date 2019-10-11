@@ -2907,7 +2907,11 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
   computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime", "updated_at"])),
   watch: {
     categories: function categories(newVal) {
+<<<<<<< HEAD
       console.log("changed !");
+=======
+      console.log("changed !", newVal);
+>>>>>>> 314163f133f32c602dc4c14933248499950df424
     }
   },
   props: ["document-data"]
@@ -99072,7 +99076,10 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     updateDocumentFields: function updateDocumentFields(state, field) {
       Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["updateField"])(state.data_dokumen, field);
+<<<<<<< HEAD
       state.data_dokumen.updated_at = new Date().getTime();
+=======
+>>>>>>> 314163f133f32c602dc4c14933248499950df424
       localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
     },
     NOT_UPDATE: function NOT_UPDATE(state) {
