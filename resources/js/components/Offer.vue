@@ -42,7 +42,7 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.number" text clearable
+                                <v-text-field v-model="number" text clearable
                                     hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
@@ -50,7 +50,7 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.attachmentname" text clearable
+                                <v-text-field v-model="attachmentname" text clearable
                                     hint="For example, 1 (satu) lembar" label="Lampiran Surat"></v-text-field>
                             </v-col>
                         </v-row>
@@ -58,7 +58,7 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.customername" text clearable hint="For example, Edi"
+                                <v-text-field v-model="customername" text clearable hint="For example, Edi"
                                     label="Kepada"></v-text-field>
                             </v-col>
                         </v-row>
@@ -66,36 +66,36 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="documentData.subject" text clearable
+                                <v-text-field v-model="subject" text clearable
                                     hint="For example, Penawaran Pekerjaan Pengembangan Web Sistem"
                                     label="Prihal Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <br>
-                    <p>Sehubung dengan diskusi pada <span><input v-model="documentData.discussion_date" type="text"
+                    <p>Sehubung dengan diskusi pada <span><input v-model="discussion_date" type="text"
                                 id="InputEmail" required></span> yang
-                        bertempat di <span><input v-model="documentData.discussion_loc" type="text" id="InputEmail"
+                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail"
                                 required></span>
                         dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
-                        Aplikasi Survei Sebersar Rp. <span><input v-model="documentData.offerprice" type="text"
+                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text"
                                 id="InputEmail" required></span>
-                        ,- (<span><input v-model="documentData.offerpricename" type="text" id="InputEmail"
+                        ,- (<span><input  type="text" id="InputEmail"
                                 required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
-                        <span><input v-model="documentData.duration" type="text" id="InputEmail" required></span>
-                        (<span><input v-model="documentData.durationname" type="text" id="InputEmail" required></span>)
+                        <span><input v-model="duration" type="text" id="InputEmail" required></span>
+                        (<span><input  type="text" id="InputEmail" required></span>)
                         hari kerja.</p>
-                    <p>Penawaran ini berlaku selama <span><input v-model="documentData.offerduetime" type="text"
+                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text"
                                 id="InputEmail" required></span>
-                        (<span><input v-model="documentData.offerduetimename" type="text" id="InputEmail"
+                        (<span><input  type="text" id="InputEmail"
                                 required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input
-                                v-model="documentData.attachment" type="text" id="InputEmail" required></span>
-                        (<span><input v-model="documentData.attachmentname" type="text" id="InputEmail"
+                                v-model="attachmentname" type="text" id="InputEmail" required></span>
+                        (<span><input  type="text" id="InputEmail"
                                 required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
@@ -112,7 +112,6 @@
                         <v-icon>mdi-close-circle-outline</v-icon>
                     </v-btn>
                     <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
-                    <CategoryAdd />
                     <v-card class="pa-10 mt-10">
                         <v-text-field label="Nama Kategori" v-model="category.title"></v-text-field>
                         <v-row class="font-weight-bold">
@@ -166,6 +165,7 @@
                                 <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
                                 </v-btn>
                             </div>
+                          <!-- <ConfirmUpdateDocument :sts-update="sts"/> -->
                             <hr>
                         </div>
                     </v-card>
@@ -180,6 +180,13 @@ import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
 import ConfirmUpdateDocument from "@/js/components/dialog/ConfirmUpdateDocument.vue";
 import CategoryAdd from "@/js/components/CategoryAdd.vue";
 import { loadHeaderdata } from "@/js/helpers/headerFile";
+// import { mapFields } from 'vuex-map-fields';
+import { createHelpers } from "vuex-map-fields";
+
+const { mapFields: mapDocumentfields } = createHelpers({
+  getterType: "getDocumentFields",
+  mutationType: "updateDocumentFields"
+});
 
 export default {
   components: {
@@ -189,6 +196,7 @@ export default {
   },
   data: () => ({
     nomor: "",
+    sts: false,
     company: {
       name: "",
       address: "",
@@ -207,63 +215,12 @@ export default {
     hidden: true,
     hiddenSub: true
   }),
-  watch: {
-    documentData: {
-      handler: function(val, oldVal) {
-        /* ... */
 
-        this.saveLocalStorage();
-      },
-      deep: true
-    }
-  },
   methods: {
-    getLocalStorage(localStorageName) {
-      let foo = Object.assign(
-        {},
-        JSON.parse(localStorage.getItem(localStorageName))
-      );
-      this.$emit("document-data", foo);
-      localStorage.setItem(localStorageName, JSON.stringify(this.documentData));
-      console.log("data diupdate", this.documentData);
-    },
-    saveLocalStorage() {
-      console.log(this.documentData);
-      let localStorageName = `document-${this.documentData.id}`;
-      var currentDate = new Date();
-      console.log(currentDate);
-      if (localStorage.getItem(localStorageName) != null) {
-        this.getLocalStorage(localStorageName);
-      } else {
-        localStorage.setItem(
-          localStorageName,
-          JSON.stringify(this.documentData)
-        );
-        console.log("data tidak ada");
-      }
-
-      console.log(new Date(this.documentData.created_at));
-    },
-
-    compareLocalStorageAndDb(localStorageTime, databaseTime) {
-      if (localStorageTime > databaseTime) {
-        this.notUpToDate = True;
-      }
-    },
-
-    updateLocalStorage(localStorageTime, databaseTime) {
-      if (localStorageTime > databaseTime) {
-        this.notUpToDate = True;
-        dialog;
-      }
-    },
-
     setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
     },
-
-    removeLocalStorage() {},
 
     loadHeaderAPI() {
       loadHeaderdata(this.$authAPI)
@@ -370,14 +327,36 @@ export default {
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0]);
       }
-    },
+    }
+  },
+  created() {
+    this.addCategory();
+    this.loadHeaderAPI();
+  },
+  mounted() {
+    console.log("hello");
+  },
+  computed: {
+    ...mapDocumentfields([
+      "number",
+      "attachmentname",
+      "customername",
+      "subject",
+      "discussion_date",
+      "discussion_loc",
+      "offerprice",
+      "duration",
+      "offerduetime",
+      "updated_at"
+    ])
+  },
+  watch: {
+    categories(newVal) {
+      console.log("changed !", newVal);
+    }
+  },
 
-    created() {
-      this.addCategory();
-      this.loadHeaderAPI();
-    },
-    props: ["document-data"]
-  }
+  props: ["document-data"]
 };
 </script>
 
