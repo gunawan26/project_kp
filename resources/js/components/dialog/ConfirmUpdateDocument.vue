@@ -1,13 +1,5 @@
 <template>
   <v-row justify="center">
-    <v-btn
-      color="primary"
-      dark
-      @click.stop="dialog = true"
-    >
-      Open Dialog
-    </v-btn>
-
     <v-dialog
       v-model="dialog"
       max-width="290" persistent
@@ -45,19 +37,37 @@
 
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      dialog: true
+      dialog: false
     };
   },
   methods: {
+    IsUpdating(stsUpdate) {
+      this.dialog = stsUpdate;
+    },
     updateSts(status_val) {
       this.dialog = false;
-
+      if (status_val) {
+        console.log("id", this.$store.data_dokumen);
+        this.$store.dispatch("changeToLocal");
+      }
       this.$emit("update", status_val);
     }
   },
-  props: ["update-status"]
+  computed: {
+    status() {
+      return this.$store.getters.isUpToDate;
+    }
+  },
+  watch: {
+    status(newValue, oldValue) {
+      this.IsUpdating(!newValue);
+      console.log("status db sekarang ", newValue);
+    }
+  },
+  props: ["sts-update"]
 };
 </script>

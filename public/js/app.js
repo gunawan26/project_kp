@@ -2044,10 +2044,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(this.$route.params);
+    console.log("route param", this.$route.params);
     this.$data.doc_id = this.$route.params.id_dokumen;
     Object(_js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__["openFileApi"])(this.$authAPI, this.$data.doc_id).then(function (result) {
-      _this.$store.dispatch("fetchDataDokumen", result.data);
+      var payload = {
+        dataFromDb: result.data,
+        idDoc: _this.$data.doc_id
+      };
+
+      _this.$store.dispatch("fetchDataDokumen", payload);
 
       console.log("data dokumen", _this.$store.getters.dataDokumen);
     })["catch"](function (err) {
@@ -2055,6 +2060,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    triggerUpdateStatus: function triggerUpdateStatus() {
+      console.log("ttt");
+    },
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
@@ -2563,14 +2571,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/dialog/CreateLogo.vue */ "./resources/js/components/dialog/CreateLogo.vue");
-<<<<<<< HEAD
 /* harmony import */ var _js_components_dialog_ConfirmUpdateDocument_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/dialog/ConfirmUpdateDocument.vue */ "./resources/js/components/dialog/ConfirmUpdateDocument.vue");
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
 /* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
-=======
-/* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
->>>>>>> 9751de2ced18ae05096b35e305887c3dccdf4982
 //
 //
 //
@@ -2744,24 +2755,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- // import CategoryAdd from "@/js/components/CategoryAdd.vue";
+//
+//
+//
 
 
+
+ // import { mapFields } from 'vuex-map-fields';
+
+
+
+var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["createHelpers"])({
+  getterType: "getDocumentFields",
+  mutationType: "updateDocumentFields"
+}),
+    mapDocumentfields = _createHelpers.mapFields;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-<<<<<<< HEAD
     CreateLogo: _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     CategoryAdd: _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     ConfirmUpdateDocument: _js_components_dialog_ConfirmUpdateDocument_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-=======
-    CreateLogo: _js_components_dialog_CreateLogo_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // CategoryAdd
-
->>>>>>> 9751de2ced18ae05096b35e305887c3dccdf4982
   },
   data: function data() {
     return {
       nomor: "",
+      sts: false,
       company: {
         name: "",
         address: "",
@@ -2773,72 +2792,23 @@ __webpack_require__.r(__webpack_exports__);
       imageData: "/storage/images/logo.png",
       items: [],
       item: [],
-      categories: [],
-<<<<<<< HEAD
       notUpToDate: false,
-      isUpdateFromLocal: false
-=======
+      isUpdateFromLocal: false,
+      categories: [],
       // list_subs: [],
       hidden: true,
       hiddenSub: true
->>>>>>> 9751de2ced18ae05096b35e305887c3dccdf4982
     };
   },
-  watch: {
-    documentData: {
-      handler: function handler(val, oldVal) {
-        /* ... */
-        this.saveLocalStorage();
-      },
-      deep: true
-    }
-  },
   methods: {
-    getLocalStorage: function getLocalStorage(localStorageName) {
-      var foo = Object.assign({}, JSON.parse(localStorage.getItem(localStorageName)));
-      this.$emit("document-data", foo);
-      localStorage.setItem(localStorageName, JSON.stringify(this.documentData));
-      console.log("data diupdate", this.documentData);
-    },
-    saveLocalStorage: function saveLocalStorage() {
-      console.log(this.documentData);
-      var localStorageName = "document-".concat(this.documentData.id);
-      var currentDate = new Date();
-      console.log(currentDate);
-
-      if (localStorage.getItem(localStorageName) != null) {
-        this.getLocalStorage(localStorageName);
-      } else {
-        localStorage.setItem(localStorageName, JSON.stringify(this.documentData));
-        console.log("data tidak ada");
-      }
-
-      console.log(new Date(this.documentData.created_at));
-    },
-    compareLocalStorageAndDb: function compareLocalStorageAndDb(localStorageTime, databaseTime) {
-      if (localStorageTime > databaseTime) {
-        this.notUpToDate = True;
-      }
-    },
-    updateLocalStorage: function updateLocalStorage(localStorageTime, databaseTime) {
-      if (localStorageTime > databaseTime) {
-        this.notUpToDate = True;
-        dialog;
-      }
-    },
     setStatusUpdate: function setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
     },
-    removeLocalStorage: function removeLocalStorage() {},
     loadHeaderAPI: function loadHeaderAPI() {
       var _this = this;
 
-<<<<<<< HEAD
       Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_3__["loadHeaderdata"])(this.$authAPI).then(function (result) {
-=======
-      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_1__["loadHeaderdata"])(this.$authAPI).then(function (result) {
->>>>>>> 9751de2ced18ae05096b35e305887c3dccdf4982
         _this.company = {
           name: result.companyname,
           address: result.address,
@@ -2874,7 +2844,7 @@ __webpack_require__.r(__webpack_exports__);
       categories.splice(index, 1);
     },
     addSubCategory: function addSubCategory(cat_index) {
-      console.log('Addcat ' + cat_index);
+      console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(this.sub_cat = {
         id: "",
         list_row: [{
@@ -2888,7 +2858,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.list_subs); // this.list_subs[0].list_row.push("im here")
     },
     addRow: function addRow(cat_index, index) {
-      console.log('Addrow');
+      console.log("Addrow");
       this.categories[cat_index].list_subs[index].list_row.push(this.item = {
         modul: "",
         durasi: "",
@@ -2905,9 +2875,6 @@ __webpack_require__.r(__webpack_exports__);
     deleteSub: function deleteSub(category, index) {
       console.log(index);
       category.list_subs.splice(index, 1);
-    },
-    printHelloWorld: function printHelloWorld() {
-      console.log("hello world");
     },
     previewImage: function previewImage(event) {
       var _this2 = this;
@@ -2933,6 +2900,15 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.addCategory();
     this.loadHeaderAPI();
+  },
+  mounted: function mounted() {
+    console.log("hello");
+  },
+  computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime", "updated_at"])),
+  watch: {
+    categories: function categories(newVal) {
+      console.log("changed !", newVal);
+    }
   },
   props: ["document-data"]
 });
@@ -3346,6 +3322,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -3384,27 +3361,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      dialog: true
+      dialog: false
     };
   },
   methods: {
+    IsUpdating: function IsUpdating(stsUpdate) {
+      this.dialog = stsUpdate;
+    },
     updateSts: function updateSts(status_val) {
       this.dialog = false;
+
+      if (status_val) {
+        console.log("id", this.$store.data_dokumen);
+        this.$store.dispatch("changeToLocal");
+      }
+
       this.$emit("update", status_val);
     }
   },
-  props: ["update-status"]
+  computed: {
+    status: function status() {
+      return this.$store.getters.isUpToDate;
+    }
+  },
+  watch: {
+    status: function status(newValue, oldValue) {
+      this.IsUpdating(!newValue);
+      console.log("status db sekarang ", newValue);
+    }
+  },
+  props: ["sts-update"]
 });
 
 /***/ }),
@@ -8395,7 +8385,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\n    text-transform: none !important;\n}\n\n", ""]);
+exports.push([module.i, "\n* {\r\n  text-transform: none !important;\n}\r\n", ""]);
 
 // exports
 
@@ -41722,11 +41712,11 @@ var render = function() {
                                 label: "Nomor Surat"
                               },
                               model: {
-                                value: _vm.documentData.number,
+                                value: _vm.number,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.documentData, "number", $$v)
+                                  _vm.number = $$v
                                 },
-                                expression: "documentData.number"
+                                expression: "number"
                               }
                             })
                           ],
@@ -41758,15 +41748,11 @@ var render = function() {
                                 label: "Lampiran Surat"
                               },
                               model: {
-                                value: _vm.documentData.attachmentname,
+                                value: _vm.attachmentname,
                                 callback: function($$v) {
-                                  _vm.$set(
-                                    _vm.documentData,
-                                    "attachmentname",
-                                    $$v
-                                  )
+                                  _vm.attachmentname = $$v
                                 },
-                                expression: "documentData.attachmentname"
+                                expression: "attachmentname"
                               }
                             })
                           ],
@@ -41798,15 +41784,11 @@ var render = function() {
                                 label: "Kepada"
                               },
                               model: {
-                                value: _vm.documentData.customername,
+                                value: _vm.customername,
                                 callback: function($$v) {
-                                  _vm.$set(
-                                    _vm.documentData,
-                                    "customername",
-                                    $$v
-                                  )
+                                  _vm.customername = $$v
                                 },
-                                expression: "documentData.customername"
+                                expression: "customername"
                               }
                             })
                           ],
@@ -41839,11 +41821,11 @@ var render = function() {
                                 label: "Prihal Surat"
                               },
                               model: {
-                                value: _vm.documentData.subject,
+                                value: _vm.subject,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.documentData, "subject", $$v)
+                                  _vm.subject = $$v
                                 },
-                                expression: "documentData.subject"
+                                expression: "subject"
                               }
                             })
                           ],
@@ -41866,22 +41848,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.discussion_date,
-                          expression: "documentData.discussion_date"
+                          value: _vm.discussion_date,
+                          expression: "discussion_date"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.discussion_date },
+                      domProps: { value: _vm.discussion_date },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "discussion_date",
-                            $event.target.value
-                          )
+                          _vm.discussion_date = $event.target.value
                         }
                       }
                     })
@@ -41893,22 +41871,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.discussion_loc,
-                          expression: "documentData.discussion_loc"
+                          value: _vm.discussion_loc,
+                          expression: "discussion_loc"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.discussion_loc },
+                      domProps: { value: _vm.discussion_loc },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "discussion_loc",
-                            $event.target.value
-                          )
+                          _vm.discussion_loc = $event.target.value
                         }
                       }
                     })
@@ -41922,22 +41896,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.offerprice,
-                          expression: "documentData.offerprice"
+                          value: _vm.offerprice,
+                          expression: "offerprice"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.offerprice },
+                      domProps: { value: _vm.offerprice },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "offerprice",
-                            $event.target.value
-                          )
+                          _vm.offerprice = $event.target.value
                         }
                       }
                     })
@@ -41945,28 +41915,7 @@ var render = function() {
                   _vm._v("\n                    ,- ("),
                   _c("span", [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.documentData.offerpricename,
-                          expression: "documentData.offerpricename"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.offerpricename },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.documentData,
-                            "offerpricename",
-                            $event.target.value
-                          )
-                        }
-                      }
+                      attrs: { type: "text", id: "InputEmail", required: "" }
                     })
                   ]),
                   _vm._v("). ")
@@ -41988,22 +41937,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.duration,
-                          expression: "documentData.duration"
+                          value: _vm.duration,
+                          expression: "duration"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.duration },
+                      domProps: { value: _vm.duration },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "duration",
-                            $event.target.value
-                          )
+                          _vm.duration = $event.target.value
                         }
                       }
                     })
@@ -42011,28 +41956,7 @@ var render = function() {
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.documentData.durationname,
-                          expression: "documentData.durationname"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.durationname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.documentData,
-                            "durationname",
-                            $event.target.value
-                          )
-                        }
-                      }
+                      attrs: { type: "text", id: "InputEmail", required: "" }
                     })
                   ]),
                   _vm._v(")\n                    hari kerja.")
@@ -42046,22 +41970,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.offerduetime,
-                          expression: "documentData.offerduetime"
+                          value: _vm.offerduetime,
+                          expression: "offerduetime"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.offerduetime },
+                      domProps: { value: _vm.offerduetime },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "offerduetime",
-                            $event.target.value
-                          )
+                          _vm.offerduetime = $event.target.value
                         }
                       }
                     })
@@ -42069,28 +41989,7 @@ var render = function() {
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.documentData.offerduetimename,
-                          expression: "documentData.offerduetimename"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.offerduetimename },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.documentData,
-                            "offerduetimename",
-                            $event.target.value
-                          )
-                        }
-                      }
+                      attrs: { type: "text", id: "InputEmail", required: "" }
                     })
                   ]),
                   _vm._v(
@@ -42102,22 +42001,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.documentData.attachment,
-                          expression: "documentData.attachment"
+                          value: _vm.attachmentname,
+                          expression: "attachmentname"
                         }
                       ],
                       attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.attachment },
+                      domProps: { value: _vm.attachmentname },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.documentData,
-                            "attachment",
-                            $event.target.value
-                          )
+                          _vm.attachmentname = $event.target.value
                         }
                       }
                     })
@@ -42125,28 +42020,7 @@ var render = function() {
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.documentData.attachmentname,
-                          expression: "documentData.attachmentname"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.documentData.attachmentname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.documentData,
-                            "attachmentname",
-                            $event.target.value
-                          )
-                        }
-                      }
+                      attrs: { type: "text", id: "InputEmail", required: "" }
                     })
                   ]),
                   _vm._v(") rangkap\n                    dokumen.")
@@ -42205,6 +42079,11 @@ var render = function() {
                   [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
                   1
                 ),
+                _vm._v(" "),
+                _c("confirm-update-document", {
+                  attrs: { "update-status": _vm.isUpdateFromLocal },
+                  on: { update: _vm.setStatusUpdate }
+                }),
                 _vm._v(" "),
                 _c(
                   "v-card",
@@ -42499,7 +42378,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Add Sub")]
+                                [
+                                  _vm._v(
+                                    "Add Sub\n                            "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -42516,7 +42399,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Add Row")]
+                                [
+                                  _vm._v(
+                                    "Add Row\n                            "
+                                  )
+                                ]
                               )
                             ],
                             1
@@ -42536,58 +42423,9 @@ var render = function() {
           }),
           0
         )
-<<<<<<< HEAD
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "card-header" },
-        _vm._l(_vm.categories, function(cat, index) {
-          return _c(
-            "div",
-            {
-              key: index,
-              on: {
-                remove: function($event) {
-                  return _vm.deleteCategory()
-                }
-              }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  staticClass: "col-sm-1",
-                  staticStyle: { "z-index": "1", "margin-bottom": "-130px" },
-                  attrs: { tile: "", large: "", color: "red", icon: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteCategory(_vm.categories, index)
-                    }
-                  }
-                },
-                [_c("v-icon", [_vm._v("mdi-close")])],
-                1
-              ),
-              _vm._v(" "),
-              _c("confirm-update-document", {
-                attrs: { "update-status": _vm.isUpdateFromLocal },
-                on: { update: _vm.setStatusUpdate }
-              }),
-              _vm._v(" "),
-              _c("CategoryAdd")
-            ],
-            1
-          )
-        }),
-        0
-      )
-    ])
-=======
       ],
       1
     )
->>>>>>> 9751de2ced18ae05096b35e305887c3dccdf4982
   ])
 }
 var staticRenderFns = []
@@ -43513,20 +43351,6 @@ var render = function() {
     "v-row",
     { attrs: { justify: "center" } },
     [
-      _c(
-        "v-btn",
-        {
-          attrs: { color: "primary", dark: "" },
-          on: {
-            click: function($event) {
-              $event.stopPropagation()
-              _vm.dialog = true
-            }
-          }
-        },
-        [_vm._v("\n    Open Dialog\n  ")]
-      ),
-      _vm._v(" "),
       _c(
         "v-dialog",
         {
@@ -95923,6 +95747,198 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vuex-map-fields/dist/index.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/vuex-map-fields/dist/index.esm.js ***!
+  \********************************************************/
+/*! exports provided: createHelpers, getField, mapFields, mapMultiRowFields, updateField */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createHelpers", function() { return createHelpers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getField", function() { return getField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFields", function() { return mapFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMultiRowFields", function() { return mapMultiRowFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateField", function() { return updateField; });
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function arrayToObject() {
+  var fields = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  return fields.reduce(function (prev, path) {
+    var key = path.split(".").slice(-1)[0];
+
+    if (prev[key]) {
+      throw new Error("The key `".concat(key, "` is already in use."));
+    } // eslint-disable-next-line no-param-reassign
+
+
+    prev[key] = path;
+    return prev;
+  }, {});
+}
+
+function normalizeNamespace(fn) {
+  return function () {
+    for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
+      params[_key] = arguments[_key];
+    }
+
+    // eslint-disable-next-line prefer-const
+    var _ref = typeof params[0] === "string" ? [].concat(params) : [""].concat(params),
+        _ref2 = _slicedToArray(_ref, 4),
+        namespace = _ref2[0],
+        map = _ref2[1],
+        getterType = _ref2[2],
+        mutationType = _ref2[3];
+
+    if (namespace.length && namespace.charAt(namespace.length - 1) !== "/") {
+      namespace += "/";
+    }
+
+    getterType = "".concat(namespace).concat(getterType || "getField");
+    mutationType = "".concat(namespace).concat(mutationType || "updateField");
+    return fn(namespace, map, getterType, mutationType);
+  };
+}
+
+function getField(state) {
+  return function (path) {
+    return path.split(/[.[\]]+/).reduce(function (prev, key) {
+      return prev[key];
+    }, state);
+  };
+}
+function updateField(state, _ref3) {
+  var path = _ref3.path,
+      value = _ref3.value;
+  path.split(/[.[\]]+/).reduce(function (prev, key, index, array) {
+    if (array.length === index + 1) {
+      // eslint-disable-next-line no-param-reassign
+      prev[key] = value;
+    }
+
+    return prev[key];
+  }, state);
+}
+var mapFields = normalizeNamespace(function (namespace, fields, getterType, mutationType) {
+  var fieldsObject = Array.isArray(fields) ? arrayToObject(fields) : fields;
+  return Object.keys(fieldsObject).reduce(function (prev, key) {
+    var path = fieldsObject[key];
+    var field = {
+      get: function get() {
+        return this.$store.getters[getterType](path);
+      },
+      set: function set(value) {
+        this.$store.commit(mutationType, {
+          path: path,
+          value: value
+        });
+      }
+    }; // eslint-disable-next-line no-param-reassign
+
+    prev[key] = field;
+    return prev;
+  }, {});
+});
+var mapMultiRowFields = normalizeNamespace(function (namespace, paths, getterType, mutationType) {
+  var pathsObject = Array.isArray(paths) ? arrayToObject(paths) : paths;
+  return Object.keys(pathsObject).reduce(function (entries, key) {
+    var path = pathsObject[key]; // eslint-disable-next-line no-param-reassign
+
+    entries[key] = {
+      get: function get() {
+        var store = this.$store;
+        var rows = store.getters[getterType](path);
+        return rows.map(function (fieldsObject, index) {
+          return Object.keys(fieldsObject).reduce(function (prev, fieldKey) {
+            var fieldPath = "".concat(path, "[").concat(index, "].").concat(fieldKey);
+            return Object.defineProperty(prev, fieldKey, {
+              get: function get() {
+                return store.getters[getterType](fieldPath);
+              },
+              set: function set(value) {
+                store.commit(mutationType, {
+                  path: fieldPath,
+                  value: value
+                });
+              }
+            });
+          }, {});
+        });
+      }
+    };
+    return entries;
+  }, {});
+});
+var createHelpers = function createHelpers(_ref4) {
+  var _ref5;
+
+  var getterType = _ref4.getterType,
+      mutationType = _ref4.mutationType;
+  return _ref5 = {}, _defineProperty(_ref5, getterType, getField), _defineProperty(_ref5, mutationType, updateField), _defineProperty(_ref5, "mapFields", normalizeNamespace(function (namespace, fields) {
+    return mapFields(namespace, fields, getterType, mutationType);
+  })), _defineProperty(_ref5, "mapMultiRowFields", normalizeNamespace(function (namespace, paths) {
+    return mapMultiRowFields(namespace, paths, getterType, mutationType);
+  })), _ref5;
+};
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vuex/dist/vuex.esm.js":
 /*!********************************************!*\
   !*** ./node_modules/vuex/dist/vuex.esm.js ***!
@@ -99015,29 +99031,92 @@ var user = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalUsers"])()
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/state/store.js");
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    data_dokumen: {},
-    isUpToDate: false,
+    data_dokumen: {
+      number: '',
+      attachmentname: '',
+      customername: '',
+      subject: '',
+      discussion_date: '',
+      discussion_loc: '',
+      offerprice: '',
+      duration: '',
+      offerduetime: '',
+      updated_at: '',
+      id: ''
+    },
+    isUpToDate: true,
     isAcceptChange: false
   },
   getters: {
+    getDocumentFields: function getDocumentFields(state) {
+      return Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["getField"])(state.data_dokumen);
+    },
     dataDokumen: function dataDokumen(state) {
       return state.data_dokumen;
+    },
+    getUpdateLocal: function getUpdateLocal(state, documentId) {
+      return localStorage.getItem("document-".concat(documentId));
+    },
+    isUpToDate: function isUpToDate(state) {
+      console.log("kesini");
+      return state.isUpToDate;
     }
   },
   mutations: {
+    updateDocumentFields: function updateDocumentFields(state, field) {
+      Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["updateField"])(state.data_dokumen, field);
+      localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
+    },
+    NOT_UPDATE: function NOT_UPDATE(state) {
+      console.log("value updated");
+      state.isUpToDate = false;
+    },
     STORE_DATA: function STORE_DATA(state, payload) {
       state.data_dokumen = Object.assign({}, payload);
       console.log("state data dokumen", state.data_dokumen);
     },
     SAVE_TO_LOCALSTORAGE: function SAVE_TO_LOCALSTORAGE(state) {
-      localStorage.setItem("document-".concat(state.data_dokumen.id), state.data_dokumen);
+      console.log("saving", state.data_dokumen.id);
+      localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
+    },
+    SET_TO_LOCAL: function SET_TO_LOCAL(state) {
+      var dataReplace = JSON.parse(localStorage.getItem("document-".concat(state.data_dokumen.id)));
+      state.data_dokumen = Object.assign({}, dataReplace);
     }
   },
   actions: {
     fetchDataDokumen: function fetchDataDokumen(context, payload) {
-      context.commit("STORE_DATA", payload);
+      try {
+        var onlineDateUpdate = new Date(payload.dataFromDb.updated_at);
+        context.commit("STORE_DATA", payload.dataFromDb);
+        console.log("last database update", onlineDateUpdate, payload.idDoc);
+        var localDateUpdate = JSON.parse(localStorage.getItem("document-".concat(payload.idDoc)));
+        localDateUpdate = new Date(localDateUpdate.updated_at);
+        console.log("last local update", localDateUpdate);
+
+        if (localDateUpdate > onlineDateUpdate) {
+          context.commit("NOT_UPDATE");
+          console.log("database behind the local");
+        }
+      } catch (error) {
+        console.log(error);
+        context.commit("STORE_DATA", payload.dataFromDb);
+      }
+
+      console.log("dia keisni");
+    },
+    saveToLocalStorage: function saveToLocalStorage(context) {
+      context.commit("SAVE_TO_LOCALSTORAGE");
+    },
+    changeToLocal: function changeToLocal(context) {
+      context.commit("SET_TO_LOCAL");
     }
   }
 });
@@ -99247,8 +99326,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

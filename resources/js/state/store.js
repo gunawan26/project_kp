@@ -9,7 +9,7 @@ export default new Vuex.Store({
     strict: true,
     modules: {
         auth,
-        dokumenfile
-    }
+        dokumenfile: dokumenfile
+    },
 
 })

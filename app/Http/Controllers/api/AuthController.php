@@ -33,13 +33,18 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $first_time_login = false;
+        if (User::first() == null) {
+            $first_time_login = true;
+            $this->register($request, $first_time_login);
+        }
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
             // dd($this->respondWithToken($token));
             return $this->respondWithToken($token);
         }
-
+        dd("sampai sini");
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
@@ -109,16 +114,30 @@ class AuthController extends Controller
      * 
      */
 
-    public function register(Request $request)
+    public function register(Request $request, $roleSts)
     {
+        if ($roleSts) {
+
+            $request->request->add([
+                'password_confirmation' =>  $request->password,
+                'name' => null,
+                'fullname' => null,
+                'gender' => null,
+                'phonenumber' => null,
+                'signature' => null
+
+
+            ]);
+        }
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:100', 'unique:users'],
-            'fullname' => ['required', 'string', 'max:100'],
+            'name' => ['nullable', 'string', 'max:100', 'unique:users'],
+            'fullname' => ['nullable', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'gender' => ['required', Rule::in([1, 0]),],
-            'phonenumber' => ['required', 'string', 'max:20'],
-            'signature' => [''],
+            'gender' => ['nullable', Rule::in([1, 0]),],
+            'phonenumber' => ['nullable', 'string', 'max:20'],
+            'signature' => ['nullable'],
+
         ]);
 
         if ($validator->fails()) {
@@ -130,26 +149,19 @@ class AuthController extends Controller
             ], 400);
         }
 
-
-        try {
-            $usr = $this->create($request->all());
-            $login_respon = $this->login($request);
-
-            return $login_respon->original;
-        } catch (Illuminate\Database\QueryException $e) {
-
-            return response()->json([
-                'status'        => false,
-                'msg'           => 'error insert data',
-                'access_token'  => null,
-                'error'         => 'Error !!!',
-            ], 400);
-        }
+        $this->create($request->all(), $roleSts);
+        return response()->json("sukses", 200);
     }
 
 
-    protected function create(array $data)
+    protected function create(array $data, $roleSts)
     {
+        if ($roleSts) {
+            $admin_sts = 1;
+        } else {
+            $admin_sts = 0;
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -158,7 +170,7 @@ class AuthController extends Controller
             'gender' => $data['gender'],
             'phonenumber' => $data['phonenumber'],
             'signature' => $data['signature'],
-
+            'role' => $admin_sts
         ]);
     }
 

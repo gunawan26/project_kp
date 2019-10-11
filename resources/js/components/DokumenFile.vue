@@ -35,7 +35,7 @@
             </v-layout>
         </v-app-bar>
         <div>
-            <Offer ref="OfferComponent" v-bind:document-data="data_dokumen" />
+            <Offer ref="OfferComponent" :document-data="data_dokumen" />
         </div>
     </div>
 </template>
@@ -76,12 +76,14 @@ export default {
   },
 
   created() {
-    console.log(this.$route.params);
+    console.log("route param", this.$route.params);
     this.$data.doc_id = this.$route.params.id_dokumen;
 
     openFileApi(this.$authAPI, this.$data.doc_id)
       .then(result => {
-        this.$store.dispatch("fetchDataDokumen", result.data);
+        let payload = { dataFromDb: result.data, idDoc: this.$data.doc_id };
+        this.$store.dispatch("fetchDataDokumen", payload);
+
         console.log("data dokumen", this.$store.getters.dataDokumen);
       })
       .catch(err => {
@@ -90,6 +92,9 @@ export default {
   },
 
   methods: {
+    triggerUpdateStatus() {
+      console.log("ttt");
+    },
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
