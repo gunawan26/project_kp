@@ -49,6 +49,7 @@ export default {
     mutations: {
         updateDocumentFields(state, field) {
             updateField(state.data_dokumen, field)
+            state.data_dokumen.updated_at = new Date().getTime()
             localStorage.setItem(`document-${state.data_dokumen.id}`, JSON.stringify(state.data_dokumen))
 
         },

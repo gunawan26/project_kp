@@ -352,7 +352,7 @@ export default {
   },
   watch: {
     categories(newVal) {
-      console.log("changed !", newVal);
+      console.log("changed !");
     }
   },
 
