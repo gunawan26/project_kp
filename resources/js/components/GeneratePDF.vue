@@ -3,45 +3,39 @@
         <div class="page-header">
             <table width="100%" cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: 2px solid #4a7ebb;">
                 <tbody>
-                    <tr style="margin-top: 8px; margin-bottom: 8px;">
-                        <td style="vertical-align: top;">
+                    <tr>
+                        <td style="vertical-align: bottom;">
                             <table style="font-size: 14px; color: #000;">
                                 <tr>
                                     <td style="color: #2496b8; font-size: 24px; font-weight: bold;">
-                                        <span>Digital Artisans Indonesia</span>
+                                        <span>{{company.name}}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span>Jl. WR. Supratman, No. 302,</span>
+                                        <span>{{company.address}}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span>Tohpati, Denpasar</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Hp. 081219123545 | Website: digitalartisans.id | Email:
-                                            info@digitalartisans.id</span>
+                                        <span>Hp. {{company.number}} | Website: {{company.website}} | Email:
+                                            {{company.email}}</span>
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <td style="text-align: right; padding-right: 15px;">
+                        <td style="text-align: right; padding: 10px;">
                             <img src="/storage/images/logo.png" width="100" alt="Goyur" style="width: 62px;">
                         </td>
                     </tr>
                 </tbody>
             </table>
             <br />
-            <button type="button" onClick="window.print()" style="background: pink">
+            <!-- <button type="button" onClick="window.print()" style="background: pink">
                 PRINT ME!
-            </button>
+            </button> -->
         </div>
         <table>
-
             <thead>
                 <tr>
                     <td>
@@ -62,7 +56,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2" style="padding-bottom: 5px; text-align: right;">
-                                            <span>Tempat,Tanggal</span>
+                                            <span>Denpasar,{{doc.created_at}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -70,7 +64,7 @@
                                             <span>Nomor</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>:</span>
+                                            <span>: {{doc.number}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -78,12 +72,12 @@
                                             <span>Lampiran</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>:</span>
+                                            <span>: {{doc.attachmentname}}</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" style="padding-top:20px; padding-bottom: 5px;">
-                                            <span>Yth. Nama</span>
+                                            <span>Yth. {{doc.customername}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,7 +97,7 @@
                                             <span>Perihal</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>:</span>
+                                            <span>: {{doc.subject}}</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -113,14 +107,8 @@
                                 <tbody style="font-size: 18px; text-align: justify;">
                                     <tr>
                                         <td>
-                                            <p style="text-indent: 50px;">Sehubungan dengan Diskusi pada [Senin, 1
-                                                Agustus
-                                                2019], yang bertempat di [KFC
-                                                Sesetan],
-                                                dengan ini kami mengajukan penawaran untuk pekerjaan [Penawaran
-                                                Pekerjaan
-                                                Pembuatan Web
-                                                Sistem / Aplikasi Survei] sebesar Rp. [51.800.000],- ([Lima Puluh Satu
+                                            <p style="text-indent: 50px;">Sehubungan dengan Diskusi pada {{doc.discussion_date}}, yang bertempat di {{doc.discussion_loc}},
+                                                dengan ini kami mengajukan penawaran untuk pekerjaan {{doc.subject}} sebesar Rp. {{doc.offerprice}},- ([Lima Puluh Satu
                                                 Juta
                                                 Delapan
                                                 Ratus Ribu Rupiah]).</p>
@@ -138,19 +126,19 @@
                                         <td>
                                             <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan
                                                 pekerjaan selama
-                                                [119] ([Seratus Sembilan Belas]) hari kerja.</p>
+                                                {{doc.duration}} ([Seratus Sembilan Belas]) hari kerja.</p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p>Penawaran ini berlaku selama [30] ([tiga puluh]) hari kalender sejak
+                                            <p>Penawaran ini berlaku selama {{doc.offerduetime}} ([tiga puluh]) hari kalender sejak
                                                 tanggal
                                                 surat penawaran ini.</p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p>Surat Penawaran beserta lampirannya kami sampaikan sebanyak [1] ([satu])
+                                            <p>Surat Penawaran beserta lampirannya kami sampaikan sebanyak {{doc.attachmentname}} ([satu])
                                                 rangkap
                                                 dokumen.</p>
                                         </td>
@@ -349,6 +337,74 @@
     </div>
 </template>
 
+<script>
+    import {loadHeaderdata} from "@/js/helpers/headerFile";
+    export default {
+        data() {
+            return {
+                company: {
+                    name: "",
+                    address: "",
+                    number: "",
+                    website: "",
+                    email: "",
+                    logo: ""
+                },
+                doc: {
+                    number: "",
+                    attachmentname: "",
+                    customername: "",
+                    subject: "",
+                    discussion_date: "",
+                    discussion_loc: "",
+                    offerprice: "",
+                    duration: "",
+                    offerduetime: "",
+                    created_at: "",
+                }
+            }
+        },
+        methods: {
+            loadDokumendata(){
+                let data = this.$store.getters.getDocumentData;
+                this.doc.number = data.number;
+                this.doc.attachmentname = data.attachmentname;
+                this.doc.customername = data.customername;
+                this.doc.subject = data.subject;
+                this.doc.discussion_date = data.discussion_date;
+                this.doc.discussion_loc = data.discussion_loc;
+                this.doc.offerprice = data.offerprice;
+                this.doc.duration = data.duration;
+                this.doc.offerduetime = data.offerduetime;
+                this.doc.created_at = data.created_at;
+                console.log("Load Dokumen",this.$store.getters.getDocumentData);
+            },
+            loadHeaderAPI() {
+                loadHeaderdata(this.$authAPI)
+                    .then(result => {
+                        this.company = {
+                            name: result.companyname,
+                            address: result.address,
+                            number: result.phonenumber,
+                            email: result.email,
+                            website: result.website,
+                            logo: result.logo
+                        };
+                        console.log("data asdsadas", result);
+                    })
+                    .catch(err => {
+                        console.log("err data tidak masuk", err);
+                    });
+            },
+        },
+        mounted() {
+            this.loadDokumendata();
+            this.loadHeaderAPI();
+        },
+    }
+
+</script>
+
 <style scoped>
     /* Styles go here */
 
@@ -381,7 +437,6 @@
         position: fixed;
         top: 0mm;
         width: 100%;
-        border-bottom: 1px solid black;
         background: white;
     }
 

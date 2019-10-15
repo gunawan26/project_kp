@@ -14,7 +14,7 @@
                 <v-btn outlined rounded text small class="mr-2">
                     Save
                 </v-btn>
-                <v-btn outlined rounded text small>
+                <v-btn outlined rounded text small @click="preview">
                     Preview
                 </v-btn>
             </v-layout>
@@ -94,6 +94,11 @@ export default {
   methods: {
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
+    },
+    preview(){
+      this.$router.push({
+            path: "/generatepdf"
+          });
     }
   }
 };

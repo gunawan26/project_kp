@@ -42,8 +42,8 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="number" text clearable
-                                    hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
+                                <v-text-field v-model="number" text clearable hint="For example, 22/DART/QTT/2019"
+                                    label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
@@ -73,30 +73,38 @@
                         </v-row>
                     </div>
                     <br>
-                    <p>Sehubung dengan diskusi pada <span><input v-model="discussion_date" type="text"
-                                id="InputEmail" required></span> yang
-                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail"
-                                required></span>
+                    <p>Sehubung dengan diskusi pada <span>
+                     
+                         
+                                    <v-menu v-model="menu1" :close-on-content-click="false"
+                                        transition="scale-transition" offset-y full-width max-width="290px"
+                                        min-width="290px">
+                                        <template v-slot:activator="{ on }">
+                                            <input v-model="discussion_date" readonly v-on="on"/>
+                                        </template>
+                                        <v-date-picker v-model="date" no-title @input="menu2 = false"></v-date-picker>
+                                    </v-menu>
+                           
+                    
+                        </span> yang
+                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail" required></span>
                         dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
-                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text"
-                                id="InputEmail" required></span>
-                        ,- (<span><input  type="text" id="InputEmail"
-                                required></span>). </p>
+                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text" id="InputEmail"
+                                required></span>
+                        ,- (<span><input type="text" id="InputEmail" required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
                         <span><input v-model="duration" type="text" id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail" required></span>)
+                        (<span><input type="text" id="InputEmail" required></span>)
                         hari kerja.</p>
-                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text"
-                                id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail"
-                                required></span>) hari kalender sejak tanggal
+                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text" id="InputEmail"
+                                required></span>
+                        (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input
                                 v-model="attachmentname" type="text" id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail"
-                                required></span>) rangkap
+                        (<span><input type="text" id="InputEmail" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
@@ -165,11 +173,10 @@
                                 <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
                                 </v-btn>
                             </div>
-                          <!-- <ConfirmUpdateDocument :sts-update="sts"/> -->
+                            <!-- <ConfirmUpdateDocument :sts-update="sts"/> -->
                             <hr>
                         </div>
                     </v-card>
-                    {{categories}}
                 </div>
             </div>
         </div>
@@ -177,221 +184,247 @@
 </template>
 
 <script>
-import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
-import ConfirmUpdateDocument from "@/js/components/dialog/ConfirmUpdateDocument.vue";
-import CategoryAdd from "@/js/components/CategoryAdd.vue";
-import { loadHeaderdata } from "@/js/helpers/headerFile";
-// import { mapFields } from 'vuex-map-fields';
-import { createHelpers } from "vuex-map-fields";
+    import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+    import ConfirmUpdateDocument from "@/js/components/dialog/ConfirmUpdateDocument.vue";
+    import CategoryAdd from "@/js/components/CategoryAdd.vue";
+    import {
+        loadHeaderdata
+    } from "@/js/helpers/headerFile";
+    // import { mapFields } from 'vuex-map-fields';
+    import {
+        createHelpers
+    } from "vuex-map-fields";
 
-const { mapFields: mapDocumentfields } = createHelpers({
-  getterType: "getDocumentFields",
-  mutationType: "updateDocumentFields"
-});
+    const {
+        mapFields: mapDocumentfields
+    } = createHelpers({
+        getterType: "getDocumentFields",
+        mutationType: "updateDocumentFields"
+    });
 
-export default {
-  components: {
-    CreateLogo,
-    CategoryAdd,
-    ConfirmUpdateDocument
-  },
-  data: () => ({
-    nomor: "",
-    sts: false,
-    company: {
-      name: "",
-      address: "",
-      number: "",
-      website: "",
-      email: "",
-      logo: ""
-    },
-    imageData: "/storage/images/logo.png",
-    items: [],
-    item: [],
-    notUpToDate: false,
-    isUpdateFromLocal: false,
-    categories: [],
-    // list_subs: [],
-    hidden: true,
-    hiddenSub: true
-  }),
+    export default {
+        components: {
+            CreateLogo,
+            CategoryAdd,
+            ConfirmUpdateDocument
+        },
+        data: vm => ({
+            nomor: "",
+            sts: false,
+            company: {
+                name: "",
+                address: "",
+                number: "",
+                website: "",
+                email: "",
+                logo: ""
+            },
+            imageData: "/storage/images/logo.png",
+            items: [],
+            item: [],
+            notUpToDate: false,
+            isUpdateFromLocal: false,
+            categories: [],
+            // list_subs: [],
+            hidden: true,
+            hiddenSub: true,
 
-  methods: {
-    setStatusUpdate(sts) {
-      this.isUpdateFromLocal = sts;
-      console.log("want to load data ?", this.isUpdateFromLocal);
+            date: new Date().toISOString().substr(0, 10),
+            dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+            menu1: false,
 
-      if (this.isUpdateFromLocal) {
-        console.log("string arr", this.$store.getters.getDataPayload);
-        let localPayload = JSON.parse(this.$store.getters.getDataPayload);
-        this.categories = localPayload;
-        // this.categories.push(localPayload);
-        // console.log("local payload", localPayload);
-        console.log("updating", this.categories);
-      }
-      // console.log(JSON.parse(this.$store.getters.getDataPayload));
-      // this.categories.push(
-      //   Object.assign({}, JSON.parse(this.$store.getters.getDataPayload))
-      // );
-    },
 
-    loadHeaderAPI() {
-      loadHeaderdata(this.$authAPI)
-        .then(result => {
-          this.company = {
-            name: result.companyname,
-            address: result.address,
-            number: result.phonenumber,
-            email: result.email,
-            website: result.website,
-            logo: result.logo
-          };
-          console.log("data asdsadas", result);
-        })
-        .catch(err => {
-          console.log("err data tidak masuk", err);
-        });
-    },
-    addCategory() {
-      this.categories.push(
-        (this.category = {
-          title: "",
-          list_subs: [
-            {
-              id: "",
-              list_row: [
-                {
-                  modul: "",
-                  durasi: "",
-                  satuan: "",
-                  biaya: "",
-                  ket: ""
+        }),
+
+        methods: {
+            setStatusUpdate(sts) {
+                this.isUpdateFromLocal = sts;
+                console.log("want to load data ?", this.isUpdateFromLocal);
+
+                if (this.isUpdateFromLocal) {
+                    console.log("string arr", this.$store.getters.getDataPayload);
+                    let localPayload = JSON.parse(this.$store.getters.getDataPayload);
+                    this.categories = localPayload;
+                    // this.categories.push(localPayload);
+                    // console.log("local payload", localPayload);
+                    console.log("updating", this.categories);
                 }
-              ]
-            }
-          ]
-        })
-      );
-      console.log(this.categories);
-    },
+                // console.log(JSON.parse(this.$store.getters.getDataPayload));
+                // this.categories.push(
+                //   Object.assign({}, JSON.parse(this.$store.getters.getDataPayload))
+                // );
+            },
 
-    deleteCategory(categories, index) {
-      console.log(index);
-      categories.splice(index, 1);
-    },
+            loadHeaderAPI() {
+                loadHeaderdata(this.$authAPI)
+                    .then(result => {
+                        this.company = {
+                            name: result.companyname,
+                            address: result.address,
+                            number: result.phonenumber,
+                            email: result.email,
+                            website: result.website,
+                            logo: result.logo
+                        };
+                        console.log("data asdsadas", result);
+                    })
+                    .catch(err => {
+                        console.log("err data tidak masuk", err);
+                    });
+            },
+            addCategory() {
+                this.categories.push(
+                    (this.category = {
+                        title: "",
+                        list_subs: [{
+                            id: "",
+                            list_row: [{
+                                modul: "",
+                                durasi: "",
+                                satuan: "",
+                                biaya: "",
+                                ket: ""
+                            }]
+                        }]
+                    })
+                );
+                console.log(this.categories);
+            },
 
-    addSubCategory(cat_index) {
-      console.log("Addcat " + cat_index);
-      this.categories[cat_index].list_subs.push(
-        (this.sub_cat = {
-          id: "",
-          list_row: [
-            {
-              modul: "",
-              durasi: "",
-              satuan: "",
-              biaya: "",
-              ket: ""
-            }
-          ]
-        })
-      );
-      console.log(this.list_subs);
-      // this.list_subs[0].list_row.push("im here")
-    },
-    addRow(cat_index, index) {
-      console.log("Addrow");
-      this.categories[cat_index].list_subs[index].list_row.push(
-        (this.item = {
-          modul: "",
-          durasi: "",
-          satuan: "",
-          biaya: "",
-          ket: ""
-        })
-      );
-    },
+            deleteCategory(categories, index) {
+                console.log(index);
+                categories.splice(index, 1);
+            },
 
-    deleteItem(sub_cat, index_row) {
-      // console.log(sub_cat.list_row)
-      // console.log(index_row)
-      sub_cat.list_row.splice(index_row, 1);
-    },
+            addSubCategory(cat_index) {
+                console.log("Addcat " + cat_index);
+                this.categories[cat_index].list_subs.push(
+                    (this.sub_cat = {
+                        id: "",
+                        list_row: [{
+                            modul: "",
+                            durasi: "",
+                            satuan: "",
+                            biaya: "",
+                            ket: ""
+                        }]
+                    })
+                );
+                console.log(this.list_subs);
+                // this.list_subs[0].list_row.push("im here")
+            },
+            addRow(cat_index, index) {
+                console.log("Addrow");
+                this.categories[cat_index].list_subs[index].list_row.push(
+                    (this.item = {
+                        modul: "",
+                        durasi: "",
+                        satuan: "",
+                        biaya: "",
+                        ket: ""
+                    })
+                );
+            },
 
-    deleteSub(category, index) {
-      console.log(index);
-      category.list_subs.splice(index, 1);
-    },
+            deleteItem(sub_cat, index_row) {
+                // console.log(sub_cat.list_row)
+                // console.log(index_row)
+                sub_cat.list_row.splice(index_row, 1);
+            },
 
-    previewImage: function(event) {
-      // Reference to the DOM input element
-      var input = event.target;
-      // Ensure that you have a file before attempting to read it
-      if (input.files && input.files[0]) {
-        // create a new FileReader to read this image and convert to base64 format
-        var reader = new FileReader();
-        // Define a callback function to run, when FileReader finishes its job
-        reader.onload = e => {
-          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
-          // Read image as base64 and set to imageData
-          this.imageData = e.target.result;
-        };
-        // Start the reader job - read file as a data url (base64 format)
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-  },
-  created() {
-    this.addCategory();
-    this.loadHeaderAPI();
-  },
+            deleteSub(category, index) {
+                console.log(index);
+                category.list_subs.splice(index, 1);
+            },
 
-  mounted() {
-    console.log("hello");
-  },
-  computed: {
-    ...mapDocumentfields([
-      "number",
-      "attachmentname",
-      "customername",
-      "subject",
-      "discussion_date",
-      "discussion_loc",
-      "offerprice",
-      "duration",
-      "offerduetime"
-    ])
-  },
-  watch: {
-    categories: {
-      // immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("handler", newVal, oldVal);
-        this.$store.dispatch("updatepayloadData", newVal);
-        // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
-      }
-    }
-  },
-  props: ["document-data"]
-};
+            previewImage: function (event) {
+                // Reference to the DOM input element
+                var input = event.target;
+                // Ensure that you have a file before attempting to read it
+                if (input.files && input.files[0]) {
+                    // create a new FileReader to read this image and convert to base64 format
+                    var reader = new FileReader();
+                    // Define a callback function to run, when FileReader finishes its job
+                    reader.onload = e => {
+                        // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+                        // Read image as base64 and set to imageData
+                        this.imageData = e.target.result;
+                    };
+                    // Start the reader job - read file as a data url (base64 format)
+                    reader.readAsDataURL(input.files[0]);
+                }
+            },
+            formatDate(date) {
+                if (!date) return null
+
+                const [year, month, day] = date.split('-')
+                return `${month}/${day}/${year}`
+            },
+            parseDate(date) {
+                if (!date) return null
+
+                const [month, day, year] = date.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            },
+        },
+        created() {
+            this.addCategory();
+            this.loadHeaderAPI();
+        },
+
+        mounted() {
+            console.log("hello");
+        },
+        computed: {
+            ...mapDocumentfields([
+                "number",
+                "attachmentname",
+                "customername",
+                "subject",
+                "discussion_date",
+                "discussion_loc",
+                "offerprice",
+                "duration",
+                "offerduetime"
+            ]),
+            discussion_date() {
+                return this.formatDate(this.date)
+            },
+        },
+        watch: {
+            categories: {
+                // immediate: true,
+                deep: true,
+                handler(newVal, oldVal) {
+                    console.log("handler", newVal, oldVal);
+                    this.$store.dispatch("updatepayloadData", newVal);
+                    // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
+                }
+            },
+            date(val) {
+                this.dateFormatted = this.formatDate(this.date)
+            },
+        },
+        props: ["document-data"]
+    };
+
 </script>
 
 
 <style lang="scss" scoped>
-#logo {
-  width: 150px;
-  height: 150px;
-}
+    #logo {
+        width: 150px;
+        height: 150px;
+    }
 
-#signature {
-  margin-left: 77%;
-  width: 150px;
-  height: 100px;
-}
+    #signature {
+        margin-left: 77%;
+        width: 150px;
+        height: 100px;
+    }
 
-input {
-  border-bottom: 1px solid #7e7a7a;
-}
+    input {
+        border-bottom: 1px solid #7e7a7a;
+    }
+
 </style>
