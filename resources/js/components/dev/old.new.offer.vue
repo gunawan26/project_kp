@@ -1,6 +1,6 @@
 <template>
     <div id="offer-field" class="container">
-        <div class="card" style="margin-top:15%;">
+        <div class="card" style="margin-top:5%;">
             <div class="card-header">
                 <v-container>
                     <v-form>
@@ -106,14 +106,14 @@
                 </form>
             </v-container>
             <div class="card-header">
-                <div v-for="(category,cat_index) in categories" v-bind:key="cat_index" v-on:remove="deleteCategory()">
-                    <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(categories,cat_index)"
+                <div v-for="(category,cat_index) in data_categories" v-bind:key="cat_index" v-on:remove="deleteCategory()">
+                    <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(cat_index)"
                         large color="red" icon>
                         <v-icon>mdi-close-circle-outline</v-icon>
                     </v-btn>
                     <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
                     <v-card class="pa-10 mt-10">
-                        <v-text-field label="Nama Kategori" v-model.lazy="category.title"></v-text-field>
+                        <v-text-field label="Nama Kategori" v-model="category.name_cat"></v-text-field>
                         <v-row class="font-weight-bold">
                             <v-col class="col-sm-1">No</v-col>
                             <v-col class="col-sm-4">Modul</v-col>
@@ -123,11 +123,11 @@
                             <v-col class="col-sm-2">Keterangan</v-col>
                         </v-row>
                         <div class="col-sm-12" style="border-bottom:1px solid #000"></div>
-                        <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index"
+                        <div v-for="(sub_cat,index) in getAddListSubById(category.id_category)" v-bind:key="index"
                             @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
                             <v-row justify="center">
                                 <v-col sm="11">
-                                    <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
+                                    <v-text-field class="col-sm-12" :value="$data[`${sub_cat.idParentCategory} ${listNameCat(index)}`]" @input="updateListNameCat($event,index)" clearable
                                         hint="For example, Layouting" label="SubCategory"></v-text-field>
                                 </v-col>
                                 <v-col sm="1">
@@ -160,7 +160,7 @@
                                 </v-row>
                             </div>
                             <div id="action-btn" class="mb-10">
-                                <v-btn fluid rounded color="primary" v-on:click="addSubCategory(cat_index)">Add Sub
+                                <v-btn fluid rounded color="primary" v-on:click="addSubCategory(category.id_category)">Add Sub
                                 </v-btn>
                                 <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
                                 </v-btn>
@@ -169,7 +169,6 @@
                             <hr>
                         </div>
                     </v-card>
-                    {{categories}}
                 </div>
             </div>
         </div>
@@ -183,7 +182,9 @@ import CategoryAdd from "@/js/components/CategoryAdd.vue";
 import { loadHeaderdata } from "@/js/helpers/headerFile";
 // import { mapFields } from 'vuex-map-fields';
 import { createHelpers } from "vuex-map-fields";
-
+import { mapMultiRowFields } from "vuex-map-fields";
+import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 const { mapFields: mapDocumentfields } = createHelpers({
   getterType: "getDocumentFields",
   mutationType: "updateDocumentFields"
@@ -198,6 +199,7 @@ export default {
   data: () => ({
     nomor: "",
     sts: false,
+    // listNameCat: "njing",
     company: {
       name: "",
       address: "",
@@ -211,7 +213,7 @@ export default {
     item: [],
     notUpToDate: false,
     isUpdateFromLocal: false,
-    categories: [],
+    // categories: [],
     // list_subs: [],
     hidden: true,
     hiddenSub: true
@@ -221,19 +223,6 @@ export default {
     setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
-
-      if (this.isUpdateFromLocal) {
-        console.log("string arr", this.$store.getters.getDataPayload);
-        let localPayload = JSON.parse(this.$store.getters.getDataPayload);
-        this.categories = localPayload;
-        // this.categories.push(localPayload);
-        // console.log("local payload", localPayload);
-        console.log("updating", this.categories);
-      }
-      // console.log(JSON.parse(this.$store.getters.getDataPayload));
-      // this.categories.push(
-      //   Object.assign({}, JSON.parse(this.$store.getters.getDataPayload))
-      // );
     },
 
     loadHeaderAPI() {
@@ -254,49 +243,59 @@ export default {
         });
     },
     addCategory() {
-      this.categories.push(
-        (this.category = {
-          title: "",
-          list_subs: [
-            {
-              id: "",
-              list_row: [
-                {
-                  modul: "",
-                  durasi: "",
-                  satuan: "",
-                  biaya: "",
-                  ket: ""
-                }
-              ]
-            }
-          ]
-        })
-      );
-      console.log(this.categories);
+      console.log("AddCategory");
+      let payload = {
+        id_category: this.$store.getters.getCategoryId,
+        name_cat: "",
+        parent_doc_id: this.$store.getters.getIdDokumen,
+        list_subs: []
+      };
+
+      this.$store.dispatch("addCategory", payload);
+      // this.categories.push(
+      //   (this.category = {
+      //     title: "",
+      //     list_subs: [
+      //       {
+      //         id: "",
+      //         list_row: [
+      //           {
+      //             modul: "",
+      //             durasi: "",
+      //             satuan: "",
+      //             biaya: "",
+      //             ket: ""
+      //           }
+      //         ]
+      //       }
+      //     ]
+      //   })
+      // );
+      // console.log(this.categories);
     },
 
-    deleteCategory(categories, index) {
-      console.log(index);
-      categories.splice(index, 1);
+    deleteCategory(index) {
+      this.$store.dispatch("deleteCategory", index);
+      // categories.splice(index, 1);
     },
 
     addSubCategory(cat_index) {
       console.log("Addcat " + cat_index);
-      this.categories[cat_index].list_subs.push(
-        (this.sub_cat = {
-          id: "",
-          list_row: [
-            {
-              modul: "",
-              durasi: "",
-              satuan: "",
-              biaya: "",
-              ket: ""
-            }
-          ]
-        })
-      );
+      this.$store.dispatch("addListSub", cat_index);
+      // this.categories[cat_index].list_subs.push(
+      //   (this.sub_cat = {
+      //     id: "",
+      //     list_row: [
+      //       {
+      //         modul: "",
+      //         durasi: "",
+      //         satuan: "",
+      //         biaya: "",
+      //         ket: ""
+      //       }
+      //     ]
+      //   })
+      // );
       console.log(this.list_subs);
       // this.list_subs[0].list_row.push("im here")
     },
@@ -316,7 +315,7 @@ export default {
     deleteItem(sub_cat, index_row) {
       // console.log(sub_cat.list_row)
       // console.log(index_row)
-      sub_cat.list_row.splice(index_row, 1);
+      // sub_cat.list_row.splice(index_row, 1);
     },
 
     deleteSub(category, index) {
@@ -340,17 +339,38 @@ export default {
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0]);
       }
+    },
+    updateListNameCat($event, index) {
+      let payload = { index: index, name: $event };
+      console.log("data input", payload);
+      this.$store.commit("UPDATE_LIST_NAME_CAT", payload);
+    },
+    listNameCat(index) {
+      return this.$store.state.dokumenfile.list_subcategories[index]
+        .nameListCategory;
+      // console.log("sadsad", this.$store.state.dokumenfile.list_subcategories);
     }
   },
   created() {
-    this.addCategory();
+    // this.addCategory();
     this.loadHeaderAPI();
   },
-
   mounted() {
     console.log("hello");
   },
   computed: {
+    // ...mapState({
+    //   nameListCategory: state => {
+    //     console.log(
+    //       "state cat",
+    //       state.dokumenfile.list_subcategories[0].nameListCategory
+    //     );
+    //     state.dokumenfile.list_subcategories[0].nameListCategory;
+    //     // state.list_subcategories;
+    //   }
+    // }),
+    ...mapMultiRowFields(["data_categories"]),
+    ...mapGetters(["getAddListSubById"]),
     ...mapDocumentfields([
       "number",
       "attachmentname",
@@ -360,20 +380,20 @@ export default {
       "discussion_loc",
       "offerprice",
       "duration",
-      "offerduetime"
+      "offerduetime",
+      "updated_at"
     ])
   },
-  watch: {
-    categories: {
-      // immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("handler", newVal, oldVal);
-        this.$store.dispatch("updatepayloadData", newVal);
-        // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
-      }
-    }
-  },
+  // watch: {
+  //   categories: {
+  //     immediate: true,
+  //     deep: true,
+  //     handler(newVal, oldVal) {
+  //       console.log(newVal, oldVal);
+  //       this.$store.dispatch("updateDataCat", newVal);
+  //     }
+  //   }
+  // },
   props: ["document-data"]
 };
 </script>

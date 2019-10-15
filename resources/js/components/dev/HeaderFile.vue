@@ -65,7 +65,6 @@ export default {
   methods: {
     handleFileUpload() {
       this.form.fileLogo = this.$refs.logo.files[0];
-      console.log(this.form.fileLogo);
     },
 
     submit() {
@@ -77,7 +76,7 @@ export default {
       form.append("email", this.form.email);
       form.append("website", this.form.website);
       form.append("phonenumber", this.form.phonenumber);
-      console.log(this.$data.form);
+
       createOrUpdateHeader(form)
         .then(result => {
           console.log(result);

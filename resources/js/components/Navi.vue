@@ -43,20 +43,20 @@
 </template>
 
 <script>
-import store from "@/js/store";
-import {setTimeout} from 'timers';
-import CreateAdmin from '@/js/components/dialog/CreateAdmin.vue'
-import AccountEdit from '@/js/components/dialog/AccountEdit.vue'
+import store from "@/js/state/store";
+import { setTimeout } from "timers";
+import CreateAdmin from "@/js/components/dialog/CreateAdmin.vue";
+import AccountEdit from "@/js/components/dialog/AccountEdit.vue";
 export default {
   name: "navi",
-  data(){
-    return{
-      overlay: false,
-    }
+  data() {
+    return {
+      overlay: false
+    };
   },
-  components:{
+  components: {
     CreateAdmin,
-    AccountEdit,
+    AccountEdit
   },
   mounted() {
     console.log("Component mounted.");
@@ -66,33 +66,30 @@ export default {
       return store.state.currentUser;
     }
   },
-  methods:{
-    createAdmin(){
-      console.log('create Admin');
+  methods: {
+    createAdmin() {
+      console.log("create Admin");
       this.$refs.AdminComponent.dialogOpen();
     },
-    account(){
-      console.log('profile');
+    account() {
+      console.log("profile");
       this.$refs.AccountComponent.dialogOpen();
     }
   }
-
 };
 </script>
 
 
 <style lang="scss">
-  #navbarSupportedContent{
-    margin-right: 10%;
-  }
+#navbarSupportedContent {
+  margin-right: 10%;
+}
 
-  .navbar-brand{
+.navbar-brand {
   margin-left: 10%;
-  }
+}
 
-  #li-item{
-    margin-right: 20%;
-  }
-
-
+#li-item {
+  margin-right: 20%;
+}
 </style>

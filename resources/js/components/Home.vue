@@ -86,7 +86,7 @@
 <script>
 import Navi from "@/js/components/Navi.vue";
 import CreateFile from "@/js/components/dialog/CreateFile.vue";
-import store from "@/js/store";
+import store from "@/js/state/store";
 
 export default {
   name: "home",

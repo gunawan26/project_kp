@@ -7,7 +7,7 @@ import './bootstrap';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueAxios from 'vue-axios';
-import store from './store'
+import store from '@/js/state/store'
 import 'vuetify/dist/vuetify.min.css';
 
 import Routes from '@/js/routes.js';
