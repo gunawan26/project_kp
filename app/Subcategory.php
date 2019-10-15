@@ -8,6 +8,6 @@ class Subcategory extends Model
 {
     //
     protected $fillable = [
-        'subcategoryname'
+        'subcategoryname', 'category', 'offer_id', 'arr_index_sub', 'id_category'
     ];
 }

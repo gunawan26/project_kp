@@ -102,20 +102,22 @@
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
                         <span>
-                            <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" required>
+                            <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" id="InputEmail"
+                                required>
                         </span>
                         (<span><input type="text" v-model="durationname" required></span>)
                         hari kerja.</p>
                     <p>Penawaran ini berlaku selama <span>
-                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" required>
+                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text"
+                                required>
                         </span>
-                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak
-                        tanggal
+                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span>
-                            <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" required>
+                            <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
+                                required>
                         </span>
-                        (<span><input type="text" v-model="attachment" required></span>) rangkap
+                        (<span><input type="text" id="InputEmail" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
@@ -247,9 +249,8 @@
             dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
             menu1: false,
             offerpricename: "",
-            offerduetimename: "",
-            durationname: "",
-            attachment:"",
+            offerduetimename:"",
+            durationname:"",
 
 
         }),
@@ -394,7 +395,7 @@
                 var kata3;
                 var angka = new Array('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
                 var kata = new Array('', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan',
-                    'Sembilan');
+                'Sembilan');
                 var tingkat = new Array('', 'Ribu', 'Juta', 'Milyar', 'Triliun');
                 var panjang_bilangan = bilangan.length;
 
@@ -511,10 +512,7 @@
                 this.offerduetimename = this.terbilang(val);
             },
             duration: function (val) {
-                this.durationname = this.terbilang(val);
-            },
-            attachmentname: function (val) {
-                this.attachment = this.terbilang(val);
+                this.offerduetimename = this.terbilang(val);
             }
         },
         props: ["document-data"]

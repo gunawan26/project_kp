@@ -113,7 +113,7 @@
                     </v-btn>
                     <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
                     <v-card class="pa-10 mt-10">
-                        <v-text-field label="Nama Kategori" v-model="category.title"></v-text-field>
+                        <v-text-field label="Nama Kategori" v-model.lazy="category.title"></v-text-field>
                         <v-row class="font-weight-bold">
                             <v-col class="col-sm-1">No</v-col>
                             <v-col class="col-sm-4">Modul</v-col>
@@ -127,7 +127,7 @@
                             @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
                             <v-row justify="center">
                                 <v-col sm="11">
-                                    <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
+                                    <v-text-field class="col-sm-12" v-model="sub_cat.name" clearable
                                         hint="For example, Layouting" label="SubCategory"></v-text-field>
                                 </v-col>
                                 <v-col sm="1">
@@ -220,6 +220,19 @@ export default {
     setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
+
+      if (this.isUpdateFromLocal) {
+        console.log("string arr", this.$store.getters.getDataPayload);
+        let localPayload = JSON.parse(this.$store.getters.getDataPayload);
+        this.categories = localPayload;
+        // this.categories.push(localPayload);
+        // console.log("local payload", localPayload);
+        console.log("updating", this.categories);
+      }
+      // console.log(JSON.parse(this.$store.getters.getDataPayload));
+      // this.categories.push(
+      //   Object.assign({}, JSON.parse(this.$store.getters.getDataPayload))
+      // );
     },
 
     loadHeaderAPI() {
@@ -240,27 +253,22 @@ export default {
         });
     },
     addCategory() {
-      console.log("AddCategory");
-      let payload = {
-        [this.$store.getters.getCategoryId]: {
-          name_cat: "",
-          parent_doc_id: this.$store.getters.getIdDokumen
-        }
-      };
-      this.$store.dispatch("addCategory", payload);
       this.categories.push(
         (this.category = {
           title: "",
+          id: "",
           list_subs: [
             {
-              id: "",
+              name: "",
+              id_sub: "",
               list_row: [
                 {
                   modul: "",
                   durasi: "",
                   satuan: "",
                   biaya: "",
-                  ket: ""
+                  ket: "",
+                  id_row: ""
                 }
               ]
             }
@@ -279,14 +287,16 @@ export default {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(
         (this.sub_cat = {
-          id: "",
+          name: "",
+          id_sub: "",
           list_row: [
             {
               modul: "",
               durasi: "",
               satuan: "",
               biaya: "",
-              ket: ""
+              ket: "",
+              id_row: ""
             }
           ]
         })
@@ -302,7 +312,8 @@ export default {
           durasi: "",
           satuan: "",
           biaya: "",
-          ket: ""
+          ket: "",
+          id_row: ""
         })
       );
     },
@@ -340,6 +351,7 @@ export default {
     this.addCategory();
     this.loadHeaderAPI();
   },
+
   mounted() {
     console.log("hello");
   },
@@ -353,20 +365,20 @@ export default {
       "discussion_loc",
       "offerprice",
       "duration",
-      "offerduetime",
-      "updated_at"
+      "offerduetime"
     ])
   },
-  // watch: {
-  //   categories: {
-  //     immediate: true,
-  //     deep: true,
-  //     handler(newVal, oldVal) {
-  //       console.log(newVal, oldVal);
-  //       this.$store.dispatch("updateDataCat", newVal);
-  //     }
-  //   }
-  // },
+  watch: {
+    categories: {
+      // immediate: true,
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("handler", newVal, oldVal);
+        this.$store.dispatch("updatepayloadData", newVal);
+        // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
+      }
+    }
+  },
   props: ["document-data"]
 };
 </script>

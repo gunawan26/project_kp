@@ -8,6 +8,6 @@ class Category extends Model
 {
     //
     protected $fillable = [
-        'categoryname'
+        'categoryname', 'offer_id', 'arr_index'
     ];
 }
