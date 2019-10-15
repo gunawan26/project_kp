@@ -92,9 +92,6 @@ export default {
   },
 
   methods: {
-    triggerUpdateStatus() {
-      console.log("ttt");
-    },
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }

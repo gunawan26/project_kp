@@ -2060,9 +2060,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    triggerUpdateStatus: function triggerUpdateStatus() {
-      console.log("ttt");
-    },
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
@@ -2804,6 +2801,19 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
     setStatusUpdate: function setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
+
+      if (this.isUpdateFromLocal) {
+        console.log("string arr", this.$store.getters.getDataPayload);
+        var localPayload = JSON.parse(this.$store.getters.getDataPayload);
+        this.categories = localPayload; // this.categories.push(localPayload);
+        // console.log("local payload", localPayload);
+
+        console.log("updating", this.categories);
+      } // console.log(JSON.parse(this.$store.getters.getDataPayload));
+      // this.categories.push(
+      //   Object.assign({}, JSON.parse(this.$store.getters.getDataPayload))
+      // );
+
     },
     loadHeaderAPI: function loadHeaderAPI() {
       var _this = this;
@@ -2823,7 +2833,6 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
       });
     },
     addCategory: function addCategory() {
-      console.log("AddCategory");
       this.categories.push(this.category = {
         title: "",
         list_subs: [{
@@ -2904,14 +2913,15 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
   mounted: function mounted() {
     console.log("hello");
   },
-  computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime", "updated_at"])),
+  computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime"])),
   watch: {
-    categories: function categories(newVal) {
-<<<<<<< HEAD
-      console.log("changed !");
-=======
-      console.log("changed !", newVal);
->>>>>>> 314163f133f32c602dc4c14933248499950df424
+    categories: {
+      // immediate: true,
+      deep: true,
+      handler: function handler(newVal, oldVal) {
+        console.log("handler", newVal, oldVal);
+        this.$store.dispatch("updatepayloadData", newVal); // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
+      }
     }
   },
   props: ["document-data"]
@@ -3116,7 +3126,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     handleFileUpload: function handleFileUpload() {
       this.form.fileLogo = this.$refs.logo.files[0];
-      console.log(this.form.fileLogo);
     },
     submit: function submit() {
       var form = new FormData();
@@ -3126,7 +3135,6 @@ __webpack_require__.r(__webpack_exports__);
       form.append("email", this.form.email);
       form.append("website", this.form.website);
       form.append("phonenumber", this.form.phonenumber);
-      console.log(this.$data.form);
       Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_0__["createOrUpdateHeader"])(form).then(function (result) {
         console.log(result);
       })["catch"](function (err) {
@@ -99035,9 +99043,9 @@ var user = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalUsers"])()
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/state/store.js");
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -99053,14 +99061,26 @@ __webpack_require__.r(__webpack_exports__);
       duration: '',
       offerduetime: '',
       updated_at: '',
-      id: ''
+      id: '',
+      dataPayload: ''
     },
     isUpToDate: true,
-    isAcceptChange: false
+    isAcceptChange: false,
+    categoryId: 1
   },
   getters: {
+    getField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__["getField"],
     getDocumentFields: function getDocumentFields(state) {
-      return Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["getField"])(state.data_dokumen);
+      return Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__["getField"])(state.data_dokumen);
+    },
+    getDocumentData: function getDocumentData(state) {
+      return state.data_dokumen;
+    },
+    getCategoryId: function getCategoryId(state) {
+      return state.categoryId;
+    },
+    getIdDokumen: function getIdDokumen(state) {
+      return state.data_dokumen.id;
     },
     dataDokumen: function dataDokumen(state) {
       return state.data_dokumen;
@@ -99071,16 +99091,26 @@ __webpack_require__.r(__webpack_exports__);
     isUpToDate: function isUpToDate(state) {
       console.log("kesini");
       return state.isUpToDate;
+    },
+    getDataPayload: function getDataPayload(state) {
+      return state.data_dokumen.dataPayload;
     }
   },
   mutations: {
+    updateField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__["updateField"],
+    INCEREMENT_CATEGORYID: function INCEREMENT_CATEGORYID(state) {
+      state.categoryId++;
+    },
+    DELETE_CATEGORY: function DELETE_CATEGORY(state, idNumber) {
+      state.data_categories.splice(idNumber, 1);
+    },
     updateDocumentFields: function updateDocumentFields(state, field) {
-      Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["updateField"])(state.data_dokumen, field);
-<<<<<<< HEAD
-      state.data_dokumen.updated_at = new Date().getTime();
-=======
->>>>>>> 314163f133f32c602dc4c14933248499950df424
+      Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__["updateField"])(state.data_dokumen, field);
+      state.data_dokumen.updated_at = new Date().getTime(); // state.data_dokumen.dataPayload = 
+
+      console.log("field", field);
       localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
+      console.log("new saved");
     },
     NOT_UPDATE: function NOT_UPDATE(state) {
       console.log("value updated");
@@ -99091,12 +99121,40 @@ __webpack_require__.r(__webpack_exports__);
       console.log("state data dokumen", state.data_dokumen);
     },
     SAVE_TO_LOCALSTORAGE: function SAVE_TO_LOCALSTORAGE(state) {
-      console.log("saving", state.data_dokumen.id);
-      localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
+      console.log(state.data_dokumen.id);
+
+      if (state.data_dokumen.id.length != 0) {
+        console.log("saving to local storage", state.data_dokumen.id);
+        localStorage.setItem("document-".concat(state.data_dokumen.id), JSON.stringify(state.data_dokumen));
+      } else {
+        console.log('Not Saving To Local Storage !');
+        console.log("data dokumen", state.data_dokumen);
+      }
     },
     SET_TO_LOCAL: function SET_TO_LOCAL(state) {
       var dataReplace = JSON.parse(localStorage.getItem("document-".concat(state.data_dokumen.id)));
+      console.log("data replace", dataReplace);
       state.data_dokumen = Object.assign({}, dataReplace);
+    },
+    UPDATE_PAYLOAD_DATA: function UPDATE_PAYLOAD_DATA(state, payload) {
+      console.log("payload data", payload); // state.data_dokumen.dataPayload = payload
+
+      var dataPayload = {
+        dataPayload: JSON.stringify(payload),
+        updated_at: new Date().getTime()
+      }; // let dataReplace = Object.assign({
+      //     state
+      // })
+      // console.log("data_replace", dataReplace)
+
+      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(state.data_dokumen, 'updated_at', dataPayload.updated_at);
+      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(state.data_dokumen, 'dataPayload', dataPayload.dataPayload); // state.data_dokumen = Object.assign({}, dataReplace)
+      // state.data_dokumen = {
+      //     ...state.data_dokumen,
+      //     dataPayload
+      // }
+
+      console.log("data dokumen stelah update", state.data_dokumen);
     }
   },
   actions: {
@@ -99125,6 +99183,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeToLocal: function changeToLocal(context) {
       context.commit("SET_TO_LOCAL");
+    },
+    updatepayloadData: function updatepayloadData(context, payload) {
+      console.log("payload di updatepaload", payload);
+      context.commit("UPDATE_PAYLOAD_DATA", payload);
+      context.commit("SAVE_TO_LOCALSTORAGE");
     }
   }
 });
