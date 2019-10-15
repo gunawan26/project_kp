@@ -2067,7 +2067,428 @@ __webpack_require__.r(__webpack_exports__);
     },
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
+    },
+    preview: function preview() {
+      this.$router.push({
+        path: "/generatepdf"
+      });
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      company: {
+        name: "",
+        address: "",
+        number: "",
+        website: "",
+        email: "",
+        logo: ""
+      },
+      doc: {
+        number: "",
+        attachmentname: "",
+        customername: "",
+        subject: "",
+        discussion_date: "",
+        discussion_loc: "",
+        offerprice: "",
+        duration: "",
+        offerduetime: "",
+        created_at: ""
+      }
+    };
+  },
+  methods: {
+    loadDokumendata: function loadDokumendata() {
+      var data = this.$store.getters.getDocumentData;
+      this.doc.number = data.number;
+      this.doc.attachmentname = data.attachmentname;
+      this.doc.customername = data.customername;
+      this.doc.subject = data.subject;
+      this.doc.discussion_date = data.discussion_date;
+      this.doc.discussion_loc = data.discussion_loc;
+      this.doc.offerprice = data.offerprice;
+      this.doc.duration = data.duration;
+      this.doc.offerduetime = data.offerduetime;
+      this.doc.created_at = data.created_at;
+      console.log("Load Dokumen", this.$store.getters.getDocumentData);
+    },
+    loadHeaderAPI: function loadHeaderAPI() {
+      var _this = this;
+
+      Object(_js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_0__["loadHeaderdata"])(this.$authAPI).then(function (result) {
+        _this.company = {
+          name: result.companyname,
+          address: result.address,
+          number: result.phonenumber,
+          email: result.email,
+          website: result.website,
+          logo: result.logo
+        };
+        console.log("data asdsadas", result);
+      })["catch"](function (err) {
+        console.log("err data tidak masuk", err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.loadDokumendata();
+    this.loadHeaderAPI();
   }
 });
 
@@ -2583,6 +3004,22 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2779,7 +3216,7 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
     CategoryAdd: _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     ConfirmUpdateDocument: _js_components_dialog_ConfirmUpdateDocument_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  data: function data() {
+  data: function data(vm) {
     return {
       nomor: "",
       sts: false,
@@ -2799,7 +3236,10 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
       categories: [],
       // list_subs: [],
       hidden: true,
-      hiddenSub: true
+      hiddenSub: true,
+      date: new Date().toISOString().substr(0, 10),
+      dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+      menu1: false
     };
   },
   methods: {
@@ -2915,6 +3355,28 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
 
         reader.readAsDataURL(input.files[0]);
       }
+    },
+    formatDate: function formatDate(date) {
+      if (!date) return null;
+
+      var _date$split = date.split('-'),
+          _date$split2 = _slicedToArray(_date$split, 3),
+          year = _date$split2[0],
+          month = _date$split2[1],
+          day = _date$split2[2];
+
+      return "".concat(month, "/").concat(day, "/").concat(year);
+    },
+    parseDate: function parseDate(date) {
+      if (!date) return null;
+
+      var _date$split3 = date.split('/'),
+          _date$split4 = _slicedToArray(_date$split3, 3),
+          month = _date$split4[0],
+          day = _date$split4[1],
+          year = _date$split4[2];
+
+      return "".concat(year, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
     }
   },
   created: function created() {
@@ -2924,7 +3386,11 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
   mounted: function mounted() {
     console.log("hello");
   },
-  computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime"])),
+  computed: _objectSpread({}, mapDocumentfields(["number", "attachmentname", "customername", "subject", "discussion_date", "discussion_loc", "offerprice", "duration", "offerduetime"]), {
+    discussion_date: function discussion_date() {
+      return this.formatDate(this.date);
+    }
+  }),
   watch: {
     categories: {
       // immediate: true,
@@ -2933,6 +3399,9 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
         console.log("handler", newVal, oldVal);
         this.$store.dispatch("updatepayloadData", newVal); // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
       }
+    },
+    date: function date(val) {
+      this.dateFormatted = this.formatDate(this.date);
     }
   },
   props: ["document-data"]
@@ -8409,6 +8878,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n* {\r\n  text-transform: none !important;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Styles go here */\n#pdf[data-v-876d78bc] {\n    background-color: white !important;\n}\n.page-header[data-v-876d78bc],\n.page-header-space[data-v-876d78bc] {\n    height: 100px;\n}\n.page-footer[data-v-876d78bc],\n.page-footer-space[data-v-876d78bc] {\n    height: 50px;\n}\n.page-footer[data-v-876d78bc] {\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    border-top: 1px solid black;\n    /* for demo */\n    background: yellow;\n    /* for demo */\n}\n.page-header[data-v-876d78bc] {\n    position: fixed;\n    top: 0mm;\n    width: 100%;\n    background: white;\n}\n.page[data-v-876d78bc] {\n    page-break-after: always;\n}\n@page {\n    margin: 20mm\n}\n@media print {\nthead[data-v-876d78bc] {\n        display: table-header-group;\n}\ntfoot[data-v-876d78bc] {\n        display: table-footer-group;\n}\nbutton[data-v-876d78bc] {\n        display: none;\n}\nbody[data-v-876d78bc] {\n        margin: 0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -39468,6 +39956,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PageNotFound.vue?vue&type=style&index=0&id=3d2ec509&lang=css&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PageNotFound.vue?vue&type=style&index=0&id=3d2ec509&lang=css&scoped=true& ***!
@@ -40525,7 +41043,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { attrs: { outlined: "", rounded: "", text: "", small: "" } },
+                {
+                  attrs: { outlined: "", rounded: "", text: "", small: "" },
+                  on: { click: _vm.preview }
+                },
                 [_vm._v("\n                Preview\n            ")]
               )
             ],
@@ -40602,6 +41123,910 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "pdf" } }, [
+    _c("div", { staticClass: "page-header" }, [
+      _c(
+        "table",
+        {
+          staticStyle: { width: "100%", "border-bottom": "2px solid #4a7ebb" },
+          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+        },
+        [
+          _c("tbody", [
+            _c("tr", [
+              _c("td", { staticStyle: { "vertical-align": "bottom" } }, [
+                _c(
+                  "table",
+                  { staticStyle: { "font-size": "14px", color: "#000" } },
+                  [
+                    _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          staticStyle: {
+                            color: "#2496b8",
+                            "font-size": "24px",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(_vm.company.name))])]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [
+                        _c("span", [_vm._v(_vm._s(_vm.company.address))])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [
+                        _c("span", [
+                          _vm._v(
+                            "Hp. " +
+                              _vm._s(_vm.company.number) +
+                              " | Website: " +
+                              _vm._s(_vm.company.website) +
+                              " | Email:\n                                        " +
+                              _vm._s(_vm.company.email)
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("br")
+    ]),
+    _vm._v(" "),
+    _c("table", [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [
+            _c("div", { staticClass: "page" }, [
+              _c(
+                "table",
+                {
+                  staticStyle: {
+                    width: "100%",
+                    "padding-bottom": "20px",
+                    "font-size": "18px",
+                    "padding-top": "10px"
+                  },
+                  attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+                },
+                [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          staticStyle: {
+                            "padding-bottom": "5px",
+                            "text-align": "right"
+                          },
+                          attrs: { colspan: "2" }
+                        },
+                        [
+                          _c("span", [
+                            _vm._v("Denpasar," + _vm._s(_vm.doc.created_at))
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                        _c("span", [_vm._v(": " + _vm._s(_vm.doc.number))])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                        _c("span", [
+                          _vm._v(": " + _vm._s(_vm.doc.attachmentname))
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c(
+                        "td",
+                        {
+                          staticStyle: {
+                            "padding-top": "20px",
+                            "padding-bottom": "5px"
+                          },
+                          attrs: { colspan: "2" }
+                        },
+                        [
+                          _c("span", [
+                            _vm._v("Yth. " + _vm._s(_vm.doc.customername))
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                        _c("span", [_vm._v(": " + _vm._s(_vm.doc.subject))])
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "table",
+                {
+                  staticStyle: { width: "100%", "padding-bottom": "20px" },
+                  attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+                },
+                [
+                  _c(
+                    "tbody",
+                    {
+                      staticStyle: {
+                        "font-size": "18px",
+                        "text-align": "justify"
+                      }
+                    },
+                    [
+                      _c("tr", [
+                        _c("td", [
+                          _c("p", { staticStyle: { "text-indent": "50px" } }, [
+                            _vm._v(
+                              "Sehubungan dengan Diskusi pada " +
+                                _vm._s(_vm.doc.discussion_date) +
+                                ", yang bertempat di " +
+                                _vm._s(_vm.doc.discussion_loc) +
+                                ",\n                                            dengan ini kami mengajukan penawaran untuk pekerjaan " +
+                                _vm._s(_vm.doc.subject) +
+                                " sebesar Rp. " +
+                                _vm._s(_vm.doc.offerprice) +
+                                ",- ([Lima Puluh Satu\n                                            Juta\n                                            Delapan\n                                            Ratus Ribu Rupiah])."
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [
+                          _c("p", [
+                            _vm._v(
+                              "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan\n                                            pekerjaan selama\n                                            " +
+                                _vm._s(_vm.doc.duration) +
+                                " ([Seratus Sembilan Belas]) hari kerja."
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [
+                          _c("p", [
+                            _vm._v(
+                              "Penawaran ini berlaku selama " +
+                                _vm._s(_vm.doc.offerduetime) +
+                                " ([tiga puluh]) hari kalender sejak\n                                            tanggal\n                                            surat penawaran ini."
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [
+                          _c("p", [
+                            _vm._v(
+                              "Surat Penawaran beserta lampirannya kami sampaikan sebanyak " +
+                                _vm._s(_vm.doc.attachmentname) +
+                                " ([satu])\n                                            rangkap\n                                            dokumen."
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(8)
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(9)
+            ]),
+            _vm._v(" "),
+            _vm._m(10)
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "td",
+      { staticStyle: { "text-align": "right", padding: "10px" } },
+      [
+        _c("img", {
+          staticStyle: { width: "62px" },
+          attrs: { src: "/storage/images/logo.png", width: "100", alt: "Goyur" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("td", [_c("div", { staticClass: "page-header-space" })])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "td",
+      { staticStyle: { "padding-bottom": "5px", width: "10%" } },
+      [_c("span", [_vm._v("Nomor")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "td",
+      { staticStyle: { "padding-bottom": "5px", width: "10%" } },
+      [_c("span", [_vm._v("Lampiran")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c(
+        "td",
+        { staticStyle: { "padding-bottom": "5px" }, attrs: { colspan: "2" } },
+        [_c("span", [_vm._v("di-")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticStyle: { "padding-bottom": "5px" } }),
+      _vm._v(" "),
+      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+        _c("span", [_vm._v("Tempat")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "td",
+      { staticStyle: { "padding-bottom": "5px", width: "10%" } },
+      [_c("span", [_vm._v("Perihal")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [
+        _c("p", [
+          _vm._v(
+            "Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk\n                                            melaksanakan\n                                            pekerjaan\n                                            tersebut di atas."
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [
+        _c("p", [
+          _vm._v(
+            "Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup\n                                            melaksanakan\n                                            pekerjaan ini."
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "table",
+      {
+        staticStyle: { width: "100%", "text-align": "right", padding: "0" },
+        attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+      },
+      [
+        _c("tbody", [
+          _c("tr", { staticStyle: { "font-size": "20px" } }, [
+            _c("td", { staticStyle: { "font-weight": "bold" } }, [
+              _vm._v(
+                "\n                                        16 April 2019\n                                    "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [
+              _c("img", {
+                staticStyle: { width: "250px" },
+                attrs: {
+                  src: "/storage/images/ttd.png",
+                  width: "100",
+                  alt: "Goyur"
+                }
+              })
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page" }, [
+      _c(
+        "table",
+        {
+          staticStyle: { "font-size": "18px", color: "#000" },
+          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+        },
+        [
+          _c("br"),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              {
+                staticStyle: {
+                  color: "#2496b8",
+                  "font-size": "30px",
+                  "font-weight": "bold"
+                }
+              },
+              [_c("span", [_vm._v("QUOTATION")])]
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { attrs: { colspan: "2" } }, [
+              _c("span", [_vm._v("kepada:")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticStyle: { "font-size": "24px" } }, [
+              _c("span", [_vm._v("Yth.{Edi}")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [_c("td", [_c("span", [_vm._v("perihal: {perihal}")])])]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              {
+                staticStyle: {
+                  margin: "50px 0",
+                  color: "#2496b8",
+                  "font-weight": "bold",
+                  "font-size": "18px",
+                  "vertical-align": "bottom"
+                },
+                attrs: { width: "12%" }
+              },
+              [
+                _vm._v(
+                  "\n                                    DETAILS:\n                                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("td", {
+              staticStyle: {
+                "background-color": "#2496b8",
+                "border-top": "3px solid #fff",
+                "border-bottom": "4px solid #fff"
+              },
+              attrs: { width: "88%" }
+            })
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("table", [
+        _c("tr", [
+          _c(
+            "td",
+            {
+              staticStyle: {
+                "margin-top": "30px",
+                "font-weight": "bold",
+                "font-size": "18px",
+                "vertical-align": "bottom"
+              },
+              attrs: { width: "12%" }
+            },
+            [
+              _vm._v(
+                "\n                                    {Nama Kategori}\n                                "
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticStyle: { "text-align": "center" },
+          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+        },
+        [
+          _c(
+            "thead",
+            {
+              staticStyle: {
+                "font-size": "14px",
+                "background-color": "#2496b8",
+                color: "#fff",
+                "text-align": "left"
+              }
+            },
+            [
+              _c("tr", { staticStyle: { "padding-top": "5px" } }, [
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      "font-weight": "bold",
+                      "text-align": "left",
+                      padding: "5px 5px 1px 15px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        No.\n                                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "50%",
+                      "font-weight": "bold",
+                      "text-align": "left",
+                      padding: "5px 5px 1px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        Modul/Rincian Pengerjaan\n                                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      "font-weight": "bold",
+                      padding: "5px 5px 1px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        Durasi\n                                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      "font-weight": "bold",
+                      padding: "5px 5px 1px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        Satuan\n                                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "20%",
+                      "font-weight": "bold",
+                      padding: "5px 5px 1px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        Biaya (Rp)\n                                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      width: "10%",
+                      "font-weight": "bold",
+                      padding: "5px 5px 1px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                        Keterangan\n                                    "
+                    )
+                  ]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("tbody", { staticStyle: { border: "1px solid #000" } }, [
+            _c(
+              "tr",
+              { staticStyle: { "font-size": "14px", "text-align": "left" } },
+              [
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      padding: "5px 5px 1px 20px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            1\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "50%",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Termin II pengembangan Website dan e-Catalogue Wijaya Musik\n                                            (wijayamusik.com)\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            1\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "20%",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Rp 13,204,000\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "20%",
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Rp 13,204,000\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [_c("span", { staticStyle: { display: "block" } })]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c(
+              "tr",
+              {
+                staticStyle: {
+                  "font-size": "15px",
+                  "text-align": "left",
+                  "font-weight": "bold",
+                  "background-color": "#d9d9d9"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    },
+                    attrs: { colspan: "4" }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Subtotal\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "15%",
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Rp 13,204,000\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "5%",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [_c("span", { staticStyle: { display: "block" } })]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "tr",
+              {
+                staticStyle: {
+                  "font-size": "16px",
+                  "text-align": "left",
+                  "font-weight": "bold",
+                  "background-color": "#2496b8",
+                  color: "#fff"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    },
+                    attrs: { colspan: "4" }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Total Biaya\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "15%",
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [
+                    _c("span", { staticStyle: { display: "block" } }, [
+                      _vm._v(
+                        "\n                                            Rp 13,204,000\n                                        "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    staticStyle: {
+                      width: "15%",
+                      "text-align": "right",
+                      padding: "5px 5px 1px",
+                      border: "2px solid #2496b8"
+                    }
+                  },
+                  [_c("span", { staticStyle: { display: "block" } })]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut."
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticStyle: { width: "100%", "text-align": "right", padding: "0" },
+          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+        },
+        [
+          _c("tbody", [
+            _c("tr", { staticStyle: { "font-size": "20px" } }, [
+              _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                _vm._v(
+                  "\n                                        16 April 2019\n                                    "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [
+                _c("img", {
+                  staticStyle: { width: "250px" },
+                  attrs: {
+                    src: "/storage/images/ttd.png",
+                    width: "100",
+                    alt: "Goyur"
+                  }
+                })
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -41545,7 +42970,7 @@ var render = function() {
   return _c("div", { staticClass: "container", attrs: { id: "offer-field" } }, [
     _c(
       "div",
-      { staticClass: "card", staticStyle: { "margin-top": "5%" } },
+      { staticClass: "card", staticStyle: { "margin-top": "15%" } },
       [
         _c(
           "div",
@@ -41869,28 +43294,90 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _vm._v("Sehubung dengan diskusi pada "),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
+                  _c(
+                    "span",
+                    [
+                      _c(
+                        "v-menu",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.discussion_date,
-                          expression: "discussion_date"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.discussion_date },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          attrs: {
+                            "close-on-content-click": false,
+                            transition: "scale-transition",
+                            "offset-y": "",
+                            "full-width": "",
+                            "max-width": "290px",
+                            "min-width": "290px"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                return [
+                                  _c(
+                                    "input",
+                                    _vm._g(
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.discussion_date,
+                                            expression: "discussion_date"
+                                          }
+                                        ],
+                                        attrs: { readonly: "" },
+                                        domProps: {
+                                          value: _vm.discussion_date
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.discussion_date =
+                                              $event.target.value
+                                          }
+                                        }
+                                      },
+                                      on
+                                    )
+                                  )
+                                ]
+                              }
+                            }
+                          ]),
+                          model: {
+                            value: _vm.menu1,
+                            callback: function($$v) {
+                              _vm.menu1 = $$v
+                            },
+                            expression: "menu1"
                           }
-                          _vm.discussion_date = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
+                        },
+                        [
+                          _vm._v(" "),
+                          _c("v-date-picker", {
+                            attrs: { "no-title": "" },
+                            on: {
+                              input: function($event) {
+                                _vm.menu2 = false
+                              }
+                            },
+                            model: {
+                              value: _vm.date,
+                              callback: function($$v) {
+                                _vm.date = $$v
+                              },
+                              expression: "date"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" yang\n                    bertempat di "),
                   _c("span", [
                     _c("input", {
@@ -97413,6 +98900,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/GeneratePDF.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/GeneratePDF.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true& */ "./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true&");
+/* harmony import */ var _GeneratePDF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GeneratePDF.vue?vue&type=script&lang=js& */ "./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& */ "./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _GeneratePDF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "876d78bc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GeneratePDF.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GeneratePDF.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=style&index=0&id=876d78bc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_style_index_0_id_876d78bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GeneratePDF.vue?vue&type=template&id=876d78bc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GeneratePDF_vue_vue_type_template_id_876d78bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/History.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/History.vue ***!
@@ -98852,10 +100426,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_DokumenFile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/components/DokumenFile */ "./resources/js/components/DokumenFile.vue");
 /* harmony import */ var _js_components_PageNotFound__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/js/components/PageNotFound */ "./resources/js/components/PageNotFound.vue");
 /* harmony import */ var _js_components_Navi__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/js/components/Navi */ "./resources/js/components/Navi.vue");
-/* harmony import */ var _js_components_dev_Login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/js/components/dev/Login */ "./resources/js/components/dev/Login.vue");
-/* harmony import */ var _js_components_dev_CreateFile__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/js/components/dev/CreateFile */ "./resources/js/components/dev/CreateFile.vue");
-/* harmony import */ var _js_components_dev_HeaderFile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/js/components/dev/HeaderFile */ "./resources/js/components/dev/HeaderFile.vue");
-/* harmony import */ var _js_components_dev_Vuebot__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/js/components/dev/Vuebot */ "./resources/js/components/dev/Vuebot.vue");
+/* harmony import */ var _js_components_GeneratePDF__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/js/components/GeneratePDF */ "./resources/js/components/GeneratePDF.vue");
+/* harmony import */ var _js_components_dev_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/js/components/dev/Login */ "./resources/js/components/dev/Login.vue");
+/* harmony import */ var _js_components_dev_CreateFile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/js/components/dev/CreateFile */ "./resources/js/components/dev/CreateFile.vue");
+/* harmony import */ var _js_components_dev_HeaderFile__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/js/components/dev/HeaderFile */ "./resources/js/components/dev/HeaderFile.vue");
+/* harmony import */ var _js_components_dev_Vuebot__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/js/components/dev/Vuebot */ "./resources/js/components/dev/Vuebot.vue");
+
 
 
 
@@ -98904,19 +100480,22 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _js_views_App1__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/dev/login',
-    component: _js_components_dev_Login__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _js_components_dev_Login__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '/dev/createfile',
-    component: _js_components_dev_CreateFile__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _js_components_dev_CreateFile__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: '/dev/vuebot',
-    component: _js_components_dev_Vuebot__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _js_components_dev_Vuebot__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: '/navi',
     component: _js_components_Navi__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: '/dev/create-header',
-    component: _js_components_dev_HeaderFile__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _js_components_dev_HeaderFile__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }, {
+    path: '/generatepdf',
+    component: _js_components_GeneratePDF__WEBPACK_IMPORTED_MODULE_10__["default"]
   } // {
   //     path: "*",
   //     component: PageNotFound
@@ -99425,8 +101004,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

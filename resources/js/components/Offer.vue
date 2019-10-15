@@ -1,6 +1,6 @@
 <template>
     <div id="offer-field" class="container">
-        <div class="card" style="margin-top:5%;">
+        <div class="card" style="margin-top:15%;">
             <div class="card-header">
                 <v-container>
                     <v-form>
@@ -42,8 +42,8 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="number" text clearable
-                                    hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
+                                <v-text-field v-model="number" text clearable hint="For example, 22/DART/QTT/2019"
+                                    label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
@@ -73,30 +73,38 @@
                         </v-row>
                     </div>
                     <br>
-                    <p>Sehubung dengan diskusi pada <span><input v-model="discussion_date" type="text"
-                                id="InputEmail" required></span> yang
-                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail"
-                                required></span>
+                    <p>Sehubung dengan diskusi pada <span>
+                     
+                         
+                                    <v-menu v-model="menu1" :close-on-content-click="false"
+                                        transition="scale-transition" offset-y full-width max-width="290px"
+                                        min-width="290px">
+                                        <template v-slot:activator="{ on }">
+                                            <input v-model="discussion_date" readonly v-on="on"/>
+                                        </template>
+                                        <v-date-picker v-model="date" no-title @input="menu2 = false"></v-date-picker>
+                                    </v-menu>
+                           
+                    
+                        </span> yang
+                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail" required></span>
                         dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
-                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text"
-                                id="InputEmail" required></span>
-                        ,- (<span><input  type="text" id="InputEmail"
-                                required></span>). </p>
+                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text" id="InputEmail"
+                                required></span>
+                        ,- (<span><input type="text" id="InputEmail" required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
                         <span><input v-model="duration" type="text" id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail" required></span>)
+                        (<span><input type="text" id="InputEmail" required></span>)
                         hari kerja.</p>
-                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text"
-                                id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail"
-                                required></span>) hari kalender sejak tanggal
+                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text" id="InputEmail"
+                                required></span>
+                        (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input
                                 v-model="attachmentname" type="text" id="InputEmail" required></span>
-                        (<span><input  type="text" id="InputEmail"
-                                required></span>) rangkap
+                        (<span><input type="text" id="InputEmail" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
@@ -165,7 +173,7 @@
                                 <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
                                 </v-btn>
                             </div>
-                          <!-- <ConfirmUpdateDocument :sts-update="sts"/> -->
+                            <!-- <ConfirmUpdateDocument :sts-update="sts"/> -->
                             <hr>
                         </div>
                     </v-card>
@@ -194,7 +202,7 @@ export default {
     CategoryAdd,
     ConfirmUpdateDocument
   },
-  data: () => ({
+  data: vm => ({
     nomor: "",
     sts: false,
     company: {
@@ -213,7 +221,11 @@ export default {
     categories: [],
     // list_subs: [],
     hidden: true,
-    hiddenSub: true
+    hiddenSub: true,
+
+    date: new Date().toISOString().substr(0, 10),
+    dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+    menu1: false
   }),
 
   methods: {
@@ -278,11 +290,6 @@ export default {
       console.log(this.categories);
     },
 
-    deleteCategory(categories, index) {
-      console.log(index);
-      categories.splice(index, 1);
-    },
-
     addSubCategory(cat_index) {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(
@@ -318,6 +325,38 @@ export default {
       );
     },
 
+    addSubCategory(cat_index) {
+      console.log("Addcat " + cat_index);
+      this.categories[cat_index].list_subs.push(
+        (this.sub_cat = {
+          id: "",
+          list_row: [
+            {
+              modul: "",
+              durasi: "",
+              satuan: "",
+              biaya: "",
+              ket: ""
+            }
+          ]
+        })
+      );
+      console.log(this.list_subs);
+      // this.list_subs[0].list_row.push("im here")
+    },
+    addRow(cat_index, index) {
+      console.log("Addrow");
+      this.categories[cat_index].list_subs[index].list_row.push(
+        (this.item = {
+          modul: "",
+          durasi: "",
+          satuan: "",
+          biaya: "",
+          ket: ""
+        })
+      );
+    },
+
     deleteItem(sub_cat, index_row) {
       // console.log(sub_cat.list_row)
       // console.log(index_row)
@@ -345,6 +384,18 @@ export default {
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0]);
       }
+    },
+    formatDate(date) {
+      if (!date) return null;
+
+      const [year, month, day] = date.split("-");
+      return `${month}/${day}/${year}`;
+    },
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
   },
   created() {
@@ -366,7 +417,10 @@ export default {
       "offerprice",
       "duration",
       "offerduetime"
-    ])
+    ]),
+    discussion_date() {
+      return this.formatDate(this.date);
+    }
   },
   watch: {
     categories: {
@@ -377,6 +431,9 @@ export default {
         this.$store.dispatch("updatepayloadData", newVal);
         // this.$store.commit("UPDATE_TIME_UPDATE_LOCAL");
       }
+    },
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date);
     }
   },
   props: ["document-data"]

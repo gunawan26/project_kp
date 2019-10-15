@@ -9,6 +9,7 @@ import App1 from '@/js/views/App1';
 import DokumenFile from '@/js/components/DokumenFile';
 import PageNotFound from '@/js/components/PageNotFound';
 import Navi from '@/js/components/Navi';
+import GeneratePDF from '@/js/components/GeneratePDF';
 
 
 import Logindev from '@/js/components/dev/Login';
@@ -71,6 +72,10 @@ const router = new Router({
         {
             path: '/dev/create-header',
             component: HeaderFile
+        },
+        {
+            path: '/generatepdf',
+            component: GeneratePDF
         }
         // {
         //     path: "*",
