@@ -19,4 +19,16 @@ class Offer extends Model
         'attachmentname',
         'user'
     ];
+
+    public function document()
+    {
+        return $this->hasManyThrough(
+            'App\Category',
+            'App\Subcategory',
+            'App\Detitem',
+            'offer_id',
+            'id_category',
+            'subcategory'
+        );
+    }
 }

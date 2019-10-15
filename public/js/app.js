@@ -2998,6 +2998,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_CategoryAdd_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/components/CategoryAdd.vue */ "./resources/js/components/CategoryAdd.vue");
 /* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
 /* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+var _methods;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3242,7 +3244,7 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
       menu1: false
     };
   },
-  methods: {
+  methods: (_methods = {
     setStatusUpdate: function setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
@@ -3296,10 +3298,6 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
       });
       console.log(this.categories);
     },
-    deleteCategory: function deleteCategory(categories, index) {
-      console.log(index);
-      categories.splice(index, 1);
-    },
     addSubCategory: function addSubCategory(cat_index) {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(this.sub_cat = {
@@ -3326,59 +3324,65 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
         ket: "",
         id_row: ""
       });
-    },
-    deleteItem: function deleteItem(sub_cat, index_row) {
-      // console.log(sub_cat.list_row)
-      // console.log(index_row)
-      sub_cat.list_row.splice(index_row, 1);
-    },
-    deleteSub: function deleteSub(category, index) {
-      console.log(index);
-      category.list_subs.splice(index, 1);
-    },
-    previewImage: function previewImage(event) {
-      var _this2 = this;
-
-      // Reference to the DOM input element
-      var input = event.target; // Ensure that you have a file before attempting to read it
-
-      if (input.files && input.files[0]) {
-        // create a new FileReader to read this image and convert to base64 format
-        var reader = new FileReader(); // Define a callback function to run, when FileReader finishes its job
-
-        reader.onload = function (e) {
-          // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
-          // Read image as base64 and set to imageData
-          _this2.imageData = e.target.result;
-        }; // Start the reader job - read file as a data url (base64 format)
-
-
-        reader.readAsDataURL(input.files[0]);
-      }
-    },
-    formatDate: function formatDate(date) {
-      if (!date) return null;
-
-      var _date$split = date.split('-'),
-          _date$split2 = _slicedToArray(_date$split, 3),
-          year = _date$split2[0],
-          month = _date$split2[1],
-          day = _date$split2[2];
-
-      return "".concat(month, "/").concat(day, "/").concat(year);
-    },
-    parseDate: function parseDate(date) {
-      if (!date) return null;
-
-      var _date$split3 = date.split('/'),
-          _date$split4 = _slicedToArray(_date$split3, 3),
-          month = _date$split4[0],
-          day = _date$split4[1],
-          year = _date$split4[2];
-
-      return "".concat(year, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
     }
-  },
+  }, _defineProperty(_methods, "addRow", function addRow(cat_index, index) {
+    console.log("Addrow");
+    this.categories[cat_index].list_subs[index].list_row.push(this.item = {
+      modul: "",
+      durasi: "",
+      satuan: "",
+      biaya: "",
+      ket: ""
+    });
+  }), _defineProperty(_methods, "deleteCategory", function deleteCategory(categories, index) {
+    categories.splice(index, 1);
+  }), _defineProperty(_methods, "deleteItem", function deleteItem(sub_cat, index_row) {
+    // console.log(sub_cat.list_row)
+    // console.log(index_row)
+    sub_cat.list_row.splice(index_row, 1);
+  }), _defineProperty(_methods, "deleteSub", function deleteSub(category, index) {
+    console.log(index);
+    category.list_subs.splice(index, 1);
+  }), _defineProperty(_methods, "previewImage", function previewImage(event) {
+    var _this2 = this;
+
+    // Reference to the DOM input element
+    var input = event.target; // Ensure that you have a file before attempting to read it
+
+    if (input.files && input.files[0]) {
+      // create a new FileReader to read this image and convert to base64 format
+      var reader = new FileReader(); // Define a callback function to run, when FileReader finishes its job
+
+      reader.onload = function (e) {
+        // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+        // Read image as base64 and set to imageData
+        _this2.imageData = e.target.result;
+      }; // Start the reader job - read file as a data url (base64 format)
+
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }), _defineProperty(_methods, "formatDate", function formatDate(date) {
+    if (!date) return null;
+
+    var _date$split = date.split("-"),
+        _date$split2 = _slicedToArray(_date$split, 3),
+        year = _date$split2[0],
+        month = _date$split2[1],
+        day = _date$split2[2];
+
+    return "".concat(month, "/").concat(day, "/").concat(year);
+  }), _defineProperty(_methods, "parseDate", function parseDate(date) {
+    if (!date) return null;
+
+    var _date$split3 = date.split("/"),
+        _date$split4 = _slicedToArray(_date$split3, 3),
+        month = _date$split4[0],
+        day = _date$split4[1],
+        year = _date$split4[2];
+
+    return "".concat(year, "-").concat(month.padStart(2, "0"), "-").concat(day.padStart(2, "0"));
+  }), _methods),
   created: function created() {
     this.addCategory();
     this.loadHeaderAPI();
@@ -101004,8 +101008,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\project_kp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\new_kp\project_kp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\new_kp\project_kp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

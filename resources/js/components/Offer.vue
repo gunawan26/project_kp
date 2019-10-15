@@ -325,25 +325,6 @@ export default {
       );
     },
 
-    addSubCategory(cat_index) {
-      console.log("Addcat " + cat_index);
-      this.categories[cat_index].list_subs.push(
-        (this.sub_cat = {
-          id: "",
-          list_row: [
-            {
-              modul: "",
-              durasi: "",
-              satuan: "",
-              biaya: "",
-              ket: ""
-            }
-          ]
-        })
-      );
-      console.log(this.list_subs);
-      // this.list_subs[0].list_row.push("im here")
-    },
     addRow(cat_index, index) {
       console.log("Addrow");
       this.categories[cat_index].list_subs[index].list_row.push(
@@ -356,7 +337,9 @@ export default {
         })
       );
     },
-
+    deleteCategory(categories, index) {
+      categories.splice(index, 1);
+    },
     deleteItem(sub_cat, index_row) {
       // console.log(sub_cat.list_row)
       // console.log(index_row)
