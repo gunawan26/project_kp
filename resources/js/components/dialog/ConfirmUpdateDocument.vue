@@ -44,6 +44,9 @@ export default {
       dialog: false
     };
   },
+  mounted(){
+    this.dialog = false;
+  },
   methods: {
     IsUpdating(stsUpdate) {
       this.dialog = stsUpdate;

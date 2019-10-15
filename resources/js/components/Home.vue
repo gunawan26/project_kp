@@ -54,10 +54,10 @@
                                 <v-icon>mdi-delete</v-icon>
                             </v-btn>
                             <v-btn rounded outlined class="d-none d-sm-flex">Delete</v-btn>
-                            <v-btn class="d-flex d-sm-none ml-2" rounded outlined>
+                            <v-btn class="d-flex d-sm-none ml-2" rounded outlined  v-on:click="continueDokumen(doc.id)">
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
-                            <v-btn rounded outlined class="d-none d-sm-flex ml-2">Continue</v-btn>
+                            <v-btn rounded outlined class="d-none d-sm-flex ml-2" v-on:click="continueDokumen(doc.id)">Continue</v-btn>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -130,10 +130,18 @@ export default {
         .get(url)
         .then(response => {
           this.docs = response.data;
+          console.log("document",this.docs.data)
         })
         .catch(errors => {
           console.error(errors);
         });
+    },
+    continueDokumen(id){
+      (this.loadingSubmit = false),
+        this.$router.push({
+          path: `/offer-document/${id}`
+        });
+  
     }
   }
 };
