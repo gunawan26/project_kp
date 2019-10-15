@@ -30,7 +30,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+
             <!-- <button type="button" onClick="window.print()" style="background: pink">
                 PRINT ME!
             </button> -->
@@ -64,7 +64,7 @@
                                             <span>Nomor</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>: {{doc.number}}</span>
+                                            <span>: {{number}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -72,12 +72,12 @@
                                             <span>Lampiran</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>: {{doc.attachmentname}}</span>
+                                            <span>: {{attachmentname}}</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" style="padding-top:20px; padding-bottom: 5px;">
-                                            <span>Yth. {{doc.customername}}</span>
+                                            <span>Yth. {{customername}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -97,7 +97,7 @@
                                             <span>Perihal</span>
                                         </td>
                                         <td style="padding-bottom: 5px;">
-                                            <span>: {{doc.subject}}</span>
+                                            <span>: {{subject}}</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -108,12 +108,9 @@
                                     <tr>
                                         <td>
                                             <p style="text-indent: 50px;">Sehubungan dengan Diskusi pada
-                                                {{doc.discussion_date}}, yang bertempat di {{doc.discussion_loc}},
-                                                dengan ini kami mengajukan penawaran untuk pekerjaan {{doc.subject}}
-                                                sebesar Rp. {{doc.offerprice}},- ([Lima Puluh Satu
-                                                Juta
-                                                Delapan
-                                                Ratus Ribu Rupiah]).</p>
+                                                {{discussion_date}}, yang bertempat di {{discussion_loc}},
+                                                dengan ini kami mengajukan penawaran untuk pekerjaan {{subject}}
+                                                sebesar Rp. {{offerprice}},- ({{offerpricename}}).</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -128,12 +125,12 @@
                                         <td>
                                             <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan
                                                 pekerjaan selama
-                                                {{doc.duration}} ([Seratus Sembilan Belas]) hari kerja.</p>
+                                                {{duration}} ({{durationname}}) hari kerja.</p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p>Penawaran ini berlaku selama {{doc.offerduetime}} ([tiga puluh]) hari
+                                            <p>Penawaran ini berlaku selama {{offerduetime}} ({{offerduetimename}}) hari
                                                 kalender sejak
                                                 tanggal
                                                 surat penawaran ini.</p>
@@ -142,7 +139,7 @@
                                     <tr>
                                         <td>
                                             <p>Surat Penawaran beserta lampirannya kami sampaikan sebanyak
-                                                {{doc.attachmentname}} ([satu])
+                                                {{attachmentname}} ({{attachment}})
                                                 rangkap
                                                 dokumen.</p>
                                         </td>
@@ -188,12 +185,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="font-size: 24px;">
-                                        <span>Yth.{{doc.customername}}</span>
+                                        <span>Yth.{{customername}}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <span>perihal: {{doc.subject}}</span>
+                                        <span>perihal: {{subject}}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -317,19 +314,9 @@
                 </tr>
             </tbody>
         </table>
-        <v-btn
-                color="pink"
-                dark
-                large
-                fixed
-                bottom
-                right
-                fab
-
-                @click="print"
-              >
-                <v-icon>mdi-printer</v-icon>
-              </v-btn>
+        <v-btn color="pink" dark large fixed bottom right fab @click="print">
+            <v-icon>mdi-printer</v-icon>
+        </v-btn>
     </div>
 </template>
 
@@ -350,34 +337,39 @@
                     email: "",
                     logo: ""
                 },
-                doc: {
-                    number: "",
-                    attachmentname: "",
-                    customername: "",
-                    subject: "",
-                    discussion_date: "",
-                    discussion_loc: "",
-                    offerprice: "",
-                    duration: "",
-                    offerduetime: "",
-                    created_at: "",
-                },
-                categories: []
+                
+                number: "",
+                attachmentname: "",
+                customername: "",
+                subject: "",
+                discussion_date: "",
+                discussion_loc: "",
+                offerprice: "",
+                duration: "",
+                offerduetime: "",
+                created_at: "",
+
+                offerpricename: "",
+                offerduetimename: "",
+                durationname: "",
+                attachment: "",
+                
+                categories: [],
             }
         },
         methods: {
             loadDokumendata() {
                 let data = this.$store.getters.getDocumentData;
-                this.doc.number = data.number;
-                this.doc.attachmentname = data.attachmentname;
-                this.doc.customername = data.customername;
-                this.doc.subject = data.subject;
-                this.doc.discussion_date = data.discussion_date;
-                this.doc.discussion_loc = data.discussion_loc;
-                this.doc.offerprice = data.offerprice;
-                this.doc.duration = data.duration;
-                this.doc.offerduetime = data.offerduetime;
-                this.doc.created_at = data.created_at;
+                this.number = data.number;
+                this.attachmentname = data.attachmentname;
+                this.customername = data.customername;
+                this.subject = data.subject;
+                this.discussion_date = data.discussion_date;
+                this.discussion_loc = data.discussion_loc;
+                this.offerprice = data.offerprice;
+                this.duration = data.duration;
+                this.offerduetime = data.offerduetime;
+                this.created_at = data.created_at;
                 console.log("Load Dokumen", this.$store.getters.getDocumentData);
             },
             loadHeaderAPI() {
@@ -402,8 +394,89 @@
                 this.categories = localPayload;
                 console.log("categories", this.categories);
             },
-            print(){
+            print() {
                 window.print();
+            },
+            terbilang(val) {
+                var bilangan = val
+                var kalimat = "";
+                var subkalimat;
+                var kata1;
+                var kata2;
+                var kata3;
+                var angka = new Array('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+                var kata = new Array('', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan',
+                    'Sembilan');
+                var tingkat = new Array('', 'Ribu', 'Juta', 'Milyar', 'Triliun');
+                var panjang_bilangan = bilangan.length;
+
+                /* pengujian panjang bilangan */
+                if (panjang_bilangan > 15) {
+                    kalimat = "Diluar Batas";
+                } else {
+                    /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+                    for (i = 1; i <= panjang_bilangan; i++) {
+                        angka[i] = bilangan.substr(-(i), 1);
+                    }
+
+                    var i = 1;
+                    var j = 0;
+
+                    /* mulai proses iterasi terhadap array angka */
+                    while (i <= panjang_bilangan) {
+                        subkalimat = "";
+                        kata1 = "";
+                        kata2 = "";
+                        kata3 = "";
+
+                        /* untuk Ratusan */
+                        if (angka[i + 2] != "0") {
+                            if (angka[i + 2] == "1") {
+                                kata1 = "Seratus";
+                            } else {
+                                kata1 = kata[angka[i + 2]] + " Ratus";
+                            }
+                        }
+
+                        /* untuk Puluhan atau Belasan */
+                        if (angka[i + 1] != "0") {
+                            if (angka[i + 1] == "1") {
+                                if (angka[i] == "0") {
+                                    kata2 = "Sepuluh";
+                                } else if (angka[i] == "1") {
+                                    kata2 = "Sebelas";
+                                } else {
+                                    kata2 = kata[angka[i]] + " Belas";
+                                }
+                            } else {
+                                kata2 = kata[angka[i + 1]] + " Puluh";
+                            }
+                        }
+
+                        /* untuk Satuan */
+                        if (angka[i] != "0") {
+                            if (angka[i + 1] != "1") {
+                                kata3 = kata[angka[i]];
+                            }
+                        }
+
+                        /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+                        if ((angka[i] != "0") || (angka[i + 1] != "0") || (angka[i + 2] != "0")) {
+                            subkalimat = kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+                        }
+
+                        /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+                        kalimat = subkalimat + kalimat;
+                        i = i + 3;
+                        j = j + 1;
+                    }
+
+                    /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+                    if ((angka[5] == "0") && (angka[6] == "0")) {
+                        kalimat = kalimat.replace("Satu Ribu", "Seribu");
+                    }
+                }
+                return kalimat;
             }
         },
         mounted() {
@@ -411,12 +484,27 @@
             this.loadHeaderAPI();
             this.loadDokumendata();
             this.loadPayload();
-        }, computed:{
-            timestamp(){
+        },
+        computed: {
+            timestamp() {
                 return moment().locale("id", localization).format('LL')
             },
-            created_at(){
-                return moment(String(this.doc.created_at)).locale("id", localization).format('LL')
+            created_at() {
+                return moment(String(this.created_at)).locale("id", localization).format('LL')
+            }
+        },
+        watch:{
+            offerprice: function (val) {
+                this.offerpricename = this.terbilang(val);
+            },
+            offerduetime: function (val) {
+                this.offerduetimename = this.terbilang(val);
+            },
+            duration: function (val) {
+                this.durationname = this.terbilang(val);
+            },
+            attachmentname: function (val) {
+                this.attachment = this.terbilang(val);
             }
         }
     }
@@ -456,8 +544,8 @@
         top: 0mm;
         width: 100%;
         background: white;
-        width: 100%; 
-        border-bottom: 2px solid #4a7ebb; 
+        width: 100%;
+        border-bottom: 2px solid #4a7ebb;
         margin-bottom: 10px;
     }
 

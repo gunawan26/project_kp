@@ -95,30 +95,27 @@
                             <v-icon>mdi-clipboard-outline</v-icon><input v-model="subject" type="text" id="InputEmail"
                                 required>
                         </span> sebesar Rp. <span>
-                            <v-icon>mdi-currency-usd</v-icon><input v-model="offerprice" type="text" id="InputEmail"
-                                required>
+                            <input v-model="offerprice" type="text" required>
                         </span>
-                        ,- (<span><input type="text" id="InputEmail" required></span>). </p>
+                        ,- (<span><input type="text" v-model="offerpricename" required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
                         <span>
-                            <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" id="InputEmail"
-                                required>
+                            <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>)
+                        (<span><input type="text" v-model="durationname" required></span>)
                         hari kerja.</p>
                     <p>Penawaran ini berlaku selama <span>
-                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" id="InputEmail"
-                                required>
+                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
+                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak
+                        tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span>
-                            <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
-                                required>
+                            <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>) rangkap
+                        (<span><input type="text" v-model="attachment" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
@@ -249,6 +246,10 @@
             date: new Date().toISOString().substr(0, 10),
             dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
             menu1: false,
+            offerpricename: "",
+            offerduetimename: "",
+            durationname: "",
+            attachment:"",
 
 
         }),
@@ -383,6 +384,88 @@
                 const [month, day, year] = date.split('/')
                 return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
             },
+
+            terbilang(val) {
+                var bilangan = val
+                var kalimat = "";
+                var subkalimat;
+                var kata1;
+                var kata2;
+                var kata3;
+                var angka = new Array('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+                var kata = new Array('', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan',
+                    'Sembilan');
+                var tingkat = new Array('', 'Ribu', 'Juta', 'Milyar', 'Triliun');
+                var panjang_bilangan = bilangan.length;
+
+                /* pengujian panjang bilangan */
+                if (panjang_bilangan > 15) {
+                    kalimat = "Diluar Batas";
+                } else {
+                    /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+                    for (i = 1; i <= panjang_bilangan; i++) {
+                        angka[i] = bilangan.substr(-(i), 1);
+                    }
+
+                    var i = 1;
+                    var j = 0;
+
+                    /* mulai proses iterasi terhadap array angka */
+                    while (i <= panjang_bilangan) {
+                        subkalimat = "";
+                        kata1 = "";
+                        kata2 = "";
+                        kata3 = "";
+
+                        /* untuk Ratusan */
+                        if (angka[i + 2] != "0") {
+                            if (angka[i + 2] == "1") {
+                                kata1 = "Seratus";
+                            } else {
+                                kata1 = kata[angka[i + 2]] + " Ratus";
+                            }
+                        }
+
+                        /* untuk Puluhan atau Belasan */
+                        if (angka[i + 1] != "0") {
+                            if (angka[i + 1] == "1") {
+                                if (angka[i] == "0") {
+                                    kata2 = "Sepuluh";
+                                } else if (angka[i] == "1") {
+                                    kata2 = "Sebelas";
+                                } else {
+                                    kata2 = kata[angka[i]] + " Belas";
+                                }
+                            } else {
+                                kata2 = kata[angka[i + 1]] + " Puluh";
+                            }
+                        }
+
+                        /* untuk Satuan */
+                        if (angka[i] != "0") {
+                            if (angka[i + 1] != "1") {
+                                kata3 = kata[angka[i]];
+                            }
+                        }
+
+                        /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+                        if ((angka[i] != "0") || (angka[i + 1] != "0") || (angka[i + 2] != "0")) {
+                            subkalimat = kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+                        }
+
+                        /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+                        kalimat = subkalimat + kalimat;
+                        i = i + 3;
+                        j = j + 1;
+                    }
+
+                    /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+                    if ((angka[5] == "0") && (angka[6] == "0")) {
+                        kalimat = kalimat.replace("Satu Ribu", "Seribu");
+                    }
+                }
+                return kalimat;
+            }
         },
         created() {
             this.addCategory();
@@ -421,6 +504,18 @@
             date(val) {
                 this.dateFormatted = this.formatDate(this.date)
             },
+            offerprice: function (val) {
+                this.offerpricename = this.terbilang(val);
+            },
+            offerduetime: function (val) {
+                this.offerduetimename = this.terbilang(val);
+            },
+            duration: function (val) {
+                this.durationname = this.terbilang(val);
+            },
+            attachmentname: function (val) {
+                this.attachment = this.terbilang(val);
+            }
         },
         props: ["document-data"]
     };
@@ -437,9 +532,9 @@
     #signature {
         margin-left: 75%;
         text-align: center;
-        border:1px dashed #00f; 
-        width:200px; 
-        height:50px;
+        border: 1px dashed #00f;
+        width: 200px;
+        height: 50px;
     }
 
     input {
