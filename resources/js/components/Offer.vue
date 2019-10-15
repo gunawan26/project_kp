@@ -42,15 +42,15 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="number" text clearable hint="For example, 22/DART/QTT/2019"
-                                    label="Nomor Surat"></v-text-field>
+                                <v-text-field v-model="number" prepend-icon="mdi-format-list-bulleted" text clearable
+                                    hint="For example, 22/DART/QTT/2019" label="Nomor Surat"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="attachmentname" text clearable
+                                <v-text-field v-model="attachmentname" prepend-icon="mdi-attachment" text clearable
                                     hint="For example, 1 (satu) lembar" label="Lampiran Surat"></v-text-field>
                             </v-col>
                         </v-row>
@@ -58,15 +58,15 @@
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="customername" text clearable hint="For example, Edi"
-                                    label="Kepada"></v-text-field>
+                                <v-text-field v-model="customername" prepend-icon="mdi-account" text clearable
+                                    hint="For example, Edi" label="Kepada"></v-text-field>
                             </v-col>
                         </v-row>
                     </div>
                     <div>
                         <v-row align-center>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field v-model="subject" text clearable
+                                <v-text-field v-model="subject" text clearable prepend-icon="mdi-clipboard-outline"
                                     hint="For example, Penawaran Pekerjaan Pengembangan Web Sistem"
                                     label="Prihal Surat"></v-text-field>
                             </v-col>
@@ -74,52 +74,69 @@
                     </div>
                     <br>
                     <p>Sehubung dengan diskusi pada <span>
-                     
-                         
-                                    <v-menu v-model="menu1" :close-on-content-click="false"
-                                        transition="scale-transition" offset-y full-width max-width="290px"
-                                        min-width="290px">
-                                        <template v-slot:activator="{ on }">
-                                            <input v-model="discussion_date" readonly v-on="on"/>
-                                        </template>
-                                        <v-date-picker v-model="date" no-title @input="menu2 = false"></v-date-picker>
-                                    </v-menu>
-                           
-                    
+                            <v-icon>mdi-calendar</v-icon>
+
+
+                            <v-menu v-model="menu1" :close-on-content-click="false" transition="scale-transition"
+                                offset-y full-width max-width="290px" min-width="290px">
+                                <template v-slot:activator="{ on }">
+                                    <input v-model="discussion_date" readonly v-on="on" />
+                                </template>
+                                <v-date-picker v-model="date" no-title @input="menu2 = false"></v-date-picker>
+                            </v-menu>
+
+
                         </span> yang
-                        bertempat di <span><input v-model="discussion_loc" type="text" id="InputEmail" required></span>
-                        dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /
-                        Aplikasi Survei Sebersar Rp. <span><input v-model="offerprice" type="text" id="InputEmail"
-                                required></span>
+                        bertempat di <span>
+                            <v-icon>mdi-map-marker</v-icon><input v-model="discussion_loc" type="text" id="InputEmail"
+                                required>
+                        </span>
+                        dengan ini kami mengajukan penawaran untuk pekerjaan <span>
+                            <v-icon>mdi-clipboard-outline</v-icon><input v-model="subject" type="text" id="InputEmail"
+                                required>
+                        </span> sebesar Rp. <span>
+                            <v-icon>mdi-currency-usd</v-icon><input v-model="offerprice" type="text" id="InputEmail"
+                                required>
+                        </span>
                         ,- (<span><input type="text" id="InputEmail" required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
-                        <span><input v-model="duration" type="text" id="InputEmail" required></span>
+                        <span>
+                            <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" id="InputEmail"
+                                required>
+                        </span>
                         (<span><input type="text" id="InputEmail" required></span>)
                         hari kerja.</p>
-                    <p>Penawaran ini berlaku selama <span><input v-model="offerduetime" type="text" id="InputEmail"
-                                required></span>
+                    <p>Penawaran ini berlaku selama <span>
+                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" id="InputEmail"
+                                required>
+                        </span>
                         (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
-                        surat penawaran beserta lampirannya kami sampaikan sebanyak <span><input
-                                v-model="attachmentname" type="text" id="InputEmail" required></span>
+                        surat penawaran beserta lampirannya kami sampaikan sebanyak <span>
+                            <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
+                                required>
+                        </span>
                         (<span><input type="text" id="InputEmail" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
                     <br>
                     <p style="margin-left:80%">Hormat kami</p>
-                    <img id="signature" src="@/images/tiny-checkers.png" alt="">
+                    <div id="signature">
+                        Sign Here
+                    </div>
+                    <!-- <img id="signature" src="@/images/tiny-checkers.png" alt=""> -->
                 </form>
             </v-container>
             <div class="card-header">
+                <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
                 <div v-for="(category,cat_index) in categories" v-bind:key="cat_index" v-on:remove="deleteCategory()">
                     <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(categories,cat_index)"
                         large color="red" icon>
                         <v-icon>mdi-close-circle-outline</v-icon>
                     </v-btn>
-                    <confirm-update-document :update-status="isUpdateFromLocal" @update="setStatusUpdate" />
                     <v-card class="pa-10 mt-10">
                         <v-text-field label="Nama Kategori" v-model.lazy="category.title"></v-text-field>
                         <v-row class="font-weight-bold">
@@ -430,11 +447,25 @@ export default {
   height: 150px;
 }
 
+<<<<<<< HEAD
 #signature {
   margin-left: 77%;
   width: 150px;
   height: 100px;
 }
+=======
+    #signature {
+        margin-left: 75%;
+        text-align: center;
+        border:1px dashed #00f; 
+        width:200px; 
+        height:50px;
+    }
+
+    input {
+        border-bottom: 1px solid #7e7a7a;
+    }
+>>>>>>> c15c9fdb897d51b6509f27d1eaad0cc033fd9653
 
 input {
   border-bottom: 1px solid #7e7a7a;

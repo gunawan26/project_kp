@@ -75,6 +75,7 @@ const router = new Router({
         },
         {
             path: '/generatepdf',
+            name: 'generatepdf',
             component: GeneratePDF
         }
         // {

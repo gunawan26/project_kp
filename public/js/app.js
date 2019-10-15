@@ -2013,6 +2013,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2088,10 +2090,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_helpers_headerFile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers/headerFile */ "./resources/js/helpers/headerFile.js");
-//
-//
-//
-//
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'moment/locale/id'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 //
 //
 //
@@ -2428,6 +2428,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2450,7 +2452,8 @@ __webpack_require__.r(__webpack_exports__);
         duration: "",
         offerduetime: "",
         created_at: ""
-      }
+      },
+      categories: []
     };
   },
   methods: {
@@ -2484,11 +2487,29 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log("err data tidak masuk", err);
       });
+    },
+    loadPayload: function loadPayload() {
+      var localPayload = JSON.parse(this.$store.getters.getDataPayload);
+      this.categories = localPayload;
+      console.log("categories", this.categories);
+    },
+    print: function print() {
+      window.print();
     }
   },
   mounted: function mounted() {
-    this.loadDokumendata();
+    this.$store.commit("RESET_UPDATE");
     this.loadHeaderAPI();
+    this.loadDokumendata();
+    this.loadPayload();
+  },
+  computed: {
+    timestamp: function timestamp() {
+      return !(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())().locale("id", !(function webpackMissingModule() { var e = new Error("Cannot find module 'moment/locale/id'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())).format('LL');
+    },
+    created_at: function created_at() {
+      return !(function webpackMissingModule() { var e = new Error("Cannot find module 'moment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(String(this.doc.created_at)).locale("id", !(function webpackMissingModule() { var e = new Error("Cannot find module 'moment/locale/id'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())).format('LL');
+    }
   }
 });
 
@@ -2716,8 +2737,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$authAPI.get(url).then(function (response) {
         _this2.docs = response.data;
+        console.log("document", _this2.docs.data);
       })["catch"](function (errors) {
         console.error(errors);
+      });
+    },
+    continueDokumen: function continueDokumen(id) {
+      this.loadingSubmit = false, this.$router.push({
+        path: "/offer-document/".concat(id)
       });
     }
   }
@@ -3014,6 +3041,23 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3863,6 +3907,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dialog: false
     };
+  },
+  mounted: function mounted() {
+    this.dialog = false;
   },
   methods: {
     IsUpdating: function IsUpdating(stsUpdate) {
@@ -8836,17 +8883,9 @@ exports.push([module.i, "#navbarSupportedContent {\n  margin-right: 10%;\n}\n.na
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Offer.vue?vue&type=style&index=0&id=463e0501&lang=scss&scoped=true& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "#logo[data-v-463e0501] {\n  width: 150px;\n  height: 150px;\n}\n#signature[data-v-463e0501] {\n  margin-left: 77%;\n  width: 150px;\n  height: 100px;\n}\ninput[data-v-463e0501] {\n  border-bottom: 1px solid #7e7a7a;\n}", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\n\r\n<<<<<<< HEAD\r\n^\r\n      Expected selector.\n    ╷\n450 │ <<<<<<< HEAD\r\n    │ ^\n    ╵\n  stdin 450:1  root stylesheet\r\n      in D:\\new_kp\\project_kp\\resources\\js\\components\\Offer.vue (line 450, column 1)");
 
 /***/ }),
 
@@ -8900,7 +8939,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Styles go here */\n#pdf[data-v-876d78bc] {\n    background-color: white !important;\n}\n.page-header[data-v-876d78bc],\n.page-header-space[data-v-876d78bc] {\n    height: 100px;\n}\n.page-footer[data-v-876d78bc],\n.page-footer-space[data-v-876d78bc] {\n    height: 50px;\n}\n.page-footer[data-v-876d78bc] {\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    border-top: 1px solid black;\n    /* for demo */\n    background: yellow;\n    /* for demo */\n}\n.page-header[data-v-876d78bc] {\n    position: fixed;\n    top: 0mm;\n    width: 100%;\n    background: white;\n}\n.page[data-v-876d78bc] {\n    page-break-after: always;\n}\n@page {\n    margin: 20mm\n}\n@media print {\nthead[data-v-876d78bc] {\n        display: table-header-group;\n}\ntfoot[data-v-876d78bc] {\n        display: table-footer-group;\n}\nbutton[data-v-876d78bc] {\n        display: none;\n}\nbody[data-v-876d78bc] {\n        margin: 0;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Styles go here */\n#pdf[data-v-876d78bc] {\n    background-color: white !important;\n}\n.page-header[data-v-876d78bc],\n.page-header-space[data-v-876d78bc] {\n    height: 100px;\n}\n.page-footer[data-v-876d78bc],\n.page-footer-space[data-v-876d78bc] {\n    height: 50px;\n}\n.page-footer[data-v-876d78bc] {\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    border-top: 1px solid black;\n    /* for demo */\n    background: yellow;\n    /* for demo */\n}\n.page-header[data-v-876d78bc] {\n    position: fixed;\n    top: 0mm;\n    width: 100%;\n    background: white;\n    width: 100%; \n    border-bottom: 2px solid #4a7ebb; \n    margin-bottom: 10px;\n}\n.page[data-v-876d78bc] {\n    page-break-after: always;\n}\n@page {\n    margin: 20mm\n}\n@media print {\nthead[data-v-876d78bc] {\n        display: table-header-group;\n}\ntfoot[data-v-876d78bc] {\n        display: table-footer-group;\n}\nbutton[data-v-876d78bc] {\n        display: none;\n}\nbody[data-v-876d78bc] {\n        margin: 0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -41148,247 +41187,640 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "pdf" } }, [
-    _c("div", { staticClass: "page-header" }, [
-      _c(
-        "table",
-        {
-          staticStyle: { width: "100%", "border-bottom": "2px solid #4a7ebb" },
-          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-        },
-        [
-          _c("tbody", [
-            _c("tr", [
-              _c("td", { staticStyle: { "vertical-align": "bottom" } }, [
-                _c(
-                  "table",
-                  { staticStyle: { "font-size": "14px", color: "#000" } },
-                  [
-                    _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          staticStyle: {
-                            color: "#2496b8",
-                            "font-size": "24px",
-                            "font-weight": "bold"
-                          }
-                        },
-                        [_c("span", [_vm._v(_vm._s(_vm.company.name))])]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [
-                        _c("span", [_vm._v(_vm._s(_vm.company.address))])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [
-                        _c("span", [
-                          _vm._v(
-                            "Hp. " +
-                              _vm._s(_vm.company.number) +
-                              " | Website: " +
-                              _vm._s(_vm.company.website) +
-                              " | Email:\n                                        " +
-                              _vm._s(_vm.company.email)
-                          )
+  return _c(
+    "div",
+    { attrs: { id: "pdf" } },
+    [
+      _c("div", { staticClass: "page-header" }, [
+        _c(
+          "table",
+          { attrs: { width: "100%", cellspacing: "0", cellpadding: "0" } },
+          [
+            _c("tbody", [
+              _c("tr", [
+                _c("td", { staticStyle: { "vertical-align": "center" } }, [
+                  _c(
+                    "table",
+                    { staticStyle: { "font-size": "14px", color: "#000" } },
+                    [
+                      _c("tr", [
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              color: "#2496b8",
+                              "font-size": "24px",
+                              "font-weight": "bold"
+                            }
+                          },
+                          [_c("span", [_vm._v(_vm._s(_vm.company.name))])]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [
+                          _c("span", [_vm._v(_vm._s(_vm.company.address))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [
+                          _c("span", [
+                            _vm._v(
+                              "Hp. " +
+                                _vm._s(_vm.company.number) +
+                                " | Website: " +
+                                _vm._s(_vm.company.website) +
+                                " | Email:\n                                        " +
+                                _vm._s(_vm.company.email)
+                            )
+                          ])
                         ])
                       ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [
+              _c("div", { staticClass: "page" }, [
+                _c(
+                  "table",
+                  {
+                    staticStyle: {
+                      width: "100%",
+                      "padding-bottom": "20px",
+                      "font-size": "18px",
+                      "padding-top": "10px"
+                    },
+                    attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+                  },
+                  [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "padding-bottom": "5px",
+                              "text-align": "right"
+                            },
+                            attrs: { colspan: "2" }
+                          },
+                          [
+                            _c("span", [
+                              _vm._v("Denpasar, " + _vm._s(_vm.created_at))
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                          _c("span", [_vm._v(": " + _vm._s(_vm.doc.number))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                          _c("span", [
+                            _vm._v(": " + _vm._s(_vm.doc.attachmentname))
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "padding-top": "20px",
+                              "padding-bottom": "5px"
+                            },
+                            attrs: { colspan: "2" }
+                          },
+                          [
+                            _c("span", [
+                              _vm._v("Yth. " + _vm._s(_vm.doc.customername))
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
+                          _c("span", [_vm._v(": " + _vm._s(_vm.doc.subject))])
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticStyle: { width: "100%", "padding-bottom": "20px" },
+                    attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+                  },
+                  [
+                    _c(
+                      "tbody",
+                      {
+                        staticStyle: {
+                          "font-size": "18px",
+                          "text-align": "justify"
+                        }
+                      },
+                      [
+                        _c("tr", [
+                          _c("td", [
+                            _c(
+                              "p",
+                              { staticStyle: { "text-indent": "50px" } },
+                              [
+                                _vm._v(
+                                  "Sehubungan dengan Diskusi pada\n                                            " +
+                                    _vm._s(_vm.doc.discussion_date) +
+                                    ", yang bertempat di " +
+                                    _vm._s(_vm.doc.discussion_loc) +
+                                    ",\n                                            dengan ini kami mengajukan penawaran untuk pekerjaan " +
+                                    _vm._s(_vm.doc.subject) +
+                                    "\n                                            sebesar Rp. " +
+                                    _vm._s(_vm.doc.offerprice) +
+                                    ",- ([Lima Puluh Satu\n                                            Juta\n                                            Delapan\n                                            Ratus Ribu Rupiah])."
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(7),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [
+                            _c("p", [
+                              _vm._v(
+                                "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan\n                                            pekerjaan selama\n                                            " +
+                                  _vm._s(_vm.doc.duration) +
+                                  " ([Seratus Sembilan Belas]) hari kerja."
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [
+                            _c("p", [
+                              _vm._v(
+                                "Penawaran ini berlaku selama " +
+                                  _vm._s(_vm.doc.offerduetime) +
+                                  " ([tiga puluh]) hari\n                                            kalender sejak\n                                            tanggal\n                                            surat penawaran ini."
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [
+                            _c("p", [
+                              _vm._v(
+                                "Surat Penawaran beserta lampirannya kami sampaikan sebanyak\n                                            " +
+                                  _vm._s(_vm.doc.attachmentname) +
+                                  " ([satu])\n                                            rangkap\n                                            dokumen."
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(8)
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticStyle: {
+                      width: "100%",
+                      "text-align": "right",
+                      padding: "0"
+                    },
+                    attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
+                  },
+                  [
+                    _c("tbody", [
+                      _c("tr", { staticStyle: { "font-size": "20px" } }, [
+                        _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                          _vm._v(
+                            "\n                                        " +
+                              _vm._s(_vm.timestamp) +
+                              "\n                                    "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(9)
                     ])
                   ]
                 )
               ]),
               _vm._v(" "),
-              _vm._m(0)
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("br")
-    ]),
-    _vm._v(" "),
-    _c("table", [
-      _vm._m(1),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [
-            _c("div", { staticClass: "page" }, [
               _c(
-                "table",
-                {
-                  staticStyle: {
-                    width: "100%",
-                    "padding-bottom": "20px",
-                    "font-size": "18px",
-                    "padding-top": "10px"
-                  },
-                  attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-                },
-                [
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          staticStyle: {
-                            "padding-bottom": "5px",
-                            "text-align": "right"
-                          },
-                          attrs: { colspan: "2" }
-                        },
-                        [
-                          _c("span", [
-                            _vm._v("Denpasar," + _vm._s(_vm.doc.created_at))
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
-                        _c("span", [_vm._v(": " + _vm._s(_vm.doc.number))])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
-                        _c("span", [
-                          _vm._v(": " + _vm._s(_vm.doc.attachmentname))
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c(
-                        "td",
-                        {
-                          staticStyle: {
-                            "padding-top": "20px",
-                            "padding-bottom": "5px"
-                          },
-                          attrs: { colspan: "2" }
-                        },
-                        [
-                          _c("span", [
-                            _vm._v("Yth. " + _vm._s(_vm.doc.customername))
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _vm._m(6),
-                      _vm._v(" "),
-                      _c("td", { staticStyle: { "padding-bottom": "5px" } }, [
-                        _c("span", [_vm._v(": " + _vm._s(_vm.doc.subject))])
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "table",
-                {
-                  staticStyle: { width: "100%", "padding-bottom": "20px" },
-                  attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-                },
+                "div",
+                { staticClass: "page" },
                 [
                   _c(
-                    "tbody",
+                    "table",
                     {
-                      staticStyle: {
-                        "font-size": "18px",
-                        "text-align": "justify"
+                      staticStyle: { "font-size": "18px", color: "#000" },
+                      attrs: {
+                        width: "100%",
+                        cellspacing: "0",
+                        cellpadding: "0"
                       }
                     },
                     [
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _vm._m(11),
+                      _vm._v(" "),
                       _c("tr", [
-                        _c("td", [
-                          _c("p", { staticStyle: { "text-indent": "50px" } }, [
-                            _vm._v(
-                              "Sehubungan dengan Diskusi pada " +
-                                _vm._s(_vm.doc.discussion_date) +
-                                ", yang bertempat di " +
-                                _vm._s(_vm.doc.discussion_loc) +
-                                ",\n                                            dengan ini kami mengajukan penawaran untuk pekerjaan " +
-                                _vm._s(_vm.doc.subject) +
-                                " sebesar Rp. " +
-                                _vm._s(_vm.doc.offerprice) +
-                                ",- ([Lima Puluh Satu\n                                            Juta\n                                            Delapan\n                                            Ratus Ribu Rupiah])."
-                            )
+                        _c(
+                          "td",
+                          {
+                            staticStyle: { "font-size": "24px" },
+                            attrs: { colspan: "2" }
+                          },
+                          [
+                            _c("span", [
+                              _vm._v("Yth." + _vm._s(_vm.doc.customername))
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { colspan: "2" } }, [
+                          _c("span", [
+                            _vm._v("perihal: " + _vm._s(_vm.doc.subject))
                           ])
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("p", [
-                            _vm._v(
-                              "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan\n                                            pekerjaan selama\n                                            " +
-                                _vm._s(_vm.doc.duration) +
-                                " ([Seratus Sembilan Belas]) hari kerja."
+                      _vm._m(12)
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(category, cat_index) {
+                    return _c(
+                      "div",
+                      { key: cat_index },
+                      [
+                        _c("table", [
+                          _c("tr", [
+                            _c(
+                              "td",
+                              {
+                                staticStyle: {
+                                  "margin-top": "30px",
+                                  "font-weight": "bold",
+                                  "font-size": "18px",
+                                  "vertical-align": "bottom"
+                                },
+                                attrs: { width: "12%" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(category.title) +
+                                    "\n                                    "
+                                )
+                              ]
                             )
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("p", [
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(13, true),
+                        _vm._v(" "),
+                        _vm._l(category.list_subs, function(sub_cat, index) {
+                          return _c(
+                            "div",
+                            { key: index },
+                            [
+                              _c(
+                                "table",
+                                {
+                                  staticStyle: { "text-align": "center" },
+                                  attrs: {
+                                    width: "100%",
+                                    cellspacing: "0",
+                                    cellpadding: "0"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "tbody",
+                                    {
+                                      staticStyle: { border: "1px solid #000" }
+                                    },
+                                    [
+                                      _c(
+                                        "tr",
+                                        {
+                                          staticStyle: {
+                                            "font-size": "15px",
+                                            "text-align": "left",
+                                            "background-color": "#d9d9d9"
+                                          }
+                                        },
+                                        [
+                                          _c("td", {
+                                            staticStyle: {
+                                              width: "5%",
+                                              "text-align": "left",
+                                              padding: "5px 5px 1px 15px"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                width: "95%",
+                                                "font-weight": "bold",
+                                                "text-align": "left",
+                                                padding: "5px 5px 1px"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                " +
+                                                  _vm._s(sub_cat.id) +
+                                                  "\n                                            "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(sub_cat.list_row, function(
+                                item,
+                                index_row
+                              ) {
+                                return _c("div", { key: index_row }, [
+                                  _c(
+                                    "table",
+                                    {
+                                      staticStyle: { "text-align": "center" },
+                                      attrs: {
+                                        width: "100%",
+                                        cellspacing: "0",
+                                        cellpadding: "0"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "tbody",
+                                        {
+                                          staticStyle: {
+                                            border: "1px solid #000"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticStyle: {
+                                                "padding-top": "5px"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "5%",
+                                                    "text-align": "left",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px 15px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(index_row + 1) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "50%",
+                                                    "text-align": "left",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(item.modul) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "5%",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(item.durasi) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "5%",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(item.satuan) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "20%",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(item.biaya) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    width: "10%",
+                                                    border: "1px solid #000",
+                                                    padding: "5px 5px 1px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(item.ket) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              })
+                            ],
+                            2
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("br")
+                      ],
+                      2
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    {
+                      staticStyle: {
+                        width: "100%",
+                        "text-align": "right",
+                        padding: "0"
+                      },
+                      attrs: {
+                        width: "100%",
+                        cellspacing: "0",
+                        cellpadding: "0"
+                      }
+                    },
+                    [
+                      _c("tbody", [
+                        _c("tr", { staticStyle: { "font-size": "20px" } }, [
+                          _c("td", { staticStyle: { "font-weight": "bold" } }, [
                             _vm._v(
-                              "Penawaran ini berlaku selama " +
-                                _vm._s(_vm.doc.offerduetime) +
-                                " ([tiga puluh]) hari kalender sejak\n                                            tanggal\n                                            surat penawaran ini."
+                              "\n                                        " +
+                                _vm._s(_vm.timestamp) +
+                                "\n                                    "
                             )
                           ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("p", [
-                            _vm._v(
-                              "Surat Penawaran beserta lampirannya kami sampaikan sebanyak " +
-                                _vm._s(_vm.doc.attachmentname) +
-                                " ([satu])\n                                            rangkap\n                                            dokumen."
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(8)
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(14)
+                      ])
                     ]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(9)
-            ]),
-            _vm._v(" "),
-            _vm._m(10)
+                ],
+                2
+              )
+            ])
           ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          attrs: {
+            color: "pink",
+            dark: "",
+            large: "",
+            fixed: "",
+            bottom: "",
+            right: "",
+            fab: ""
+          },
+          on: { click: _vm.print }
+        },
+        [_c("v-icon", [_vm._v("mdi-printer")])],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -41500,35 +41932,198 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [
+        _c("img", {
+          staticStyle: { width: "250px" },
+          attrs: { src: "/storage/images/ttd.png", width: "100", alt: "Goyur" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c(
+        "td",
+        {
+          staticStyle: {
+            color: "#2496b8",
+            "font-size": "30px",
+            "font-weight": "bold"
+          }
+        },
+        [_c("span", [_vm._v("QUOTATION")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { attrs: { colspan: "2" } }, [_c("span", [_vm._v("kepada:")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c(
+        "td",
+        {
+          staticStyle: {
+            margin: "50px 0",
+            color: "#2496b8",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "vertical-align": "bottom"
+          },
+          attrs: { width: "12%" }
+        },
+        [
+          _vm._v(
+            "\n                                    DETAILS:\n                                "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("td", {
+        staticStyle: {
+          "background-color": "#2496b8",
+          "border-top": "3px solid #fff",
+          "border-bottom": "4px solid #fff"
+        },
+        attrs: { width: "88%" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "table",
       {
-        staticStyle: { width: "100%", "text-align": "right", padding: "0" },
+        staticStyle: { "text-align": "center" },
         attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
       },
       [
-        _c("tbody", [
-          _c("tr", { staticStyle: { "font-size": "20px" } }, [
-            _c("td", { staticStyle: { "font-weight": "bold" } }, [
-              _vm._v(
-                "\n                                        16 April 2019\n                                    "
+        _c(
+          "thead",
+          {
+            staticStyle: {
+              "font-size": "14px",
+              "background-color": "#2496b8",
+              color: "#fff",
+              "text-align": "left"
+            }
+          },
+          [
+            _c("tr", { staticStyle: { "padding-top": "5px" } }, [
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "5%",
+                    "font-weight": "bold",
+                    "text-align": "left",
+                    padding: "5px 5px 1px 15px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            No.\n                                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "50%",
+                    "font-weight": "bold",
+                    "text-align": "left",
+                    padding: "5px 5px 1px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            Modul/Rincian Pengerjaan\n                                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "5%",
+                    "font-weight": "bold",
+                    padding: "5px 5px 1px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            Durasi\n                                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "5%",
+                    "font-weight": "bold",
+                    padding: "5px 5px 1px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            Satuan\n                                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "20%",
+                    "font-weight": "bold",
+                    padding: "5px 5px 1px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            Biaya (Rp)\n                                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticStyle: {
+                    width: "10%",
+                    "font-weight": "bold",
+                    padding: "5px 5px 1px"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                                            Keterangan\n                                        "
+                  )
+                ]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [
-              _c("img", {
-                staticStyle: { width: "250px" },
-                attrs: {
-                  src: "/storage/images/ttd.png",
-                  width: "100",
-                  alt: "Goyur"
-                }
-              })
-            ])
-          ])
-        ])
+          ]
+        )
       ]
     )
   },
@@ -41536,498 +42131,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "page" }, [
-      _c(
-        "table",
-        {
-          staticStyle: { "font-size": "18px", color: "#000" },
-          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-        },
-        [
-          _c("br"),
-          _vm._v(" "),
-          _c("tr", [
-            _c(
-              "td",
-              {
-                staticStyle: {
-                  color: "#2496b8",
-                  "font-size": "30px",
-                  "font-weight": "bold"
-                }
-              },
-              [_c("span", [_vm._v("QUOTATION")])]
-            )
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", { attrs: { colspan: "2" } }, [
-              _c("span", [_vm._v("kepada:")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", { staticStyle: { "font-size": "24px" } }, [
-              _c("span", [_vm._v("Yth.{Edi}")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [_c("td", [_c("span", [_vm._v("perihal: {perihal}")])])]),
-          _vm._v(" "),
-          _c("tr", [
-            _c(
-              "td",
-              {
-                staticStyle: {
-                  margin: "50px 0",
-                  color: "#2496b8",
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "vertical-align": "bottom"
-                },
-                attrs: { width: "12%" }
-              },
-              [
-                _vm._v(
-                  "\n                                    DETAILS:\n                                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("td", {
-              staticStyle: {
-                "background-color": "#2496b8",
-                "border-top": "3px solid #fff",
-                "border-bottom": "4px solid #fff"
-              },
-              attrs: { width: "88%" }
-            })
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("table", [
-        _c("tr", [
-          _c(
-            "td",
-            {
-              staticStyle: {
-                "margin-top": "30px",
-                "font-weight": "bold",
-                "font-size": "18px",
-                "vertical-align": "bottom"
-              },
-              attrs: { width: "12%" }
-            },
-            [
-              _vm._v(
-                "\n                                    {Nama Kategori}\n                                "
-              )
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "table",
-        {
-          staticStyle: { "text-align": "center" },
-          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-        },
-        [
-          _c(
-            "thead",
-            {
-              staticStyle: {
-                "font-size": "14px",
-                "background-color": "#2496b8",
-                color: "#fff",
-                "text-align": "left"
-              }
-            },
-            [
-              _c("tr", { staticStyle: { "padding-top": "5px" } }, [
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      "font-weight": "bold",
-                      "text-align": "left",
-                      padding: "5px 5px 1px 15px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        No.\n                                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "50%",
-                      "font-weight": "bold",
-                      "text-align": "left",
-                      padding: "5px 5px 1px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        Modul/Rincian Pengerjaan\n                                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      "font-weight": "bold",
-                      padding: "5px 5px 1px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        Durasi\n                                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      "font-weight": "bold",
-                      padding: "5px 5px 1px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        Satuan\n                                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "20%",
-                      "font-weight": "bold",
-                      padding: "5px 5px 1px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        Biaya (Rp)\n                                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      width: "10%",
-                      "font-weight": "bold",
-                      padding: "5px 5px 1px"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                                        Keterangan\n                                    "
-                    )
-                  ]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("tbody", { staticStyle: { border: "1px solid #000" } }, [
-            _c(
-              "tr",
-              { staticStyle: { "font-size": "14px", "text-align": "left" } },
-              [
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      padding: "5px 5px 1px 20px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            1\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "50%",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Termin II pengembangan Website dan e-Catalogue Wijaya Musik\n                                            (wijayamusik.com)\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            1\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "20%",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Rp 13,204,000\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "20%",
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Rp 13,204,000\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [_c("span", { staticStyle: { display: "block" } })]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("tfoot", [
-            _c(
-              "tr",
-              {
-                staticStyle: {
-                  "font-size": "15px",
-                  "text-align": "left",
-                  "font-weight": "bold",
-                  "background-color": "#d9d9d9"
-                }
-              },
-              [
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    },
-                    attrs: { colspan: "4" }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Subtotal\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "15%",
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Rp 13,204,000\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "5%",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [_c("span", { staticStyle: { display: "block" } })]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "tr",
-              {
-                staticStyle: {
-                  "font-size": "16px",
-                  "text-align": "left",
-                  "font-weight": "bold",
-                  "background-color": "#2496b8",
-                  color: "#fff"
-                }
-              },
-              [
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    },
-                    attrs: { colspan: "4" }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Total Biaya\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "15%",
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [
-                    _c("span", { staticStyle: { display: "block" } }, [
-                      _vm._v(
-                        "\n                                            Rp 13,204,000\n                                        "
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    staticStyle: {
-                      width: "15%",
-                      "text-align": "right",
-                      padding: "5px 5px 1px",
-                      border: "2px solid #2496b8"
-                    }
-                  },
-                  [_c("span", { staticStyle: { display: "block" } })]
-                )
-              ]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut."
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "table",
-        {
-          staticStyle: { width: "100%", "text-align": "right", padding: "0" },
-          attrs: { width: "100%", cellspacing: "0", cellpadding: "0" }
-        },
-        [
-          _c("tbody", [
-            _c("tr", { staticStyle: { "font-size": "20px" } }, [
-              _c("td", { staticStyle: { "font-weight": "bold" } }, [
-                _vm._v(
-                  "\n                                        16 April 2019\n                                    "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _c("img", {
-                  staticStyle: { width: "250px" },
-                  attrs: {
-                    src: "/storage/images/ttd.png",
-                    width: "100",
-                    alt: "Goyur"
-                  }
-                })
-              ])
-            ])
-          ])
-        ]
-      )
+    return _c("tr", [
+      _c("td", [
+        _c("img", {
+          staticStyle: { width: "250px" },
+          attrs: { src: "/storage/images/ttd.png", width: "100", alt: "Goyur" }
+        })
+      ])
     ])
   }
 ]
@@ -42071,7 +42181,7 @@ var render = function() {
             "v-card",
             {
               staticClass: "mx-auto",
-              attrs: { color: "green lighten-4", height: "80" }
+              attrs: { color: "purple lighten-4", height: "80" }
             },
             [
               _c(
@@ -42099,11 +42209,7 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "d-flex d-sm-none",
-                              attrs: {
-                                rounded: "",
-                                fluid: "",
-                                color: "green lighten-1"
-                              }
+                              attrs: { rounded: "", outlined: "" }
                             },
                             [_c("v-icon", [_vm._v("mdi-check")])],
                             1
@@ -42113,11 +42219,7 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "d-none d-sm-flex",
-                              attrs: {
-                                rounded: "",
-                                fluid: "",
-                                color: "green lighten-1"
-                              }
+                              attrs: { rounded: "", outlined: "" }
                             },
                             [_vm._v("Approve")]
                           ),
@@ -42126,11 +42228,7 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "d-flex d-sm-none ml-2",
-                              attrs: {
-                                rounded: "",
-                                fluid: "",
-                                color: "red lighten-1"
-                              }
+                              attrs: { rounded: "", outlined: "" }
                             },
                             [_c("v-icon", [_vm._v("mdi-close")])],
                             1
@@ -42140,11 +42238,7 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "d-none d-sm-flex ml-2",
-                              attrs: {
-                                rounded: "",
-                                fluid: "",
-                                color: "red lighten-1"
-                              }
+                              attrs: { rounded: "", outlined: "" }
                             },
                             [_vm._v("Decline")]
                           )
@@ -42366,7 +42460,12 @@ var render = function() {
                               "v-btn",
                               {
                                 staticClass: "d-flex d-sm-none ml-2",
-                                attrs: { rounded: "", outlined: "" }
+                                attrs: { rounded: "", outlined: "" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.continueDokumen(doc.id)
+                                  }
+                                }
                               },
                               [_c("v-icon", [_vm._v("mdi-pencil")])],
                               1
@@ -42376,7 +42475,12 @@ var render = function() {
                               "v-btn",
                               {
                                 staticClass: "d-none d-sm-flex ml-2",
-                                attrs: { rounded: "", outlined: "" }
+                                attrs: { rounded: "", outlined: "" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.continueDokumen(doc.id)
+                                  }
+                                }
                               },
                               [_vm._v("Continue")]
                             )
@@ -43162,6 +43266,7 @@ var render = function() {
                           [
                             _c("v-text-field", {
                               attrs: {
+                                "prepend-icon": "mdi-format-list-bulleted",
                                 text: "",
                                 clearable: "",
                                 hint: "For example, 22/DART/QTT/2019",
@@ -43198,6 +43303,7 @@ var render = function() {
                           [
                             _c("v-text-field", {
                               attrs: {
+                                "prepend-icon": "mdi-attachment",
                                 text: "",
                                 clearable: "",
                                 hint: "For example, 1 (satu) lembar",
@@ -43234,6 +43340,7 @@ var render = function() {
                           [
                             _c("v-text-field", {
                               attrs: {
+                                "prepend-icon": "mdi-account",
                                 text: "",
                                 clearable: "",
                                 hint: "For example, Edi",
@@ -43272,6 +43379,7 @@ var render = function() {
                               attrs: {
                                 text: "",
                                 clearable: "",
+                                "prepend-icon": "mdi-clipboard-outline",
                                 hint:
                                   "For example, Penawaran Pekerjaan Pengembangan Web Sistem",
                                 label: "Prihal Surat"
@@ -43301,6 +43409,8 @@ var render = function() {
                   _c(
                     "span",
                     [
+                      _c("v-icon", [_vm._v("mdi-calendar")]),
+                      _vm._v(" "),
                       _c(
                         "v-menu",
                         {
@@ -43383,53 +43493,91 @@ var render = function() {
                     1
                   ),
                   _vm._v(" yang\n                    bertempat di "),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.discussion_loc,
-                          expression: "discussion_loc"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.discussion_loc },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-map-marker")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.discussion_loc,
+                            expression: "discussion_loc"
                           }
-                          _vm.discussion_loc = $event.target.value
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.discussion_loc },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.discussion_loc = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  ]),
-                  _vm._v(
-                    "\n                    dengan ini kami mengajukan penawaran untuk pekerjaan Penawaran Pembuatan Web Sistem /\n                    Aplikasi Survei Sebersar Rp. "
+                      })
+                    ],
+                    1
                   ),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.offerprice,
-                          expression: "offerprice"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.offerprice },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _vm._v(
+                    "\n                    dengan ini kami mengajukan penawaran untuk pekerjaan "
+                  ),
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-clipboard-outline")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.subject,
+                            expression: "subject"
                           }
-                          _vm.offerprice = $event.target.value
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.subject },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.subject = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" sebesar Rp. "),
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-currency-usd")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.offerprice,
+                            expression: "offerprice"
+                          }
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.offerprice },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.offerprice = $event.target.value
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v("\n                    ,- ("),
                   _c("span", [
                     _c("input", {
@@ -43449,28 +43597,33 @@ var render = function() {
                   _vm._v(
                     "Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama\n                    "
                   ),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.duration,
-                          expression: "duration"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.duration },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-camera-timer")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.duration,
+                            expression: "duration"
                           }
-                          _vm.duration = $event.target.value
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.duration },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.duration = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
@@ -43482,28 +43635,33 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _vm._v("Penawaran ini berlaku selama "),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.offerduetime,
-                          expression: "offerduetime"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.offerduetime },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-calendar-check")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.offerduetime,
+                            expression: "offerduetime"
                           }
-                          _vm.offerduetime = $event.target.value
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.offerduetime },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.offerduetime = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
@@ -43513,28 +43671,33 @@ var render = function() {
                   _vm._v(
                     ") hari kalender sejak tanggal\n                    surat penawaran ini.\n                    surat penawaran beserta lampirannya kami sampaikan sebanyak "
                   ),
-                  _c("span", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.attachmentname,
-                          expression: "attachmentname"
-                        }
-                      ],
-                      attrs: { type: "text", id: "InputEmail", required: "" },
-                      domProps: { value: _vm.attachmentname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c(
+                    "span",
+                    [
+                      _c("v-icon", [_vm._v("mdi-attachment")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.attachmentname,
+                            expression: "attachmentname"
                           }
-                          _vm.attachmentname = $event.target.value
+                        ],
+                        attrs: { type: "text", id: "InputEmail", required: "" },
+                        domProps: { value: _vm.attachmentname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.attachmentname = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v("\n                    ("),
                   _c("span", [
                     _c("input", {
@@ -43556,13 +43719,9 @@ var render = function() {
                   _vm._v("Hormat kami")
                 ]),
                 _vm._v(" "),
-                _c("img", {
-                  attrs: {
-                    id: "signature",
-                    src: __webpack_require__(/*! @/images/tiny-checkers.png */ "./resources/images/tiny-checkers.png"),
-                    alt: ""
-                  }
-                })
+                _c("div", { attrs: { id: "signature" } }, [
+                  _vm._v("\n                    Sign Here\n                ")
+                ])
               ]
             )
           ]
@@ -43571,277 +43730,142 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card-header" },
-          _vm._l(_vm.categories, function(category, cat_index) {
-            return _c(
-              "div",
-              {
-                key: cat_index,
-                on: {
-                  remove: function($event) {
-                    return _vm.deleteCategory()
-                  }
-                }
-              },
-              [
-                _c(
-                  "v-btn",
-                  {
-                    staticStyle: { "z-index": "1", "margin-bottom": "-150px" },
-                    attrs: { large: "", color: "red", icon: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteCategory(_vm.categories, cat_index)
-                      }
+          [
+            _c("confirm-update-document", {
+              attrs: { "update-status": _vm.isUpdateFromLocal },
+              on: { update: _vm.setStatusUpdate }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.categories, function(category, cat_index) {
+              return _c(
+                "div",
+                {
+                  key: cat_index,
+                  on: {
+                    remove: function($event) {
+                      return _vm.deleteCategory()
                     }
-                  },
-                  [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
-                  1
-                ),
-                _vm._v(" "),
-                _c("confirm-update-document", {
-                  attrs: { "update-status": _vm.isUpdateFromLocal },
-                  on: { update: _vm.setStatusUpdate }
-                }),
-                _vm._v(" "),
-                _c(
-                  "v-card",
-                  { staticClass: "pa-10 mt-10" },
-                  [
-                    _c("v-text-field", {
-                      attrs: { label: "Nama Kategori" },
-                      model: {
-                        value: category.title,
-                        callback: function($$v) {
-                          _vm.$set(category, "title", $$v)
-                        },
-                        expression: "category.title"
+                  }
+                },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        "z-index": "1",
+                        "margin-bottom": "-150px"
+                      },
+                      attrs: { large: "", color: "red", icon: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteCategory(_vm.categories, cat_index)
+                        }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "v-row",
-                      { staticClass: "font-weight-bold" },
-                      [
-                        _c("v-col", { staticClass: "col-sm-1" }, [
-                          _vm._v("No")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-col", { staticClass: "col-sm-4" }, [
-                          _vm._v("Modul")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-col", { staticClass: "col-sm-1" }, [
-                          _vm._v("Durasi")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-col", { staticClass: "col-sm-1" }, [
-                          _vm._v("Satuan")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-col", { staticClass: "col-sm-3" }, [
-                          _vm._v("Biaya")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-col", { staticClass: "col-sm-2" }, [
-                          _vm._v("Keterangan")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "col-sm-12",
-                      staticStyle: { "border-bottom": "1px solid #000" }
-                    }),
-                    _vm._v(" "),
-                    _vm._l(category.list_subs, function(sub_cat, index) {
-                      return _c(
-                        "div",
-                        {
-                          key: index,
-                          on: {
-                            mouseover: function($event) {
-                              _vm.hiddenSub = false
-                            },
-                            mouseleave: function($event) {
-                              _vm.hiddenSub = true
-                            },
-                            remove: function($event) {
-                              return _vm.deleteSub()
-                            }
-                          }
-                        },
+                    },
+                    [_c("v-icon", [_vm._v("mdi-close-circle-outline")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    { staticClass: "pa-10 mt-10" },
+                    [
+                      _c("v-text-field", {
+                        attrs: { label: "Nama Kategori" },
+                        model: {
+                          value: category.title,
+                          callback: function($$v) {
+                            _vm.$set(category, "title", $$v)
+                          },
+                          expression: "category.title"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { staticClass: "font-weight-bold" },
                         [
-                          _c(
-                            "v-row",
-                            { attrs: { justify: "center" } },
-                            [
-                              _c(
-                                "v-col",
-                                { attrs: { sm: "11" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "col-sm-12",
-                                    attrs: {
-                                      clearable: "",
-                                      hint: "For example, Layouting",
-                                      label: "SubCategory"
-                                    },
-                                    model: {
-                                      value: sub_cat.name,
-                                      callback: function($$v) {
-                                        _vm.$set(sub_cat, "name", $$v)
-                                      },
-                                      expression: "sub_cat.name"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { sm: "1" } },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        large: "",
-                                        color: "red",
-                                        icon: "",
-                                        hidden: _vm.hiddenSub
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteSub(category, index)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("v-icon", [
-                                        _vm._v("mdi-close-circle-outline")
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
+                          _c("v-col", { staticClass: "col-sm-1" }, [
+                            _vm._v("No")
+                          ]),
                           _vm._v(" "),
-                          _vm._l(sub_cat.list_row, function(item, index_row) {
-                            return _c(
-                              "div",
-                              {
-                                key: index_row,
-                                on: {
-                                  remove: function($event) {
-                                    return _vm.deleteItem()
-                                  },
-                                  mouseover: function($event) {
-                                    _vm.hidden = false
-                                  },
-                                  mouseleave: function($event) {
-                                    _vm.hidden = true
-                                  }
-                                }
+                          _c("v-col", { staticClass: "col-sm-4" }, [
+                            _vm._v("Modul")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-col", { staticClass: "col-sm-1" }, [
+                            _vm._v("Durasi")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-col", { staticClass: "col-sm-1" }, [
+                            _vm._v("Satuan")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-col", { staticClass: "col-sm-3" }, [
+                            _vm._v("Biaya")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-col", { staticClass: "col-sm-2" }, [
+                            _vm._v("Keterangan")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "col-sm-12",
+                        staticStyle: { "border-bottom": "1px solid #000" }
+                      }),
+                      _vm._v(" "),
+                      _vm._l(category.list_subs, function(sub_cat, index) {
+                        return _c(
+                          "div",
+                          {
+                            key: index,
+                            on: {
+                              mouseover: function($event) {
+                                _vm.hiddenSub = false
                               },
+                              mouseleave: function($event) {
+                                _vm.hiddenSub = true
+                              },
+                              remove: function($event) {
+                                return _vm.deleteSub()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "v-row",
+                              { attrs: { justify: "center" } },
                               [
                                 _c(
-                                  "v-row",
-                                  {
-                                    attrs: {
-                                      justify: "center",
-                                      align: "center"
-                                    },
-                                    on: {
-                                      mouseover: function($event) {
-                                        _vm.hidden = false
-                                      },
-                                      mouseleave: function($event) {
-                                        _vm.hidden = true
-                                      }
-                                    }
-                                  },
+                                  "v-col",
+                                  { attrs: { sm: "11" } },
                                   [
                                     _c("v-text-field", {
-                                      staticClass: "col-sm-4",
+                                      staticClass: "col-sm-12",
                                       attrs: {
-                                        hint: "For example, Integrasi API",
-                                        label: "Modul"
+                                        clearable: "",
+                                        hint: "For example, Layouting",
+                                        label: "SubCategory"
                                       },
                                       model: {
-                                        value: item.modul,
+                                        value: sub_cat.name,
                                         callback: function($$v) {
-                                          _vm.$set(item, "modul", $$v)
+                                          _vm.$set(sub_cat, "name", $$v)
                                         },
-                                        expression: "item.modul"
+                                        expression: "sub_cat.name"
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      staticClass: "col-sm-1",
-                                      attrs: {
-                                        hint: "For example, 8",
-                                        label: "Durasi"
-                                      },
-                                      model: {
-                                        value: item.durasi,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "durasi", $$v)
-                                        },
-                                        expression: "item.durasi"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      staticClass: "col-sm-1",
-                                      attrs: {
-                                        hint: "For example, Hari",
-                                        label: "Satuan"
-                                      },
-                                      model: {
-                                        value: item.satuan,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "satuan", $$v)
-                                        },
-                                        expression: "item.satuan"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      staticClass: "col-sm-3",
-                                      attrs: {
-                                        hint: "For example, 4.000.000",
-                                        label: "Biaya"
-                                      },
-                                      model: {
-                                        value: item.biaya,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "biaya", $$v)
-                                        },
-                                        expression: "item.biaya"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      staticClass: "col-sm-1",
-                                      attrs: {
-                                        hint: "For example, ",
-                                        label: "Keterangan"
-                                      },
-                                      model: {
-                                        value: item.ket,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "ket", $$v)
-                                        },
-                                        expression: "item.ket"
-                                      }
-                                    }),
-                                    _vm._v(" "),
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { sm: "1" } },
+                                  [
                                     _c(
                                       "v-btn",
                                       {
@@ -43849,13 +43873,13 @@ var render = function() {
                                           large: "",
                                           color: "red",
                                           icon: "",
-                                          hidden: _vm.hidden
+                                          hidden: _vm.hiddenSub
                                         },
                                         on: {
                                           click: function($event) {
-                                            return _vm.deleteItem(
-                                              sub_cat,
-                                              index_row
+                                            return _vm.deleteSub(
+                                              category,
+                                              index
                                             )
                                           }
                                         }
@@ -43872,74 +43896,217 @@ var render = function() {
                                 )
                               ],
                               1
-                            )
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mb-10",
-                              attrs: { id: "action-btn" }
-                            },
-                            [
-                              _c(
-                                "v-btn",
+                            ),
+                            _vm._v(" "),
+                            _vm._l(sub_cat.list_row, function(item, index_row) {
+                              return _c(
+                                "div",
                                 {
-                                  attrs: {
-                                    fluid: "",
-                                    rounded: "",
-                                    color: "primary"
-                                  },
+                                  key: index_row,
                                   on: {
-                                    click: function($event) {
-                                      return _vm.addSubCategory(cat_index)
+                                    remove: function($event) {
+                                      return _vm.deleteItem()
+                                    },
+                                    mouseover: function($event) {
+                                      _vm.hidden = false
+                                    },
+                                    mouseleave: function($event) {
+                                      _vm.hidden = true
                                     }
                                   }
                                 },
                                 [
-                                  _vm._v(
-                                    "Add Sub\n                            "
+                                  _c(
+                                    "v-row",
+                                    {
+                                      attrs: {
+                                        justify: "center",
+                                        align: "center"
+                                      },
+                                      on: {
+                                        mouseover: function($event) {
+                                          _vm.hidden = false
+                                        },
+                                        mouseleave: function($event) {
+                                          _vm.hidden = true
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("v-text-field", {
+                                        staticClass: "col-sm-4",
+                                        attrs: {
+                                          hint: "For example, Integrasi API",
+                                          label: "Modul"
+                                        },
+                                        model: {
+                                          value: item.modul,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "modul", $$v)
+                                          },
+                                          expression: "item.modul"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        staticClass: "col-sm-1",
+                                        attrs: {
+                                          hint: "For example, 8",
+                                          label: "Durasi"
+                                        },
+                                        model: {
+                                          value: item.durasi,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "durasi", $$v)
+                                          },
+                                          expression: "item.durasi"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        staticClass: "col-sm-1",
+                                        attrs: {
+                                          hint: "For example, Hari",
+                                          label: "Satuan"
+                                        },
+                                        model: {
+                                          value: item.satuan,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "satuan", $$v)
+                                          },
+                                          expression: "item.satuan"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        staticClass: "col-sm-3",
+                                        attrs: {
+                                          hint: "For example, 4.000.000",
+                                          label: "Biaya"
+                                        },
+                                        model: {
+                                          value: item.biaya,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "biaya", $$v)
+                                          },
+                                          expression: "item.biaya"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("v-text-field", {
+                                        staticClass: "col-sm-1",
+                                        attrs: {
+                                          hint: "For example, ",
+                                          label: "Keterangan"
+                                        },
+                                        model: {
+                                          value: item.ket,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "ket", $$v)
+                                          },
+                                          expression: "item.ket"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            large: "",
+                                            color: "red",
+                                            icon: "",
+                                            hidden: _vm.hidden
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.deleteItem(
+                                                sub_cat,
+                                                index_row
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-close-circle-outline")
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    fluid: "",
-                                    rounded: "",
-                                    color: "success"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.addRow(cat_index, index)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "Add Row\n                            "
-                                  )
-                                ]
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("hr")
-                        ],
-                        2
-                      )
-                    })
-                  ],
-                  2
-                )
-              ],
-              1
-            )
-          }),
-          0
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "mb-10",
+                                attrs: { id: "action-btn" }
+                              },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      fluid: "",
+                                      rounded: "",
+                                      color: "primary"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addSubCategory(cat_index)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "Add Sub\n                            "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      fluid: "",
+                                      rounded: "",
+                                      color: "success"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addRow(cat_index, index)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "Add Row\n                            "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("hr")
+                          ],
+                          2
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            })
+          ],
+          2
         )
       ],
       1
@@ -98574,17 +98741,6 @@ module.exports = "/images/Group 12.png?c2dbec56aa3b31ad0d1e858c6d800c74";
 
 /***/ }),
 
-/***/ "./resources/images/tiny-checkers.png":
-/*!********************************************!*\
-  !*** ./resources/images/tiny-checkers.png ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/tiny-checkers.png?185886c15d5d66413adffbefc6a1467a";
-
-/***/ }),
-
 /***/ "./resources/images/undraw_complete_task_u2c3.svg":
 /*!********************************************************!*\
   !*** ./resources/images/undraw_complete_task_u2c3.svg ***!
@@ -100499,6 +100655,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _js_components_dev_HeaderFile__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, {
     path: '/generatepdf',
+    name: 'generatepdf',
     component: _js_components_GeneratePDF__WEBPACK_IMPORTED_MODULE_10__["default"]
   } // {
   //     path: "*",
@@ -100726,6 +100883,10 @@ __webpack_require__.r(__webpack_exports__);
     NOT_UPDATE: function NOT_UPDATE(state) {
       console.log("value updated");
       state.isUpToDate = false;
+    },
+    RESET_UPDATE: function RESET_UPDATE(state) {
+      console.log("value reset");
+      state.isUpToDate = true;
     },
     STORE_DATA: function STORE_DATA(state, payload) {
       state.data_dokumen = Object.assign({}, payload);

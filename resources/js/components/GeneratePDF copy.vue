@@ -1,10 +1,10 @@
 <template>
     <div id="pdf">
         <div class="page-header">
-            <table width="100%" cellspacing="0" cellpadding="0">
+            <table width="100%" cellspacing="0" cellpadding="0" style="width: 100%; border-bottom: 2px solid #4a7ebb;">
                 <tbody>
                     <tr>
-                        <td style="vertical-align: center;">
+                        <td style="vertical-align: bottom;">
                             <table style="font-size: 14px; color: #000;">
                                 <tr>
                                     <td style="color: #2496b8; font-size: 24px; font-weight: bold;">
@@ -30,7 +30,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+            <br />
             <!-- <button type="button" onClick="window.print()" style="background: pink">
                 PRINT ME!
             </button> -->
@@ -56,7 +56,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2" style="padding-bottom: 5px; text-align: right;">
-                                            <span>Denpasar, {{created_at}}</span>
+                                            <span>Denpasar,{{doc.created_at}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -161,7 +161,7 @@
                                 <tbody>
                                     <tr style="font-size: 20px;">
                                         <td style="font-weight: bold;">
-                                            {{timestamp}}
+                                            16 April 2019
                                         </td>
                                     </tr>
                                     <tr>
@@ -187,12 +187,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="font-size: 24px;">
+                                    <td style="font-size: 24px;">
                                         <span>Yth.{{doc.customername}}</span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
+                                    <td>
                                         <span>perihal: {{doc.subject}}</span>
                                     </td>
                                 </tr>
@@ -206,13 +206,12 @@
                                     </td>
                                 </tr>
                             </table>
-                            <br>
                             <div v-for="(category,cat_index) in categories" v-bind:key="cat_index">
                                 <table>
                                     <tr>
                                         <td width="12%"
                                             style="margin-top:30px; font-weight: bold; font-size: 18px; vertical-align: bottom;">
-                                            {{category.title}}
+                                            {{categories.title}}
                                         </td>
                                     </tr>
                                 </table>
@@ -221,115 +220,136 @@
                                         style="font-size: 14px; background-color: #2496b8; color: #fff; text-align: left;">
                                         <tr style="padding-top: 5px;">
                                             <th
-                                                style="width: 5%; font-weight: bold; text-align: left; padding: 5px 5px 1px 15px; ">
+                                                style="width: 5%; font-weight: bold; text-align: left; padding: 5px 5px 1px 15px;">
                                                 No.
                                             </th>
                                             <th
-                                                style="width: 50%; font-weight: bold; text-align: left; padding: 5px 5px 1px; ">
+                                                style="width: 50%; font-weight: bold; text-align: left; padding: 5px 5px 1px;">
                                                 Modul/Rincian Pengerjaan
                                             </th>
-                                            <th style="width: 5%; font-weight: bold; padding: 5px 5px 1px; ">
+                                            <th style="width: 5%; font-weight: bold; padding: 5px 5px 1px;">
                                                 Durasi
                                             </th>
-                                            <th style="width: 5%; font-weight: bold; padding: 5px 5px 1px; ">
+                                            <th style="width: 5%; font-weight: bold; padding: 5px 5px 1px;">
                                                 Satuan
                                             </th>
-                                            <th style="width: 20%; font-weight: bold; padding: 5px 5px 1px; ">
+                                            <th style="width: 20%; font-weight: bold; padding: 5px 5px 1px;">
                                                 Biaya (Rp)
                                             </th>
-                                            <th style="width: 10%; font-weight: bold; padding: 5px 5px 1px; ">
+                                            <th style="width: 10%; font-weight: bold; padding: 5px 5px 1px;">
                                                 Keterangan
                                             </th>
                                         </tr>
                                     </thead>
-                                </table>
-                                <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index">
-                                    <table width="100%" cellspacing="0" cellpadding="0" style="text-align: center;">
-                                        <tbody style="border: 1px solid #000;">
-                                            <tr style="font-size: 15px; text-align: left; background-color: #d9d9d9;">
-
-                                                <td style="width: 5%; text-align: left; padding: 5px 5px 1px 15px;">
-
-                                                </td>
-                                                <td
-                                                    style="width: 95%; font-weight: bold; text-align: left; padding: 5px 5px 1px;">
-                                                    {{sub_cat.id}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div v-for="(item,index_row) in sub_cat.list_row" v-bind:key="index_row">
-                                        <table width="100%" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                    <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index">
+                                        <div v-for="(item,index_row) in sub_cat.list_row" v-bind:key="index_row">
                                             <tbody style="border: 1px solid #000;">
-                                                <tr style="padding-top: 5px;">
+
+                                                <tr style="font-size: 14px; text-align: left;">
                                                     <td
-                                                        style="width: 5%; text-align: left;  border: 1px solid #000; padding: 5px 5px 1px 15px; ">
-                                                        {{index_row+1}}
+                                                        style="width: 5%; padding: 5px 5px 1px 20px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                            1
+                                                        </span>
                                                     </td>
                                                     <td
-                                                        style="width: 50%; text-align: left;  border: 1px solid #000; padding: 5px 5px 1px; ">
-                                                        {{item.modul}}
+                                                        style="width: 50%; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                            Termin II pengembangan Website dan e-Catalogue Wijaya Musik
+                                                            (wijayamusik.com)
+                                                        </span>
                                                     </td>
                                                     <td
-                                                        style="width: 5%;  border: 1px solid #000; padding: 5px 5px 1px; ">
-                                                        {{item.durasi}}
+                                                        style="width: 5%; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                            1
+                                                        </span>
                                                     </td>
                                                     <td
-                                                        style="width: 5%;  border: 1px solid #000; padding: 5px 5px 1px; ">
-                                                        {{item.satuan}}
+                                                        style="width: 20%; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                            Rp 13,204,000
+                                                        </span>
                                                     </td>
                                                     <td
-                                                        style="width: 20%;  border: 1px solid #000; padding: 5px 5px 1px; ">
-                                                        {{item.biaya}}
+                                                        style="width: 20%; text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                            Rp 13,204,000
+                                                        </span>
                                                     </td>
                                                     <td
-                                                        style="width: 10%;  border: 1px solid #000; padding: 5px 5px 1px; ">
-                                                        {{item.ket}}
+                                                        style="width: 5%; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                        <span style="display: block;">
+                                                        </span>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
+                                    <tfoot>
+                                        <tr
+                                            style="font-size: 15px; text-align: left; font-weight: bold; background-color: #d9d9d9;">
+                                            <td colspan="4"
+                                                style="text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;">
+                                                    Subtotal
+                                                </span>
+                                            </td>
+                                            <td
+                                                style="width: 15%; text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;">
+                                                    Rp 13,204,000
+                                                </span>
+                                            </td>
+                                            <td style="width: 5%; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;">
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            style="font-size: 16px; text-align: left; font-weight: bold; background-color: #2496b8; color: #fff;">
+                                            <td colspan="4"
+                                                style="text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;">
+                                                    Total Biaya
+                                                </span>
+                                            </td>
+                                            <td
+                                                style="width: 15%; text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;">
+                                                    Rp 13,204,000
+                                                </span>
+                                            </td>
+                                            <td
+                                                style="width: 15%; text-align: right; padding: 5px 5px 1px; border: 2px solid #2496b8;">
+                                                <span style="display: block;"></span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <p>Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut.</p>
+                                <table width="100%" cellspacing="0" cellpadding="0"
+                                    style="width: 100%; text-align: right; padding: 0;">
+                                    <tbody>
+                                        <tr style="font-size: 20px;">
+                                            <td style="font-weight: bold;">
+                                                16 April 2019
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="/storage/images/ttd.png" width="100" alt="Goyur"
+                                                    style="width: 250px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <br>
-                            <p>Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut.</p>
-                            <table width="100%" cellspacing="0" cellpadding="0"
-                                style="width: 100%; text-align: right; padding: 0;">
-                                <tbody>
-                                    <tr style="font-size: 20px;">
-                                        <td style="font-weight: bold;">
-                                            {{timestamp}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="/storage/images/ttd.png" width="100" alt="Goyur"
-                                                style="width: 250px;">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <v-btn
-                color="pink"
-                dark
-                large
-                fixed
-                bottom
-                right
-                fab
-
-                @click="print"
-              >
-                <v-icon>mdi-printer</v-icon>
-              </v-btn>
     </div>
 </template>
 
@@ -337,8 +357,6 @@
     import {
         loadHeaderdata
     } from "@/js/helpers/headerFile";
-    import * as moment from 'moment';
-    import localization from 'moment/locale/id'
     export default {
         data() {
             return {
@@ -362,7 +380,7 @@
                     offerduetime: "",
                     created_at: "",
                 },
-                categories: []
+                categories:[]
             }
         },
         methods: {
@@ -400,25 +418,12 @@
             loadPayload() {
                 let localPayload = JSON.parse(this.$store.getters.getDataPayload);
                 this.categories = localPayload;
-                console.log("categories", this.categories);
-            },
-            print(){
-                window.print();
             }
         },
         mounted() {
-            this.$store.commit("RESET_UPDATE")
             this.loadHeaderAPI();
             this.loadDokumendata();
-            this.loadPayload();
-        }, computed:{
-            timestamp(){
-                return moment().locale("id", localization).format('LL')
-            },
-            created_at(){
-                return moment(String(this.doc.created_at)).locale("id", localization).format('LL')
-            }
-        }
+        },
     }
 
 </script>
@@ -456,9 +461,6 @@
         top: 0mm;
         width: 100%;
         background: white;
-        width: 100%; 
-        border-bottom: 2px solid #4a7ebb; 
-        margin-bottom: 10px;
     }
 
     .page {

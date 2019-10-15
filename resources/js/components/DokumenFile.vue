@@ -35,7 +35,9 @@
             </v-layout>
         </v-app-bar>
         <div>
+        
             <Offer ref="OfferComponent" :document-data="data_dokumen" />
+
         </div>
     </div>
 </template>

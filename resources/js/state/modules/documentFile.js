@@ -86,6 +86,10 @@ export default {
             console.log("value updated")
             state.isUpToDate = false
         },
+        RESET_UPDATE(state) {
+            console.log("value reset")
+            state.isUpToDate = true
+        },
         STORE_DATA(state, payload) {
             state.data_dokumen = Object.assign({}, payload)
             console.log("state data dokumen", state.data_dokumen)
