@@ -1,6 +1,6 @@
 <template>
     <div id="offer-field" class="container">
-        <div class="card" style="margin-top:5%;">
+        <div class="card" style="margin-top:15%;">
             <div class="card-header">
                 <v-container>
                     <v-form>
@@ -107,8 +107,8 @@
             </v-container>
             <div class="card-header">
                 <div v-for="(category,cat_index) in categories" v-bind:key="cat_index" v-on:remove="deleteCategory()">
-                    <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(categories,cat_index)" large
-                        color="red" icon>
+                    <v-btn style="z-index:1; margin-bottom:-150px;" v-on:click="deleteCategory(categories,cat_index)"
+                        large color="red" icon>
                         <v-icon>mdi-close-circle-outline</v-icon>
                     </v-btn>
                     <v-card class="pa-10 mt-10">
@@ -122,8 +122,8 @@
                             <v-col class="col-sm-2">Keterangan</v-col>
                         </v-row>
                         <div class="col-sm-12" style="border-bottom:1px solid #000"></div>
-                        <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index" @mouseover="hiddenSub=false"
-                            @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
+                        <div v-for="(sub_cat,index) in category.list_subs" v-bind:key="index"
+                            @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
                             <v-row justify="center">
                                 <v-col sm="11">
                                     <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
@@ -136,8 +136,8 @@
                                     </v-btn>
                                 </v-col>
                             </v-row>
-                            <div v-for="(item,index_row) in sub_cat.list_row" v-bind:key="index_row" v-on:remove="deleteItem()" @mouseover="hidden=false"
-                            @mouseleave="hidden=true">
+                            <div v-for="(item,index_row) in sub_cat.list_row" v-bind:key="index_row"
+                                v-on:remove="deleteItem()" @mouseover="hidden=false" @mouseleave="hidden=true">
                                 <!-- {{index_row}} -->
                                 <v-row justify="center" align="center" @mouseover="hidden=false"
                                     @mouseleave="hidden=true">
@@ -159,12 +159,15 @@
                                 </v-row>
                             </div>
                             <div id="action-btn" class="mb-10">
-                                <v-btn fluid rounded color="primary" v-on:click="addSubCategory(cat_index)">Add Sub</v-btn>
-                                <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row</v-btn>
+                                <v-btn fluid rounded color="primary" v-on:click="addSubCategory(cat_index)">Add Sub
+                                </v-btn>
+                                <v-btn fluid rounded color="success" v-on:click="addRow(cat_index,index)">Add Row
+                                </v-btn>
                             </div>
                             <hr>
                         </div>
                     </v-card>
+                    {{categories}}
                 </div>
             </div>
         </div>
@@ -173,6 +176,7 @@
 
 <script>
     import CreateLogo from "@/js/components/dialog/CreateLogo.vue";
+    import jspdf from 'jspdf';
     // import CategoryAdd from "@/js/components/CategoryAdd.vue";
     import {
         loadHeaderdata
@@ -284,9 +288,9 @@
                 console.log(this.list_subs)
                 // this.list_subs[0].list_row.push("im here")
             },
-            addRow(cat_index,index) {
+            addRow(cat_index, index) {
                 console.log('Addrow')
-                this.categories[cat_index].list_subs[index].list_row.push(this.item={
+                this.categories[cat_index].list_subs[index].list_row.push(this.item = {
                     modul: "",
                     durasi: "",
                     satuan: "",
@@ -295,7 +299,7 @@
                 })
             },
 
-            deleteItem(sub_cat,index_row) {
+            deleteItem(sub_cat, index_row) {
                 // console.log(sub_cat.list_row)
                 // console.log(index_row)
                 sub_cat.list_row.splice(index_row, 1)
@@ -325,6 +329,19 @@
                     // Start the reader job - read file as a data url (base64 format)
                     reader.readAsDataURL(input.files[0]);
                 }
+            },
+            generatePDF() {
+                var specialElementHandlers = {
+                    "editor": function (element, renderer) {
+                        return true;
+                    }
+                }
+                const doc = new jspdf();
+                doc.fromHtml($("#target").html(), 15, 15, {
+                    "width": 170,
+                    "elementHandlers": specialElementHandlers
+                })
+                doc.save("pdf1.pdf");
             }
         },
         created() {

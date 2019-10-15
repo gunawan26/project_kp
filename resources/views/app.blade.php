@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Laravel</title>
     <link rel="stylesheet" href={{asset("css/app.css")}}>
@@ -19,8 +20,10 @@
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding:0;
+            -webkit-print-color-adjust: exact;
         }
 
         body {
@@ -28,7 +31,7 @@
         }
 
         .full-height {
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .flex-center {
