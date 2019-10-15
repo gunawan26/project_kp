@@ -11,7 +11,7 @@
                 <v-btn text small v-on:click="triggerAddCategory">
                     <v-icon>mdi-playlist-plus</v-icon>Add Category
                 </v-btn>
-                <v-btn outlined rounded text small class="mr-2">
+                <v-btn outlined rounded text small class="mr-2"  @click="saveUpdateToDB">
                     Save
                 </v-btn>
                 <v-btn outlined rounded text small>
@@ -26,7 +26,7 @@
                 <v-btn text outlined small v-on:click="triggerAddCategory">
                     <v-icon>mdi-playlist-plus</v-icon>
                 </v-btn>
-                <v-btn outlined text small>
+                <v-btn outlined text small @click="saveUpdateToDB">
                     <v-icon>mdi-content-save</v-icon>
                 </v-btn>
                 <v-btn outlined text small>
@@ -44,7 +44,7 @@
 import Navi from "@/js/components/Navi.vue";
 import Offer from "@/js/components/Offer.vue";
 import CategoryAdd from "@/js/components/CategoryAdd.vue";
-import { openFileApi } from "@/js/helpers/fileOffer";
+import { openFileApi, updateFileApi } from "@/js/helpers/fileOffer";
 
 export default {
   name: "create-offer",
@@ -92,6 +92,17 @@ export default {
   },
 
   methods: {
+    saveUpdateToDB() {
+      updateFileApi(
+        this.$authAPI,
+        this.$data.doc_id,
+        this.$store.getters.getDocumentData
+      )
+        .then(result => {
+          console.log("responses", result);
+        })
+        .catch(err => {});
+    },
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }

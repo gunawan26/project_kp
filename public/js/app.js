@@ -2060,6 +2060,11 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    saveUpdateToDB: function saveUpdateToDB() {
+      Object(_js_helpers_fileOffer__WEBPACK_IMPORTED_MODULE_3__["updateFileApi"])(this.$authAPI, this.$data.doc_id, this.$store.getters.getDocumentData).then(function (result) {
+        console.log("responses", result);
+      })["catch"](function (err) {});
+    },
     triggerAddCategory: function triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     }
@@ -2835,14 +2840,17 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
     addCategory: function addCategory() {
       this.categories.push(this.category = {
         title: "",
+        id: "",
         list_subs: [{
-          id: "",
+          name: "",
+          id_sub: "",
           list_row: [{
             modul: "",
             durasi: "",
             satuan: "",
             biaya: "",
-            ket: ""
+            ket: "",
+            id_row: ""
           }]
         }]
       });
@@ -2855,13 +2863,15 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
     addSubCategory: function addSubCategory(cat_index) {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(this.sub_cat = {
-        id: "",
+        name: "",
+        id_sub: "",
         list_row: [{
           modul: "",
           durasi: "",
           satuan: "",
           biaya: "",
-          ket: ""
+          ket: "",
+          id_row: ""
         }]
       });
       console.log(this.list_subs); // this.list_subs[0].list_row.push("im here")
@@ -2873,7 +2883,8 @@ var _createHelpers = Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_4__["create
         durasi: "",
         satuan: "",
         biaya: "",
-        ket: ""
+        ket: "",
+        id_row: ""
       });
     },
     deleteItem: function deleteItem(sub_cat, index_row) {
@@ -40506,7 +40517,8 @@ var render = function() {
                 "v-btn",
                 {
                   staticClass: "mr-2",
-                  attrs: { outlined: "", rounded: "", text: "", small: "" }
+                  attrs: { outlined: "", rounded: "", text: "", small: "" },
+                  on: { click: _vm.saveUpdateToDB }
                 },
                 [_vm._v("\n                Save\n            ")]
               ),
@@ -40554,7 +40566,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-btn",
-                { attrs: { outlined: "", text: "", small: "" } },
+                {
+                  attrs: { outlined: "", text: "", small: "" },
+                  on: { click: _vm.saveUpdateToDB }
+                },
                 [_c("v-icon", [_vm._v("mdi-content-save")])],
                 1
               ),
@@ -42182,11 +42197,11 @@ var render = function() {
                                       label: "SubCategory"
                                     },
                                     model: {
-                                      value: sub_cat.id,
+                                      value: sub_cat.name,
                                       callback: function($$v) {
-                                        _vm.$set(sub_cat, "id", $$v)
+                                        _vm.$set(sub_cat, "name", $$v)
                                       },
-                                      expression: "sub_cat.id"
+                                      expression: "sub_cat.name"
                                     }
                                   })
                                 ],
@@ -98687,13 +98702,14 @@ function getLocalUsers() {
 /*!*******************************************!*\
   !*** ./resources/js/helpers/fileOffer.js ***!
   \*******************************************/
-/*! exports provided: createFileApi, openFileApi */
+/*! exports provided: createFileApi, openFileApi, updateFileApi */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFileApi", function() { return createFileApi; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openFileApi", function() { return openFileApi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFileApi", function() { return updateFileApi; });
 function createFileApi(axios_param, payload, token) {
   return new Promise(function (res, rej) {
     axios_param.post('/api/auth/add-new-document', payload).then(function (response) {
@@ -98710,6 +98726,18 @@ function openFileApi(axios_param, id_dokumen, header) {
       res(result);
     })["catch"](function (err) {
       rej(err);
+    });
+  });
+}
+function updateFileApi(axios_param, id_dokumen, payload) {
+  return new Promise(function (resolve, reject) {
+    axios_param.post('/api/auth/update-form-data/' + id_dokumen, {
+      data: payload,
+      _method: 'PUT'
+    }).then(function (result) {
+      resolve(result);
+    })["catch"](function (err) {
+      reject(err);
     });
   });
 }

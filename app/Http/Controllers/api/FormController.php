@@ -41,9 +41,21 @@ class FormController extends Controller
     public function update_form_data(Request $request, $id)
     {
         $document = Offer::find($id);
-        $document->update($request->all());
+        // dd($request['data']['number']);
+        $document->number = $request['data']['number'];
+        $document->customername = $request['data']['customername'];
+        $document->discussion_date = $request['data']['discussion_date'];
+        $document->discussion_loc = $request['data']['discussion_loc'];
+        $document->offername = $request['data']['offername'];
+        $document->offerprice = $request['data']['offerprice'];
+        $document->duration = $request['data']['duration'];
+        $document->attachmentname = $request['data']['attachmentname'];
 
-        return response()->json("sukses", 200);
+        $payload_data = json_decode($request['data']['dataPayload']);
+        $this->save_categories($payload_data, $document);
+        $document->save();
+
+        return response()->json("sukses cuy", 200);
     }
 
 
@@ -52,8 +64,25 @@ class FormController extends Controller
     {
         $category = new category;
     }
-    public function insert_form_data()
+
+    public function save_offer()
     { }
-    public function insert_subcategory()
+
+    public function save_categories($dataPayload, Offer $offer)
+    {
+        foreach ($dataPayload as $value) {
+            dd($value);
+        }
+    }
+
+    public function save_subcategories()
     { }
+
+    public function save_detitems()
+    { }
+
+    public function save_document_data(Request $request)
+    {
+        dd($request);
+    }
 }

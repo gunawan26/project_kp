@@ -127,7 +127,7 @@
                             @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
                             <v-row justify="center">
                                 <v-col sm="11">
-                                    <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
+                                    <v-text-field class="col-sm-12" v-model="sub_cat.name" clearable
                                         hint="For example, Layouting" label="SubCategory"></v-text-field>
                                 </v-col>
                                 <v-col sm="1">
@@ -256,16 +256,19 @@ export default {
       this.categories.push(
         (this.category = {
           title: "",
+          id: "",
           list_subs: [
             {
-              id: "",
+              name: "",
+              id_sub: "",
               list_row: [
                 {
                   modul: "",
                   durasi: "",
                   satuan: "",
                   biaya: "",
-                  ket: ""
+                  ket: "",
+                  id_row: ""
                 }
               ]
             }
@@ -284,14 +287,16 @@ export default {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(
         (this.sub_cat = {
-          id: "",
+          name: "",
+          id_sub: "",
           list_row: [
             {
               modul: "",
               durasi: "",
               satuan: "",
               biaya: "",
-              ket: ""
+              ket: "",
+              id_row: ""
             }
           ]
         })
@@ -307,7 +312,8 @@ export default {
           durasi: "",
           satuan: "",
           biaya: "",
-          ket: ""
+          ket: "",
+          id_row: ""
         })
       );
     },

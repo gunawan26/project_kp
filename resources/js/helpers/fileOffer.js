@@ -25,3 +25,18 @@ export function openFileApi(axios_param, id_dokumen, header) {
         });
     })
 }
+
+export function updateFileApi(axios_param, id_dokumen, payload) {
+
+
+    return new Promise((resolve, reject) => {
+        axios_param.post('/api/auth/update-form-data/' + id_dokumen, {
+            data: payload,
+            _method: 'PUT'
+        }).then((result) => {
+            resolve(result)
+        }).catch((err) => {
+            reject(err)
+        });
+    });
+}
