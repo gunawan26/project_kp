@@ -18,4 +18,9 @@ class Detitem extends Model
         'arr_index_detail',
         'unit',
     ];
+
+    public function subcategory_data()
+    {
+        return $this->belongsTo('App\Subcategory');
+    }
 }

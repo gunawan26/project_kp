@@ -12,6 +12,7 @@ use App\Category;
 use App\Detitem;
 use App\Subcategory;
 use PhpParser\Node\Stmt\TryCatch;
+use DB;
 
 class FormController extends Controller
 {
@@ -26,7 +27,62 @@ class FormController extends Controller
     public function index($id)
     {
         $selected_document = Offer::find($id);
-        // dd($selected_document);
+        dd($selected_document->document);
+        return response()->json($selected_document, 200);
+    }
+
+    public function index_with_payload($id)
+    {
+        $cat_obj = [];
+
+        $selected_document = Offer::find($id);
+
+        $categories_data = DB::table('categories')->where('offer_id', $id)->get();
+        $cat_arr = [];
+        foreach ($categories_data as $key => $value) {
+
+
+
+            $sub_categories = DB::table('subcategories')->where('id_category', $value->id)->get();
+
+            $newdata = [];
+            foreach ($sub_categories as $key_sub => $value_sub) {
+
+
+                $det_items = DB::table('detitems')->where('subcategory', $value_sub->id)->get();
+                $new_det = [];
+                foreach ($det_items as $key_det => $value_det) {
+
+
+                    # code...
+                    $new_det[] = array(
+                        'modul' => $value_det->item,
+                        'durasi' => $value_det->duration,
+                        'satuan' => $value_det->unit,
+                        'biaya' => $value_det->itemprice,
+                        'ket' => $value_det->information,
+                        'id_row' => $value_det->id
+                    );
+                }
+                # code...
+                $newdata[] =  array(
+                    'name' => $value_sub->subcategoryname,
+                    'id_sub' => $value_sub->id,
+                    'list_row' => [$new_det]
+                );
+
+                // $cat_obj['list'] = $newdata;
+            }
+            // array_push($cat_obj, ['list_subs' => 1]);
+            # code...
+            $cat_arr[] = array(
+                'title' => $value->categoryname,
+                'id' => $value->id,
+                'list_subs' => [$newdata]
+            );
+        }
+        $cat_obj = json_encode($cat_arr);
+
         return response()->json($selected_document, 200);
     }
 
@@ -44,8 +100,8 @@ class FormController extends Controller
     public function update_form_data(Request $request, $id)
     {
         $document = Offer::find($id);
-        // dd($request['data']['number']);
-        $document->number = $request['data']['number'];
+        // dd();
+        $document->number = $request->input('data.number', '');
         $document->customername = $request['data']['customername'];
         $document->discussion_date = $request['data']['discussion_date'];
         $document->discussion_loc = $request['data']['discussion_loc'];
@@ -58,10 +114,10 @@ class FormController extends Controller
         try {
             //code...
             $payload_data = json_decode($request['data']['dataPayload']);
+            $this->save_categories($payload_data, $document);
         } catch (\Throwable $th) {
             //throw $th;
         }
-        $this->save_categories($payload_data, $document);
 
         return response()->json("sukses cuy", 200);
     }
@@ -112,6 +168,7 @@ class FormController extends Controller
     public function save_detitems($dataDetail, Subcategory $sub, Offer $offer)
     {
         foreach ($dataDetail as $key => $value) {
+
 
             $det_item = Detitem::updateOrCreate(
                 [

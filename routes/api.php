@@ -56,7 +56,7 @@ Route::group([
          * Bagian Form surat
          */
         Route::post('add-new-document', 'FormController@new_document');
-        Route::get('get-document/{id}', 'FormController@index');
+        Route::get('get-document/{id}', 'FormController@index_with_payload');
         Route::post('users/{id}', 'FormController@save_document_data');
 
         Route::put('update-form-data/{id}', 'FormController@update_form_data');

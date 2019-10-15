@@ -447,25 +447,17 @@ export default {
   height: 150px;
 }
 
-<<<<<<< HEAD
 #signature {
-  margin-left: 77%;
-  width: 150px;
-  height: 100px;
+  margin-left: 75%;
+  text-align: center;
+  border: 1px dashed #00f;
+  width: 200px;
+  height: 50px;
 }
-=======
-    #signature {
-        margin-left: 75%;
-        text-align: center;
-        border:1px dashed #00f; 
-        width:200px; 
-        height:50px;
-    }
 
-    input {
-        border-bottom: 1px solid #7e7a7a;
-    }
->>>>>>> c15c9fdb897d51b6509f27d1eaad0cc033fd9653
+input {
+  border-bottom: 1px solid #7e7a7a;
+}
 
 input {
   border-bottom: 1px solid #7e7a7a;
