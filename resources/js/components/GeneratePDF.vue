@@ -56,7 +56,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2" style="padding-bottom: 5px; text-align: right;">
-                                            <span>Denpasar, {{created_at}}</span>
+                                            <span>Denpasar, {{created_at_date}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -489,7 +489,8 @@
             timestamp() {
                 return moment().locale("id", localization).format('LL')
             },
-            created_at() {
+            created_at_date() {
+                console.log('created_at',this.created_at);
                 return moment(String(this.created_at)).locale("id", localization).format('LL')
             }
         },

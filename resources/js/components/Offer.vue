@@ -117,7 +117,7 @@
                             <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
                                 required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>) rangkap
+                        (<span><input type="text" v-model="attachment" required></span>) rangkap
                         dokumen.</p>
                     <p>Dengan disampaikannya Surat Penawaran ini, maka kami menyatakan sanggup melaksanakan
                         pekerjaan ini.</p>
@@ -196,6 +196,9 @@
                 </div>
             </div>
         </div>
+        <v-btn color="green" dark x-large fixed bottom right fab>
+            <v-icon>mdi-check</v-icon>
+        </v-btn>
     </div>
 </template>
 
@@ -251,6 +254,7 @@
             offerpricename: "",
             offerduetimename:"",
             durationname:"",
+            attachment:""
 
 
         }),
@@ -512,7 +516,10 @@
                 this.offerduetimename = this.terbilang(val);
             },
             duration: function (val) {
-                this.offerduetimename = this.terbilang(val);
+                this.durationname = this.terbilang(val);
+            }, 
+            attachmentname:function(val){
+                this.attachment = this.terbilang(val);
             }
         },
         props: ["document-data"]
