@@ -83,9 +83,10 @@ export default {
 
     openFileApi(this.$authAPI, this.$data.doc_id)
       .then(result => {
-        let payload = { dataFromDb: result.data, idDoc: this.$data.doc_id };
+        console.log("result fetching", result.data.dataPayload);
+        let payload = { dataFromDb: result.data.doc, idDoc: this.$data.doc_id };
         this.$store.dispatch("fetchDataDokumen", payload);
-
+        // this.$store.dispatch("updatepayloadData", result.data.dataPayload);
         console.log("data dokumen", this.$store.getters.dataDokumen);
       })
       .catch(err => {
@@ -108,10 +109,10 @@ export default {
     triggerAddCategory() {
       this.$refs.OfferComponent.addCategory();
     },
-    preview(){
+    preview() {
       this.$router.push({
-            path: "/generatepdf"
-          });
+        path: "/generatepdf"
+      });
     }
   }
 };

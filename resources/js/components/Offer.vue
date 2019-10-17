@@ -30,7 +30,7 @@
                                     <div oulined class="image-preview" v-if="imageData.length > 0">
                                         <img class="preview" :src="imageData">
                                     </div>
-                                    <createLogo :company-data="company" />
+                                    <createLogo v-bind:company-data="company" />
                                 </div>
                             </v-col>
                         </v-row>
@@ -95,10 +95,9 @@
                             <v-icon>mdi-clipboard-outline</v-icon><input v-model="subject" type="text" id="InputEmail"
                                 required>
                         </span> sebesar Rp. <span>
-                            <v-icon>mdi-currency-usd</v-icon><input v-model="offerprice" type="text" id="InputEmail"
-                                required>
+                            <input v-model="offerprice" type="text" required>
                         </span>
-                        ,- (<span><input type="text" id="InputEmail" required></span>). </p>
+                        ,- (<span><input type="text" v-model="offerpricename" required></span>). </p>
                     <p>Penawaran ini sudah memperhatikan ketentuan dan persyaratan untuk melaksanakan pekerjaan
                         tersebut di atas.</p>
                     <p>Kami akan melaksanakan pekerjaan tersebut dengan jangka waktu pelaksanaan pekerjaan selama
@@ -106,13 +105,13 @@
                             <v-icon>mdi-camera-timer</v-icon><input v-model="duration" type="text" id="InputEmail"
                                 required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>)
+                        (<span><input type="text" v-model="durationname" required></span>)
                         hari kerja.</p>
                     <p>Penawaran ini berlaku selama <span>
-                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" id="InputEmail"
+                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text"
                                 required>
                         </span>
-                        (<span><input type="text" id="InputEmail" required></span>) hari kalender sejak tanggal
+                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span>
                             <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
@@ -152,7 +151,7 @@
                             @mouseover="hiddenSub=false" @mouseleave="hiddenSub=true" v-on:remove="deleteSub()">
                             <v-row justify="center">
                                 <v-col sm="11">
-                                    <v-text-field class="col-sm-12" v-model="sub_cat.name" clearable
+                                    <v-text-field class="col-sm-12" v-model="sub_cat.id" clearable
                                         hint="For example, Layouting" label="SubCategory"></v-text-field>
                                 </v-col>
                                 <v-col sm="1">
@@ -230,7 +229,7 @@ export default {
       email: "",
       logo: ""
     },
-    imageData: "/storage/images/logo.png",
+    imageData: "",
     items: [],
     item: [],
     notUpToDate: false,
@@ -242,7 +241,10 @@ export default {
 
     date: new Date().toISOString().substr(0, 10),
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
-    menu1: false
+    menu1: false,
+    offerpricename: "",
+    offerduetimename: "",
+    durationname: ""
   }),
 
   methods: {
@@ -256,7 +258,31 @@ export default {
         this.categories = localPayload;
         // this.categories.push(localPayload);
         // console.log("local payload", localPayload);
+
         console.log("updating", this.categories);
+      } else {
+        console.log("string arr", this.$store.getters.getDataPayload);
+        // let localPayload = JSON.parse(this.$store.getters.getDataPayload);
+        this.categories = localPayload;
+      }
+
+      for (var key in this.categories) {
+        if (this.categories[key].list_subs.length <= 0) {
+          this.categories[key].list_subs.push(
+            (this.sub_cat = {
+              id: "",
+              list_row: [
+                {
+                  modul: "",
+                  durasi: "",
+                  satuan: "",
+                  biaya: "",
+                  ket: ""
+                }
+              ]
+            })
+          );
+        }
       }
       // console.log(JSON.parse(this.$store.getters.getDataPayload));
       // this.categories.push(
@@ -273,9 +299,10 @@ export default {
             number: result.phonenumber,
             email: result.email,
             website: result.website,
-            logo: result.logo
+            logo: null
           };
-          console.log("data asdsadas", result);
+          this.imageData = "/storage/" + result.logo;
+          console.log("data baru cuy", this.imageData);
         })
         .catch(err => {
           console.log("err data tidak masuk", err);
@@ -285,19 +312,16 @@ export default {
       this.categories.push(
         (this.category = {
           title: "",
-          id: "",
           list_subs: [
             {
-              name: "",
-              id_sub: "",
+              id: "",
               list_row: [
                 {
                   modul: "",
                   durasi: "",
                   satuan: "",
                   biaya: "",
-                  ket: "",
-                  id_row: ""
+                  ket: ""
                 }
               ]
             }
@@ -307,20 +331,23 @@ export default {
       console.log(this.categories);
     },
 
+    deleteCategory(categories, index) {
+      console.log(index);
+      categories.splice(index, 1);
+    },
+
     addSubCategory(cat_index) {
       console.log("Addcat " + cat_index);
       this.categories[cat_index].list_subs.push(
         (this.sub_cat = {
-          name: "",
-          id_sub: "",
+          id: "",
           list_row: [
             {
               modul: "",
               durasi: "",
               satuan: "",
               biaya: "",
-              ket: "",
-              id_row: ""
+              ket: ""
             }
           ]
         })
@@ -336,27 +363,11 @@ export default {
           durasi: "",
           satuan: "",
           biaya: "",
-          ket: "",
-          id_row: ""
-        })
-      );
-    },
-
-    addRow(cat_index, index) {
-      console.log("Addrow");
-      this.categories[cat_index].list_subs[index].list_row.push(
-        (this.item = {
-          modul: "",
-          durasi: "",
-          satuan: "",
-          biaya: "",
           ket: ""
         })
       );
     },
-    deleteCategory(categories, index) {
-      categories.splice(index, 1);
-    },
+
     deleteItem(sub_cat, index_row) {
       // console.log(sub_cat.list_row)
       // console.log(index_row)
@@ -396,6 +407,116 @@ export default {
 
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    },
+
+    terbilang(val) {
+      var bilangan = val;
+      var kalimat = "";
+      var subkalimat;
+      var kata1;
+      var kata2;
+      var kata3;
+      var angka = new Array(
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      );
+      var kata = new Array(
+        "",
+        "Satu",
+        "Dua",
+        "Tiga",
+        "Empat",
+        "Lima",
+        "Enam",
+        "Tujuh",
+        "Delapan",
+        "Sembilan"
+      );
+      var tingkat = new Array("", "Ribu", "Juta", "Milyar", "Triliun");
+      var panjang_bilangan = bilangan.length;
+
+      /* pengujian panjang bilangan */
+      if (panjang_bilangan > 15) {
+        kalimat = "Diluar Batas";
+      } else {
+        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+        for (i = 1; i <= panjang_bilangan; i++) {
+          angka[i] = bilangan.substr(-i, 1);
+        }
+
+        var i = 1;
+        var j = 0;
+
+        /* mulai proses iterasi terhadap array angka */
+        while (i <= panjang_bilangan) {
+          subkalimat = "";
+          kata1 = "";
+          kata2 = "";
+          kata3 = "";
+
+          /* untuk Ratusan */
+          if (angka[i + 2] != "0") {
+            if (angka[i + 2] == "1") {
+              kata1 = "Seratus";
+            } else {
+              kata1 = kata[angka[i + 2]] + " Ratus";
+            }
+          }
+
+          /* untuk Puluhan atau Belasan */
+          if (angka[i + 1] != "0") {
+            if (angka[i + 1] == "1") {
+              if (angka[i] == "0") {
+                kata2 = "Sepuluh";
+              } else if (angka[i] == "1") {
+                kata2 = "Sebelas";
+              } else {
+                kata2 = kata[angka[i]] + " Belas";
+              }
+            } else {
+              kata2 = kata[angka[i + 1]] + " Puluh";
+            }
+          }
+
+          /* untuk Satuan */
+          if (angka[i] != "0") {
+            if (angka[i + 1] != "1") {
+              kata3 = kata[angka[i]];
+            }
+          }
+
+          /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+          if (angka[i] != "0" || angka[i + 1] != "0" || angka[i + 2] != "0") {
+            subkalimat =
+              kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+          }
+
+          /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+          kalimat = subkalimat + kalimat;
+          i = i + 3;
+          j = j + 1;
+        }
+
+        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+        if (angka[5] == "0" && angka[6] == "0") {
+          kalimat = kalimat.replace("Satu Ribu", "Seribu");
+        }
+      }
+      return kalimat;
     }
   },
   created() {
@@ -434,6 +555,15 @@ export default {
     },
     date(val) {
       this.dateFormatted = this.formatDate(this.date);
+    },
+    offerprice: function(val) {
+      this.offerpricename = this.terbilang(val);
+    },
+    offerduetime: function(val) {
+      this.offerduetimename = this.terbilang(val);
+    },
+    duration: function(val) {
+      this.offerduetimename = this.terbilang(val);
     }
   },
   props: ["document-data"]
@@ -453,10 +583,6 @@ export default {
   border: 1px dashed #00f;
   width: 200px;
   height: 50px;
-}
-
-input {
-  border-bottom: 1px solid #7e7a7a;
 }
 
 input {

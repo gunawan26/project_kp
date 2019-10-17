@@ -27,7 +27,7 @@ class FormController extends Controller
     public function index($id)
     {
         $selected_document = Offer::find($id);
-        dd($selected_document->document);
+
         return response()->json($selected_document, 200);
     }
 
@@ -68,7 +68,7 @@ class FormController extends Controller
                 $newdata[] =  array(
                     'name' => $value_sub->subcategoryname,
                     'id_sub' => $value_sub->id,
-                    'list_row' => [$new_det]
+                    'list_row' => $new_det
                 );
 
                 // $cat_obj['list'] = $newdata;
@@ -78,12 +78,12 @@ class FormController extends Controller
             $cat_arr[] = array(
                 'title' => $value->categoryname,
                 'id' => $value->id,
-                'list_subs' => [$newdata]
+                'list_subs' => $newdata
             );
         }
-        $cat_obj = json_encode($cat_arr);
+        // $cat_obj = json_encode($cat_arr);
 
-        return response()->json($selected_document, 200);
+        return response()->json(['doc' => $selected_document, 'dataPayload' => $cat_arr], 200);
     }
 
     public function new_document(Request $request)
@@ -113,12 +113,13 @@ class FormController extends Controller
         $document->save();
         try {
             //code...
+
             $payload_data = json_decode($request['data']['dataPayload']);
-            $this->save_categories($payload_data, $document);
         } catch (\Throwable $th) {
             //throw $th;
         }
 
+        $this->save_categories($payload_data, $document);
         return response()->json("sukses cuy", 200);
     }
 

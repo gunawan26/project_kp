@@ -116,21 +116,30 @@ class AuthController extends Controller
 
     public function register(Request $request, $roleSts)
     {
-        if ($roleSts) {
 
+        if ($roleSts) {
             $request->request->add([
                 'password_confirmation' =>  $request->password,
-                'name' => null,
                 'fullname' => null,
                 'gender' => null,
                 'phonenumber' => null,
-                'signature' => null
-
-
+                'signature' => null,
+                'name' => null
             ]);
         }
-        $validator = Validator::make($request->all(), [
-            'name' => ['nullable', 'string', 'max:100', 'unique:users'],
+
+        $data_user = $request->all();
+        $full_name = explode(" ", $request->input('fullname', ''));
+
+        $data_user['name'] = end($full_name);
+        $data_user['gender'] = null;
+        $data_user['signature'] = null;
+        $data_user['phonenumber'] = null;
+
+
+
+        $validator = Validator::make($data_user, [
+            'name' => ['nullable', 'string', 'max:100'],
             'fullname' => ['nullable', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -140,6 +149,7 @@ class AuthController extends Controller
 
         ]);
 
+        // dd($validator->fails());
         if ($validator->fails()) {
             return response()->json([
                 'status'        => false,
@@ -147,10 +157,10 @@ class AuthController extends Controller
                 'access_token'  => null,
                 'error'         => $validator->messages(),
             ], 400);
+        } else {
+            $this->create($data_user, $roleSts);
+            return response()->json("sukses", 200);
         }
-
-        $this->create($request->all(), $roleSts);
-        return response()->json("sukses", 200);
     }
 
 
@@ -170,12 +180,17 @@ class AuthController extends Controller
             'gender' => $data['gender'],
             'phonenumber' => $data['phonenumber'],
             'signature' => $data['signature'],
-            'role' => $admin_sts
+            'role' => strval($admin_sts)
         ]);
     }
 
-    public function test()
+
+    public function add_user(Request $request)
     {
-        return "sukses";
+        $role = 0;
+        $res = $this->register($request, false);
+
+        return $res;
+        // return response()->json(['sukses'], 200);
     }
 }

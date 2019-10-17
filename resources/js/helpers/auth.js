@@ -1,3 +1,7 @@
+import {
+    Promise
+} from "q";
+
 // import Axios from "axios";
 
 export function login(credentials) {
@@ -13,6 +17,31 @@ export function login(credentials) {
                 console.log(err)
             })
     })
+}
+
+export function logout(axios_param) {
+    return new Promise((resolve, reject) => {
+
+        axios_param.post('/api/auth/logout').then((result) => {
+            resolve(result)
+        }).catch((err) => {
+            reject(err)
+        });
+
+    })
+
+}
+
+export function addUser(axios_param, payload) {
+    return new Promise((resolve, reject) => {
+
+        axios_param.post('/api/auth/add_user', payload).then((result) => {
+            resolve(result)
+        }).catch((err) => {
+            reject(err)
+        });
+    })
+
 }
 
 

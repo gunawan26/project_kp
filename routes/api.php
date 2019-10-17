@@ -35,6 +35,8 @@ Route::group([
         Route::post('refresh', 'AuthController@refresh');
         Route::post('me', 'AuthController@me');
 
+        Route::post('add_user', 'AuthController@add_user');
+
         Route::get('data', 'DocumentController@get_file');
         Route::get('data-history', 'DocumentController@get_history');
 

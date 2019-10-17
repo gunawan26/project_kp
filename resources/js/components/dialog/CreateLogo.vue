@@ -17,21 +17,21 @@
                                 <v-row>
                                     <v-col cols="12" sm="6" md="9">
 
-                                        <v-text-field outlined label="Company Name*" v-model="company.name">
+                                        <v-text-field outlined label="Company Name*" v-model="companyData.name">
                                         </v-text-field>
-                                        <v-text-field outlined label="Company Address*" v-model="company.address">
+                                        <v-text-field outlined label="Company Address*" v-model="companyData.address">
                                         </v-text-field>
                                         <v-row>
                                             <v-col cols="12" sm="6" md="4">
-                                                <v-text-field outlined label="Company Number*" v-model="company.number">
+                                                <v-text-field outlined label="Company Number*" v-model="companyData.number">
                                                 </v-text-field>
                                             </v-col>
                                             <v-col cols="12" sm="6" md="4">
                                                 <v-text-field outlined label="Company Website*"
-                                                    v-model="company.website"></v-text-field>
+                                                    v-model="companyData.website"></v-text-field>
                                             </v-col>
                                             <v-col cols="12" sm="6" md="4">
-                                                <v-text-field outlined label="Company Email*" v-model="company.email">
+                                                <v-text-field outlined label="Company Email*" v-model="companyData.email">
                                                 </v-text-field>
                                             </v-col>
                                         </v-row>
@@ -58,7 +58,7 @@
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
                         <v-btn color="blue darken-1" outlined text @click="dialogClose">Close</v-btn>
-                        <v-btn color="blue darken-1" outlined text>Submit</v-btn>
+                        <v-btn color="blue darken-1" outlined text @click="updateHeader">Submit</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -67,17 +67,11 @@
 </template>
 
 <script>
+import { createOrUpdateHeader } from "@/js/helpers/headerFile";
 // import { createFileApi } from "../../helpers/fileOffer";
 export default {
   data: () => ({
     dialog: false,
-    company: {
-      name: "",
-      address: "",
-      number: "",
-      website: "",
-      email: ""
-    },
 
     rules: {
       required: value => !!value || "Required.",
@@ -88,21 +82,38 @@ export default {
   }),
 
   mounted() {
-    console.log("show data in child");
-    console.log(this.companyData);
+    this.company = {
+      name: this.companyData.name,
+      address: this.companyData.address,
+      number: this.companyData.number,
+      email: this.companyData.email,
+      website: this.companyData.website,
+      logo: "/storage/" + this.companyData.logo
+    };
   },
 
   methods: {
-    getData() {
-      console.log(this.companyData);
-      this.company = {
-        name: this.companyData.name,
+    updateHeader() {
+      let payload = {
+        companyname: this.companyData.name,
         address: this.companyData.address,
-        number: this.companyData.number,
+        phonenumber: this.companyData.number,
         email: this.companyData.email,
-        website: this.companyData.website,
-        logo: this.companyData.logo
+        website: this.companyData.website
       };
+
+      if (this.companyData.upload != null) {
+        payload.imagePayload = this.companyData.upload;
+      }
+      createOrUpdateHeader(this.$authAPI, payload)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      this.dialog = false;
+      this.dialogClose();
     },
     previewImage: function(event) {
       // Reference to the DOM input element
@@ -116,6 +127,7 @@ export default {
           // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
           // Read image as base64 and set to imageData
           this.imageData = e.target.result;
+          this.companyData.upload = this.imageData;
         };
         // Start the reader job - read file as a data url (base64 format)
         reader.readAsDataURL(input.files[0]);
@@ -124,14 +136,6 @@ export default {
 
     dialogClose() {
       this.dialog = false;
-      this.company = {
-        name: this.companyData.name,
-        address: this.companyData.address,
-        number: this.companyData.number,
-        email: this.companyData.email,
-        website: this.companyData.website,
-        logo: this.companyData.logo
-      };
     }
   },
   props: ["company-data"]
