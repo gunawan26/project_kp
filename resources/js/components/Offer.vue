@@ -108,10 +108,10 @@
                         (<span><input type="text" v-model="durationname" required></span>)
                         hari kerja.</p>
                     <p>Penawaran ini berlaku selama <span>
-                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text"
-                                required>
+                            <v-icon>mdi-calendar-check</v-icon><input v-model="offerduetime" type="text" required>
                         </span>
-                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak tanggal
+                        (<span><input type="text" v-model="offerduetimename" required></span>) hari kalender sejak
+                        tanggal
                         surat penawaran ini.
                         surat penawaran beserta lampirannya kami sampaikan sebanyak <span>
                             <v-icon>mdi-attachment</v-icon><input v-model="attachmentname" type="text" id="InputEmail"
@@ -252,9 +252,9 @@
             dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
             menu1: false,
             offerpricename: "",
-            offerduetimename:"",
-            durationname:"",
-            attachment:""
+            offerduetimename: "",
+            durationname: "",
+            attachment: ""
 
 
         }),
@@ -399,77 +399,80 @@
                 var kata3;
                 var angka = new Array('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
                 var kata = new Array('', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan',
-                'Sembilan');
+                    'Sembilan');
                 var tingkat = new Array('', 'Ribu', 'Juta', 'Milyar', 'Triliun');
-                var panjang_bilangan = bilangan.length;
 
-                /* pengujian panjang bilangan */
-                if (panjang_bilangan > 15) {
-                    kalimat = "Diluar Batas";
-                } else {
-                    /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-                    for (i = 1; i <= panjang_bilangan; i++) {
-                        angka[i] = bilangan.substr(-(i), 1);
-                    }
+                if (val != null) {
+                    var panjang_bilangan = bilangan.length;
 
-                    var i = 1;
-                    var j = 0;
-
-                    /* mulai proses iterasi terhadap array angka */
-                    while (i <= panjang_bilangan) {
-                        subkalimat = "";
-                        kata1 = "";
-                        kata2 = "";
-                        kata3 = "";
-
-                        /* untuk Ratusan */
-                        if (angka[i + 2] != "0") {
-                            if (angka[i + 2] == "1") {
-                                kata1 = "Seratus";
-                            } else {
-                                kata1 = kata[angka[i + 2]] + " Ratus";
-                            }
+                    /* pengujian panjang bilangan */
+                    if (panjang_bilangan > 15) {
+                        kalimat = "Diluar Batas";
+                    } else {
+                        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+                        for (i = 1; i <= panjang_bilangan; i++) {
+                            angka[i] = bilangan.substr(-(i), 1);
                         }
 
-                        /* untuk Puluhan atau Belasan */
-                        if (angka[i + 1] != "0") {
-                            if (angka[i + 1] == "1") {
-                                if (angka[i] == "0") {
-                                    kata2 = "Sepuluh";
-                                } else if (angka[i] == "1") {
-                                    kata2 = "Sebelas";
+                        var i = 1;
+                        var j = 0;
+
+                        /* mulai proses iterasi terhadap array angka */
+                        while (i <= panjang_bilangan) {
+                            subkalimat = "";
+                            kata1 = "";
+                            kata2 = "";
+                            kata3 = "";
+
+                            /* untuk Ratusan */
+                            if (angka[i + 2] != "0") {
+                                if (angka[i + 2] == "1") {
+                                    kata1 = "Seratus";
                                 } else {
-                                    kata2 = kata[angka[i]] + " Belas";
+                                    kata1 = kata[angka[i + 2]] + " Ratus";
                                 }
-                            } else {
-                                kata2 = kata[angka[i + 1]] + " Puluh";
                             }
-                        }
 
-                        /* untuk Satuan */
-                        if (angka[i] != "0") {
-                            if (angka[i + 1] != "1") {
-                                kata3 = kata[angka[i]];
+                            /* untuk Puluhan atau Belasan */
+                            if (angka[i + 1] != "0") {
+                                if (angka[i + 1] == "1") {
+                                    if (angka[i] == "0") {
+                                        kata2 = "Sepuluh";
+                                    } else if (angka[i] == "1") {
+                                        kata2 = "Sebelas";
+                                    } else {
+                                        kata2 = kata[angka[i]] + " Belas";
+                                    }
+                                } else {
+                                    kata2 = kata[angka[i + 1]] + " Puluh";
+                                }
                             }
+
+                            /* untuk Satuan */
+                            if (angka[i] != "0") {
+                                if (angka[i + 1] != "1") {
+                                    kata3 = kata[angka[i]];
+                                }
+                            }
+
+                            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+                            if ((angka[i] != "0") || (angka[i + 1] != "0") || (angka[i + 2] != "0")) {
+                                subkalimat = kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+                            }
+
+                            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+                            kalimat = subkalimat + kalimat;
+                            i = i + 3;
+                            j = j + 1;
                         }
 
-                        /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-                        if ((angka[i] != "0") || (angka[i + 1] != "0") || (angka[i + 2] != "0")) {
-                            subkalimat = kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+                        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+                        if ((angka[5] == "0") && (angka[6] == "0")) {
+                            kalimat = kalimat.replace("Satu Ribu", "Seribu");
                         }
-
-                        /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-                        kalimat = subkalimat + kalimat;
-                        i = i + 3;
-                        j = j + 1;
                     }
-
-                    /* mengganti Satu Ribu jadi Seribu jika diperlukan */
-                    if ((angka[5] == "0") && (angka[6] == "0")) {
-                        kalimat = kalimat.replace("Satu Ribu", "Seribu");
-                    }
+                    return kalimat;
                 }
-                return kalimat;
             }
         },
         created() {
@@ -517,8 +520,8 @@
             },
             duration: function (val) {
                 this.durationname = this.terbilang(val);
-            }, 
-            attachmentname:function(val){
+            },
+            attachmentname: function (val) {
                 this.attachment = this.terbilang(val);
             }
         },
