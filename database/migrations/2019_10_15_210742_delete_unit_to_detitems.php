@@ -16,7 +16,7 @@ class DeleteUnitToDetitems extends Migration
         Schema::table('detitems', function (Blueprint $table) {
             //
             $table->dropColumn('unit');
-            $table->string('unit')->nullable();
+            // $table->string('unit')->nullable();
         });
     }
 
