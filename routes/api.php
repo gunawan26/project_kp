@@ -36,9 +36,13 @@ Route::group([
         Route::post('me', 'AuthController@me');
 
         Route::post('add_user', 'AuthController@add_user');
-
+        Route::get('show_user_info', 'AuthController@show_information_user');
         Route::get('data', 'DocumentController@get_file');
         Route::get('data-history', 'DocumentController@get_history');
+
+
+        Route::post('change_user_name', 'AuthController@change_name');
+        Route::post('change_password', 'AuthController@change_user_password');
 
 
         Route::get('users/user_role', function () {
@@ -62,6 +66,7 @@ Route::group([
         Route::post('users/{id}', 'FormController@save_document_data');
 
         Route::put('update-form-data/{id}', 'FormController@update_form_data');
+        Route::put('set_document_done/{id}/{status}', 'FormController@update_form_data');
     });
 
 

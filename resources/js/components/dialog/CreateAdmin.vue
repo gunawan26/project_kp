@@ -34,6 +34,8 @@
                                 </v-col>
                             </v-row>
                         </v-container>
+                                <notifications group="foo" />
+
                         <small>*indicates required field</small>
                     </v-card-text>
                     <v-card-actions>
@@ -78,6 +80,14 @@ export default {
       addUser(this.$authAPI, this.formAddUser)
         .then(result => {
           console.log(result);
+          this.$notify({
+            group: "foo",
+            title: "Berhasil",
+            text: "User Berhasil Disimpan",
+            duration: 2000,
+            type: "success "
+          });
+          this.dialogClose();
         })
         .catch(err => {
           this.alertCreate = true;

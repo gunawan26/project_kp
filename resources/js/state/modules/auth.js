@@ -15,6 +15,8 @@ export default {
          * 
          * login dev 
          */
+        user_name: '',
+        user_role: '',
         currentUser: user,
         isLoggedIn: !!user,
         loading: false,
@@ -38,6 +40,9 @@ export default {
             return state.auth_error;
 
         },
+        get_user_name(state) {
+            return state.user_name;
+        },
 
         get_header() {
             let json_token = JSON.parse(localStorage.getItem('user'))
@@ -48,6 +53,11 @@ export default {
 
     },
     mutations: {
+        SET_USER_DATA(state, payload) {
+            console.log("sukses store", payload)
+            state.user_name = payload.name;
+            state.role = payload.role
+        },
         KONFIRMASI_AGENDA: (state, agenda) => {
             state.listAgenda.push(agenda)
         },
@@ -106,6 +116,9 @@ export default {
         },
         loginFailed(context, payload) {
             context.commit("LOGINFAILED", payload)
+        },
+        saveUserInfo(context, payload) {
+            context.commit("SET_USER_DATA", payload)
         }
     }
 }

@@ -193,4 +193,73 @@ class AuthController extends Controller
         return $res;
         // return response()->json(['sukses'], 200);
     }
+
+    public function show_information_user()
+    {
+        $data_user = JWTAuth::user();
+        $data = [
+            'fullname' => $data_user->fullname,
+            'name' => $data_user->name,
+            'email' => $data_user->email,
+            'role' => $data_user->role
+        ];
+
+        // dd($data);
+        return response()->json(
+            $data,
+            200
+        );
+    }
+
+    public function change_user_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            // 'name' => ['nullable', 'string', 'max:100'],
+            'fullname' => ['nullable', 'string', 'max:100'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'old_password' => [
+                'sometimes', 'required', 'string', 'min:8',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, JWTAuth::user()->password)) {
+                        $fail('Old Password didn\'t match');
+                    }
+                },
+            ],
+            'new_password' => ['sometimes', 'required', 'string', 'min:8', 'required_with:old_password', 'confirmed'],
+            // 'gender' => ['nullable', Rule::in([1, 0]),],
+            // 'phonenumber' => ['nullable', 'string', 'max:20'],
+            // 'signature' => ['nullable'],
+
+        ]);
+
+        dd($validator->fail());
+    }
+
+    public function change_name(Request $request)
+    {
+        // dd($request);
+        $validator = Validator::make($request->all(), [
+            'fullname' => ['required', 'string', 'max:100'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'        => false,
+                'msg'           => 'input salah',
+                'access_token'  => null,
+                'error'         => $validator->messages(),
+            ], 400);
+        }
+        $id_user = JWTAuth::user()->id;
+
+        $user = User::find($id_user);
+        $full_name_arr = explode(" ", $request->input('fullname', ''));
+
+        $user->fullname = $request->fullname;
+        $user->name = end($full_name_arr);
+        $user->save();
+
+        return response()->json('sukses', 200);
+    }
 }

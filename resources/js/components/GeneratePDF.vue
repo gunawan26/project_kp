@@ -288,8 +288,65 @@
                                         </table>
                                     </div>
                                 </div>
-                                <br>
+
                             </div>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td width="12%"
+                                        style="margin-top:30px; font-weight: bold; font-size: 18px; vertical-align: bottom;">
+                                        Summary
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                <thead
+                                    style="font-size: 14px; background-color: #2496b8; color: #fff; text-align: left;">
+                                    <tr style="padding-top: 5px;">
+                                        <th
+                                            style="width: 5%; font-weight: bold; text-align: left; padding: 5px 5px 1px 15px; ">
+                                            No.
+                                        </th>
+                                        <th
+                                            style="width: 95%; font-weight: border: 1px solid #000; bold; text-align: left; padding: 5px 5px 1px 15px; ">
+                                            Pekerjaan
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div v-for="(cat,index) in categories" v-bind:key="index">
+                                <table width="100%" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                    <tbody style="border: 1px solid #000;">
+                                        <tr style="padding-top: 5px;">
+                                            <td
+                                                style="width: 5%; text-align: left;  border: 1px solid #000; padding: 5px 5px 1px 15px; ">
+                                                {{index+1}}
+                                            </td>
+                                            <td
+                                                style="width: 95%; text-align: left;  border: 1px solid #000; padding: 5px 5px 1px; ">
+                                                {{cat.title}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <table width="100%" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                <thead
+                                    style="font-size: 14px; background-color: #2496b8; color: #fff; text-align: left;">
+                                    <tr style="padding-top: 5px;">
+                                        <th
+                                            style="width: 55%; font-weight: bold; text-align: left; padding: 5px 5px 1px 15px; ">
+                                            Total
+                                        </th>
+                                        <th
+                                            style="width: 45%; font-weight: border: 1px solid #000; bold; text-align: left; padding: 5px 5px 1px 15px; ">
+                                            {{total_item[0]}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+
                             <br>
                             <p>Penawaran masih dapat berubah berdasarkan diskusi lebih lanjut.</p>
                             <table width="100%" cellspacing="0" cellpadding="0"
@@ -321,263 +378,321 @@
 </template>
 
 <script>
-    import {
-        loadHeaderdata
-    } from "@/js/helpers/headerFile";
-    import * as moment from 'moment';
-    import localization from 'moment/locale/id'
-    export default {
-        data() {
-            return {
-                company: {
-                    name: "",
-                    address: "",
-                    number: "",
-                    website: "",
-                    email: "",
-                    logo: ""
-                },
+import { loadHeaderdata } from "@/js/helpers/headerFile";
+import * as moment from "moment";
+import localization from "moment/locale/id";
+export default {
+  data() {
+    return {
+      company: {
+        name: "",
+        address: "",
+        number: "",
+        website: "",
+        email: "",
+        logo: ""
+      },
 
-                number: "",
-                attachmentname: "",
-                customername: "",
-                subject: "",
-                discussion_date: "",
-                discussion_loc: "",
-                offerprice: "",
-                duration: "",
-                offerduetime: "",
-                created_at: "",
+      number: "",
+      attachmentname: "",
+      customername: "",
+      subject: "",
+      discussion_date: "",
+      discussion_loc: "",
+      offerprice: "",
+      duration: "",
+      offerduetime: "",
+      created_at: "",
 
-                offerpricename: "",
-                offerduetimename: "",
-                durationname: "",
-                attachment: "",
+      offerpricename: "",
+      offerduetimename: "",
+      durationname: "",
+      attachment: "",
 
-                categories: [],
+      categories: []
+    };
+  },
+  methods: {
+    loadDokumendata() {
+      let data = this.$store.getters.getDocumentData;
+      this.number = data.number;
+      this.attachmentname = data.attachmentname;
+      this.customername = data.customername;
+      this.subject = data.subject;
+      this.discussion_date = data.discussion_date;
+      this.discussion_loc = data.discussion_loc;
+      this.offerprice = data.offerprice;
+      this.duration = data.duration;
+      this.offerduetime = data.offerduetime;
+      this.created_at = data.created_at;
+      console.log("Load Dokumen", this.$store.getters.getDocumentData);
+    },
+    loadHeaderAPI() {
+      loadHeaderdata(this.$authAPI)
+        .then(result => {
+          this.company = {
+            name: result.companyname,
+            address: result.address,
+            number: result.phonenumber,
+            email: result.email,
+            website: result.website,
+            logo: result.logo
+          };
+          console.log("data asdsadas", result);
+        })
+        .catch(err => {
+          console.log("err data tidak masuk", err);
+        });
+    },
+    loadPayload() {
+      let localPayload = JSON.parse(this.$store.getters.getDataPayload);
+      this.categories = localPayload;
+      console.log("categories", this.categories);
+    },
+    print() {
+      window.print();
+    },
+    terbilang(val) {
+      var bilangan = val;
+      var kalimat = "";
+      var subkalimat;
+      var kata1;
+      var kata2;
+      var kata3;
+      var angka = new Array(
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      );
+      var kata = new Array(
+        "",
+        "Satu",
+        "Dua",
+        "Tiga",
+        "Empat",
+        "Lima",
+        "Enam",
+        "Tujuh",
+        "Delapan",
+        "Sembilan"
+      );
+      var tingkat = new Array("", "Ribu", "Juta", "Milyar", "Triliun");
+
+      if (val != null) {
+        var panjang_bilangan = bilangan.length;
+
+        /* pengujian panjang bilangan */
+        if (panjang_bilangan > 15) {
+          kalimat = "Diluar Batas";
+        } else {
+          /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+          for (i = 1; i <= panjang_bilangan; i++) {
+            angka[i] = bilangan.substr(-i, 1);
+          }
+
+          var i = 1;
+          var j = 0;
+
+          /* mulai proses iterasi terhadap array angka */
+          while (i <= panjang_bilangan) {
+            subkalimat = "";
+            kata1 = "";
+            kata2 = "";
+            kata3 = "";
+
+            /* untuk Ratusan */
+            if (angka[i + 2] != "0") {
+              if (angka[i + 2] == "1") {
+                kata1 = "Seratus";
+              } else {
+                kata1 = kata[angka[i + 2]] + " Ratus";
+              }
             }
-        },
-        methods: {
-            loadDokumendata() {
-                let data = this.$store.getters.getDocumentData;
-                this.number = data.number;
-                this.attachmentname = data.attachmentname;
-                this.customername = data.customername;
-                this.subject = data.subject;
-                this.discussion_date = data.discussion_date;
-                this.discussion_loc = data.discussion_loc;
-                this.offerprice = data.offerprice;
-                this.duration = data.duration;
-                this.offerduetime = data.offerduetime;
-                this.created_at = data.created_at;
-                console.log("Load Dokumen", this.$store.getters.getDocumentData);
-            },
-            loadHeaderAPI() {
-                loadHeaderdata(this.$authAPI)
-                    .then(result => {
-                        this.company = {
-                            name: result.companyname,
-                            address: result.address,
-                            number: result.phonenumber,
-                            email: result.email,
-                            website: result.website,
-                            logo: result.logo
-                        };
-                        console.log("data asdsadas", result);
-                    })
-                    .catch(err => {
-                        console.log("err data tidak masuk", err);
-                    });
-            },
-            loadPayload() {
-                let localPayload = JSON.parse(this.$store.getters.getDataPayload);
-                this.categories = localPayload;
-                console.log("categories", this.categories);
-            },
-            print() {
-                window.print();
-            },
-            terbilang(val) {
-                var bilangan = val
-                var kalimat = "";
-                var subkalimat;
-                var kata1;
-                var kata2;
-                var kata3;
-                var angka = new Array('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
-                var kata = new Array('', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan',
-                    'Sembilan');
-                var tingkat = new Array('', 'Ribu', 'Juta', 'Milyar', 'Triliun');
 
-                if (val != null) {
-
-                    var panjang_bilangan = bilangan.length;
-
-                    /* pengujian panjang bilangan */
-                    if (panjang_bilangan > 15) {
-                        kalimat = "Diluar Batas";
-                    } else {
-                        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-                        for (i = 1; i <= panjang_bilangan; i++) {
-                            angka[i] = bilangan.substr(-(i), 1);
-                        }
-
-                        var i = 1;
-                        var j = 0;
-
-                        /* mulai proses iterasi terhadap array angka */
-                        while (i <= panjang_bilangan) {
-                            subkalimat = "";
-                            kata1 = "";
-                            kata2 = "";
-                            kata3 = "";
-
-                            /* untuk Ratusan */
-                            if (angka[i + 2] != "0") {
-                                if (angka[i + 2] == "1") {
-                                    kata1 = "Seratus";
-                                } else {
-                                    kata1 = kata[angka[i + 2]] + " Ratus";
-                                }
-                            }
-
-                            /* untuk Puluhan atau Belasan */
-                            if (angka[i + 1] != "0") {
-                                if (angka[i + 1] == "1") {
-                                    if (angka[i] == "0") {
-                                        kata2 = "Sepuluh";
-                                    } else if (angka[i] == "1") {
-                                        kata2 = "Sebelas";
-                                    } else {
-                                        kata2 = kata[angka[i]] + " Belas";
-                                    }
-                                } else {
-                                    kata2 = kata[angka[i + 1]] + " Puluh";
-                                }
-                            }
-
-                            /* untuk Satuan */
-                            if (angka[i] != "0") {
-                                if (angka[i + 1] != "1") {
-                                    kata3 = kata[angka[i]];
-                                }
-                            }
-
-                            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-                            if ((angka[i] != "0") || (angka[i + 1] != "0") || (angka[i + 2] != "0")) {
-                                subkalimat = kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
-                            }
-
-                            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-                            kalimat = subkalimat + kalimat;
-                            i = i + 3;
-                            j = j + 1;
-                        }
-
-                        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
-                        if ((angka[5] == "0") && (angka[6] == "0")) {
-                            kalimat = kalimat.replace("Satu Ribu", "Seribu");
-                        }
-                    }
-                    return kalimat;
+            /* untuk Puluhan atau Belasan */
+            if (angka[i + 1] != "0") {
+              if (angka[i + 1] == "1") {
+                if (angka[i] == "0") {
+                  kata2 = "Sepuluh";
+                } else if (angka[i] == "1") {
+                  kata2 = "Sebelas";
+                } else {
+                  kata2 = kata[angka[i]] + " Belas";
                 }
+              } else {
+                kata2 = kata[angka[i + 1]] + " Puluh";
+              }
             }
-        },
-        mounted() {
-            this.$store.commit("RESET_UPDATE")
-            this.loadHeaderAPI();
-            this.loadDokumendata();
-            this.loadPayload();
-        },
-        computed: {
-            timestamp() {
-                return moment().locale("id", localization).format('LL')
-            },
-            created_at_date() {
-                console.log('created_at', this.created_at);
-                return moment(String(this.created_at)).locale("id", localization).format('LL')
-            }
-        },
-        watch: {
-            offerprice: function (val) {
-                this.offerpricename = this.terbilang(val);
-            },
-            offerduetime: function (val) {
-                this.offerduetimename = this.terbilang(val);
-            },
-            duration: function (val) {
-                this.durationname = this.terbilang(val);
-            },
-            attachmentname: function (val) {
-                this.attachment = this.terbilang(val);
-            }
-        }
-    }
 
+            /* untuk Satuan */
+            if (angka[i] != "0") {
+              if (angka[i + 1] != "1") {
+                kata3 = kata[angka[i]];
+              }
+            }
+
+            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+            if (angka[i] != "0" || angka[i + 1] != "0" || angka[i + 2] != "0") {
+              subkalimat =
+                kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
+            }
+
+            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+            kalimat = subkalimat + kalimat;
+            i = i + 3;
+            j = j + 1;
+          }
+
+          /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+          if (angka[5] == "0" && angka[6] == "0") {
+            kalimat = kalimat.replace("Satu Ribu", "Seribu");
+          }
+        }
+        return kalimat;
+      }
+    }
+  },
+  mounted() {
+    this.$store.commit("RESET_UPDATE");
+    this.loadHeaderAPI();
+    this.loadDokumendata();
+    this.loadPayload();
+  },
+  computed: {
+    timestamp() {
+      return moment()
+        .locale("id", localization)
+        .format("LL");
+    },
+    created_at_date() {
+      console.log("created_at", this.created_at);
+      return moment(String(this.created_at))
+        .locale("id", localization)
+        .format("LL");
+    },
+    total_item() {
+      var x;
+      var y;
+      var z;
+      var i;
+      var biaya = 0;
+      var durasi = 0;
+      for (x in this.categories) {
+        console.log("panjang kategori", this.categories);
+        if (this.categories[x].hasOwnProperty("list_subs")) {
+          for (y in this.categories[x]["list_subs"]) {
+            for (z in this.categories[x]["list_subs"][y]) {
+              console.log("z val", z);
+              if (z == "list_row") {
+                for (i in this.categories[x]["list_subs"][y][z]) {
+                  console.log("list_row", i);
+
+                  biaya += parseInt(
+                    this.categories[x]["list_subs"][y][z][i]["biaya"]
+                  );
+                  durasi += parseInt(
+                    this.categories[x]["list_subs"][y][z][i]["durasi"]
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return [biaya, durasi];
+    }
+  },
+  watch: {
+    offerprice: function(val) {
+      this.offerpricename = this.terbilang(val);
+    },
+    offerduetime: function(val) {
+      this.offerduetimename = this.terbilang(val);
+    },
+    duration: function(val) {
+      this.durationname = this.terbilang(val);
+    },
+    attachmentname: function(val) {
+      this.attachment = this.terbilang(val);
+    }
+  }
+};
 </script>
 
 <style scoped>
-    /* Styles go here */
+/* Styles go here */
 
-    #pdf {
-        background-color: white !important;
-    }
+#pdf {
+  background-color: white !important;
+}
 
-    .page-header,
-    .page-header-space {
-        height: 100px;
-    }
+.page-header,
+.page-header-space {
+  height: 100px;
+}
 
-    .page-footer,
-    .page-footer-space {
-        height: 50px;
+.page-footer,
+.page-footer-space {
+  height: 50px;
+}
 
-    }
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid black;
+  /* for demo */
+  background: yellow;
+  /* for demo */
+}
 
-    .page-footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        border-top: 1px solid black;
-        /* for demo */
-        background: yellow;
-        /* for demo */
-    }
+.page-header {
+  position: fixed;
+  top: 0mm;
+  width: 100%;
+  background: white;
+  width: 100%;
+  border-bottom: 2px solid #4a7ebb;
+  margin-bottom: 10px;
+}
 
-    .page-header {
-        position: fixed;
-        top: 0mm;
-        width: 100%;
-        background: white;
-        width: 100%;
-        border-bottom: 2px solid #4a7ebb;
-        margin-bottom: 10px;
-    }
+.page {
+  page-break-after: always;
+}
 
-    .page {
-        page-break-after: always;
-    }
+@page {
+  margin: 20mm;
+}
 
-    @page {
-        margin: 20mm
-    }
+@media print {
+  thead {
+    display: table-header-group;
+  }
 
-    @media print {
-        thead {
-            display: table-header-group;
-        }
+  tfoot {
+    display: table-footer-group;
+  }
 
-        tfoot {
-            display: table-footer-group;
-        }
+  button {
+    display: none;
+  }
 
-        button {
-            display: none;
-        }
-
-        body {
-            margin: 0;
-        }
-    }
-
+  body {
+    margin: 0;
+  }
+}
 </style>

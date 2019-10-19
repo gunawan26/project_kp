@@ -196,7 +196,8 @@
                 </div>
             </div>
         </div>
-        <v-btn color="green" dark x-large fixed bottom right fab>
+        <notifications group="foo" />
+        <v-btn color="green" dark x-large fixed bottom right fab @click="setStatusDone">
             <v-icon>mdi-check</v-icon>
         </v-btn>
     </div>
@@ -208,7 +209,9 @@ import ConfirmUpdateDocument from "@/js/components/dialog/ConfirmUpdateDocument.
 import CategoryAdd from "@/js/components/CategoryAdd.vue";
 import { loadHeaderdata } from "@/js/helpers/headerFile";
 // import { mapFields } from 'vuex-map-fields';
+import { setDocumentDone } from "@/js/helpers/fileOffer";
 import { createHelpers } from "vuex-map-fields";
+import { terbilang } from "@/js/helpers/angkaKeHuruf";
 
 const { mapFields: mapDocumentfields } = createHelpers({
   getterType: "getDocumentFields",
@@ -241,16 +244,39 @@ export default {
     // list_subs: [],
     hidden: true,
     hiddenSub: true,
-
+    dbDataPayload: [],
     date: new Date().toISOString().substr(0, 10),
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
     menu1: false,
     offerpricename: "",
     offerduetimename: "",
-    durationname: ""
+    durationname: "",
+    attachment: ""
   }),
 
   methods: {
+    setStatusDone() {
+      let doc_id = this.$route.params.id_dokumen;
+      setDocumentDone(
+        this.$authAPI,
+        doc_id,
+        this.$store.getters.getDocumentData
+      )
+        .then(result => {
+          this.$notify({
+            group: "foo",
+            title: "Berhasil",
+            text: "Status Dokumen Selesai",
+            duration: 1000,
+            type: "success "
+          });
+          console.log("document done", result);
+          this.$router.push({
+            path: "/history"
+          });
+        })
+        .catch(err => {});
+    },
     setStatusUpdate(sts) {
       this.isUpdateFromLocal = sts;
       console.log("want to load data ?", this.isUpdateFromLocal);
@@ -264,9 +290,7 @@ export default {
 
         console.log("updating", this.categories);
       } else {
-        console.log("string arr", this.$store.getters.getDataPayload);
-        // let localPayload = JSON.parse(this.$store.getters.getDataPayload);
-        this.categories = localPayload;
+        this.categories = this.dbDataPayload;
       }
 
       for (var key in this.categories) {
@@ -410,121 +434,28 @@ export default {
 
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-    },
-
-    terbilang(val) {
-      var bilangan = val;
-      var kalimat = "";
-      var subkalimat;
-      var kata1;
-      var kata2;
-      var kata3;
-      var angka = new Array(
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
-      );
-      var kata = new Array(
-        "",
-        "Satu",
-        "Dua",
-        "Tiga",
-        "Empat",
-        "Lima",
-        "Enam",
-        "Tujuh",
-        "Delapan",
-        "Sembilan"
-      );
-      var tingkat = new Array("", "Ribu", "Juta", "Milyar", "Triliun");
-      var panjang_bilangan = bilangan.length;
-
-      /* pengujian panjang bilangan */
-      if (panjang_bilangan > 15) {
-        kalimat = "Diluar Batas";
-      } else {
-        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-        for (i = 1; i <= panjang_bilangan; i++) {
-          angka[i] = bilangan.substr(-i, 1);
-        }
-
-        var i = 1;
-        var j = 0;
-
-        /* mulai proses iterasi terhadap array angka */
-        while (i <= panjang_bilangan) {
-          subkalimat = "";
-          kata1 = "";
-          kata2 = "";
-          kata3 = "";
-
-          /* untuk Ratusan */
-          if (angka[i + 2] != "0") {
-            if (angka[i + 2] == "1") {
-              kata1 = "Seratus";
-            } else {
-              kata1 = kata[angka[i + 2]] + " Ratus";
-            }
-          }
-
-          /* untuk Puluhan atau Belasan */
-          if (angka[i + 1] != "0") {
-            if (angka[i + 1] == "1") {
-              if (angka[i] == "0") {
-                kata2 = "Sepuluh";
-              } else if (angka[i] == "1") {
-                kata2 = "Sebelas";
-              } else {
-                kata2 = kata[angka[i]] + " Belas";
-              }
-            } else {
-              kata2 = kata[angka[i + 1]] + " Puluh";
-            }
-          }
-
-          /* untuk Satuan */
-          if (angka[i] != "0") {
-            if (angka[i + 1] != "1") {
-              kata3 = kata[angka[i]];
-            }
-          }
-
-          /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-          if (angka[i] != "0" || angka[i + 1] != "0" || angka[i + 2] != "0") {
-            subkalimat =
-              kata1 + " " + kata2 + " " + kata3 + " " + tingkat[j] + " ";
-          }
-
-          /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-          kalimat = subkalimat + kalimat;
-          i = i + 3;
-          j = j + 1;
-        }
-
-        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
-        if (angka[5] == "0" && angka[6] == "0") {
-          kalimat = kalimat.replace("Satu Ribu", "Seribu");
-        }
-      }
-      return kalimat;
     }
   },
   created() {
     this.addCategory();
     this.loadHeaderAPI();
+    this.$store.subscribe((mutation, state) => {
+      console.log(mutation.type);
+      console.log(mutation.payload);
+
+      if (mutation.type === "GET_DATA_PAYLOAD_FROM_DB") {
+        console.log("data mutation", this.$store.getters.getDataPayload);
+
+        this.dbDataPayload = JSON.parse(this.$store.getters.getDataPayload);
+
+        console.log(this.categories);
+      } else if (mutation.type === "LOAD_DB") {
+        if (this.$store.getters.isAcceptDb) {
+          this.categories = this.dbDataPayload;
+          console.log("informasi load db", this.dbDataPayload);
+        }
+      }
+    });
   },
 
   mounted() {
@@ -560,13 +491,16 @@ export default {
       this.dateFormatted = this.formatDate(this.date);
     },
     offerprice: function(val) {
-      this.offerpricename = this.terbilang(val);
+      this.offerpricename = terbilang(val);
     },
     offerduetime: function(val) {
-      this.offerduetimename = this.terbilang(val);
+      this.offerduetimename = terbilang(val);
     },
     duration: function(val) {
-      this.offerduetimename = this.terbilang(val);
+      this.durationname = terbilang(val);
+    },
+    attachmentname: function(val) {
+      this.attachment = terbilang(val);
     }
   },
   props: ["document-data"]

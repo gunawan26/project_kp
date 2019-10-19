@@ -30,8 +30,8 @@ export default {
 
         isUpToDate: true,
         isAcceptChange: false,
-        categoryId: 1
-
+        categoryId: 1,
+        isAcceptDb: false
     },
     getters: {
         getField,
@@ -58,6 +58,9 @@ export default {
             console.log("kesini")
             return state.isUpToDate;
         },
+        isAcceptDb(state) {
+            return state.isAcceptDb
+        },
         getDataPayload(state) {
             return state.data_dokumen.dataPayload
         }
@@ -81,6 +84,10 @@ export default {
             localStorage.setItem(`document-${state.data_dokumen.id}`, JSON.stringify(state.data_dokumen))
             console.log("new saved")
         },
+        LOAD_DB(state, payload) {
+            state.isAcceptDb = payload;
+
+        },
 
         NOT_UPDATE(state) {
             console.log("value updated")
@@ -98,9 +105,10 @@ export default {
         SAVE_TO_LOCALSTORAGE(state) {
             console.log(state.data_dokumen.id)
             if (state.data_dokumen.id.length != 0) {
-                console.log("saving to local storage", state.data_dokumen.id)
+                console.log("saving to local storage", state.data_dokumen)
 
                 localStorage.setItem(`document-${state.data_dokumen.id}`, JSON.stringify(state.data_dokumen))
+                console.log("data dokumen", state.data_dokumen)
             } else {
                 console.log('Not Saving To Local Storage !')
                 console.log("data dokumen", state.data_dokumen)
@@ -117,6 +125,25 @@ export default {
         UPDATE_PAYLOAD_DATA(state, payload) {
             console.log("payload data", payload)
             // state.data_dokumen.dataPayload = payload
+            let dataPayload = {
+                dataPayload: JSON.stringify(payload),
+                updated_at: new Date().getTime()
+            }
+            // let dataReplace = Object.assign({
+            //     state
+            // })
+            // console.log("data_replace", dataReplace)
+            Vue.set(state.data_dokumen, 'updated_at', dataPayload.updated_at)
+            Vue.set(state.data_dokumen, 'dataPayload', dataPayload.dataPayload)
+            // state.data_dokumen = Object.assign({}, dataReplace)
+            // state.data_dokumen = {
+            //     ...state.data_dokumen,
+            //     dataPayload
+            // }
+            console.log("data dokumen stelah update", state.data_dokumen)
+        },
+
+        GET_DATA_PAYLOAD_FROM_DB(state, payload) {
             let dataPayload = {
                 dataPayload: JSON.stringify(payload),
                 updated_at: new Date().getTime()
@@ -152,12 +179,16 @@ export default {
                 if (localDateUpdate > onlineDateUpdate) {
                     context.commit("NOT_UPDATE")
                     console.log("database behind the local")
+                    context.commit("LOAD_DB", false)
 
+                } else {
+                    context.commit("GET_DATA_PAYLOAD_FROM_DB", payload.dataPayload)
+                    context.commit("LOAD_DB", true)
                 }
 
             } catch (error) {
                 console.log(error)
-                context.commit("STORE_DATA", payload.dataFromDb)
+                // context.commit("STORE_DATA", payload.dataFromDb)
             }
             console.log("dia keisni")
         },
@@ -170,9 +201,14 @@ export default {
 
         },
         updatepayloadData(context, payload) {
-            console.log("payload di updatepaload", payload)
+            console.log("payload di updatepaload", typeof payload)
             context.commit("UPDATE_PAYLOAD_DATA", payload)
             context.commit("SAVE_TO_LOCALSTORAGE")
+        },
+
+        getDataPayloadFirst(context, payload) {
+            context.commit("GET_DATA_PAYLOAD_FROM_DB", payload)
+            // context.commit("SAVE_TO_LOCALSTORAGE")
         }
 
 

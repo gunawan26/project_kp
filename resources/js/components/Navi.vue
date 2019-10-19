@@ -20,7 +20,7 @@
             <v-btn
               text
               v-on="on"
-            ><v-icon color="black">mdi-account-circle</v-icon>{{userName}}
+            ><v-icon color="black">mdi-account-circle</v-icon>{{currentUser}}
             </v-btn>
           </template>
           <v-list>
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     currentUser() {
-      return store.state.currentUser;
+      return store.getters.get_user_name;
     }
   },
   methods: {

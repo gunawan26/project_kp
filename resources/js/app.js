@@ -10,6 +10,7 @@ import VueAxios from 'vue-axios';
 import store from '@/js/state/store'
 import 'vuetify/dist/vuetify.min.css';
 
+import Notifications from 'vue-notification'
 import Routes from '@/js/routes.js';
 
 import App from '@/js/views/App';
@@ -27,6 +28,7 @@ window.Vuetify = require('vuetify');
 
 Vue.use(Vuetify);
 Vue.use(VueAxios, Axios);
+Vue.use(Notifications);
 
 Vue.use({
     install(Vue) {

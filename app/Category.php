@@ -10,6 +10,7 @@ class Category extends Model
     protected $fillable = [
         'categoryname', 'offer_id', 'arr_index'
     ];
+    protected $touches = ['offer'];
 
     public function detail()
     {
@@ -21,5 +22,11 @@ class Category extends Model
             'id',
             'id'
         );
+    }
+
+
+    public function offer()
+    {
+        return $this->belongsTo('App\Offer');
     }
 }

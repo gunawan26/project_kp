@@ -14,7 +14,7 @@ class DocumentController extends Controller
 
     public function get_file()
     {
-        return Offer::orderBy('id', 'desc')->paginate(10);
+        return Offer::orderBy('id', 'desc')->where('status_file', '0')->paginate(10);
     }
 
 

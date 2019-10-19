@@ -35,7 +35,8 @@
             </v-layout>
         </v-app-bar>
         <div>
-        
+        <notifications group="foo" />
+
             <Offer ref="OfferComponent" :document-data="data_dokumen" />
 
         </div>
@@ -84,9 +85,13 @@ export default {
     openFileApi(this.$authAPI, this.$data.doc_id)
       .then(result => {
         console.log("result fetching", result.data.dataPayload);
-        let payload = { dataFromDb: result.data.doc, idDoc: this.$data.doc_id };
+        let payload = {
+          dataFromDb: result.data.doc,
+          idDoc: this.$data.doc_id,
+          dataPayload: result.data.dataPayload
+        };
         this.$store.dispatch("fetchDataDokumen", payload);
-        // this.$store.dispatch("updatepayloadData", result.data.dataPayload);
+        this.$store.dispatch("getDataPayloadFirst", result.data.dataPayload);
         console.log("data dokumen", this.$store.getters.dataDokumen);
       })
       .catch(err => {
@@ -103,6 +108,13 @@ export default {
       )
         .then(result => {
           console.log("responses", result);
+          this.$notify({
+            group: "foo",
+            title: "Berhasil",
+            text: "Data Berhasil Disimpan di database",
+            duration: 2000,
+            type: "success "
+          });
         })
         .catch(err => {});
     },

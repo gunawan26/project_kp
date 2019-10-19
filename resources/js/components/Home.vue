@@ -90,101 +90,113 @@
 </template>
 
 <script>
-    import Navi from "@/js/components/Navi.vue";
-    import CreateFile from "@/js/components/dialog/CreateFile.vue";
-    import store from "@/js/state/store";
-
-    export default {
-        name: "home",
-        data() {
-            return {
-                overlay: false,
-                api: {
-                    documentIndex: "/api/auth/data"
-                },
-                docs: null
-            };
-        },
-        components: {
-            Navi,
-            CreateFile
-        },
-        computed: {
-            curentUser() {
-                //   return store.getters.currentUser;
-                return store.state.currentUser;
-            }
-        },
-        created() {
-            this.overlay = true;
-        },
-        mounted() {
-            console.log("Home is ready!");
-            this.getUsers(this.api.documentIndex);
-        },
-        watch: {
-            overlay(val) {
-                val &&
-                    setTimeout(() => {
-                        this.overlay = false;
-                    }, 3000);
-            }
-        },
-        methods: {
-            getUsers(url) {
-                this.$authAPI
-                    .get(url)
-                    .then(response => {
-                        this.docs = response.data;
-                        console.log("document", this.docs)
-                    })
-                    .catch(errors => {
-                        console.error(errors);
-                    });
-            },
-            continueDokumen(id) {
-                (this.loadingSubmit = false),
-                this.$router.push({
-                    path: `/offer-document/${id}`
-                });
-
-            }
-        }
+import Navi from "@/js/components/Navi.vue";
+import CreateFile from "@/js/components/dialog/CreateFile.vue";
+import store from "@/js/state/store";
+import { getUserInformation } from "@/js/helpers/auth";
+export default {
+  name: "home",
+  data() {
+    return {
+      overlay: false,
+      api: {
+        documentIndex: "/api/auth/data"
+      },
+      docs: null
     };
-
+  },
+  components: {
+    Navi,
+    CreateFile
+  },
+  computed: {
+    curentUser() {
+      //   return store.getters.currentUser;
+      return store.state.nama_user;
+    }
+  },
+  created() {
+    this.overlay = true;
+    this.getUserInfo();
+  },
+  mounted() {
+    console.log("Home is ready!");
+    this.getUsers(this.api.documentIndex);
+  },
+  watch: {
+    overlay(val) {
+      val &&
+        setTimeout(() => {
+          this.overlay = false;
+        }, 3000);
+    }
+  },
+  methods: {
+    getUserInfo() {
+      getUserInformation(this.$authAPI)
+        .then(result => {
+          let payload = {
+            name: result.data.name,
+            email: result.data.email,
+            role: result.data.role
+          };
+          //   console.log("sukses info", payload);
+          this.$store.dispatch("saveUserInfo", payload);
+        })
+        .catch(err => {
+          console.log("err info", err);
+        });
+    },
+    getUsers(url) {
+      this.$authAPI
+        .get(url)
+        .then(response => {
+          this.docs = response.data;
+          console.log("document", this.docs);
+        })
+        .catch(errors => {
+          console.error(errors);
+        });
+    },
+    continueDokumen(id) {
+      (this.loadingSubmit = false),
+        this.$router.push({
+          path: `/offer-document/${id}`
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss">
-    #top-box {
-        background-color: #f1f0ee;
-        padding: 15px;
-        height: 130px;
-        margin-top: 5%;
-    }
+#top-box {
+  background-color: #f1f0ee;
+  padding: 15px;
+  height: 130px;
+  margin-top: 5%;
+}
 
-    #top-img {
-        width: 10%;
-        margin-left: 10%;
-        float: left;
-    }
+#top-img {
+  width: 10%;
+  margin-left: 10%;
+  float: left;
+}
 
-    #top-text {
-        // height: 100px;
-        margin-top: 40px;
-        margin-left: 10%;
-        float: left;
-    }
+#top-text {
+  // height: 100px;
+  margin-top: 40px;
+  margin-left: 10%;
+  float: left;
+}
 
-    .pagination {
-        display: inline-block;
-    }
+.pagination {
+  display: inline-block;
+}
 
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 10px;
-        text-decoration: none;
-    }
-
-
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 10px;
+  text-decoration: none;
+}
 </style>

@@ -66,7 +66,7 @@ class FormController extends Controller
                 }
                 # code...
                 $newdata[] =  array(
-                    'name' => $value_sub->subcategoryname,
+                    'id' => $value_sub->subcategoryname,
                     'id_sub' => $value_sub->id,
                     'list_row' => $new_det
                 );
@@ -81,7 +81,7 @@ class FormController extends Controller
                 'list_subs' => $newdata
             );
         }
-        // $cat_obj = json_encode($cat_arr);
+
 
         return response()->json(['doc' => $selected_document, 'dataPayload' => $cat_arr], 200);
     }
@@ -97,7 +97,7 @@ class FormController extends Controller
         ], 200);
     }
 
-    public function update_form_data(Request $request, $id)
+    public function update_form_data(Request $request, $id, $status = false)
     {
         $document = Offer::find($id);
         // dd();
@@ -110,16 +110,20 @@ class FormController extends Controller
         $document->duration = $request['data']['duration'];
         $document->attachmentname = $request['data']['attachmentname'];
 
+        if ($status) {
+            $document->status_file = '1';
+        }
         $document->save();
         try {
             //code...
 
             $payload_data = json_decode($request['data']['dataPayload']);
-        } catch (\Throwable $th) {
-            //throw $th;
+            $this->save_categories($payload_data, $document);
+            $document->touch();
+        } catch (Exception $e) {
+            return response()->json($e, 400);
         }
 
-        $this->save_categories($payload_data, $document);
         return response()->json("sukses cuy", 200);
     }
 
@@ -136,12 +140,14 @@ class FormController extends Controller
     public function save_categories($dataPayload, Offer $offer)
     {
         // dd($offer->id);
+
+
         foreach ($dataPayload as $key => $value) {
 
             $cat = Category::updateOrCreate(['arr_index' => $key, 'offer_id' => $offer->id], ['categoryname' => $value->title, 'offer_id' => $offer->id, 'arr_index' => $key]);
 
+            // dd($value);
             $this->save_subcategories($value->list_subs, $cat, $offer);
-
             // $category->arr_index = $key;
             // $category->categoryname = $value->title;
             // $category->offer_id = $offer->id;
@@ -152,14 +158,14 @@ class FormController extends Controller
     public function save_subcategories($dataSub, Category $category, Offer $offer)
     {
 
-
         foreach ($dataSub as $key => $value) {
+
             $cat = Subcategory::updateOrCreate(
                 [
                     'arr_index_sub' => $key,
                     'id_category' => $category->id
                 ],
-                ['subcategoryname' => $value->name]
+                ['subcategoryname' => $value->id]
             );
 
             $this->save_detitems($value->list_row, $cat, $offer);
@@ -170,7 +176,7 @@ class FormController extends Controller
     {
         foreach ($dataDetail as $key => $value) {
 
-
+            // dd($this->compNull($value, 'durasi', 0));
             $det_item = Detitem::updateOrCreate(
                 [
                     'subcategory' => $sub->id,
@@ -179,9 +185,9 @@ class FormController extends Controller
                 ],
                 [
                     'item' => $value->modul,
-                    'duration' => $value->durasi,
+                    'duration' => $this->compNull($value, 'durasi', 0),
                     'unit' => $value->satuan,
-                    'itemprice' => $value->biaya,
+                    'itemprice' => $this->compNull($value, 'biaya', 0),
                     'information' => $value->ket
                 ]
             );
@@ -191,5 +197,14 @@ class FormController extends Controller
     public function save_document_data(Request $request)
     {
         dd($request);
+    }
+
+    public function compNull($arr, $name, $default_value)
+    {
+        if ($arr->$name == null) {
+            return $default_value;
+        } else {
+            return $arr->$name;
+        }
     }
 }
