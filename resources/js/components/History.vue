@@ -75,6 +75,7 @@ import Navi from "@/js/components/Navi.vue";
 import CreateFile from "@/js/components/dialog/CreateFile.vue";
 import store from "@/js/state/store";
 import { openFileApi, updateFileApi } from "@/js/helpers/fileOffer";
+
 export default {
   name: "home",
   data() {

@@ -213,6 +213,7 @@ import { setDocumentDone } from "@/js/helpers/fileOffer";
 import { createHelpers } from "vuex-map-fields";
 import { terbilang } from "@/js/helpers/angkaKeHuruf";
 
+
 const { mapFields: mapDocumentfields } = createHelpers({
   getterType: "getDocumentFields",
   mutationType: "updateDocumentFields"
@@ -459,7 +460,7 @@ export default {
   },
 
   mounted() {
-    console.log("hello");
+    console.log("lola",terbilang(100));
   },
   computed: {
     ...mapDocumentfields([
@@ -475,7 +476,8 @@ export default {
     ]),
     discussion_date() {
       return this.formatDate(this.date);
-    }
+    },
+    
   },
   watch: {
     categories: {
@@ -492,6 +494,7 @@ export default {
     },
     offerprice: function(val) {
       this.offerpricename = terbilang(val);
+      // console.log("offer", val);
     },
     offerduetime: function(val) {
       this.offerduetimename = terbilang(val);
@@ -501,7 +504,7 @@ export default {
     },
     attachmentname: function(val) {
       this.attachment = terbilang(val);
-    }
+    },
   },
   props: ["document-data"]
 };
