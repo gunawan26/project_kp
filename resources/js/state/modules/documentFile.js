@@ -21,7 +21,8 @@ export default {
             offerduetime: '',
             updated_at: '',
             id: '',
-            dataPayload: ''
+            dataPayload: '',
+            offername: ''
 
 
         },
@@ -41,6 +42,9 @@ export default {
         },
         getDocumentData(state) {
             return state.data_dokumen
+        },
+        getDocumentName(state) {
+            return state.data_dokumen.offername
         },
         getCategoryId(state) {
             return state.categoryId
@@ -160,6 +164,9 @@ export default {
             //     dataPayload
             // }
             console.log("data dokumen stelah update", state.data_dokumen)
+        },
+        UPDATE_DOCUMENT_NAME(state, payload) {
+            state.data_dokumen.offername = payload
         }
 
 
@@ -209,6 +216,10 @@ export default {
         getDataPayloadFirst(context, payload) {
             context.commit("GET_DATA_PAYLOAD_FROM_DB", payload)
             // context.commit("SAVE_TO_LOCALSTORAGE")
+        },
+
+        updateDocumentName(context, payload) {
+            context.commit("UPDATE_DOCUMENT_NAME", payload)
         }
 
 

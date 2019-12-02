@@ -213,7 +213,6 @@ import { setDocumentDone } from "@/js/helpers/fileOffer";
 import { createHelpers } from "vuex-map-fields";
 import { terbilang } from "@/js/helpers/angkaKeHuruf";
 
-
 const { mapFields: mapDocumentfields } = createHelpers({
   getterType: "getDocumentFields",
   mutationType: "updateDocumentFields"
@@ -441,26 +440,26 @@ export default {
     this.addCategory();
     this.loadHeaderAPI();
     this.$store.subscribe((mutation, state) => {
-      console.log(mutation.type);
-      console.log(mutation.payload);
+      // console.log(mutation.type);
+      // console.log(mutation.payload);
 
       if (mutation.type === "GET_DATA_PAYLOAD_FROM_DB") {
-        console.log("data mutation", this.$store.getters.getDataPayload);
+        // console.log("data mutation", this.$store.getters.getDataPayload);
 
         this.dbDataPayload = JSON.parse(this.$store.getters.getDataPayload);
 
-        console.log(this.categories);
+        // console.log(this.categories);
       } else if (mutation.type === "LOAD_DB") {
         if (this.$store.getters.isAcceptDb) {
           this.categories = this.dbDataPayload;
-          console.log("informasi load db", this.dbDataPayload);
+          // console.log("informasi load db", this.dbDataPayload);
         }
       }
     });
   },
 
   mounted() {
-    console.log("lola",terbilang(100));
+    console.log("lola", terbilang(100));
   },
   computed: {
     ...mapDocumentfields([
@@ -476,8 +475,7 @@ export default {
     ]),
     discussion_date() {
       return this.formatDate(this.date);
-    },
-    
+    }
   },
   watch: {
     categories: {
@@ -504,7 +502,7 @@ export default {
     },
     attachmentname: function(val) {
       this.attachment = terbilang(val);
-    },
+    }
   },
   props: ["document-data"]
 };

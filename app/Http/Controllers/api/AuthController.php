@@ -44,7 +44,7 @@ class AuthController extends Controller
             // dd($this->respondWithToken($token));
             return $this->respondWithToken($token);
         }
-        dd("sampai sini");
+
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
